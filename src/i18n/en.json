@@ -1,0 +1,13 @@
+{
+  "English": "English",
+  "Russian": "Russian",
+  "menuItems": {
+    "Settings": "Settings",
+    "Goods": "Goods",
+    "Documents": "Documents",
+    "Finances": "Finances",
+    "Tasks": "Tasks",
+    "Orders": "Orders",
+    "Notifications": "Notifications"
+  }
+}
