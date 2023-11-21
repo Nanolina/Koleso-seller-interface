@@ -1,0 +1,11 @@
+{
+  "short_name": "Marketplace Seller",
+  "name": "Marketplace Seller Interface",
+  "start_url": "/",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#4A90E2",
+  "description": "A convenient interface for sellers to manage their products on the marketplace.",
+  "orientation": "portrait"
+}
