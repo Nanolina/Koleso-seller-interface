@@ -1,0 +1,44 @@
+.sidebar {
+  width: 250px;
+  background-color: var(--light-gray);
+  transform: translateX(-250px);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.menuList {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  padding-top: 20px;
+}
+
+.hamburgerButton,
+.arrowLeftButton {
+  position: absolute;
+  top: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.hamburgerButton {
+  left: 0;
+}
+
+.arrowLeftButton {
+  left: 236px;
+  background-color: var(--main);
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
