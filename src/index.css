@@ -13,15 +13,19 @@ code {
 }
 
 :root {
+  /* Colors */
   --main: #6c00ad;
-  --main-opacity: #6C00B06C;
-  --yellow: #FDDC00;
+  --main-opacity: #6c00b06c;
+  --yellow: #fddc00;
   --orange: #ff7c00;
-  --green: #00B377;
+  --green: #00b377;
   --red: #ff0000;
-  --dark-red: #C80303;
+  --dark-red: #c80303;
   --gray: #c6c5d7;
-  --light-gray: #E0E0E9;
-  --dark-gray: #ADACB7;
+  --light-gray: #e0e0e9;
+  --dark-gray: #adacb7;
   --gray-opacity: rgba(223, 218, 218, 0.55);
+
+  /* Sizes */
+  --border-raduis: 8px;
 }

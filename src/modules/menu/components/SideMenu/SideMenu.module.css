@@ -3,7 +3,9 @@
   background-color: var(--light-gray);
   transform: translateX(-250px);
   transition: transform 0.3s ease;
-  position: relative;
+  position: absolute;
+  height: 100%;
+  z-index: 1;
 }
 
 .sidebar.open {
@@ -24,6 +26,7 @@
   top: 0;
   border: none;
   background-color: transparent;
+  z-index: 1;
 }
 
 .hamburgerButton {
@@ -31,7 +34,7 @@
 }
 
 .arrowLeftButton {
-  left: 236px;
+  left: 235px;
   background-color: var(--main);
   color: white;
   border-radius: 50%;

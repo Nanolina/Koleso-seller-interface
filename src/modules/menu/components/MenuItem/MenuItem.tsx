@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IMenuItem } from '../types';
+import { IMenuItem } from '../../types';
 import styles from './MenuItem.module.css';
 
 export const MenuItem: React.FC<{

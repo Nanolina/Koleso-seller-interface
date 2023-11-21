@@ -1,13 +1,17 @@
 {
   "English": "Английский",
   "Russian": "Русский",
+  "search": "Поиск",
   "menuItems": {
     "Settings": "Настройки",
-    "Goods": "Товары",
+    "Products": "Товары",
     "Documents": "Документы",
     "Finances": "Финансы",
     "Tasks": "Задания",
     "Orders": "Заказы",
     "Notifications": "Уведомления"
+  },
+  "products": {
+    "addProduct": "Добавить товар"
   }
 }

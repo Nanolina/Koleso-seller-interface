@@ -1,13 +1,17 @@
 {
   "English": "English",
   "Russian": "Russian",
+  "search": "Search",
   "menuItems": {
     "Settings": "Settings",
-    "Goods": "Goods",
+    "Products": "Products",
     "Documents": "Documents",
     "Finances": "Finances",
     "Tasks": "Tasks",
     "Orders": "Orders",
     "Notifications": "Notifications"
+  },
+  "products": {
+    "addProduct": "Add product"
   }
 }
