@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import i18n from './i18n/i18n';
-import { Products } from './modules/products';
+import { ProductsPage } from './pages/ProductsPage/ProductsPage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -10,11 +11,16 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <I18nextProvider i18n={i18n}>
-      <div className="app">
-        <Products />
-      </div>
-    </I18nextProvider>
+    <Router>
+      <I18nextProvider i18n={i18n}>
+        <div className="app">
+          <Routes>
+            {/* <Route path="/" element={<HomePage />} /> */}
+            <Route path="/" element={<ProductsPage />} />
+          </Routes>
+        </div>
+      </I18nextProvider>
+    </Router>
   );
 };
 

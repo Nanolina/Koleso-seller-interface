@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SearchBar } from '../../../../components/SearchBar/SearchBar';
-import { Button } from '../../../../ui/Button/Button';
-import { Container } from '../../../../ui/Container/Container';
-import { Title } from '../../../../ui/Title/Title';
-import { SideMenu } from '../../../menu';
-import styles from './Products.module.css';
+import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { SideMenu } from '../../modules/menu';
+import { Button } from '../../ui/Button/Button';
+import { Container } from '../../ui/Container/Container';
+import { Title } from '../../ui/Title/Title';
+import styles from './ProductsPage.module.css';
 
-export const Products: React.FC = () => {
+export const ProductsPage: React.FC = () => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 

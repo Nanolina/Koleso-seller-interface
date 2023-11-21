@@ -8,9 +8,13 @@ import styles from './SideMenu.module.css';
 
 export const SideMenu: React.FC<ISideMenuProps> = React.memo(
   ({ isMenuOpen, setIsMenuOpen }) => {
-    const handleMenuItemClick = useCallback((itemId: string) => {
-      console.log('Menu item clicked:', itemId);
-    }, []);
+    const handleMenuItemClick = useCallback(
+      (itemId: string) => {
+        console.log('Menu item clicked:', itemId);
+        setIsMenuOpen(false);
+      },
+      [setIsMenuOpen]
+    );
 
     const renderedMenuItems = useMemo(() => {
       return menuItems.map((item) => (
