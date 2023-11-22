@@ -1,0 +1,10 @@
+.thead {
+  background-color: var(--main);
+  height: 50px;
+  font-size: 12px;
+}
+
+.th {
+  color: white;
+  padding: 10px;
+}

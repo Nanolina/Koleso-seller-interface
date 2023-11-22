@@ -6,6 +6,7 @@ import { Button } from '../../ui/Button/Button';
 import { Container } from '../../ui/Container/Container';
 import { Title } from '../../ui/Title/Title';
 import styles from './ProductsPage.module.css';
+import { ProductsTable } from '../../modules/product';
 
 export const ProductsPage: React.FC = () => {
   const { t } = useTranslation();
@@ -24,6 +25,7 @@ export const ProductsPage: React.FC = () => {
         <div className={styles.buttonContainer}>
           <Button text={t('products.addProduct')} onClick={handleAddProduct} />
         </div>
+        <ProductsTable />
       </Container>
     </>
   );

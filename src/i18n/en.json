@@ -12,6 +12,19 @@
     "Notifications": "Notifications"
   },
   "products": {
-    "addProduct": "Add product"
+    "addProduct": "Add product",
+    "table": {
+      "articleKoleso": "Article Koleso",
+      "articleSupplier": "Supplier's article",
+      "title": "Title",
+      "brand": "Brand",
+      "model": "Model",
+      "image": "Image",
+      "colors": "Colors",
+      "remainingSizes": "Remaining sizes",
+      "priceWithoutDiscount": "Price without discount",
+      "finalPrice": "Final price",
+      "remainingQuantity": "Remaining quantity"
+    }
   }
 }

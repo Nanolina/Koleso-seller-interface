@@ -1,0 +1,23 @@
+.tr {
+  position: relative;
+}
+
+.tr:hover {
+  background-color: var(--light-gray);
+}
+
+.td {
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

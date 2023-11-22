@@ -12,6 +12,19 @@
     "Notifications": "Уведомления"
   },
   "products": {
-    "addProduct": "Добавить товар"
+    "addProduct": "Добавить товар",
+    "table": {
+      "articleKoleso": "Артикул Koleso",
+      "articleSupplier": "Артикул поставщика",
+      "title": "Название",
+      "brand": "Бренд",
+      "model": "Модель",
+      "image": "Изображение",
+      "colors": "Цвета",
+      "remainingSizes": "Оставшиеся размеры",
+      "priceWithoutDiscount": "Цена без скидки",
+      "finalPrice": "Конечная цена",
+      "remainingQuantity": "Оставшееся количество"
+    }
   }
 }

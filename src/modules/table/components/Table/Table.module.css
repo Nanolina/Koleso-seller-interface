@@ -1,0 +1,10 @@
+.filterIcon {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
