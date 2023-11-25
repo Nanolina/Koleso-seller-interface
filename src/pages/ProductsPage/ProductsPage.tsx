@@ -7,13 +7,16 @@ import { Container } from '../../ui/Container/Container';
 import { Title } from '../../ui/Title/Title';
 import styles from './ProductsPage.module.css';
 import { ProductsTable } from '../../modules/product';
+import { useNavigate } from 'react-router-dom';
 
 export const ProductsPage: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const handleAddProduct = () => {
-    console.log('Add Product Clicked');
+    navigate('/add-product');
   };
 
   return (
