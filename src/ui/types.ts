@@ -22,6 +22,7 @@ export interface ILabelProps {
 
 export interface IInputProps {
   id: string;
+  name: string;
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
   isHalfWidth?: boolean;

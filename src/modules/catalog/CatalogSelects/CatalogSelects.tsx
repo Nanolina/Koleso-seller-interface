@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { SelectLabel } from '../../../components/SelectLabel/SelectLabel';
 import { data } from '../data';
 import { getOptions } from '../functions';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Component for rendering cascading selects for a catalog.
@@ -9,6 +10,8 @@ import { getOptions } from '../functions';
  * and finally a subcategory within that category.
  */
 export const CatalogSelects: React.FC = () => {
+  const { t } = useTranslation();
+
   const [selections, setSelections] = useState({
     section: '',
     category: '',
@@ -41,11 +44,12 @@ export const CatalogSelects: React.FC = () => {
       <SelectLabel
         id="section"
         name="section"
-        label="Select a section"
+        label={t('products.form.selectSection')}
         options={sectionOptions}
         onChange={handleSelectChange}
         value={selections.section}
-        firstText="Select section"
+        firstText={t('products.form.selectSection')}
+        translationType="catalog"
         isHalfWidth
         required
       />
@@ -54,11 +58,12 @@ export const CatalogSelects: React.FC = () => {
         <SelectLabel
           id="category"
           name="category"
-          label="Select a category"
+          label={t('products.form.selectCategory')}
           options={categoryOptions}
           onChange={handleSelectChange}
           value={selections.category}
-          firstText="Select category"
+          firstText={t('products.form.selectCategory')}
+          translationType="catalog"
           isHalfWidth
           required
         />
@@ -68,11 +73,12 @@ export const CatalogSelects: React.FC = () => {
         <SelectLabel
           id="subcategory"
           name="subcategory"
-          label="Select a subcategory"
+          label={t('products.form.selectSubcategory')}
           options={subcategoryOptions}
           onChange={handleSelectChange}
           value={selections.subcategory}
-          firstText="Select subcategory"
+          firstText={t('products.form.selectSubcategory')}
+          translationType="catalog"
           isHalfWidth
           required
         />

@@ -5,12 +5,13 @@ import { IInputLabelProps } from '../types';
 import styles from './InputLabel.module.css';
 
 export const InputLabel: React.FC<IInputLabelProps> = React.memo(
-  ({ label, id, inputType, isHalfWidth, required }) => {
+  ({ label, id, name, inputType, isHalfWidth, required }) => {
     return (
       <div className={styles.container}>
         <Label id={id} text={label} required={required} />
         <Input
           id={id}
+          name={name}
           type={inputType}
           required={required}
           isHalfWidth={isHalfWidth}

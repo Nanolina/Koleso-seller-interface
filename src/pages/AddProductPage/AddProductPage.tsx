@@ -13,7 +13,7 @@ export const AddProductPage: React.FC = () => {
     <>
       <SideMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <Container onClick={() => setIsMenuOpen(false)}>
-        <Title text='Добавить товар'/>
+        <Title text={t('products.addProduct')} />
         <AddProductForm />
       </Container>
     </>

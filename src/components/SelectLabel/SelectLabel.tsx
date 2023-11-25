@@ -13,6 +13,7 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
     onChange,
     value,
     firstText,
+    translationType,
     isHalfWidth,
     required,
   }) => {
@@ -25,6 +26,7 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
           options={options}
           onChange={onChange}
           value={value}
+          translationType={translationType}
           firstText={firstText}
           isHalfWidth={isHalfWidth}
         />

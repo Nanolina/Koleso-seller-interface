@@ -1,9 +1,21 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ISelectProps } from '../types';
 import styles from './Select.module.css';
 
 export const Select: React.FC<ISelectProps> = React.memo(
-  ({ id, name, options, onChange, value, firstText, isHalfWidth }) => {
+  ({
+    id,
+    name,
+    options,
+    onChange,
+    value,
+    translationType,
+    firstText,
+    isHalfWidth,
+  }) => {
+    const { t } = useTranslation();
+
     return (
       <select
         id={id}
@@ -15,7 +27,7 @@ export const Select: React.FC<ISelectProps> = React.memo(
         <option value="">{firstText}</option>
         {options.map((option) => (
           <option key={option.id} value={option.id}>
-            {option.title}
+            {t(`${translationType}.${option.title}`)}
           </option>
         ))}
       </select>
