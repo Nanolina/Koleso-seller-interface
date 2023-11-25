@@ -14,7 +14,6 @@ export interface ISelectProps {
   value: string;
   translationType: string;
   firstText: string;
-  isHalfWidth?: boolean;
 }
 
 export interface IInputLabelProps {
@@ -22,8 +21,8 @@ export interface IInputLabelProps {
   id: string;
   name: string;
   inputType?: HTMLInputTypeAttribute;
-  isHalfWidth?: boolean;
   required?: boolean;
+  extraText?: string;
 }
 
 export interface ISelectLabelProps {
@@ -35,6 +34,5 @@ export interface ISelectLabelProps {
   value: string;
   firstText: string;
   translationType: string;
-  isHalfWidth?: boolean;
   required?: boolean;
 }

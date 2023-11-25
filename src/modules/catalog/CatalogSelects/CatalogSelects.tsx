@@ -50,7 +50,6 @@ export const CatalogSelects: React.FC = () => {
         value={selections.section}
         firstText={t('products.form.selectSection')}
         translationType="catalog"
-        isHalfWidth
         required
       />
 
@@ -64,7 +63,6 @@ export const CatalogSelects: React.FC = () => {
           value={selections.category}
           firstText={t('products.form.selectCategory')}
           translationType="catalog"
-          isHalfWidth
           required
         />
       )}
@@ -79,7 +77,6 @@ export const CatalogSelects: React.FC = () => {
           value={selections.subcategory}
           firstText={t('products.form.selectSubcategory')}
           translationType="catalog"
-          isHalfWidth
           required
         />
       )}

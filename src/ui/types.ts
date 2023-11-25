@@ -25,6 +25,5 @@ export interface IInputProps {
   name: string;
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
-  isHalfWidth?: boolean;
   required?: boolean;
 }

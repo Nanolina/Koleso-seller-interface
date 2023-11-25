@@ -30,7 +30,15 @@
       "title": "Title",
       "selectSection": "Select a section",
       "selectCategory": "Select a category",
-      "selectSubcategory": "Select a subcategory"
+      "selectSubcategory": "Select a subcategory",
+      "extraTextArticleKoleso": "This article refers to the product search application",
+      "extraTextArticleSupplier": "This article only applies to your store and is needed to find the item in your warehouse",
+      "gender": {
+        "label": "Gender",
+        "select": "Select a gender",
+        "Male": "Male",
+        "Female": "Female"
+      }
     }
   },
   "catalog": {

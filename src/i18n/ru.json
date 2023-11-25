@@ -30,7 +30,15 @@
       "title": "Название",
       "selectSection": "Выберите раздел",
       "selectCategory": "Выберите категорию",
-      "selectSubcategory": "Выберите подкатегорию"
+      "selectSubcategory": "Выберите подкатегорию",
+      "extraTextArticleKoleso": "Этот артикул относится к приложению для поиска товара",
+      "extraTextArticleSupplier": "Этот артикул относится только к вашему магазину и нужен для поиска товара на вашем складе",
+      "gender": {
+        "label": "Пол",
+        "select": "Выберите пол",
+        "Male": "Мужской",
+        "Female": "Женский"
+      }
     }
   },
   "catalog": {
