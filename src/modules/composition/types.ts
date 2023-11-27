@@ -13,8 +13,6 @@ export type IAddCompositionProps = {
 };
 
 export type IAddMaterialProps = {
-  materialId: string;
-  setMaterialId: SetStateAction<string>;
   selectedCompositions: IComposition[];
   setSelectedCompositions: CompositionHandler;
 };

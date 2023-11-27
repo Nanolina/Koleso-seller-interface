@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Label } from '../../../ui/Label/Label';
 import { AddMaterial } from '../AddMaterial/AddMaterial';
@@ -14,15 +14,11 @@ export const AddComposition: React.FC<IAddCompositionProps> = React.memo(
   ({ selectedCompositions, setSelectedCompositions }) => {
     const { t } = useTranslation();
 
-    const [materialId, setMaterialId] = useState<string>('');
-
     return (
       <>
         <div className={styles.container}>
           <Label id="material" text={t('products.form.composition.label')} />
           <AddMaterial
-            materialId={materialId}
-            setMaterialId={setMaterialId}
             selectedCompositions={selectedCompositions}
             setSelectedCompositions={setSelectedCompositions}
           />
