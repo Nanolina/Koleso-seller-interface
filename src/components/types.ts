@@ -11,8 +11,8 @@ export interface ISelectProps {
   name: string;
   options: IOption[];
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
-  value: string;
-  translationType: string;
+  value?: string;
+  translationType?: string;
   firstText: string;
   isHalfWidth?: boolean;
 }
@@ -32,8 +32,8 @@ export interface ISelectLabelProps {
   label: string;
   options: any;
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
-  value: any;
+  value?: any;
   firstText: string;
-  translationType: string;
+  translationType?: string;
   required?: boolean;
 }

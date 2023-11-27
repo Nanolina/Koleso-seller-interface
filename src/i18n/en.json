@@ -70,6 +70,10 @@
         "Lace": "Lace",
         "Microfiber": "Microfiber",
         "Jersey": "Jersey"
+      },
+      "size": {
+        "label": "Size",
+        "select": "Select a size"
       }
     }
   },

@@ -5,7 +5,8 @@ import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
 import { genders } from '../../../../data';
 import { CatalogSelects } from '../../../catalog';
 import { AddComposition } from '../../../composition/AddComposition/AddComposition';
-import { IComposition } from '../../../composition/types';
+import { AddSize, ISize } from '../../../size';
+import { IComposition } from '../../../composition';
 
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();
@@ -13,6 +14,9 @@ export const AddProductForm: React.FC = () => {
   const [gender, setGender] = useState<string>('');
   const [selectedCompositions, setSelectedCompositions] = useState<
     IComposition[]
+  >([]);
+  const [selectedSizes, setSelectedSizes] = useState<
+    ISize[]
   >([]);
 
   return (
@@ -51,10 +55,13 @@ export const AddProductForm: React.FC = () => {
         firstText={t('products.form.gender.select')}
         translationType="products.form.gender"
       />
-
       <AddComposition
         selectedCompositions={selectedCompositions}
         setSelectedCompositions={setSelectedCompositions}
+      />
+      <AddSize
+        selectedSizes={selectedSizes}
+        setSelectedSizes={setSelectedSizes}
       />
     </>
   );

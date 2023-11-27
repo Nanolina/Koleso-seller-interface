@@ -1,11 +1,11 @@
 import { SetStateAction } from '../../types';
 
-type CompositionHandler = SetStateAction<IComposition[]>;
-
 export type IComposition = {
   title: string;
   percentage: number;
 };
+
+type CompositionHandler = SetStateAction<IComposition[]>;
 
 export type IAddCompositionProps = {
   selectedCompositions: IComposition[];
