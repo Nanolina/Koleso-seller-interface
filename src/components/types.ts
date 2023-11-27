@@ -1,15 +1,11 @@
 import { HTMLInputTypeAttribute } from 'react';
-
-interface IOption {
-  id: string;
-  title: string;
-}
+import { IIdTitle } from '../types';
 
 export interface ISelectProps {
   label?: string;
   id: string;
   name: string;
-  options: IOption[];
+  options: IIdTitle[] | string[];
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   value?: string;
   translationType?: string;

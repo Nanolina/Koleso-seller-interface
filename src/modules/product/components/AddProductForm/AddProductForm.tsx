@@ -4,9 +4,9 @@ import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
 import { genders } from '../../../../data';
 import { CatalogSelects } from '../../../catalog';
-import { AddComposition } from '../../../composition/AddComposition/AddComposition';
-import { AddSize, ISize } from '../../../size';
 import { IComposition } from '../../../composition';
+import { AddComposition } from '../../../composition/AddComposition/AddComposition';
+import { AddSizeOption, ISizeOption } from '../../../size';
 
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();
@@ -15,9 +15,9 @@ export const AddProductForm: React.FC = () => {
   const [selectedCompositions, setSelectedCompositions] = useState<
     IComposition[]
   >([]);
-  const [selectedSizes, setSelectedSizes] = useState<
-    ISize[]
-  >([]);
+  const [selectedSizeOptions, setSelectedSizeOptions] = useState<ISizeOption[]>(
+    []
+  );
 
   return (
     <>
@@ -59,9 +59,9 @@ export const AddProductForm: React.FC = () => {
         selectedCompositions={selectedCompositions}
         setSelectedCompositions={setSelectedCompositions}
       />
-      <AddSize
-        selectedSizes={selectedSizes}
-        setSelectedSizes={setSelectedSizes}
+      <AddSizeOption
+        selectedSizeOptions={selectedSizeOptions}
+        setSelectedSizeOptions={setSelectedSizeOptions}
       />
     </>
   );

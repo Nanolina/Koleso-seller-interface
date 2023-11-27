@@ -32,7 +32,7 @@ export const Select: React.FC<ISelectProps> = React.memo(
             </option>
           ) : (
             <option key={option} value={option}>
-              {option}
+              {translationType ? t(`${translationType}.${option}`) : option}
             </option>
           )
         )}

@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  gap: 20px;
+  border-radius: var(--border-radius);
+  padding: 10px 30px 10px 20px;
+  position: relative;
+  box-shadow: var(--box-shadow);
+}
+
+.children {
+  max-width: 500px;
+}
+
+.iconClose {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}

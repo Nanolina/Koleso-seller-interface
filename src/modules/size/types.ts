@@ -1,14 +1,26 @@
 import { SetStateAction } from '../../types';
 
-export type ISize = {
+export type ISizeOption = {
   size: string;
   colors: string[];
   quantity: number;
 };
 
-type SizeHandler = SetStateAction<ISize[]>;
+export type SizeOptionsHandler = SetStateAction<ISizeOption[]>;
 
-export type IAddSizeProps = {
-  selectedSizes: ISize[];
-  setSelectedSizes: SizeHandler;
+export type IAddSizeOptionProps = {
+  selectedSizeOptions: ISizeOption[];
+  setSelectedSizeOptions: SizeOptionsHandler;
+};
+
+export type IFinishedSizeOptionsProps = {
+  selectedSizeOptions: ISizeOption[];
+  setSelectedSizeOptions: SizeOptionsHandler;
+};
+
+export type IFinishedSizeOptionProps = {
+  selectedSizeOptions: ISizeOption[];
+  setSelectedSizeOptions: SizeOptionsHandler;
+  sizeOption: ISizeOption;
+  handleRemoveSizeOption: (size: string) => void;
 };

@@ -1,2 +1,2 @@
-export { AddSize } from './AddSize/AddSize';
-export type { ISize } from './types';
+export { AddSizeOption } from './AddSizeOption/AddSizeOption';
+export type { ISizeOption, SizeOptionsHandler } from './types';

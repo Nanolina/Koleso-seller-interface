@@ -48,7 +48,6 @@
         "Nylon": "Nylon",
         "Wool": "Wool",
         "Silk": "Silk",
-        "Rayon": "Rayon",
         "Linen": "Linen",
         "Cashmere": "Cashmere",
         "Modal": "Modal",
@@ -73,7 +72,42 @@
       },
       "size": {
         "label": "Size",
-        "select": "Select a size"
+        "select": "Select a size",
+        "options": {
+          "colors": "Colors",
+          "quantity": "Number of pieces"
+        }
+      },
+      "color": {
+        "label": "Color",
+        "select": "Select a color",
+        "Aquamarine": "Aquamarine",
+        "Beige": "Beige",
+        "Black": "Black",
+        "Blue": "Blue",
+        "Brown": "Brown",
+        "Cherry": "Cherry",
+        "Cream": "Cream",
+        "Emerald": "Emerald",
+        "Fuchsia": "Fuchsia",
+        "Golden": "Golden",
+        "Green": "Green",
+        "Grey": "Grey",
+        "Light blue": "Light blue",
+        "Lilac": "Lilac",
+        "Maroon": "Maroon",
+        "Olive": "Olive",
+        "Orange": "Orange",
+        "Pink": "Pink",
+        "Purple": "Purple",
+        "Raspberry": "Raspberry",
+        "Red": "Red",
+        "Sandy": "Sandy",
+        "Silver": "Silver",
+        "Turquoise": "Turquoise",
+        "Violet": "Violet",
+        "White": "White",
+        "Yellow": "Yellow"
       }
     }
   },

@@ -122,7 +122,7 @@ export const compositions: IIdTitle[] = [
   },
 ];
 
-export const sizes = [
+export const sizes: string[] = [
   'XS',
   'S',
   'M',
@@ -195,4 +195,34 @@ export const sizes = [
   '62',
   '63',
   '64',
+];
+
+export const colors: string[] = [
+  'Aquamarine',
+  'Beige',
+  'Black',
+  'Blue',
+  'Brown',
+  'Cherry',
+  'Cream',
+  'Emerald',
+  'Fuchsia',
+  'Golden',
+  'Green',
+  'Grey',
+  'Light blue',
+  'Lilac',
+  'Maroon',
+  'Olive',
+  'Orange',
+  'Pink',
+  'Purple',
+  'Raspberry',
+  'Red',
+  'Sandy',
+  'Silver',
+  'Turquoise',
+  'Violet',
+  'White',
+  'Yellow',
 ];

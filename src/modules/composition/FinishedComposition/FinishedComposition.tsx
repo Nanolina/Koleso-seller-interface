@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IoMdClose } from 'react-icons/io';
+import { BoxWithCloseButton } from '../../../components/BoxWithCloseButton/BoxWithCloseButton';
 import { IFinishedCompositionProps } from '../types';
 import styles from './FinishedComposition.module.css';
 
@@ -14,16 +14,12 @@ export const FinishedComposition: React.FC<IFinishedCompositionProps> =
 
     return (
       <div className={styles.container}>
-        <div className={styles.composition}>
+        <BoxWithCloseButton
+          onClick={() => handleRemoveComposition(material.title)}
+        >
           {t(`products.form.composition.${material.title}`)} -{' '}
           {material.percentage} %
-        </div>
-        <IoMdClose
-          size={12}
-          color="var(--dark-gray)"
-          className={styles.iconClose}
-          onClick={() => handleRemoveComposition(material.title)}
-        />
+        </BoxWithCloseButton>
       </div>
     );
   });

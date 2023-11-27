@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { FinishedComposition } from '../FinishedComposition/FinishedComposition';
 import { IComposition, IFinishedCompositionsProps } from '../types';
+import styles from './FinishedCompositions.module.css';
 
 /**
  * Component to display a list of finished compositions.
@@ -22,12 +23,15 @@ export const FinishedCompositions: React.FC<IFinishedCompositionsProps> =
     );
 
     return (
-      !!selectedCompositions.length &&
-      selectedCompositions.map((material: IComposition) => (
-        <FinishedComposition
-          material={material}
-          handleRemoveComposition={handleRemoveComposition}
-        />
-      ))
+      !!selectedCompositions.length && (
+        <div className={styles.container}>
+          {selectedCompositions.map((material: IComposition) => (
+            <FinishedComposition
+              material={material}
+              handleRemoveComposition={handleRemoveComposition}
+            />
+          ))}
+        </div>
+      )
     );
   });
