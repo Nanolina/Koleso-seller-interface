@@ -6,7 +6,7 @@ export interface ITitleProps {
 
 export interface IButtonProps {
   text: string;
-  onClick: () => void;
+  onClick: any;
   backgroundColor?: string;
   border?: boolean;
   textColor?: string;
@@ -21,9 +21,12 @@ export interface ILabelProps {
 }
 
 export interface IInputProps {
-  id: string;
-  name: string;
+  id?: string;
+  name?: string;
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
   required?: boolean;
+  value?: string | number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  isSmallWidth?: boolean;
 }

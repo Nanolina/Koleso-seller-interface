@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  gap: 20px;
+  border: 2px solid var(--main);
+  border-radius: var(--border-radius);
+  padding: 10px 30px 10px 20px;
+  position: relative;
+  width: 87%;
+}
+
+.composition {
+  max-width: 500px;
+}
+
+.iconClose {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+}

@@ -4,11 +4,16 @@ import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
 import { genders } from '../../../../data';
 import { CatalogSelects } from '../../../catalog';
+import { AddComposition } from '../../../composition/AddComposition/AddComposition';
+import { IComposition } from '../../../composition/types';
 
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();
 
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState<string>('');
+  const [selectedCompositions, setSelectedCompositions] = useState<
+    IComposition[]
+  >([]);
 
   return (
     <>
@@ -39,10 +44,17 @@ export const AddProductForm: React.FC = () => {
         name="gender"
         label={t('products.form.gender.label')}
         options={genders}
-        onChange={(event) => setGender(event.target.value)}
+        onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
+          setGender(event.target.value)
+        }
         value={gender}
         firstText={t('products.form.gender.select')}
         translationType="products.form.gender"
+      />
+
+      <AddComposition
+        selectedCompositions={selectedCompositions}
+        setSelectedCompositions={setSelectedCompositions}
       />
     </>
   );

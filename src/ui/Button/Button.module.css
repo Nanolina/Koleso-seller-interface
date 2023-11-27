@@ -1,5 +1,5 @@
 .container {
-  border-radius: var(--border-raduis);
+  border-radius: var(--border-radius);
   padding: 10px 20px;
   cursor: pointer;
 }

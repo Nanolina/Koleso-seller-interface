@@ -1,7 +1,16 @@
-.select {
-  width: 90.8%;
+.select,
+.halfWidth {
   background-color: var(--light-gray);
   border: 2px solid var(--light-gray);
-  border-radius: var(--border-raduis);
+  border-radius: var(--border-radius);
   height: 36px;
+  text-align: center;
+}
+
+.select {
+  width: 90.8%;
+}
+
+.halfWidth {
+  width: 50%;
 }
