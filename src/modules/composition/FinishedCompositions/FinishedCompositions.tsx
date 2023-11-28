@@ -27,6 +27,7 @@ export const FinishedCompositions: React.FC<IFinishedCompositionsProps> =
         <div className={styles.container}>
           {selectedCompositions.map((material: IComposition) => (
             <FinishedComposition
+              key={material.title}
               material={material}
               handleRemoveComposition={handleRemoveComposition}
             />

@@ -21,6 +21,7 @@ export const FinishedColors: React.FC<IFinishedColorsProps> = React.memo(
         <div className={styles.container}>
           {selectedColors.map((color: string) => (
             <FinishedColor
+              key={color}
               color={color}
               handleRemoveColor={() => handleRemoveColor(color)}
             />

@@ -16,7 +16,7 @@ i18n.use(initReactI18next).init({
   compatibilityJSON: 'v3',
   lng: 'English',
   fallbackLng: 'Russian',
-  debug: true,
+  // debug: true,
 });
 
 export default i18n;

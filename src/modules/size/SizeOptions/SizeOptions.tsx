@@ -34,6 +34,7 @@ export const SizeOptions: React.FC<IFinishedSizeOptionsProps> = React.memo(
           </div>
           {selectedSizeOptions.map((size: ISizeOption) => (
             <SizeOption
+              key={size.size}
               selectedSizeOptions={selectedSizeOptions}
               setSelectedSizeOptions={setSelectedSizeOptions}
               sizeOption={size}

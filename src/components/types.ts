@@ -19,6 +19,8 @@ export interface IInputLabelProps {
   inputType?: HTMLInputTypeAttribute;
   required?: boolean;
   extraText?: string;
+  value?: any;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export interface ISelectLabelProps {
@@ -26,8 +28,8 @@ export interface ISelectLabelProps {
   name: string;
   label: string;
   options: any;
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
   value?: any;
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
   firstText: string;
   translationType?: string;
   required?: boolean;

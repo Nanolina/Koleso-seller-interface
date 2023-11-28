@@ -1,23 +1,29 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
-import { genders } from '../../../../data';
+import { GENDERS } from '../../../../data';
+import { RootState } from '../../../../redux/rootReducer';
 import { CatalogSelects } from '../../../catalog';
-import { IComposition } from '../../../composition';
 import { AddComposition } from '../../../composition/AddComposition/AddComposition';
-import { AddSizeOption, ISizeOption } from '../../../size';
+import { AddSizeOption } from '../../../size';
+import { useProductForm } from '../../hooks/useProductForm';
 
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();
 
-  const [gender, setGender] = useState<string>('');
-  const [selectedCompositions, setSelectedCompositions] = useState<
-    IComposition[]
-  >([]);
-  const [selectedSizeOptions, setSelectedSizeOptions] = useState<ISizeOption[]>(
-    []
+  const { title, brand, model, articleSupplier, gender } = useSelector(
+    (state: RootState) => state.productCreation
   );
+
+  const {
+    selectedCompositions,
+    setSelectedCompositions,
+    selectedSizeOptions,
+    setSelectedSizeOptions,
+    handleInputChange,
+    handleSelectChange,
+  } = useProductForm();
 
   return (
     <>
@@ -25,32 +31,39 @@ export const AddProductForm: React.FC = () => {
         label={t('products.form.title')}
         id="title"
         name="title"
+        value={title}
+        onChange={handleInputChange('title')}
         required
       />
       <CatalogSelects />
-      <InputLabel label={t('products.table.brand')} id="brand" name="brand" />
-      <InputLabel label={t('products.table.model')} id="model" name="model" />
+      <InputLabel
+        label={t('products.table.brand')}
+        id="brand"
+        name="brand"
+        value={brand}
+        onChange={handleInputChange('brand')}
+      />
+      <InputLabel
+        label={t('products.table.model')}
+        id="model"
+        name="model"
+        value={model}
+        onChange={handleInputChange('model')}
+      />
       <InputLabel
         label={t('products.table.articleSupplier')}
         id="articleSupplier"
         name="articleSupplier"
         extraText={t('products.form.extraTextArticleSupplier')}
-      />
-      <InputLabel
-        label={t('products.table.articleKoleso')}
-        id="articleKoleso"
-        name="articleKoleso"
-        extraText={t('products.form.extraTextArticleKoleso')}
-        required
+        value={articleSupplier}
+        onChange={handleInputChange('articleSupplier')}
       />
       <SelectLabel
         id="gender"
         name="gender"
         label={t('products.form.gender.label')}
-        options={genders}
-        onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-          setGender(event.target.value)
-        }
+        options={GENDERS}
+        onChange={handleSelectChange('gender')}
         value={gender}
         firstText={t('products.form.gender.select')}
         translationType="products.form.gender"
