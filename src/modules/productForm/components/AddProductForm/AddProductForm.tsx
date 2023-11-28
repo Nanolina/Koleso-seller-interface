@@ -2,12 +2,12 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
-import { GENDERS } from '../../../../data';
+import { GENDERS } from '../../../../consts';
 import { RootState } from '../../../../redux/rootReducer';
 import { CatalogSelects } from '../../../catalog';
 import { AddComposition } from '../../../composition/AddComposition/AddComposition';
-import { AddParameters } from '../AddParameters/AddParameters';
 import { useProductForm } from '../../hooks/useProductForm';
+import { AddParameters } from '../AddParameters/AddParameters';
 
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();

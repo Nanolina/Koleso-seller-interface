@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
-import { IProductCreationState, IProductCreationStringsState } from '../types';
-import productCreationStringsSlice from './slices/productCreationStringsSlice';
+import {
+  IProductCreationState,
+  IProductCreationStringsState,
+} from '../modules/productForm';
 import productCreationSlice from './slices/productCreationSlice';
+import productCreationStringsSlice from './slices/productCreationStringsSlice';
 
 export interface RootState {
   productCreationStrings: IProductCreationStringsState;

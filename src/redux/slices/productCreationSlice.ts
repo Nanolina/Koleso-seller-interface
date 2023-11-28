@@ -3,7 +3,7 @@ import {
   IParameter,
   IProductCreationActionPayload,
   IProductCreationState,
-} from '../../types';
+} from '../../modules/productForm';
 
 const productCreationSlice = createSlice({
   name: 'productCreation',
@@ -15,7 +15,6 @@ const productCreationSlice = createSlice({
       state,
       action: PayloadAction<IProductCreationActionPayload>
     ) => {
-      console.log('action.payload', action.payload);
       const { id, ...newValues } = action.payload;
 
       // Check if there is an object with the given id in the array

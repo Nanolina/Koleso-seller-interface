@@ -1,37 +1,32 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Select } from '../../../../components/Select/Select';
-import { SIZES } from '../../../../data';
+import { SIZES } from '../../../../consts';
 import { updateParameter } from '../../../../redux/slices/productCreationSlice';
-import { IParameter } from '../../../../types';
 import { Input } from '../../../../ui/Input/Input';
+import { IParameterProps } from '../../types';
 import styles from './Parameter.module.css';
 
-export const Parameter: React.FC<{ parameter: IParameter }> = React.memo(
+export const Parameter: React.FC<IParameterProps> = React.memo(
   ({ parameter }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    const handleQuantityUpdate = (id: string, quantityString: string) => {
-      const quantity = parseInt(quantityString);
+    const handleQuantityUpdate = useCallback(
+      (id: string, quantityString: string) => {
+        const quantity = parseInt(quantityString);
+        dispatch(updateParameter({ id, quantity }));
+      },
+      [dispatch]
+    );
 
-      dispatch(
-        updateParameter({
-          id,
-          quantity,
-        })
-      );
-    };
-
-    const handleSizeUpdate = (id: string, size: string) => {
-      dispatch(
-        updateParameter({
-          id,
-          size,
-        })
-      );
-    };
+    const handleSizeUpdate = useCallback(
+      (id: string, size: string) => {
+        dispatch(updateParameter({ id, size }));
+      },
+      [dispatch]
+    );
 
     return (
       <div className={styles.container}>

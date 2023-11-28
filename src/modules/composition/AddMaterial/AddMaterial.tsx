@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select } from '../../../components/Select/Select';
-import { compositions } from '../../../data';
+import { compositions } from '../../../consts';
 import { Button } from '../../../ui/Button/Button';
 import { AddPercentage } from '../AddPercentage/AddPercentage';
 import { IAddMaterialProps, IComposition } from '../types';

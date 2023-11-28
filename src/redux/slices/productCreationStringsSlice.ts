@@ -1,4 +1,4 @@
-import { IProductCreationStringsState } from '../../types';
+import { IProductCreationStringsState } from '../../modules/productForm';
 import { createValueReducers } from '../sliceHelpers';
 
 const productCreationStringsSlice = createValueReducers({
