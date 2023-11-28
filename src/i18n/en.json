@@ -75,7 +75,7 @@
         "select": "Select a size",
         "options": {
           "colors": "Colors",
-          "quantity": "Number of pieces"
+          "quantity": "Number of pieces in stock"
         }
       },
       "color": {

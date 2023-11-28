@@ -25,8 +25,12 @@ export const SizeOptions: React.FC<IFinishedSizeOptionsProps> = React.memo(
       !!selectedSizeOptions.length && (
         <>
           <div className={styles.container}>
-            <span>{t('products.form.size.options.colors')}</span>
-            <span>{t('products.form.size.options.quantity')}</span>
+            <div className={styles.text}>
+              {t('products.form.size.options.colors')}
+            </div>
+            <div className={styles.text}>
+              {t('products.form.size.options.quantity')}
+            </div>
           </div>
           {selectedSizeOptions.map((size: ISizeOption) => (
             <SizeOption

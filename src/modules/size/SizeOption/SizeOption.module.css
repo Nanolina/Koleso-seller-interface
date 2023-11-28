@@ -1,11 +1,11 @@
 .container {
   display: flex;
-  gap: 20px;
+  gap: 6%;
   border-radius: var(--border-radius);
   padding: 20px;
   position: relative;
   width: 87%;
-  box-shadow: var(--box-shadow)
+  box-shadow: var(--box-shadow);
 }
 
 .sizeContainer {
