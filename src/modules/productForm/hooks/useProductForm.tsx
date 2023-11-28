@@ -1,15 +1,13 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { setValueProductCreationStrings } from '../../../redux/slices/productCreationStringsSlice';
-import { IComposition } from '../../composition';
+import {
+  resetValueProductCreationStrings,
+  setValueProductCreationStrings,
+} from '../../../redux/slices/productCreationStringsSlice';
 import { IProductCreationStringsState } from '../types';
 
 export const useProductForm = () => {
   const dispatch = useDispatch();
-
-  const [selectedCompositions, setSelectedCompositions] = useState<
-    IComposition[]
-  >([]);
 
   const handleInputChange = useCallback(
     (key: keyof IProductCreationStringsState) => {
@@ -33,10 +31,16 @@ export const useProductForm = () => {
     [dispatch]
   );
 
+  const handleResetSelect = useCallback(
+    (key: keyof IProductCreationStringsState) => {
+      dispatch(resetValueProductCreationStrings({ key }));
+    },
+    [dispatch]
+  );
+
   return {
-    selectedCompositions,
-    setSelectedCompositions,
     handleInputChange,
     handleSelectChange,
+    handleResetSelect,
   };
 };

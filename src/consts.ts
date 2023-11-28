@@ -1,6 +1,6 @@
 export const GENDERS: string[] = ['Male', 'Female'];
 
-export const compositions: string[] = [
+export const COMPOSITIONS: string[] = [
   'Cotton',
   'Polyester',
   'Nylon',

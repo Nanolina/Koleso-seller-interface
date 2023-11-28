@@ -6,3 +6,7 @@ export type ISetValuePayload = {
   key: keyof IProductCreationStringsState;
   value: any;
 };
+
+export type IResetValuePayload = {
+  key: keyof IProductCreationStringsState;
+};

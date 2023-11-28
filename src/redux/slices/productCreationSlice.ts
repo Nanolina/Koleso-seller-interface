@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import {
+  IChangeCompositionPayload,
+  IComposition,
   IParameter,
   IProductCreationActionPayload,
   IProductCreationState,
@@ -9,9 +11,40 @@ import {
 const productCreationSlice = createSlice({
   name: 'productCreation',
   initialState: {
+    compositions: [],
     parameters: [],
   } as IProductCreationState,
   reducers: {
+    changeComposition: (
+      state,
+      action: PayloadAction<IChangeCompositionPayload>
+    ) => {
+      const { material, materialPercentage } = action.payload;
+
+      // Find already added material
+      const existingMaterial = state.compositions.find(
+        (composition) => composition.title === material
+      );
+
+      /**
+       * If no such material already existed and
+       * we have the material title and percentages,
+       * we add to the compositions
+       * */
+      if (material && materialPercentage && !existingMaterial) {
+        state.compositions.push({
+          title: material,
+          percentage: materialPercentage,
+        });
+      }
+    },
+
+    removeComposition: (state, action: PayloadAction<string>) => {
+      state.compositions = state.compositions.filter(
+        (composition: IComposition) => composition.title !== action.payload
+      );
+    },
+
     updateParameter: (
       state,
       action: PayloadAction<IProductCreationActionPayload>
@@ -51,5 +84,10 @@ const productCreationSlice = createSlice({
 });
 
 export default productCreationSlice.reducer;
-export const { updateParameter, removeParameter, copyParameter } =
-  productCreationSlice.actions;
+export const {
+  changeComposition,
+  removeComposition,
+  updateParameter,
+  removeParameter,
+  copyParameter,
+} = productCreationSlice.actions;

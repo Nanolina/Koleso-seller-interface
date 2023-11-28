@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ISetValuePayload } from '../types';
+import { IResetValuePayload, ISetValuePayload } from '../types';
 
 export const createValueReducers = (initialState: any) => {
   return createSlice({
@@ -10,9 +10,9 @@ export const createValueReducers = (initialState: any) => {
         const { key, value } = action.payload;
         state[key] = value;
       },
-      resetValue: (state, action: PayloadAction<ISetValuePayload>) => {
+      resetValue: (state, action: PayloadAction<IResetValuePayload>) => {
         const { key } = action.payload;
-        state[key] = null;
+        state[key] = '';
       },
     },
   });

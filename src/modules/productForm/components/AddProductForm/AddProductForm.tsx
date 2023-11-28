@@ -4,10 +4,10 @@ import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
 import { GENDERS } from '../../../../consts';
 import { RootState } from '../../../../redux/rootReducer';
-import { CatalogSelects } from '../../../catalog';
-import { AddComposition } from '../../../composition/AddComposition/AddComposition';
 import { useProductForm } from '../../hooks/useProductForm';
 import { AddParameters } from '../AddParameters/AddParameters';
+import { CatalogSelects } from '../CatalogSelects/CatalogSelects';
+import { AddComposition } from '../composition/AddComposition/AddComposition';
 
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();
@@ -16,12 +16,7 @@ export const AddProductForm: React.FC = () => {
     (state: RootState) => state.productCreationStrings
   );
 
-  const {
-    selectedCompositions,
-    setSelectedCompositions,
-    handleInputChange,
-    handleSelectChange,
-  } = useProductForm();
+  const { handleInputChange, handleSelectChange } = useProductForm();
 
   return (
     <>
@@ -66,10 +61,7 @@ export const AddProductForm: React.FC = () => {
         firstText={t('products.form.gender.select')}
         translationType="products.form.gender"
       />
-      <AddComposition
-        selectedCompositions={selectedCompositions}
-        setSelectedCompositions={setSelectedCompositions}
-      />
+      <AddComposition />
       <AddParameters />
     </>
   );

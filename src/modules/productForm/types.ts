@@ -1,3 +1,5 @@
+import { SetStateAction } from '../../types';
+
 export type IParameter = {
   id: string;
   color?: string;
@@ -15,6 +17,7 @@ export type IProductCreationActionPayload = {
 };
 
 export type IProductCreationState = {
+  compositions: IComposition[];
   parameters: IParameter[];
 };
 
@@ -24,4 +27,28 @@ export type IProductCreationStringsState = {
   model: string;
   articleSupplier: string;
   gender: string;
+  section: string;
+  category: string;
+  subcategory?: string;
+};
+
+// Composition
+export type IComposition = {
+  title: string;
+  percentage: number;
+};
+
+export type IAddPercentageProps = {
+  materialPercentage: number;
+  setMaterialPercentage: SetStateAction<number>;
+};
+
+export type ICompositionProps = {
+  material: IComposition;
+  handleRemoveComposition: (title: string) => void;
+};
+
+export type IChangeCompositionPayload = {
+  material: string;
+  materialPercentage: number;
 };

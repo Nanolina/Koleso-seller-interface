@@ -1,4 +1,4 @@
-interface ICatalogItemType {
+export interface ICatalogItemType {
   id: string;
   image?: string;
   title: string;

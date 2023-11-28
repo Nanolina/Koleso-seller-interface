@@ -7,6 +7,9 @@ const productCreationStringsSlice = createValueReducers({
   model: '',
   articleSupplier: '',
   gender: '',
+  section: '',
+  category: '',
+  subcategory: '',
 } as IProductCreationStringsState);
 
 export default productCreationStringsSlice.reducer;

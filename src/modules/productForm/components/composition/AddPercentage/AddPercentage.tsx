@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
-import { Input } from '../../../ui/Input/Input';
-import { IAddPercentageProps } from '../types';
+import { Input } from '../../../../../ui/Input/Input';
 import styles from './AddPercentage.module.css';
+import { IAddPercentageProps } from '../../../types';
 
 /**
  * Component to add the percentage of a material in a composition.
