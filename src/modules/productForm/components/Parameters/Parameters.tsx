@@ -2,9 +2,9 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/rootReducer';
+import { IParameter } from '../../types';
 import { Parameter } from '../Parameter/Parameter';
 import styles from './Parameters.module.css';
-import { IParameter } from '../../types';
 
 export const Parameters: React.FC = () => {
   const { t } = useTranslation();

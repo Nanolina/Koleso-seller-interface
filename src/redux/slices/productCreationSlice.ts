@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 import {
   IParameter,
   IProductCreationActionPayload,
@@ -30,8 +31,25 @@ const productCreationSlice = createSlice({
         state.parameters.push({ id, ...newValues });
       }
     },
+
+    removeParameter: (state, action: PayloadAction<string>) => {
+      state.parameters = state.parameters.filter(
+        (parameter: IParameter) => parameter.id !== action.payload
+      );
+    },
+
+    copyParameter: (state, action: PayloadAction<string>) => {
+      const parameterWithId = state.parameters.find(
+        (parameter) => parameter.id === action.payload
+      );
+
+      if (parameterWithId) {
+        state.parameters.push({ ...parameterWithId, id: uuidv4() });
+      }
+    },
   },
 });
 
 export default productCreationSlice.reducer;
-export const { updateParameter } = productCreationSlice.actions;
+export const { updateParameter, removeParameter, copyParameter } =
+  productCreationSlice.actions;
