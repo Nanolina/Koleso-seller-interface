@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.parameter {
+  width: 30%;
+}

@@ -6,21 +6,19 @@ import { GENDERS } from '../../../../data';
 import { RootState } from '../../../../redux/rootReducer';
 import { CatalogSelects } from '../../../catalog';
 import { AddComposition } from '../../../composition/AddComposition/AddComposition';
-import { AddSizeOption } from '../../../size';
+import { AddParameters } from '../AddParameters/AddParameters';
 import { useProductForm } from '../../hooks/useProductForm';
 
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();
 
   const { title, brand, model, articleSupplier, gender } = useSelector(
-    (state: RootState) => state.productCreation
+    (state: RootState) => state.productCreationStrings
   );
 
   const {
     selectedCompositions,
     setSelectedCompositions,
-    selectedSizeOptions,
-    setSelectedSizeOptions,
     handleInputChange,
     handleSelectChange,
   } = useProductForm();
@@ -72,10 +70,7 @@ export const AddProductForm: React.FC = () => {
         selectedCompositions={selectedCompositions}
         setSelectedCompositions={setSelectedCompositions}
       />
-      <AddSizeOption
-        selectedSizeOptions={selectedSizeOptions}
-        setSelectedSizeOptions={setSelectedSizeOptions}
-      />
+      <AddParameters />
     </>
   );
 };

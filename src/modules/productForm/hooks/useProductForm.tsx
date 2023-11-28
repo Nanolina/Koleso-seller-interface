@@ -1,9 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setValueProductCreation } from '../../../redux/slices/productCreationSlice';
-import { IProductCreationState } from '../../../types';
+import { setValueProductCreationStrings } from '../../../redux/slices/productCreationStringsSlice';
+import { IProductCreationStringsState } from '../../../types';
 import { IComposition } from '../../composition';
-import { ISizeOption } from '../../size';
 
 export const useProductForm = () => {
   const dispatch = useDispatch();
@@ -11,22 +10,23 @@ export const useProductForm = () => {
   const [selectedCompositions, setSelectedCompositions] = useState<
     IComposition[]
   >([]);
-  const [selectedSizeOptions, setSelectedSizeOptions] = useState<ISizeOption[]>(
-    []
-  );
 
   const handleInputChange = useCallback(
-    (key: keyof IProductCreationState) =>
+    (key: keyof IProductCreationStringsState) =>
       (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setValueProductCreation({ key, value: event.target.value }));
+        dispatch(
+          setValueProductCreationStrings({ key, value: event.target.value })
+        );
       },
     [dispatch]
   );
 
   const handleSelectChange = useCallback(
-    (key: keyof IProductCreationState) =>
+    (key: keyof IProductCreationStringsState) =>
       (event: React.ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setValueProductCreation({ key, value: event.target.value }));
+        dispatch(
+          setValueProductCreationStrings({ key, value: event.target.value })
+        );
       },
     [dispatch]
   );
@@ -34,8 +34,6 @@ export const useProductForm = () => {
   return {
     selectedCompositions,
     setSelectedCompositions,
-    selectedSizeOptions,
-    setSelectedSizeOptions,
     handleInputChange,
     handleSelectChange,
   };

@@ -29,7 +29,7 @@ export const compositions: string[] = [
   'Jersey',
 ];
 
-export const sizes: string[] = [
+export const SIZES: string[] = [
   'XS',
   'S',
   'M',
@@ -104,7 +104,7 @@ export const sizes: string[] = [
   '64',
 ];
 
-export const colors: string[] = [
+export const COLORS: string[] = [
   'Aquamarine',
   'Beige',
   'Black',

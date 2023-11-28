@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SideMenu } from '../../modules/menu';
-import { AddProductForm } from '../../modules/product';
 import { Container } from '../../ui/Container/Container';
 import { Title } from '../../ui/Title/Title';
+import { AddProductForm } from '../../modules/productForm';
 
 export const AddProductPage: React.FC = () => {
   const { t } = useTranslation();

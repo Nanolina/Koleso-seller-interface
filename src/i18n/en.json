@@ -72,11 +72,12 @@
       },
       "size": {
         "label": "Size",
-        "select": "Select a size",
-        "options": {
-          "colors": "Colors",
-          "quantity": "Number of pieces in stock"
-        }
+        "select": "Select a size"
+      },
+      "parameters": {
+        "colors": "Colors",
+        "quantity": "Number of pieces in stock",
+        "size": "Size"
       },
       "color": {
         "label": "Color",

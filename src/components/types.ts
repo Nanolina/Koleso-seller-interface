@@ -2,8 +2,8 @@ import { HTMLInputTypeAttribute } from 'react';
 
 export interface ISelectProps {
   label?: string;
-  id: string;
-  name: string;
+  id?: string;
+  name?: string;
   options: string[];
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   value?: string;
