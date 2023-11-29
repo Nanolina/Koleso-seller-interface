@@ -10,6 +10,7 @@ const productCreationStringsSlice = createValueReducers({
   section: '',
   category: '',
   subcategory: '',
+  description: '',
 } as IProductCreationStringsState);
 
 export default productCreationStringsSlice.reducer;

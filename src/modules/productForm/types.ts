@@ -25,11 +25,12 @@ export type IProductCreationStringsState = {
   title: string;
   brand: string;
   model: string;
-  articleSupplier: string;
-  gender: string;
+  articleSupplier?: string;
+  gender?: string;
   section: string;
   category: string;
   subcategory?: string;
+  description: string;
 };
 
 // Composition

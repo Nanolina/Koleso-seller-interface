@@ -19,10 +19,10 @@ export const Parameters: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.headerItem}>
-          {t('products.form.parameters.colors')}
+          {`${t('products.form.parameters.colors')}*`}
         </div>
         <div className={styles.headerItem}>
-          {t('products.form.parameters.quantity')}
+          {`${t('products.form.parameters.quantity')}*`}
         </div>
         <div className={styles.headerItem}>
           {t('products.form.parameters.size')}

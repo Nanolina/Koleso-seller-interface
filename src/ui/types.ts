@@ -30,3 +30,12 @@ export interface IInputProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   isSmallWidth?: boolean;
 }
+
+export interface ITextareaProps {
+  id?: string;
+  name?: string;
+  value?: string | number;
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
+  rows?: number;
+  required?: boolean;
+}

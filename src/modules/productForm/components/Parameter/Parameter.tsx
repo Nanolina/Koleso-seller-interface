@@ -60,6 +60,7 @@ export const Parameter: React.FC<IParameterProps> = React.memo(
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               handleQuantityUpdate(parameter.id, event.target.value);
             }}
+            required
           />
         </div>
         <div className={styles.parameter}>

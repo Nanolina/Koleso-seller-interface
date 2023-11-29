@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
+import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { GENDERS } from '../../../../consts';
 import { RootState } from '../../../../redux/rootReducer';
 import { useProductForm } from '../../hooks/useProductForm';
@@ -12,11 +13,10 @@ import { AddComposition } from '../composition/AddComposition/AddComposition';
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();
 
-  const { title, brand, model, articleSupplier, gender } = useSelector(
-    (state: RootState) => state.productCreationStrings
-  );
+  const { title, brand, model, articleSupplier, gender, description } =
+    useSelector((state: RootState) => state.productCreationStrings);
 
-  const { handleInputChange, handleSelectChange } = useProductForm();
+  const { handleChange } = useProductForm();
 
   return (
     <>
@@ -25,7 +25,7 @@ export const AddProductForm: React.FC = () => {
         id="title"
         name="title"
         value={title}
-        onChange={handleInputChange('title')}
+        onChange={handleChange('title')}
         required
       />
       <CatalogSelects />
@@ -34,14 +34,14 @@ export const AddProductForm: React.FC = () => {
         id="brand"
         name="brand"
         value={brand}
-        onChange={handleInputChange('brand')}
+        onChange={handleChange('brand')}
       />
       <InputLabel
         label={t('products.table.model')}
         id="model"
         name="model"
         value={model}
-        onChange={handleInputChange('model')}
+        onChange={handleChange('model')}
       />
       <InputLabel
         label={t('products.table.articleSupplier')}
@@ -49,20 +49,29 @@ export const AddProductForm: React.FC = () => {
         name="articleSupplier"
         extraText={t('products.form.extraTextArticleSupplier')}
         value={articleSupplier}
-        onChange={handleInputChange('articleSupplier')}
+        onChange={handleChange('articleSupplier')}
       />
       <SelectLabel
         id="gender"
         name="gender"
         label={t('products.form.gender.label')}
         options={GENDERS}
-        onChange={handleSelectChange('gender')}
+        onChange={handleChange('gender')}
         value={gender}
         firstText={t('products.form.gender.select')}
         translationType="products.form.gender"
       />
       <AddComposition />
       <AddParameters />
+      <TextareaLabel
+        label={t('products.form.description')}
+        id="description"
+        name="description"
+        value={description}
+        onChange={handleChange('description')}
+        rows={8}
+        required
+      />
     </>
   );
 };

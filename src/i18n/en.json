@@ -109,7 +109,8 @@
         "Violet": "Violet",
         "White": "White",
         "Yellow": "Yellow"
-      }
+      },
+      "description": "Description"
     }
   },
   "catalog": {

@@ -34,3 +34,13 @@ export interface ISelectLabelProps {
   translationType?: string;
   required?: boolean;
 }
+
+export interface ITextareaLabelProps {
+  label: string;
+  id: string;
+  name: string;
+  value?: any;
+  onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  rows?: number;
+  required?: boolean;
+}

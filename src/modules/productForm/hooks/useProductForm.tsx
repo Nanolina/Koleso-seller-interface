@@ -9,20 +9,13 @@ import { IProductCreationStringsState } from '../types';
 export const useProductForm = () => {
   const dispatch = useDispatch();
 
-  const handleInputChange = useCallback(
+  const handleChange = useCallback(
     (key: keyof IProductCreationStringsState) => {
-      return (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(
-          setValueProductCreationStrings({ key, value: event.target.value })
-        );
-      };
-    },
-    [dispatch]
-  );
-
-  const handleSelectChange = useCallback(
-    (key: keyof IProductCreationStringsState) => {
-      return (event: React.ChangeEvent<HTMLSelectElement>) => {
+      return (
+        event: React.ChangeEvent<
+          HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+        >
+      ) => {
         dispatch(
           setValueProductCreationStrings({ key, value: event.target.value })
         );
@@ -39,8 +32,7 @@ export const useProductForm = () => {
   );
 
   return {
-    handleInputChange,
-    handleSelectChange,
+    handleChange,
     handleResetSelect,
   };
 };

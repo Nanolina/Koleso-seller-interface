@@ -30,6 +30,7 @@ export const AddParameters: React.FC = () => {
         }
         firstText={t('products.form.color.select')}
         translationType="products.form.color"
+        required
       />
       <Parameters />
     </>

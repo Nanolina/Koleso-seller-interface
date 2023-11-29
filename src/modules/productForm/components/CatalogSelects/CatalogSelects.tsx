@@ -31,7 +31,7 @@ export const CatalogSelects: React.FC = () => {
   );
 
   // Functions for working with catalog values in redux
-  const { handleSelectChange, handleResetSelect } = useProductForm();
+  const { handleChange, handleResetSelect } = useProductForm();
 
   // Assign initial sections
   const sectionOptions = data;
@@ -66,7 +66,7 @@ export const CatalogSelects: React.FC = () => {
         name="section"
         label={t('products.form.selectSection')}
         options={sectionOptions}
-        onChange={handleSelectChange('section')}
+        onChange={handleChange('section')}
         value={section}
         firstText={t('products.form.selectSection')}
         translationType="catalog"
@@ -79,7 +79,7 @@ export const CatalogSelects: React.FC = () => {
           name="category"
           label={t('products.form.selectCategory')}
           options={categoryOptions}
-          onChange={handleSelectChange('category')}
+          onChange={handleChange('category')}
           value={category}
           firstText={t('products.form.selectCategory')}
           translationType="catalog"
@@ -93,7 +93,7 @@ export const CatalogSelects: React.FC = () => {
           name="subcategory"
           label={t('products.form.selectSubcategory')}
           options={subcategoryOptions}
-          onChange={handleSelectChange('subcategory')}
+          onChange={handleChange('subcategory')}
           value={subcategory}
           firstText={t('products.form.selectSubcategory')}
           translationType="catalog"
