@@ -1,27 +1,27 @@
 import { SetStateAction } from '../../types';
 
-export type IParameter = {
+export interface IParameter {
   id: string;
   color?: string;
   quantity?: number;
   size?: string;
-};
+}
 
-export type IParameterProps = {
+export interface IParameterProps {
   parameter: IParameter;
-};
+}
 
-export type IProductCreationActionPayload = {
+export interface IProductCreationActionPayload {
   id: string;
   [key: string]: any;
-};
+}
 
-export type IProductCreationState = {
+export interface IProductCreationState {
   compositions: IComposition[];
   parameters: IParameter[];
-};
+}
 
-export type IProductCreationStringsState = {
+export interface IProductCreationStringsState {
   title: string;
   brand: string;
   model: string;
@@ -31,25 +31,25 @@ export type IProductCreationStringsState = {
   category: string;
   subcategory?: string;
   description: string;
-};
+}
 
 // Composition
-export type IComposition = {
+export interface IComposition {
   title: string;
   percentage: number;
-};
+}
 
-export type IAddPercentageProps = {
+export interface IAddPercentageProps {
   materialPercentage: number;
   setMaterialPercentage: SetStateAction<number>;
-};
+}
 
-export type ICompositionProps = {
+export interface ICompositionProps {
   material: IComposition;
   handleRemoveComposition: (title: string) => void;
-};
+}
 
-export type IChangeCompositionPayload = {
+export interface IChangeCompositionPayload {
   material: string;
   materialPercentage: number;
-};
+}
