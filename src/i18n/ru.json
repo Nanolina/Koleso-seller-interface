@@ -110,7 +110,11 @@
         "White": "Белый",
         "Yellow": "Желтый"
       },
-      "description": "Описание"
+      "description": "Описание",
+      "photo": {
+        "label": "Фото",
+        "select": "Выберите цвет товара для фото"
+      }
     }
   },
   "catalog": {

@@ -110,7 +110,11 @@
         "White": "White",
         "Yellow": "Yellow"
       },
-      "description": "Description"
+      "description": "Description",
+      "photo": {
+        "label": "Photo",
+        "select": "Choose the color of the product for the photo"
+      }
     }
   },
   "catalog": {

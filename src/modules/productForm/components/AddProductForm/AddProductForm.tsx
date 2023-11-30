@@ -9,6 +9,7 @@ import { useProductForm } from '../../hooks/useProductForm';
 import { AddParameters } from '../AddParameters/AddParameters';
 import { CatalogSelects } from '../CatalogSelects/CatalogSelects';
 import { AddComposition } from '../composition/AddComposition/AddComposition';
+import { PhotoUpload } from '../photo/PhotoUpload/PhotoUpload';
 
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();
@@ -72,6 +73,7 @@ export const AddProductForm: React.FC = () => {
         rows={8}
         required
       />
+      <PhotoUpload />
     </>
   );
 };

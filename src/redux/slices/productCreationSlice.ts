@@ -13,6 +13,7 @@ const productCreationSlice = createSlice({
   initialState: {
     compositions: [],
     parameters: [],
+    colorfulPhotos: [],
   } as IProductCreationState,
   reducers: {
     changeComposition: (
@@ -80,6 +81,55 @@ const productCreationSlice = createSlice({
         state.parameters.push({ ...parameterWithId, id: uuidv4() });
       }
     },
+
+    addPhotos: (
+      state,
+      action: PayloadAction<{ color: string; photos: string[] }>
+    ) => {
+      const { color, photos } = action.payload;
+
+      // Find already added colorfulPhotos with the same color
+      const existingColorfulPhotos = state.colorfulPhotos.find(
+        (item) => item.color === color
+      );
+
+      /**
+       * If colorfulPhotos with the same color already exists,
+       * update its photos array with the new photos
+       */
+      if (existingColorfulPhotos) {
+        existingColorfulPhotos.photos = [
+          ...existingColorfulPhotos.photos,
+          ...photos,
+        ];
+      } else {
+        // If no colorfulPhotos with the same color exist, add a new entry
+        state.colorfulPhotos.push({ color, photos });
+      }
+    },
+
+    removePhotoAction: (
+      state,
+      action: PayloadAction<{ color: string; index: number }>
+    ) => {
+      const { color, index } = action.payload;
+
+      // Find colorfulPhotos with the same color
+      const existingColorfulPhotos = state.colorfulPhotos.find(
+        (item) => item.color === color
+      );
+
+      /**
+       * If colorfulPhotos with the same color exist,
+       * remove the photo at the specified index
+       */
+      if (existingColorfulPhotos) {
+        const updatedPhotos = existingColorfulPhotos.photos.filter(
+          (_, i) => i !== index
+        );
+        existingColorfulPhotos.photos = updatedPhotos;
+      }
+    },
   },
 });
 
@@ -90,4 +140,6 @@ export const {
   updateParameter,
   removeParameter,
   copyParameter,
+  addPhotos,
+  removePhotoAction,
 } = productCreationSlice.actions;

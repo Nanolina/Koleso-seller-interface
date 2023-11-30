@@ -16,9 +16,15 @@ export interface IProductCreationActionPayload {
   [key: string]: any;
 }
 
+export interface IColorfulPhotos {
+  color: string;
+  photos: string[];
+}
+
 export interface IProductCreationState {
   compositions: IComposition[];
   parameters: IParameter[];
+  colorfulPhotos: IColorfulPhotos[];
 }
 
 export interface IProductCreationStringsState {
@@ -52,4 +58,14 @@ export interface ICompositionProps {
 export interface IChangeCompositionPayload {
   material: string;
   materialPercentage: number;
+}
+
+export interface IPhotoPreviewsProps {
+  photos: string[];
+  selectedColor: string;
+}
+
+export interface IPhotoPreviewProps {
+  photo: string;
+  onRemove: () => void;
 }
