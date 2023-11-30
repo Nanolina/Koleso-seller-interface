@@ -7,21 +7,3 @@
   border-radius: var(--border-radius);
   gap: 20px;
 }
-
-input {
-  width: 80%;
-}
-
-input:focus {
-  border-color: white;
-}
-
-input::file-selector-button {
-  border: 1px solid var(--orange);
-  border-radius: var(--border-radius);
-  background-color: var(--orange);
-  color: white;
-  font-weight: bold;
-  padding: 10px;
-  cursor: pointer;
-}

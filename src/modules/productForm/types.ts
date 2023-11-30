@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 import { SetStateAction } from '../../types';
 
 export interface IParameter {
@@ -68,4 +69,8 @@ export interface IPhotoPreviewsProps {
 export interface IPhotoPreviewProps {
   photo: string;
   onRemove: () => void;
+}
+
+export interface IFileInputProps {
+  onFileSelect: (event: ChangeEvent<HTMLInputElement>) => void;
 }
