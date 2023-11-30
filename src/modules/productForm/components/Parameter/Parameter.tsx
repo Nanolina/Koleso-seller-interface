@@ -8,7 +8,7 @@ import { SIZES } from '../../../../consts';
 import {
   copyParameter,
   removeParameter,
-  updateParameter,
+  addOrUpdateParameter,
 } from '../../../../redux/slices/productCreationSlice';
 import { Input } from '../../../../ui/Input/Input';
 import { IParameterProps } from '../../types';
@@ -22,14 +22,14 @@ export const Parameter: React.FC<IParameterProps> = React.memo(
     const handleQuantityUpdate = useCallback(
       (id: string, quantityString: string) => {
         const quantity = parseInt(quantityString);
-        dispatch(updateParameter({ id, quantity }));
+        dispatch(addOrUpdateParameter({ id, quantity }));
       },
       [dispatch]
     );
 
     const handleSizeUpdate = useCallback(
       (id: string, size: string) => {
-        dispatch(updateParameter({ id, size }));
+        dispatch(addOrUpdateParameter({ id, size }));
       },
       [dispatch]
     );

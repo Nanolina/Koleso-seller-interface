@@ -1,7 +1,7 @@
-import { IoCloseOutline } from "react-icons/io5";
+import React from 'react';
+import { IoCloseOutline } from 'react-icons/io5';
+import { IPhotoPreviewProps } from '../../../types';
 import styles from './PhotoPreview.module.css';
-import React from "react";
-import { IPhotoPreviewProps } from "../../../types";
 
 export const PhotoPreview: React.FC<IPhotoPreviewProps> = React.memo(
   ({ photo, onRemove }) => {

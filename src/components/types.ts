@@ -32,7 +32,9 @@ export interface ISelectLabelProps {
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   firstText: string;
   translationType?: string;
+  extra?: string;
   required?: boolean;
+  isFullWidth?: boolean;
 }
 
 export interface ITextareaLabelProps {

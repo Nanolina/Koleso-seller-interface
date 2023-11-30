@@ -14,11 +14,21 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
     value,
     firstText,
     translationType,
+    extra,
     required,
+    isFullWidth,
   }) => {
     return (
-      <div className={styles.container}>
-        <Label id={id} text={label} required={required} />
+      <div className={isFullWidth ? styles.fullWidth : styles.container}>
+        {extra ? (
+          <>
+            <Label id={id} text={label} required={required} />
+            <div className={styles.extraText}>{extra}</div>
+          </>
+        ) : (
+          <Label id={id} text={label} required={required} />
+        )}
+
         <Select
           id={id}
           name={name}

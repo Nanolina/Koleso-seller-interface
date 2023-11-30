@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
 import { COLORS } from '../../../../consts';
-import { updateParameter } from '../../../../redux/slices/productCreationSlice';
+import { addOrUpdateParameter } from '../../../../redux/slices/productCreationSlice';
 import { Parameters } from '../Parameters/Parameters';
 
 export const AddParameters: React.FC = () => {
@@ -13,7 +13,7 @@ export const AddParameters: React.FC = () => {
 
   const handleParameterUpdate = useCallback(
     (color: string) => {
-      dispatch(updateParameter({ id: uuidv4(), color }));
+      dispatch(addOrUpdateParameter({ id: uuidv4(), color }));
     },
     [dispatch]
   );

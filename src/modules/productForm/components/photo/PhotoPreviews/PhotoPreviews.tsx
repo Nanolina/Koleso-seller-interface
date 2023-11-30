@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { removePhotoAction } from '../../../../../redux/slices/productCreationSlice';
+import { removePhoto } from '../../../../../redux/slices/productCreationSlice';
 import { IPhotoPreviewsProps } from '../../../types';
 import { PhotoPreview } from '../PhotoPreview/PhotoPreview';
 import styles from './PhotoPreviews.module.css';
 
 export const PhotoPreviews: React.FC<IPhotoPreviewsProps> = React.memo(
-  ({ photos, selectedColor }) => {
+  ({ photos, color }) => {
     const dispatch = useDispatch();
 
-    const removePhoto = useCallback(
+    const handleRemovePhoto = useCallback(
       (index: number) => {
         // Revoke photo URL for memory cleanup
         const photoURL = photos.find((_, photoIndex) => photoIndex === index);
@@ -18,9 +18,9 @@ export const PhotoPreviews: React.FC<IPhotoPreviewsProps> = React.memo(
         }
 
         // Remove the photo from the Redux store
-        dispatch(removePhotoAction({ color: selectedColor, index }));
+        dispatch(removePhoto({ color, index }));
       },
-      [dispatch, photos, selectedColor]
+      [dispatch, photos, color]
     );
 
     return (
@@ -29,7 +29,7 @@ export const PhotoPreviews: React.FC<IPhotoPreviewsProps> = React.memo(
           <PhotoPreview
             key={`${photo}-${index}`}
             photo={photo}
-            onRemove={() => removePhoto(index)}
+            onRemove={() => handleRemovePhoto(index)}
           />
         ))}
       </div>

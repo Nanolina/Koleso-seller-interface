@@ -7,4 +7,5 @@ export type {
   IProductCreationActionPayload,
   IProductCreationState,
   IProductCreationStringsState,
+  IPhotosWith1Color,
 } from './types';

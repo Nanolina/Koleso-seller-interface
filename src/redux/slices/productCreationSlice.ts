@@ -4,6 +4,7 @@ import {
   IChangeCompositionPayload,
   IComposition,
   IParameter,
+  IPhotosWith1Color,
   IProductCreationActionPayload,
   IProductCreationState,
 } from '../../modules/productForm';
@@ -13,9 +14,10 @@ const productCreationSlice = createSlice({
   initialState: {
     compositions: [],
     parameters: [],
-    colorfulPhotos: [],
+    colorsWithPhotos: [],
   } as IProductCreationState,
   reducers: {
+    // Compositions
     changeComposition: (
       state,
       action: PayloadAction<IChangeCompositionPayload>
@@ -46,20 +48,24 @@ const productCreationSlice = createSlice({
       );
     },
 
-    updateParameter: (
+    // Parameters
+    addOrUpdateParameter: (
       state,
       action: PayloadAction<IProductCreationActionPayload>
     ) => {
       const { id, ...newValues } = action.payload;
 
       // Check if there is an object with the given id in the array
-      const index = state.parameters.findIndex(
+      const existingIndex = state.parameters.findIndex(
         (parameter: IParameter) => parameter.id === id
       );
 
       // If an object with the same id is found, update its properties
-      if (index !== -1) {
-        state.parameters[index] = { ...state.parameters[index], ...newValues };
+      if (existingIndex !== -1) {
+        state.parameters[existingIndex] = {
+          ...state.parameters[existingIndex],
+          ...newValues,
+        };
       } else {
         // If an object with this id is not found, add a new object
         state.parameters.push({ id, ...newValues });
@@ -73,62 +79,64 @@ const productCreationSlice = createSlice({
     },
 
     copyParameter: (state, action: PayloadAction<string>) => {
-      const parameterWithId = state.parameters.find(
+      const parameterToCopy = state.parameters.find(
         (parameter) => parameter.id === action.payload
       );
 
-      if (parameterWithId) {
-        state.parameters.push({ ...parameterWithId, id: uuidv4() });
+      if (parameterToCopy) {
+        state.parameters.push({ ...parameterToCopy, id: uuidv4() });
       }
     },
 
-    addPhotos: (
+    // ColorsWithPhotos
+    addOrUpdateColorWithPhotos: (
       state,
-      action: PayloadAction<{ color: string; photos: string[] }>
+      action: PayloadAction<{ color: string; photos?: string[] }>
     ) => {
-      const { color, photos } = action.payload;
+      const { color, photos = [] } = action.payload;
 
-      // Find already added colorfulPhotos with the same color
-      const existingColorfulPhotos = state.colorfulPhotos.find(
+      // Find index if already added color
+      const existingColorIndex = state.colorsWithPhotos.findIndex(
         (item) => item.color === color
       );
 
-      /**
-       * If colorfulPhotos with the same color already exists,
-       * update its photos array with the new photos
-       */
-      if (existingColorfulPhotos) {
-        existingColorfulPhotos.photos = [
-          ...existingColorfulPhotos.photos,
+      // If an object with the same color is found, update its properties
+      if (existingColorIndex !== -1) {
+        state.colorsWithPhotos[existingColorIndex].photos = [
+          ...state.colorsWithPhotos[existingColorIndex].photos,
           ...photos,
         ];
       } else {
-        // If no colorfulPhotos with the same color exist, add a new entry
-        state.colorfulPhotos.push({ color, photos });
+        // If an object with this color is not found, add a new object
+        state.colorsWithPhotos.push({ color, photos });
       }
     },
 
-    removePhotoAction: (
+    removePhoto: (
       state,
       action: PayloadAction<{ color: string; index: number }>
     ) => {
       const { color, index } = action.payload;
 
-      // Find colorfulPhotos with the same color
-      const existingColorfulPhotos = state.colorfulPhotos.find(
+      // Find already added color
+      const colorEntry = state.colorsWithPhotos.find(
         (item) => item.color === color
       );
 
       /**
-       * If colorfulPhotos with the same color exist,
+       * If colorsWithPhotos with the same color exist,
        * remove the photo at the specified index
        */
-      if (existingColorfulPhotos) {
-        const updatedPhotos = existingColorfulPhotos.photos.filter(
-          (_, i) => i !== index
-        );
-        existingColorfulPhotos.photos = updatedPhotos;
+      if (colorEntry) {
+        colorEntry.photos = colorEntry.photos.filter((_, i) => i !== index);
       }
+    },
+
+    removePhotosWith1Color: (state, action: PayloadAction<string>) => {
+      state.colorsWithPhotos = state.colorsWithPhotos.filter(
+        (photosWith1Color: IPhotosWith1Color) =>
+          photosWith1Color.color !== action.payload
+      );
     },
   },
 });
@@ -137,9 +145,10 @@ export default productCreationSlice.reducer;
 export const {
   changeComposition,
   removeComposition,
-  updateParameter,
+  addOrUpdateParameter,
   removeParameter,
   copyParameter,
-  addPhotos,
-  removePhotoAction,
+  addOrUpdateColorWithPhotos,
+  removePhoto,
+  removePhotosWith1Color,
 } = productCreationSlice.actions;

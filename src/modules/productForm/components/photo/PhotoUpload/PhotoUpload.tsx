@@ -1,32 +1,32 @@
-import React, { useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { IoCloseOutline } from 'react-icons/io5';
+import { useDispatch, useSelector } from 'react-redux';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { RootState } from '../../../../../redux/rootReducer';
+import { removePhotosWith1Color } from '../../../../../redux/slices/productCreationSlice';
 import { useColorSelection } from '../../../hooks/useColorSelection';
-import { useFileHandler } from '../../../hooks/useFileHandler';
 import { FileInput } from '../FileInput/FileInput';
 import { PhotoPreviews } from '../PhotoPreviews/PhotoPreviews';
 import styles from './PhotoUpload.module.css';
 
 export const PhotoUpload: React.FC = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   // Redux store
-  const { colorfulPhotos, parameters } = useSelector(
+  const { colorsWithPhotos, parameters } = useSelector(
     (state: RootState) => state.productCreation
   );
 
   // Getting data from hooks
-  const { selectedColor, handleColorChange, existingColors } =
-    useColorSelection(parameters);
-  const { handleFileSelect } = useFileHandler(selectedColor);
+  const { handleAddColor, existingColors } = useColorSelection(parameters);
 
-  // Find photos that have already been uploaded for the current color
-  const photos = useMemo(
-    () =>
-      colorfulPhotos.find((item) => item.color === selectedColor)?.photos || [],
-    [colorfulPhotos, selectedColor]
+  const handleRemovePhotosWith1Color = useCallback(
+    (color: string) => {
+      dispatch(removePhotosWith1Color(color));
+    },
+    [dispatch]
   );
 
   return (
@@ -37,19 +37,37 @@ export const PhotoUpload: React.FC = () => {
         label={t('products.form.photo.label')}
         options={existingColors}
         onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-          handleColorChange(event.target.value)
+          handleAddColor(event.target.value)
         }
         firstText={t('products.form.photo.select')}
         translationType="products.form.color"
+        extra={t('products.form.photo.upTo')}
+        isFullWidth
         required
       />
 
-      {selectedColor && (
-        <>
-          <PhotoPreviews photos={photos} selectedColor={selectedColor} />
-          {photos.length < 5 && <FileInput onFileSelect={handleFileSelect} />}
-        </>
-      )}
+      {colorsWithPhotos.map((photosWith1Color) => (
+        <div
+          key={photosWith1Color.color}
+          className={styles.photosWith1ColorContainer}
+        >
+          <h4 className={styles.title}>
+            {t(`products.form.color.${photosWith1Color.color}`)}
+          </h4>
+          <PhotoPreviews
+            photos={photosWith1Color.photos}
+            color={photosWith1Color.color}
+          />
+          {photosWith1Color.photos.length < 5 && (
+            <FileInput photosWith1Color={photosWith1Color} />
+          )}
+          <IoCloseOutline
+            color="var(--dark-gray)"
+            onClick={() => handleRemovePhotosWith1Color(photosWith1Color.color)}
+            className={styles.iconRemove}
+          />
+        </div>
+      ))}
     </div>
   );
 };

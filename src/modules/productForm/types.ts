@@ -17,7 +17,7 @@ export interface IProductCreationActionPayload {
   [key: string]: any;
 }
 
-export interface IColorfulPhotos {
+export interface IPhotosWith1Color {
   color: string;
   photos: string[];
 }
@@ -25,7 +25,7 @@ export interface IColorfulPhotos {
 export interface IProductCreationState {
   compositions: IComposition[];
   parameters: IParameter[];
-  colorfulPhotos: IColorfulPhotos[];
+  colorsWithPhotos: IPhotosWith1Color[];
 }
 
 export interface IProductCreationStringsState {
@@ -63,7 +63,7 @@ export interface IChangeCompositionPayload {
 
 export interface IPhotoPreviewsProps {
   photos: string[];
-  selectedColor: string;
+  color: string;
 }
 
 export interface IPhotoPreviewProps {
@@ -72,5 +72,5 @@ export interface IPhotoPreviewProps {
 }
 
 export interface IFileInputProps {
-  onFileSelect: (event: ChangeEvent<HTMLInputElement>) => void;
+  color: string;
 }

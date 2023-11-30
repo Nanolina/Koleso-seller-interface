@@ -1,7 +1,31 @@
-.container {
+.container,
+.fullWidth {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90.7%;
   gap: 5px;
+  position: relative;
+}
+
+.container {
+  width: 90.7%;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.extraText {
+  color: var(--dark-gray);
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .extraText {
+    font-size: 10px;
+    top: 10px;
+  }
 }
