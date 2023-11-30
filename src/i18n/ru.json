@@ -124,12 +124,18 @@
     }
   },
   "documents": {
-    "addDocuments": "Добавить документы",
     "companyRegistrationNumber": "Регистрационный номер компании",
     "taxNumber": "Налоговый номер",
     "registrationCertificate": "Сертификат регистрации",
     "certificateDirectorsAndSecretary": "Свидетельство о директорах и секретаре",
-    "certificateRegisteredOffice": "Свидетельство о зарегистрированном офисе"
+    "certificateRegisteredOffice": "Свидетельство о зарегистрированном офисе",
+    "account": {
+      "label": "Данные счета",
+      "SWIFT": "SWIFT код",
+      "holderName": "Имя владельца счета",
+      "bankName": "Название банка",
+      "accountNumber": "Номер счета"
+    }
   },
   "catalog": {
     "Women": "Женщинам",

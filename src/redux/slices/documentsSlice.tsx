@@ -1,5 +1,5 @@
 import { IDocumentsState } from '../../modules/documentsForm';
-import { createValueReducers } from '../sliceHelpersDocuments';
+import { createValueReducers } from '../sliceHelpers';
 
 const documentsSlice = createValueReducers({
   companyRegistrationNumber: '',

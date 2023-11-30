@@ -1,2 +1,6 @@
 export { AddDocumentsForm } from './components/AddDocumentsForm/AddDocumentsForm';
-export type { IDocumentsState, ISetValuePayloadDocuments } from './types';
+export type {
+  IAccountDataState,
+  IDocumentsState,
+  ISetValuePayloadDocuments,
+} from './types';

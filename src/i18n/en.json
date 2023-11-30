@@ -124,12 +124,18 @@
     }
   },
   "documents": {
-    "addDocuments": "Add documents",
     "companyRegistrationNumber": "Company registration number",
     "taxNumber": "Tax number",
     "registrationCertificate": "Certificate of Registration",
     "certificateDirectorsAndSecretary": "Certificate of directors and secretary",
-    "certificateRegisteredOffice": "Certificate of registered office"
+    "certificateRegisteredOffice": "Certificate of registered office",
+    "account": {
+      "label": "Account data",
+      "SWIFT": "SWIFT code",
+      "holderName": "Name of account holder",
+      "bankName": "Name of the bank",
+      "accountNumber": "Account number"
+    }
   },
   "catalog": {
     "Women": "Women",

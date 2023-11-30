@@ -13,7 +13,7 @@ export const AddDocumentsPage: React.FC = () => {
     <>
       <SideMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <Container onClick={() => setIsMenuOpen(false)}>
-        <Title text={t('documents.addDocuments')} />
+        <Title text={t('menuItems.Documents')} />
         <AddDocumentsForm />
       </Container>
     </>
