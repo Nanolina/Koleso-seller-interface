@@ -31,3 +31,15 @@ code {
 
   --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
+.elementWithLabelContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+label, div, select, input, p {
+  font-size: 16px;
+}

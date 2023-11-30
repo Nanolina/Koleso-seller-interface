@@ -1,36 +1,31 @@
 import { ChangeEvent, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/rootReducer';
+import { useDispatch } from 'react-redux';
 import { addOrUpdateColorWithPhotos } from '../../../redux/slices/productCreationSlice';
-import { IFileHandlerReturn, IPhotosWith1Color } from '../types';
+import { IFileHandlerReturn } from '../types';
 
-export const useFileHandler = (color: string): IFileHandlerReturn => {
+export const useFileHandler = (): IFileHandlerReturn => {
   const dispatch = useDispatch();
 
-  const colorsWithPhotos = useSelector(
-    (state: RootState) => state.productCreation.colorsWithPhotos
-  );
-  const photos =
-    colorsWithPhotos.find(
-      (photosWith1Color: IPhotosWith1Color) => photosWith1Color.color === color
-    )?.photos || [];
-
   const handleFileSelect = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      // Retrieve the files from the event target
-      const files = event.target.files;
+    (color: string, currentPhotos: string[]) =>
+      (event: ChangeEvent<HTMLInputElement>) => {
+        // Retrieve the files from the event target
+        const files = event.target.files;
 
-      if (files) {
-        // Create object URLs for the selected files
-        const newPhotos = Array.from(files)
-          .slice(0, 5 - photos?.length)
-          .map((file) => URL.createObjectURL(file));
+        if (files) {
+          // Limit the number of selected files based on the existing ones
+          const allowedFilesCount = 5 - currentPhotos.length;
 
-        // Add ot update photos for the specific color
-        dispatch(addOrUpdateColorWithPhotos({ color, photos: newPhotos }));
-      }
-    },
-    [photos?.length, dispatch, color]
+          // Create object URLs for the selected files
+          const newPhotos = Array.from(files)
+            .slice(0, allowedFilesCount)
+            .map((file) => URL.createObjectURL(file));
+
+          // Add ot update photos for the specific color
+          dispatch(addOrUpdateColorWithPhotos({ color, photos: newPhotos }));
+        }
+      },
+    [dispatch]
   );
 
   return { handleFileSelect };

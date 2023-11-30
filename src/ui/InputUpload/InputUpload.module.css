@@ -1,0 +1,19 @@
+.uploadContainer {
+  display: inline-block;
+  padding: 10px 15px;
+  border: 2px dashed var(--light-gray);
+  border-radius: 8px;
+  background-color: var(--light-gray);
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.uploadContainer:hover {
+  background-color: white;
+}
+
+.input {
+  display: none;
+}

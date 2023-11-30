@@ -8,4 +8,6 @@ export type {
   IProductCreationState,
   IProductCreationStringsState,
   IPhotosWith1Color,
+  ISetValuePayloadProductCreation,
+  IResetValuePayloadProductCreation,
 } from './types';

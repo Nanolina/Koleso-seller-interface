@@ -3,6 +3,7 @@
   "Russian": "Russian",
   "search": "Search",
   "add": "Add",
+  "upload": "Upload",
   "menuItems": {
     "Settings": "Settings",
     "Products": "Products",
@@ -121,6 +122,14 @@
         "priceExtra": "Basic price (with discount)"
       }
     }
+  },
+  "documents": {
+    "addDocuments": "Add documents",
+    "companyRegistrationNumber": "Company registration number",
+    "taxNumber": "Tax number",
+    "registrationCertificate": "Certificate of Registration",
+    "certificateDirectorsAndSecretary": "Certificate of directors and secretary",
+    "certificateRegisteredOffice": "Certificate of registered office"
   },
   "catalog": {
     "Women": "Women",

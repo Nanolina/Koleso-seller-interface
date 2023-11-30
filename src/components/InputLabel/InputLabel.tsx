@@ -7,7 +7,7 @@ import styles from './InputLabel.module.css';
 export const InputLabel: React.FC<IInputLabelProps> = React.memo(
   ({ label, id, name, inputType, required, extraText, value, onChange, placeholder }) => {
     return (
-      <div className={styles.container}>
+      <div className="elementWithLabelContainer">
         <Label id={id} text={label} required={required} />
         <Input
           id={id}

@@ -3,6 +3,7 @@
   "Russian": "Русский",
   "search": "Поиск",
   "add": "Добавить",
+  "upload": "Загрузить",
   "menuItems": {
     "Settings": "Настройки",
     "Products": "Товары",
@@ -121,6 +122,14 @@
         "priceExtra": "Основная цена (со скидкой)"
       }
     }
+  },
+  "documents": {
+    "addDocuments": "Добавить документы",
+    "companyRegistrationNumber": "Регистрационный номер компании",
+    "taxNumber": "Налоговый номер",
+    "registrationCertificate": "Сертификат регистрации",
+    "certificateDirectorsAndSecretary": "Свидетельство о директорах и секретаре",
+    "certificateRegisteredOffice": "Свидетельство о зарегистрированном офисе"
   },
   "catalog": {
     "Women": "Женщинам",

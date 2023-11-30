@@ -39,3 +39,13 @@ export interface ITextareaProps {
   rows?: number;
   required?: boolean;
 }
+
+export interface IInputUploadProps {
+  id?: string;
+  name?: string;
+  required?: boolean;
+  value?: string | number;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  acceptFiles: string;
+  multiple?: boolean;
+}

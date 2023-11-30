@@ -26,7 +26,7 @@ export const menuItems = [
     id: '501d827c-ba6f-4d20-b95e-c406dd6cc1c3',
     title: 'Documents',
     icon: <IoDocumentTextOutline size={iconSize} color={color} />,
-    redirectPage: '',
+    redirectPage: '/add-documents',
   },
   {
     id: '021e7181-bdd5-4c65-ad58-59c90e9815b4',

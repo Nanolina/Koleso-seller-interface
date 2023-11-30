@@ -1,5 +1,5 @@
 import { IProductCreationStringsState } from '../../modules/productForm';
-import { createValueReducers } from '../sliceHelpers';
+import { createValueReducers } from '../sliceHelpersProduct';
 
 const productCreationStringsSlice = createValueReducers({
   title: '',

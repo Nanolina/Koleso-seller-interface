@@ -42,6 +42,15 @@ export interface IProductCreationStringsState {
   price: string;
 }
 
+export type ISetValuePayloadProductCreation = {
+  key: keyof IProductCreationStringsState;
+  value: any;
+};
+
+export type IResetValuePayloadProductCreation = {
+  key: keyof IProductCreationStringsState;
+};
+
 // Composition
 export interface IComposition {
   title: string;
@@ -96,7 +105,10 @@ export interface IProductFormReturn {
 }
 
 export interface IFileHandlerReturn {
-  handleFileSelect: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleFileSelect: (
+    color: string,
+    currentPhotos: string[]
+  ) => (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface IColorSelectionReturn {

@@ -1,11 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: 5px;
-}
-
 .extraText {
   font-size: 12px;
   text-align: right;

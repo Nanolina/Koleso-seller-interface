@@ -24,6 +24,17 @@ export interface IInputLabelProps {
   placeholder?: string;
 }
 
+export interface IInputUploadLabelProps {
+  label: string;
+  id: string;
+  name: string;
+  required?: boolean;
+  value?: any;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  acceptFiles: string;
+  multiple?: boolean;
+}
+
 export interface ISelectLabelProps {
   id: string;
   name: string;

@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { RootState } from '../../../../../redux/rootReducer';
 import { removePhotosWith1Color } from '../../../../../redux/slices/productCreationSlice';
+import { InputUpload } from '../../../../../ui/InputUpload/InputUpload';
 import { useColorSelection } from '../../../hooks/useColorSelection';
-import { FileInput } from '../FileInput/FileInput';
+import { useFileHandler } from '../../../hooks/useFileHandler';
 import { PhotoPreviews } from '../PhotoPreviews/PhotoPreviews';
 import styles from './PhotoUpload.module.css';
 
@@ -21,6 +22,7 @@ export const PhotoUpload: React.FC = () => {
 
   // Getting data from hooks
   const { handleAddColor, existingColors } = useColorSelection(parameters);
+  const { handleFileSelect } = useFileHandler();
 
   const handleRemovePhotosWith1Color = useCallback(
     (color: string) => {
@@ -58,9 +60,18 @@ export const PhotoUpload: React.FC = () => {
             photos={photosWith1Color.photos}
             color={photosWith1Color.color}
           />
+
           {photosWith1Color.photos.length < 5 && (
-            <FileInput photosWith1Color={photosWith1Color} />
+            <InputUpload
+              onChange={handleFileSelect(
+                photosWith1Color.color,
+                photosWith1Color.photos
+              )}
+              acceptFiles="image/*"
+              multiple
+            />
           )}
+
           <IoCloseOutline
             color="var(--dark-gray)"
             onClick={() => handleRemovePhotosWith1Color(photosWith1Color.color)}

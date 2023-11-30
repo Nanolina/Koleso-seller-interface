@@ -3,8 +3,9 @@ import { I18nextProvider } from 'react-i18next';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import i18n from './i18n/i18n';
-import { ProductsPage } from './pages/ProductsPage/ProductsPage';
+import { AddDocumentsPage } from './pages/AddDocumentsPage/AddDocumentsPage';
 import { AddProductPage } from './pages/AddProductPage/AddProductPage';
+import { ProductsPage } from './pages/ProductsPage/ProductsPage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -18,6 +19,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<ProductsPage />} />
             <Route path="/add-product" element={<AddProductPage />} />
+            <Route path="/add-documents" element={<AddDocumentsPage />} />
           </Routes>
         </div>
       </I18nextProvider>
