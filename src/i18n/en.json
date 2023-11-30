@@ -114,7 +114,6 @@
       "photo": {
         "label": "Photo",
         "select": "Choose the color of the product for the photo",
-        "add": "Add more photos to a different color",
         "upTo": "No more than 5 photos per 1 color"
       }
     }
