@@ -21,6 +21,7 @@ export interface IInputLabelProps {
   extraText?: string;
   value?: any;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
 }
 
 export interface ISelectLabelProps {
@@ -32,7 +33,7 @@ export interface ISelectLabelProps {
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   firstText: string;
   translationType?: string;
-  extra?: string;
+  extraText?: string;
   required?: boolean;
   isFullWidth?: boolean;
 }

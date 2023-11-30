@@ -5,6 +5,7 @@ import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
 import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { GENDERS } from '../../../../consts';
 import { RootState } from '../../../../redux/rootReducer';
+import { Button } from '../../../../ui/Button/Button';
 import { useProductForm } from '../../hooks/useProductForm';
 import { AddParameters } from '../AddParameters/AddParameters';
 import { CatalogSelects } from '../CatalogSelects/CatalogSelects';
@@ -14,8 +15,16 @@ import { PhotoUpload } from '../photo/PhotoUpload/PhotoUpload';
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();
 
-  const { title, brand, model, articleSupplier, gender, description } =
-    useSelector((state: RootState) => state.productCreationStrings);
+  const {
+    title,
+    brand,
+    model,
+    articleSupplier,
+    gender,
+    description,
+    oldPrice,
+    price,
+  } = useSelector((state: RootState) => state.productCreationStrings);
 
   const { handleChange } = useProductForm();
 
@@ -74,6 +83,27 @@ export const AddProductForm: React.FC = () => {
         required
       />
       <PhotoUpload />
+      <InputLabel
+        label={t('products.table.priceWithoutDiscount')}
+        id="oldPrice"
+        name="oldPrice"
+        extraText={t('products.form.price.oldPriceExtra')}
+        value={oldPrice}
+        onChange={handleChange('oldPrice')}
+        placeholder="0"
+        required
+      />
+      <InputLabel
+        label={t('products.table.finalPrice')}
+        id="price"
+        name="price"
+        extraText={t('products.form.price.priceExtra')}
+        value={price}
+        onChange={handleChange('price')}
+        placeholder="0"
+        required
+      />
+      <Button text={t('products.addProduct')} onClick={() => {}} />
     </>
   );
 };

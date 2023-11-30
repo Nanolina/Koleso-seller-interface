@@ -8,7 +8,7 @@ export interface IProduct {
   image: string;
   colors: string[];
   sizes: number[];
-  oldPrice: number;
-  price: number;
-  quantity: number;
+  oldPrice: string;
+  price: string;
+  quantity: string;
 }

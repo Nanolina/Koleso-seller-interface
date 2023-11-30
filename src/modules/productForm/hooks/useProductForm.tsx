@@ -4,9 +4,9 @@ import {
   resetValueProductCreationStrings,
   setValueProductCreationStrings,
 } from '../../../redux/slices/productCreationStringsSlice';
-import { IProductCreationStringsState } from '../types';
+import { IProductCreationStringsState, IProductFormReturn } from '../types';
 
-export const useProductForm = () => {
+export const useProductForm = (): IProductFormReturn => {
   const dispatch = useDispatch();
 
   const handleChange = useCallback(
@@ -16,15 +16,24 @@ export const useProductForm = () => {
           HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
         >
       ) => {
-        dispatch(
-          setValueProductCreationStrings({ key, value: event.target.value })
-        );
+        let value = event.target.value;
+
+        // The seller can enter the price with 1 dot, no letters
+        if (key === 'price' || key === 'oldPrice') {
+          value = value.replace(/[^0-9.]/g, '');
+
+          if (value.split('.').length > 2) {
+            return;
+          }
+        }
+
+        dispatch(setValueProductCreationStrings({ key, value }));
       };
     },
     [dispatch]
   );
 
-  const handleResetSelect = useCallback(
+  const handleReset = useCallback(
     (key: keyof IProductCreationStringsState) => {
       dispatch(resetValueProductCreationStrings({ key }));
     },
@@ -33,6 +42,6 @@ export const useProductForm = () => {
 
   return {
     handleChange,
-    handleResetSelect,
+    handleReset,
   };
 };

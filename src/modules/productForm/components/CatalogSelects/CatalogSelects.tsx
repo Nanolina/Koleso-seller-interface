@@ -31,7 +31,7 @@ export const CatalogSelects: React.FC = () => {
   );
 
   // Functions for working with catalog values in redux
-  const { handleChange, handleResetSelect } = useProductForm();
+  const { handleChange, handleReset } = useProductForm();
 
   // Assign initial sections
   const sectionOptions = data;
@@ -42,8 +42,8 @@ export const CatalogSelects: React.FC = () => {
    * and re-search for possible categories
    **/
   useEffect(() => {
-    handleResetSelect('category');
-    handleResetSelect('subcategory');
+    handleReset('category');
+    handleReset('subcategory');
     setCategoryOptions(getOptions('categories', section));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
@@ -54,7 +54,7 @@ export const CatalogSelects: React.FC = () => {
    * and re-search for possible subcategories
    **/
   useEffect(() => {
-    handleResetSelect('subcategory');
+    handleReset('subcategory');
     setSubcategoryOptions(getOptions('subcategories', category));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);

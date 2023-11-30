@@ -1,9 +1,11 @@
 import { useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { addOrUpdateColorWithPhotos } from '../../../redux/slices/productCreationSlice';
-import { IParameter } from '../types';
+import { IColorSelectionReturn, IParameter } from '../types';
 
-export const useColorSelection = (parameters: IParameter[]) => {
+export const useColorSelection = (
+  parameters: IParameter[]
+): IColorSelectionReturn => {
   const dispatch = useDispatch();
 
   const existingColors = useMemo(() => {

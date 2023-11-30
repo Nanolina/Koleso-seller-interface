@@ -2,9 +2,9 @@ import { ChangeEvent, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/rootReducer';
 import { addOrUpdateColorWithPhotos } from '../../../redux/slices/productCreationSlice';
-import { IPhotosWith1Color } from '../types';
+import { IFileHandlerReturn, IPhotosWith1Color } from '../types';
 
-export const useFileHandler = (color: string) => {
+export const useFileHandler = (color: string): IFileHandlerReturn => {
   const dispatch = useDispatch();
 
   const colorsWithPhotos = useSelector(

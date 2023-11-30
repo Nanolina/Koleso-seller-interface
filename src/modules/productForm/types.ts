@@ -4,7 +4,7 @@ import { SetStateAction } from '../../types';
 export interface IParameter {
   id: string;
   color?: string;
-  quantity?: number;
+  quantity?: string;
   size?: string;
 }
 
@@ -38,6 +38,8 @@ export interface IProductCreationStringsState {
   category: string;
   subcategory?: string;
   description: string;
+  oldPrice: string;
+  price: string;
 }
 
 // Composition
@@ -73,4 +75,31 @@ export interface IPhotoPreviewProps {
 
 export interface IFileInputProps {
   color: string;
+}
+
+export interface IParameterHandlersReturn {
+  handleQuantityUpdate: (quantity: string) => void;
+  handleSizeUpdate: (size: string) => void;
+  handleRemoveParameter: () => void;
+  handleCopyParameter: () => void;
+}
+
+export interface IProductFormReturn {
+  handleChange: (
+    key: keyof IProductCreationStringsState
+  ) => (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void;
+  handleReset: (key: keyof IProductCreationStringsState) => void;
+}
+
+export interface IFileHandlerReturn {
+  handleFileSelect: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface IColorSelectionReturn {
+  handleAddColor: (value: string) => void;
+  existingColors: string[];
 }
