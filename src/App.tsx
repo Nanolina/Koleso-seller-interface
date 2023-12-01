@@ -5,6 +5,7 @@ import './App.css';
 import i18n from './i18n/i18n';
 import { AddDocumentsPage } from './pages/AddDocumentsPage/AddDocumentsPage';
 import { AddProductPage } from './pages/AddProductPage/AddProductPage';
+import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import { ProductsPage } from './pages/ProductsPage/ProductsPage';
 
 const App: React.FC = () => {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
             <Route path="/" element={<ProductsPage />} />
             <Route path="/add-product" element={<AddProductPage />} />
             <Route path="/add-documents" element={<AddDocumentsPage />} />
+            <Route path="/orders" element={<OrdersPage />} />
           </Routes>
         </div>
       </I18nextProvider>

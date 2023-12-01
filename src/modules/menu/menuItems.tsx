@@ -44,7 +44,7 @@ export const menuItems = [
     id: '14fd2979-0dff-4cd1-a3fb-9f23c6a10254',
     title: 'Orders',
     icon: <AiOutlineShoppingCart size={iconSize} color={color} />,
-    redirectPage: '',
+    redirectPage: '/orders',
   },
   {
     id: '861d9ee7-182c-4bd5-a017-bbefa3ff6c4b',

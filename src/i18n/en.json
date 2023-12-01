@@ -137,6 +137,32 @@
       "accountNumber": "Account number"
     }
   },
+  "orders": {
+    "table": {
+      "date": "Date",
+      "orderNumber": "Order number",
+      "status": "Status",
+      "totalPrice": "Total price",
+      "deliveryMethod": {
+        "label": "Delivery method",
+        "courier": "Courier",
+        "pickupPoint": "Pick-up point"
+      }
+    },
+    "statuses": {
+      "awaiting-processing": "Awaiting processing",
+      "in-process": "In process",
+      "ready-to-ship": "Ready to ship",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "canceled": "Canceled",
+      "rejection": "Rejection",
+      "pending-refund": "Pending refund",
+      "return": "Return",
+      "returned": "Returned",
+      "pending-payment": "Pending payment"
+    }
+  },
   "catalog": {
     "Women": "Women",
     "Men": "Men",

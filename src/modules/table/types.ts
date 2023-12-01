@@ -1,6 +1,8 @@
 export interface ITableProps {
   headers: string[];
   data: any;
+  isEditable?: boolean;
+  isDeletable?: boolean;
 }
 
 export interface ITableHeaderProps {
@@ -10,6 +12,8 @@ export interface ITableHeaderProps {
 export interface ITableRowProps {
   row: any[];
   rowIndex: number;
+  isEditable: boolean;
+  isDeletable: boolean;
 }
 
 export interface ITableCellProps {

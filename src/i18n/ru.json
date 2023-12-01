@@ -137,6 +137,32 @@
       "accountNumber": "Номер счета"
     }
   },
+  "orders": {
+    "table": {
+      "date": "Дата",
+      "orderNumber": "Номер заказа",
+      "status": "Статус",
+      "totalPrice": "Стоимость",
+      "deliveryMethod": {
+        "label": "Способ доставки",
+        "courier": "Курьер",
+        "pickupPoint": "Пункт выдачи"
+      }
+    },
+    "statuses": {
+      "awaiting-processing": "Ожидает обработки",
+      "in-process": "В обработке",
+      "ready-to-ship": "Готов к отправке",
+      "shipped": "Отправлен",
+      "delivered": "Доставлен",
+      "canceled": "Отменен",
+      "rejection": "Отказ",
+      "pending-refund": "Ожидается возврат",
+      "return": "Возврат",
+      "returned": "Возвращен",
+      "pending-payment": "В ожидании оплаты"
+    }
+  },
   "catalog": {
     "Women": "Женщинам",
     "Men": "Мужчинам",

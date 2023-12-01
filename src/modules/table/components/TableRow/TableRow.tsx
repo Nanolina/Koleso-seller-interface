@@ -8,7 +8,7 @@ import styles from './TableRow.module.css';
 const iconSize = 20;
 
 export const TableRow: React.FC<ITableRowProps> = React.memo(
-  ({ row, rowIndex }) => (
+  ({ row, rowIndex, isEditable = false, isDeletable = false }) => (
     <tr className={styles.tr}>
       <td className={styles.td}>{rowIndex + 1}</td>
       {row.map((cell, cellIndex) => (
@@ -19,8 +19,8 @@ export const TableRow: React.FC<ITableRowProps> = React.memo(
         />
       ))}
       <td className={styles.itemsContainer}>
-        <RxCross1 size={iconSize} />
-        <TiPencil size={iconSize} />
+        {isDeletable && <RxCross1 size={iconSize} />}
+        {isEditable && <TiPencil size={iconSize} />}
       </td>
     </tr>
   )

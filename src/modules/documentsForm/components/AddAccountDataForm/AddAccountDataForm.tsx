@@ -5,7 +5,7 @@ import { RootState } from '../../../../redux/rootReducer';
 import { Title } from '../../../../ui/Title/Title';
 import { useAccountDataForm } from '../../hooks/useAccountDataForm';
 
-export const AddAccountData = () => {
+export const AddAccountData: React.FC = () => {
   const { t } = useTranslation();
 
   const { IBAN, SWIFT, holderName, bankName, accountNumber } = useSelector(

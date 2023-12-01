@@ -27,5 +27,5 @@ export const ProductsTable: React.FC = () => {
     setProducts(dataTable);
   }, []);
 
-  return <Table headers={headers} data={products} />;
+  return <Table headers={headers} data={products} isEditable isDeletable />;
 };
