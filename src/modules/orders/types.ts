@@ -33,17 +33,3 @@ export interface IOrder {
   date: string;
   products: IProduct[];
 }
-
-export interface IStatuses {
-  awaitingProcessing: 'awaiting-processing';
-  inProcess: 'in-process';
-  readyToShip: 'ready-to-ship';
-  shipped: 'shipped';
-  delivered: 'delivered';
-  canceled: 'canceled';
-  rejection: 'rejection';
-  pendingRefund: 'pending-refund';
-  return: 'return';
-  returned: 'returned';
-  pendingPayment: 'pending-payment';
-}

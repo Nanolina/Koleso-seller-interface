@@ -1,3 +1,5 @@
+import { IStatuses } from './types';
+
 export const GENDERS: string[] = ['Male', 'Female'];
 
 export const COMPOSITIONS: string[] = [
@@ -133,3 +135,17 @@ export const COLORS: string[] = [
   'White',
   'Yellow',
 ];
+
+export const STATUSES: IStatuses = {
+  awaitingProcessing: 'awaiting-processing',
+  inProcess: 'in-process',
+  readyToShip: 'ready-to-ship',
+  shipped: 'shipped',
+  delivered: 'delivered',
+  canceled: 'canceled',
+  rejection: 'rejection',
+  pendingRefund: 'pending-refund',
+  return: 'return',
+  returned: 'returned',
+  pendingPayment: 'pending-payment',
+};
