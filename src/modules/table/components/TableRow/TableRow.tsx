@@ -8,8 +8,8 @@ import styles from './TableRow.module.css';
 const iconSize = 20;
 
 export const TableRow: React.FC<ITableRowProps> = React.memo(
-  ({ row, rowIndex, isEditable = false, isDeletable = false }) => (
-    <tr className={styles.tr}>
+  ({ row, rowIndex, onClick, isEditable = false, isDeletable = false }) => (
+    <tr className={styles.tr} onClick={onClick}>
       <td className={styles.td}>{rowIndex + 1}</td>
       {row.map((cell, cellIndex) => (
         <TableCell

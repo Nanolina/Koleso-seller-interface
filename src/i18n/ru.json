@@ -16,7 +16,7 @@
   "products": {
     "addProduct": "Добавить товар",
     "table": {
-      "articleKoleso": "Артикул Koleso",
+      "articleKoleso": "Артикул KOLESO",
       "articleSupplier": "Артикул поставщика",
       "title": "Название",
       "brand": "Бренд",
@@ -162,6 +162,25 @@
       "returned": "Возвращен",
       "pending-payment": "В ожидании оплаты"
     }
+  },
+  "orderDetails": {
+    "title": "Заказ",
+    "from": "от",
+    "articleKoleso": "Артикул KOLESO",
+    "articleSupplier": "Артикул поставщика",
+    "color": "Цвет",
+    "size": "Размер",
+    "brand": "Бренд",
+    "recipientName": "ФИО получателя",
+    "address": "Адрес доставки",
+    "date": "Дата доставки",
+    "notes": "Заметки покупателя",
+    "quantity": "Количество штук",
+    "unitPrice": "Цена за единицу",
+    "totalPrice": "Цена за все товары по этому артикулу",
+    "totalCost": "Общая стоимость товаров",
+    "setStatus": "Установить статус на",
+    "notFound": "Заказ не найден"
   },
   "catalog": {
     "Women": "Женщинам",

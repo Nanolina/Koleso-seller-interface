@@ -12,15 +12,16 @@ export interface IDelivery {
 
 export interface IProduct {
   id: string;
+  image: string;
   articleSupplier: string;
   articleKoleso: string;
   title: string;
   color: string;
-  size: number;
+  size: string;
   brand: string;
-  quantity: string;
+  quantity: number;
   priceWithoutDiscount: string;
-  finalPrice: string;
+  unitPrice: string;
   totalPrice: string;
 }
 

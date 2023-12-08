@@ -4,7 +4,7 @@ export const initialProducts: IProduct[] = [
   {
     id: '21b81313-c017-4731-97a3-d8bc33f3951c',
     articleKoleso: '34522354',
-    ArticleSupplier: '434574',
+    articleSupplier: '434574',
     title: 'Phone',
     brand: 'Samsung',
     model: 'S23 FE SM-S711',
@@ -18,7 +18,7 @@ export const initialProducts: IProduct[] = [
   {
     id: '21b81313-c017-4731-97a3-d8bc33f3951c',
     articleKoleso: '34522354',
-    ArticleSupplier: '434574',
+    articleSupplier: '434574',
     title: 'Phone',
     brand: 'Samsung',
     model: 'S23 FE SM-S711',

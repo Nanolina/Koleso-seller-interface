@@ -1,13 +1,12 @@
 .container {
   border-radius: var(--border-radius);
-  border: 1px solid var(--light-gray);
   padding: 5px;
   position: relative;
 }
 
 .container img {
   height: 100px;
-  width: 100px;
+  width: 70px;
 }
 
 .iconRemove {

@@ -16,7 +16,7 @@
   "products": {
     "addProduct": "Add product",
     "table": {
-      "articleKoleso": "Article Koleso",
+      "articleKoleso": "Article KOLESO",
       "articleSupplier": "Supplier's article",
       "title": "Title",
       "brand": "Brand",
@@ -162,6 +162,25 @@
       "returned": "Returned",
       "pending-payment": "Pending payment"
     }
+  },
+  "orderDetails": {
+    "title": "Order",
+    "from": "from",
+    "articleKoleso": "Article KOLESO",
+    "articleSupplier": "Supplier's article",
+    "color": "Color",
+    "size": "Size",
+    "brand": "Brand",
+    "recipientName": "Recipient's full name",
+    "address": "Delivery address",
+    "date": "Delivery date",
+    "notes": "Customer notes",
+    "quantity": "Number of pieces",
+    "unitPrice": "Unit price",
+    "totalPrice": "Price for all products in this article",
+    "totalCost": "Total cost of goods",
+    "setStatus": "Set the status to",
+    "notFound": "Order not found"
   },
   "catalog": {
     "Women": "Women",

@@ -12,6 +12,7 @@ export interface ITableHeaderProps {
 export interface ITableRowProps {
   row: any[];
   rowIndex: number;
+  onClick?: any;
   isEditable: boolean;
   isDeletable: boolean;
 }
