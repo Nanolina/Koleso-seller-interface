@@ -149,3 +149,5 @@ export const STATUSES: IStatuses = {
   returned: 'returned',
   pendingPayment: 'pending-payment',
 };
+
+export const CURRENCY = '€';

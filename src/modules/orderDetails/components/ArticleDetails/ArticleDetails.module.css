@@ -33,3 +33,19 @@
   width: 100px;
   height: 150px;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: fit-content;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  .leftContainer, .rightContainer, .priceContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+}

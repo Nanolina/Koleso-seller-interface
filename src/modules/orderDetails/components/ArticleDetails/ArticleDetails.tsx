@@ -4,6 +4,7 @@ import { TextString } from '../../../../ui/TextString/TextString';
 import { IArticleDetailsProps } from '../../types';
 import { ItemDetails } from '../ItemDetails/ItemDetails';
 import styles from './ArticleDetails.module.css';
+import { CURRENCY } from '../../../../consts';
 
 export const ArticleDetails: React.FC<IArticleDetailsProps> = React.memo(
   ({ articleDetails, index }) => {
@@ -39,10 +40,13 @@ export const ArticleDetails: React.FC<IArticleDetailsProps> = React.memo(
         <div className={styles.rightContainer}>
           <TextString label={t('orderDetails.quantity')} text={quantity} />
           <div className={styles.priceContainer}>
-            <TextString label={t('orderDetails.unitPrice')} text={unitPrice} />
+            <TextString
+              label={t('orderDetails.unitPrice')}
+              text={`${unitPrice} ${CURRENCY}`}
+            />
             <TextString
               label={t('orderDetails.totalPrice')}
-              text={totalPrice}
+              text={`${totalPrice} ${CURRENCY}`}
             />
           </div>
         </div>
