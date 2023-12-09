@@ -1,13 +1,9 @@
-export interface IRecipient {
-  name: string;
-}
-
 export interface IDelivery {
   method: string;
   address: string;
-  deliveryDestinationDate: string;
+  date: string;
   notes: string;
-  recipient: IRecipient;
+  recipientName: string;
 }
 
 export interface IProduct {
@@ -30,7 +26,7 @@ export interface IOrder {
   orderNumber: string;
   status: string;
   delivery: IDelivery;
-  totalPrice: string;
+  totalCost: string;
   date: string;
   products: IProduct[];
 }

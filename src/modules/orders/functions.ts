@@ -6,6 +6,6 @@ export function transformOrdersDataTable(orders: IOrder[]): string[][] {
     order.orderNumber,
     order.status,
     order.delivery.method,
-    order.totalPrice,
+    order.totalCost,
   ]);
 }
