@@ -11,11 +11,15 @@ export const MenuItem: React.FC<{
   const { t } = useTranslation();
 
   return (
-    <li key={item.id} className={styles.item} onClick={() => onClick(item.id)}>
-      <Link to={item.redirectPage} className={styles.item}>
+    <Link to={item.redirectPage} className={styles.item}>
+      <li
+        key={item.id}
+        className={styles.item}
+        onClick={() => onClick(item.id)}
+      >
         {item.icon}
         <b className={styles.text}>{t(`menuItems.${item.title}`)}</b>
-      </Link>
-    </li>
+      </li>
+    </Link>
   );
 });
