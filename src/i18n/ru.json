@@ -182,6 +182,12 @@
     "setStatus": "Установить статус на",
     "notFound": "Заказ не найден"
   },
+  "notifications": {
+    "newOrder": "Новый заказ",
+    "newOrderDescription": "У вас появился новый заказ № {{orderNumber}} с доставкой {{deliveryMethod}}. Пожалуйста, перейдите в раздел “Заказы” и обработайте соответствующий заказ. Не забудьте обновить статус.",
+    "rejectionDescription": "К сожалению, произошел отказ от товара: артикул № {{articleKOLESO}} из заказа № {{orderNumber}} стоимостью {{price}} €. Вам необходимо будет забрать товар с пункта выдачи по адресу: {{addressPickupPoint}} до {{expirationDate}}.",
+    "returnDescription": "К сожалению, произошел возврат товара: артикул № {{articleKOLESO}} из заказа № {{orderNumber}}. Причина возврата: {{reason}}. Вам необходимо будет забрать товар с пункта выдачи по адресу: {{addressPickupPoint}} до {{expirationDate}}."
+  },
   "catalog": {
     "Women": "Женщинам",
     "Men": "Мужчинам",

@@ -5,9 +5,10 @@ import './App.css';
 import i18n from './i18n/i18n';
 import { AddDocumentsPage } from './pages/AddDocumentsPage/AddDocumentsPage';
 import { AddProductPage } from './pages/AddProductPage/AddProductPage';
+import { NotificationsPage } from './pages/NotificationsPage/NotificationsPage';
+import { OrderPage } from './pages/OrderPage/OrderPage';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import { ProductsPage } from './pages/ProductsPage/ProductsPage';
-import { OrderPage } from './pages/OrderPage/OrderPage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -24,6 +25,7 @@ const App: React.FC = () => {
             <Route path="/add-documents" element={<AddDocumentsPage />} />
             <Route path="/orders" element={<OrdersPage />} />
             <Route path="/order/:orderNumber" element={<OrderPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
           </Routes>
         </div>
       </I18nextProvider>

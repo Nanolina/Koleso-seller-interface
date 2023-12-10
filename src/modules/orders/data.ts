@@ -1,4 +1,4 @@
-import { STATUSES } from '../../consts';
+import { DELIVERYMETHODS, STATUSES } from '../../consts';
 import { IOrder } from './types';
 
 export const mockOrders: IOrder[] = [
@@ -9,7 +9,7 @@ export const mockOrders: IOrder[] = [
     totalCost: '200',
     date: '03.09.2023', // date of order creation
     delivery: {
-      method: 'courier',
+      method: DELIVERYMETHODS.courier,
       address: 'Limassol Ave., 11, 5th floor, Aglanja, 2112',
       date: '18.11.2023', // date of receipt of order
       notes: 'Позвонить за 30 мин до приезда',

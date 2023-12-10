@@ -1,9 +1,7 @@
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsBoxes } from 'react-icons/bs';
-import { GiMoneyStack } from 'react-icons/gi';
 import { IoIosSettings } from 'react-icons/io';
 import { IoDocumentTextOutline } from 'react-icons/io5';
-import { LiaTasksSolid } from 'react-icons/lia';
 import { MdNotificationsNone } from 'react-icons/md';
 
 const iconSize = 20;
@@ -28,18 +26,18 @@ export const menuItems = [
     icon: <IoDocumentTextOutline size={iconSize} color={color} />,
     redirectPage: '/add-documents',
   },
-  {
-    id: '021e7181-bdd5-4c65-ad58-59c90e9815b4',
-    title: 'Finances',
-    icon: <GiMoneyStack size={iconSize} color={color} />,
-    redirectPage: '',
-  },
-  {
-    id: '2cd07696-3a73-49bf-9d7f-2e0205cd56f8',
-    title: 'Tasks',
-    icon: <LiaTasksSolid size={iconSize} color={color} />,
-    redirectPage: '',
-  },
+  // {
+  //   id: '021e7181-bdd5-4c65-ad58-59c90e9815b4',
+  //   title: 'Finances',
+  //   icon: <GiMoneyStack size={iconSize} color={color} />,
+  //   redirectPage: '',
+  // },
+  // {
+  //   id: '2cd07696-3a73-49bf-9d7f-2e0205cd56f8',
+  //   title: 'Tasks',
+  //   icon: <LiaTasksSolid size={iconSize} color={color} />,
+  //   redirectPage: '',
+  // },
   {
     id: '14fd2979-0dff-4cd1-a3fb-9f23c6a10254',
     title: 'Orders',
@@ -50,6 +48,6 @@ export const menuItems = [
     id: '861d9ee7-182c-4bd5-a017-bbefa3ff6c4b',
     title: 'Notifications',
     icon: <MdNotificationsNone size={iconSize} color={color} />,
-    redirectPage: '',
+    redirectPage: '/notifications',
   },
 ];

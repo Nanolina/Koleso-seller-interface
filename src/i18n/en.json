@@ -182,6 +182,12 @@
     "setStatus": "Set the status to",
     "notFound": "Order not found"
   },
+  "notifications": {
+    "newOrder": "New order",
+    "newOrderDescription": "You have a new order № {{orderNumber}} with shipping {{deliveryMethod}}. Please go to ”Orders” and process the corresponding order. Don't forget to update the status.",
+    "rejectionDescription": "Unfortunately, there has been a rejection of an item: item number {{articleKOLESO}} from order number {{orderNumber}} with a value of {{price}} €. You will need to pick up the item from the pickup point at: {{addressPickupPoint}} by {{expirationDate}}.",
+    "returnDescription": "Unfortunately, there has been a return of an item: item number {{articleKOLESO}} from order number {{orderNumber}}. Reason for return: {{reason}}. You will need to pick up the item from the pickup location at: {{addressPickupPoint}} by {{expirationDate}}."
+  },
   "catalog": {
     "Women": "Women",
     "Men": "Men",

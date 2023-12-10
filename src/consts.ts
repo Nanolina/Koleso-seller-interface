@@ -151,3 +151,10 @@ export const STATUSES: IStatuses = {
 };
 
 export const CURRENCY = '€';
+
+export const DELIVERYMETHODS = {
+  courier: 'courier',
+  pickupPoint: 'pickupPoint',
+};
+
+export const addressPickupPoint = 'Limassol Ave., 11, 5th floor, Aglanja, 2112';
