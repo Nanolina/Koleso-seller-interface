@@ -9,24 +9,24 @@ export const initialProducts: IProduct[] = [
     brand: 'Samsung',
     model: 'S23 FE SM-S711',
     image: 'https://m.media-amazon.com/images/I/81Eqrz2tKKL._AC_SX679_.jpg',
-    colors: ['Beige', 'Red'],
-    sizes: [35, 36, 37, 38, 39, 40, 41],
-    oldPrice: '40', // without discount
-    price: '20', // final price
-    quantity: '5',
+    color: 'Beige',
+    size: '35',
+    priceWithoutDiscount: '40',
+    finalPrice: '20',
+    remainingQuantity: 5,
   },
   {
-    id: '21b81313-c017-4731-97a3-d8bc33f3951c',
+    id: '11b81313-c017-4731-97a3-d8bc33f3951c',
     articleKoleso: '34522354',
     articleSupplier: '434574',
     title: 'Phone',
     brand: 'Samsung',
     model: 'S23 FE SM-S711',
     image: 'https://m.media-amazon.com/images/I/81Eqrz2tKKL._AC_SX679_.jpg',
-    colors: ['Beige', 'Red'],
-    sizes: [35, 36, 37, 38, 39, 40, 41],
-    oldPrice: '40', // without discount
-    price: '20', // final price
-    quantity: '5',
+    color: 'Red',
+    size: '35',
+    priceWithoutDiscount: '40',
+    finalPrice: '20',
+    remainingQuantity: 5,
   },
 ];

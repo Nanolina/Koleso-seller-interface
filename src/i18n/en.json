@@ -22,8 +22,8 @@
       "brand": "Brand",
       "model": "Model",
       "image": "Image",
-      "colors": "Colors",
-      "remainingSizes": "Remaining sizes",
+      "color": "Color",
+      "size": "Size",
       "priceWithoutDiscount": "Price without discount",
       "finalPrice": "Final price",
       "remainingQuantity": "Remaining quantity"
@@ -142,7 +142,7 @@
       "date": "Date",
       "orderNumber": "Order number",
       "status": "Status",
-      "totalPrice": "Total price",
+      "totalCost": "Total cost",
       "deliveryMethod": {
         "label": "Delivery method",
         "courier": "Courier",

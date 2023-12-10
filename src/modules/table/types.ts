@@ -1,23 +1,10 @@
-export interface ITableProps {
-  headers: string[];
-  data: any;
-  isEditable?: boolean;
-  isDeletable?: boolean;
-}
-
-export interface ITableHeaderProps {
-  headers: string[];
-}
-
 export interface ITableRowProps {
-  row: any[];
   rowIndex: number;
   onClick?: any;
-  isEditable: boolean;
-  isDeletable: boolean;
+  children: any;
 }
 
 export interface ITableCellProps {
   cell: any;
-  cellIndex: number;
+  alt?: string;
 }

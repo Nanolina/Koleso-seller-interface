@@ -1,31 +1,53 @@
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Table, getDataTable } from '../../../table';
+import {
+  HeaderCell,
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from '../../../table';
 import { initialProducts } from '../../data';
+import { IProduct } from '../../types';
 
 export const ProductsTable: React.FC = () => {
   const { t } = useTranslation();
 
-  const [products, setProducts] = useState<(string | number)[][]>([]);
+  return (
+    <Table>
+      <TableHeader>
+        <HeaderCell></HeaderCell>
+        <HeaderCell>{t('products.table.image')}</HeaderCell>
+        <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
+        <HeaderCell>{t('products.table.title')}</HeaderCell>
+        <HeaderCell>{t('products.table.brand')}</HeaderCell>
+        <HeaderCell>{t('products.table.model')}</HeaderCell>
+        <HeaderCell>{t('products.table.color')}</HeaderCell>
+        <HeaderCell>{t('products.table.size')}</HeaderCell>
+        <HeaderCell>{t('products.table.priceWithoutDiscount')}</HeaderCell>
+        <HeaderCell>{t('products.table.finalPrice')}</HeaderCell>
+        <HeaderCell>{t('products.table.remainingQuantity')}</HeaderCell>
+      </TableHeader>
 
-  const headers = [
-    t('products.table.articleKoleso'),
-    t('products.table.articleSupplier'),
-    t('products.table.title'),
-    t('products.table.brand'),
-    t('products.table.model'),
-    t('products.table.image'),
-    t('products.table.colors'),
-    t('products.table.remainingSizes'),
-    t('products.table.priceWithoutDiscount'),
-    t('products.table.finalPrice'),
-    t('products.table.remainingQuantity'),
-  ];
-
-  useEffect(() => {
-    const dataTable = getDataTable(initialProducts);
-    setProducts(dataTable);
-  }, []);
-
-  return <Table headers={headers} data={products} isEditable isDeletable />;
+      <tbody>
+        {initialProducts.map((product: IProduct, productIndex: number) => (
+          <TableRow
+            key={`row-${productIndex}`}
+            rowIndex={productIndex}
+            onClick={() => {}}
+          >
+            <TableCell cell={product.image} />
+            <TableCell cell={product.articleKoleso} />
+            <TableCell cell={product.title} />
+            <TableCell cell={product.brand} />
+            <TableCell cell={product.model} />
+            <TableCell cell={t(`products.form.color.${product.color}`)} />
+            <TableCell cell={product.size} />
+            <TableCell cell={product.priceWithoutDiscount} />
+            <TableCell cell={product.finalPrice} />
+            <TableCell cell={product.remainingQuantity} />
+          </TableRow>
+        ))}
+      </tbody>
+    </Table>
+  );
 };

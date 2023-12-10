@@ -1,37 +1,51 @@
-import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Table } from '../../../table';
+import { useNavigate } from 'react-router-dom';
+import {
+  HeaderCell,
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from '../../../table';
 import { mockOrders } from '../../data';
-import { transformOrdersDataTable } from '../../functions';
+import { IOrder } from '../../types';
 
 export const OrdersTable: React.FC = () => {
   const { t } = useTranslation();
-  const [orders, setOrders] = useState<(string | number)[][]>([]);
+  const navigate = useNavigate();
 
-  const headers = useMemo(
-    () => [
-      t('orders.table.date'),
-      t('orders.table.orderNumber'),
-      t('orders.table.status'),
-      t('orders.table.deliveryMethod.label'),
-      t('orders.table.totalPrice'),
-    ],
-    [t]
+  const handleOrderDetails = (orderNumber: string) => {
+    navigate(`/order/${orderNumber}`);
+  };
+
+  return (
+    <Table>
+      <TableHeader>
+        <HeaderCell></HeaderCell>
+        <HeaderCell>{t('orders.table.date')}</HeaderCell>
+        <HeaderCell>{t('orders.table.orderNumber')}</HeaderCell>
+        <HeaderCell>{t('orders.table.status')}</HeaderCell>
+        <HeaderCell>{t('orders.table.deliveryMethod.label')}</HeaderCell>
+        <HeaderCell>{t('orders.table.totalCost')}</HeaderCell>
+      </TableHeader>
+
+      <tbody>
+        {mockOrders.map((order: IOrder, orderIndex: number) => (
+          <TableRow
+            key={`row-${orderIndex}`}
+            rowIndex={orderIndex}
+            onClick={() => handleOrderDetails(order.orderNumber)}
+          >
+            <TableCell cell={order.date} />
+            <TableCell cell={order.orderNumber} />
+            <TableCell cell={t(`orders.statuses.${order.status}`)} />
+            <TableCell
+              cell={t(`orders.table.deliveryMethod.${order.delivery.method}`)}
+            />
+            <TableCell cell={order.totalCost} />
+          </TableRow>
+        ))}
+      </tbody>
+    </Table>
   );
-
-  useEffect(() => {
-    const ordersWithTranslatedStatuses = mockOrders.map((order) => ({
-      ...order,
-      status: t(`orders.statuses.${order.status}`),
-      delivery: {
-        ...order.delivery,
-        method: t(`orders.table.deliveryMethod.${order.delivery.method}`),
-      },
-    }));
-
-    const dataTable = transformOrdersDataTable(ordersWithTranslatedStatuses);
-    setOrders(dataTable);
-  }, [t]);
-
-  return <Table headers={headers} data={orders} />;
 };

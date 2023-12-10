@@ -6,9 +6,9 @@ export interface IProduct {
   brand: string;
   model: string;
   image: string;
-  colors: string[];
-  sizes: number[];
-  oldPrice: string;
-  price: string;
-  quantity: string;
+  color: string;
+  size: string;
+  priceWithoutDiscount: string;
+  finalPrice: string;
+  remainingQuantity: number;
 }

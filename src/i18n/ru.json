@@ -22,8 +22,8 @@
       "brand": "Бренд",
       "model": "Модель",
       "image": "Изображение",
-      "colors": "Цвета",
-      "remainingSizes": "Оставшиеся размеры",
+      "color": "Цвет",
+      "size": "Размер",
       "priceWithoutDiscount": "Цена без скидки",
       "finalPrice": "Конечная цена",
       "remainingQuantity": "Оставшееся количество"
@@ -142,7 +142,7 @@
       "date": "Дата",
       "orderNumber": "Номер заказа",
       "status": "Статус",
-      "totalPrice": "Стоимость",
+      "totalCost": "Стоимость",
       "deliveryMethod": {
         "label": "Способ доставки",
         "courier": "Курьер",
