@@ -4,6 +4,7 @@
   "search": "Search",
   "add": "Add",
   "upload": "Upload",
+  "yes": "Yes",
   "menuItems": {
     "Settings": "Settings",
     "Products": "Products",
@@ -194,7 +195,6 @@
     "language": "Language",
     "noOptions": "No options available",
     "signOutOfAccount": "Log out of account",
-    "deleteAccount": "Delete account",
     "password": {
       "changePassword": "Change password",
       "currentPassword": "Current password",
@@ -211,6 +211,9 @@
       "email": "Email",
       "address": "Address"
     }
+  },
+  "modal": {
+    "signOutModalContent": "Are you sure you want to log out of your personal account?"
   },
   "catalog": {
     "Women": "Women",

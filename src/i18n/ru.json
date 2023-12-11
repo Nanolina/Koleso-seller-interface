@@ -4,6 +4,7 @@
   "search": "Поиск",
   "add": "Добавить",
   "upload": "Загрузить",
+  "yes": "Да",
   "menuItems": {
     "Settings": "Настройки",
     "Products": "Товары",
@@ -194,7 +195,6 @@
     "language": "Язык",
     "noOptions": "Нет доступных вариантов",
     "signOutOfAccount": "Выйти из учетной записи",
-    "deleteAccount": "Удалить учетную запись",
     "password": {
       "changePassword": "Изменить пароль",
       "currentPassword": "Текущий пароль",
@@ -211,6 +211,9 @@
       "email": "Электронная почта",
       "address": "Адрес"
     }
+  },
+  "modal": {
+    "signOutModalContent": "Вы уверены, что хотите выйти из этого аккаунта?"
   },
   "catalog": {
     "Women": "Женщинам",

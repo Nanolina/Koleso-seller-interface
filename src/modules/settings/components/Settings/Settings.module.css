@@ -4,20 +4,9 @@
   width: 100%;
 }
 
-.buttonsContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  padding-top: 100px;
-}
-
 .signOut {
+  padding-top: 100px;
   color: var(--red);
   cursor: pointer;
-}
-
-.delete {
-  color: var(--dark-gray);
-  cursor: pointer;
+  text-align: center;
 }

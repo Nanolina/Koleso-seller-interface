@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { SignOutModal } from '../../../modal';
 import { Setting } from '../Setting/Setting';
 import styles from './Settings.module.css';
 
 export const Settings: React.FC = () => {
   const { t } = useTranslation();
+
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <div className={styles.container}>
       <Setting
@@ -19,10 +24,11 @@ export const Settings: React.FC = () => {
         redirectPage="password"
       />
 
-      <div className={styles.buttonsContainer}>
-        <span className={styles.signOut}>{t('settings.signOutOfAccount')}</span>
-        <span className={styles.delete}>{t('settings.deleteAccount')}</span>
-      </div>
+      <span className={styles.signOut} onClick={() => setModalOpen(true)}>
+        {t('settings.signOutOfAccount')}
+      </span>
+
+      <SignOutModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </div>
   );
 };
