@@ -193,6 +193,8 @@
     "email": "Электронная почта",
     "language": "Язык",
     "noOptions": "Нет доступных вариантов",
+    "signOutOfAccount": "Выйти из учетной записи",
+    "deleteAccount": "Удалить учетную запись",
     "password": {
       "changePassword": "Изменить пароль",
       "currentPassword": "Текущий пароль",

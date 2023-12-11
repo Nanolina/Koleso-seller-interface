@@ -18,6 +18,11 @@ export const Settings: React.FC = () => {
         title={t('settings.password.changePassword')}
         redirectPage="password"
       />
+
+      <div className={styles.buttonsContainer}>
+        <span className={styles.signOut}>{t('settings.signOutOfAccount')}</span>
+        <span className={styles.delete}>{t('settings.deleteAccount')}</span>
+      </div>
     </div>
   );
 };

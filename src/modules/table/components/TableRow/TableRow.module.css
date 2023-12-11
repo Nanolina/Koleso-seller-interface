@@ -5,6 +5,7 @@
 
 .tr:hover {
   background-color: var(--light-gray);
+  cursor: pointer;
 }
 
 .td {
