@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
-import { RootState } from '../../../../redux/rootReducer';
+import { IRootState } from '../../../../redux/rootReducer';
 import { Title } from '../../../../ui/Title/Title';
 import { useAccountDataForm } from '../../hooks/useAccountDataForm';
 
@@ -9,7 +9,7 @@ export const AddAccountData: React.FC = () => {
   const { t } = useTranslation();
 
   const { IBAN, SWIFT, holderName, bankName, accountNumber } = useSelector(
-    (state: RootState) => state.accountData
+    (state: IRootState) => state.accountData
   );
 
   const { handleChange } = useAccountDataForm();

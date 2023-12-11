@@ -4,7 +4,7 @@ import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
 import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { GENDERS } from '../../../../consts';
-import { RootState } from '../../../../redux/rootReducer';
+import { IRootState } from '../../../../redux/rootReducer';
 import { Button } from '../../../../ui/Button/Button';
 import { useProductForm } from '../../hooks/useProductForm';
 import { AddParameters } from '../AddParameters/AddParameters';
@@ -24,7 +24,7 @@ export const AddProductForm: React.FC = () => {
     description,
     oldPrice,
     price,
-  } = useSelector((state: RootState) => state.productCreationStrings);
+  } = useSelector((state: IRootState) => state.productCreationStrings);
 
   const { handleChange } = useProductForm();
 

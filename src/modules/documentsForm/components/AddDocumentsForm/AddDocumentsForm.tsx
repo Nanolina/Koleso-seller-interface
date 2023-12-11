@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { InputUploadLabel } from '../../../../components/InputUploadLabel/InputUploadLabel';
-import { RootState } from '../../../../redux/rootReducer';
+import { IRootState } from '../../../../redux/rootReducer';
 import { useDocumentsForm } from '../../hooks/useDocumentsForm';
 import { AddAccountData } from '../AddAccountDataForm/AddAccountDataForm';
 import styles from './AddDocumentsForm.module.css';
@@ -11,7 +11,7 @@ export const AddDocumentsForm: React.FC = () => {
   const { t } = useTranslation();
 
   const { companyRegistrationNumber, taxNumber } = useSelector(
-    (state: RootState) => state.documents
+    (state: IRootState) => state.documents
   );
 
   const { handleChange } = useDocumentsForm();

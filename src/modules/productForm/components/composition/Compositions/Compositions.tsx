@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../../redux/rootReducer';
+import { IRootState } from '../../../../../redux/rootReducer';
 import { removeComposition } from '../../../../../redux/slices/productCreationSlice';
 import { IComposition } from '../../../types';
 import { Composition } from '../Composition/Composition';
@@ -14,7 +14,7 @@ export const Compositions: React.FC = () => {
   const dispatch = useDispatch();
 
   const сompositions = useSelector(
-    (state: RootState) => state.productCreation.compositions
+    (state: IRootState) => state.productCreation.compositions
   );
 
   const handleRemoveComposition = useCallback(

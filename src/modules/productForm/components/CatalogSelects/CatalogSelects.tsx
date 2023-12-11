@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useProductForm } from '../..';
 import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
-import { RootState } from '../../../../redux/rootReducer';
+import { IRootState } from '../../../../redux/rootReducer';
 import { data } from '../../../catalog/data';
 import { getOptions } from '../../../catalog/functions';
 
@@ -17,7 +17,7 @@ export const CatalogSelects: React.FC = () => {
 
   // Get the catalog values from redux
   const { section, category, subcategory } = useSelector(
-    (state: RootState) => state.productCreationStrings
+    (state: IRootState) => state.productCreationStrings
   );
 
   // Enter possible categories in local states when selecting a section

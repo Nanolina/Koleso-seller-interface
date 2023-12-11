@@ -9,7 +9,7 @@ import documentsSlice from './slices/documentsSlice';
 import productCreationSlice from './slices/productCreationSlice';
 import productCreationStringsSlice from './slices/productCreationStringsSlice';
 
-export interface RootState {
+export interface IRootState {
   productCreationStrings: IProductCreationStringsState;
   productCreation: IProductCreationState;
   documents: IDocumentsState;

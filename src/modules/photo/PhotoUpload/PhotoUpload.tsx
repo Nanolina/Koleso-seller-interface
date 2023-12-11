@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { SelectLabel } from '../../../components/SelectLabel/SelectLabel';
-import { RootState } from '../../../redux/rootReducer';
+import { IRootState } from '../../../redux/rootReducer';
 import { removePhotosWith1Color } from '../../../redux/slices/productCreationSlice';
 import { InputUpload } from '../../../ui/InputUpload/InputUpload';
 import { useColorSelection } from '../../productForm/hooks/useColorSelection';
@@ -17,7 +17,7 @@ export const PhotoUpload: React.FC = () => {
 
   // Redux store
   const { colorsWithPhotos, parameters } = useSelector(
-    (state: RootState) => state.productCreation
+    (state: IRootState) => state.productCreation
   );
 
   // Getting data from hooks
