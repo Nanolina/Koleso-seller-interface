@@ -189,12 +189,21 @@
     "returnDescription": "Unfortunately, there has been a return of an item: item number {{articleKOLESO}} from order number {{orderNumber}}. Reason for return: {{reason}}. You will need to pick up the item from the pickup location at: {{addressPickupPoint}} by {{expirationDate}}."
   },
   "settings": {
-    "shop": "My store information",
     "phone": "Phone",
     "email": "Email",
     "language": "Language",
     "password": "Password",
-    "noOptions": "No options available"
+    "noOptions": "No options available",
+    "store": {
+      "label": "My store information",
+      "name": "Name",
+      "description": "Description",
+      "logo": "Logo",
+      "phone": "Phone",
+      "instagram": "Instagram",
+      "email": "Email",
+      "address": "Address"
+    }
   },
   "catalog": {
     "Women": "Women",

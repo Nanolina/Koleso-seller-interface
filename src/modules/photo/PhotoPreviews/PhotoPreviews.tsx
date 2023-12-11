@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { removePhoto } from '../../../../../redux/slices/productCreationSlice';
-import { IPhotoPreviewsProps } from '../../../types';
+import { removePhoto } from '../../../redux/slices/productCreationSlice';
 import { PhotoPreview } from '../PhotoPreview/PhotoPreview';
+import { IPhotoPreviewsProps } from '../types';
 import styles from './PhotoPreviews.module.css';
 
 export const PhotoPreviews: React.FC<IPhotoPreviewsProps> = React.memo(

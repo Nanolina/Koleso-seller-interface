@@ -11,6 +11,7 @@ import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import { ProductsPage } from './pages/ProductsPage/ProductsPage';
 import { SettingsLanguagePage } from './pages/SettingsLanguagePage/SettingsLanguagePage';
 import { SettingsPage } from './pages/SettingsPage/SettingsPage';
+import { SettingsStorePage } from './pages/SettingsStorePage/SettingsStorePage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -33,6 +34,7 @@ const App: React.FC = () => {
               path="/settings/language"
               element={<SettingsLanguagePage />}
             />
+            <Route path="/settings/store" element={<SettingsStorePage />} />
           </Routes>
         </div>
       </I18nextProvider>

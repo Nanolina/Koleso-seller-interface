@@ -6,7 +6,11 @@ export const Settings: React.FC = () => {
   const { t } = useTranslation();
   return (
     <div className={styles.container}>
-      <Setting title={t('settings.shop')} extra="Marella" redirectPage="" />
+      <Setting
+        title={t('settings.store.label')}
+        extra="Marella"
+        redirectPage="store"
+      />
       <Setting title={t('settings.phone')} redirectPage="" />
       <Setting title={t('settings.email')} redirectPage="" />
       <Setting title={t('settings.language')} redirectPage="language" />

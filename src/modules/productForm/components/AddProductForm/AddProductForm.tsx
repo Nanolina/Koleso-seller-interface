@@ -10,7 +10,7 @@ import { useProductForm } from '../../hooks/useProductForm';
 import { AddParameters } from '../AddParameters/AddParameters';
 import { CatalogSelects } from '../CatalogSelects/CatalogSelects';
 import { AddComposition } from '../composition/AddComposition/AddComposition';
-import { PhotoUpload } from '../photo/PhotoUpload/PhotoUpload';
+import { PhotoUpload } from '../../../photo';
 
 export const AddProductForm: React.FC = () => {
   const { t } = useTranslation();

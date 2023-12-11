@@ -72,16 +72,6 @@ export interface IChangeCompositionPayload {
   materialPercentage: number;
 }
 
-export interface IPhotoPreviewsProps {
-  photos: string[];
-  color: string;
-}
-
-export interface IPhotoPreviewProps {
-  photo: string;
-  onRemove: () => void;
-}
-
 export interface IFileInputProps {
   color: string;
 }

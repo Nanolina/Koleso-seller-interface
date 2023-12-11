@@ -2,12 +2,12 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
-import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
-import { RootState } from '../../../../../redux/rootReducer';
-import { removePhotosWith1Color } from '../../../../../redux/slices/productCreationSlice';
-import { InputUpload } from '../../../../../ui/InputUpload/InputUpload';
-import { useColorSelection } from '../../../hooks/useColorSelection';
-import { useFileHandler } from '../../../hooks/useFileHandler';
+import { SelectLabel } from '../../../components/SelectLabel/SelectLabel';
+import { RootState } from '../../../redux/rootReducer';
+import { removePhotosWith1Color } from '../../../redux/slices/productCreationSlice';
+import { InputUpload } from '../../../ui/InputUpload/InputUpload';
+import { useColorSelection } from '../../productForm/hooks/useColorSelection';
+import { useFileHandler } from '../../productForm/hooks/useFileHandler';
 import { PhotoPreviews } from '../PhotoPreviews/PhotoPreviews';
 import styles from './PhotoUpload.module.css';
 
