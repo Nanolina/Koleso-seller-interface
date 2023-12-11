@@ -158,3 +158,5 @@ export const DELIVERYMETHODS = {
 };
 
 export const addressPickupPoint = 'Limassol Ave., 11, 5th floor, Aglanja, 2112';
+
+export const LANGUAGE = 'language';

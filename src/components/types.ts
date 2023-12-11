@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from 'react';
+import { ChangeEventHandler, HTMLInputTypeAttribute } from 'react';
 
 export interface ISelectProps {
   label?: string;
@@ -57,4 +57,21 @@ export interface ITextareaLabelProps {
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   rows?: number;
   required?: boolean;
+}
+
+export interface ICheckboxWithLabelProps {
+  label: string;
+  checked: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  name: string;
+}
+
+export interface ICheckboxOption {
+  name: string;
+  label: string;
+}
+
+export interface ICheckboxContainerProps {
+  options: ICheckboxOption[];
+  type?: string;
 }

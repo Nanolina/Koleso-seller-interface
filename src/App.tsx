@@ -9,6 +9,7 @@ import { NotificationsPage } from './pages/NotificationsPage/NotificationsPage';
 import { OrderPage } from './pages/OrderPage/OrderPage';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import { ProductsPage } from './pages/ProductsPage/ProductsPage';
+import { SettingsLanguagePage } from './pages/SettingsLanguagePage/SettingsLanguagePage';
 import { SettingsPage } from './pages/SettingsPage/SettingsPage';
 
 const App: React.FC = () => {
@@ -28,6 +29,10 @@ const App: React.FC = () => {
             <Route path="/order/:orderNumber" element={<OrderPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route
+              path="/settings/language"
+              element={<SettingsLanguagePage />}
+            />
           </Routes>
         </div>
       </I18nextProvider>
