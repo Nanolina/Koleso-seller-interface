@@ -9,9 +9,12 @@ import { NotificationsPage } from './pages/NotificationsPage/NotificationsPage';
 import { OrderPage } from './pages/OrderPage/OrderPage';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import { ProductsPage } from './pages/ProductsPage/ProductsPage';
-import { SettingsLanguagePage } from './pages/SettingsLanguagePage/SettingsLanguagePage';
-import { SettingsPage } from './pages/SettingsPage/SettingsPage';
-import { SettingsStorePage } from './pages/SettingsStorePage/SettingsStorePage';
+import { SettingsEmailPage } from './pages/settings/SettingsEmailPage/SettingsEmailPage';
+import { SettingsLanguagePage } from './pages/settings/SettingsLanguagePage/SettingsLanguagePage';
+import { SettingsPage } from './pages/settings/SettingsPage/SettingsPage';
+import { SettingsPasswordPage } from './pages/settings/SettingsPasswordPage/SettingsPasswordPage';
+import { SettingsPhonePage } from './pages/settings/SettingsPhonePage/SettingsPhonePage';
+import { SettingsStorePage } from './pages/settings/SettingsStorePage/SettingsStorePage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -35,6 +38,12 @@ const App: React.FC = () => {
               element={<SettingsLanguagePage />}
             />
             <Route path="/settings/store" element={<SettingsStorePage />} />
+            <Route path="/settings/phone" element={<SettingsPhonePage />} />
+            <Route path="/settings/email" element={<SettingsEmailPage />} />
+            <Route
+              path="/settings/password"
+              element={<SettingsPasswordPage />}
+            />
           </Routes>
         </div>
       </I18nextProvider>

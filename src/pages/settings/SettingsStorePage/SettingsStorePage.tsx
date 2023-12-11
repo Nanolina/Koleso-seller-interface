@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SideMenu } from '../../modules/menu';
-import { StoreInformation } from '../../modules/settings';
-import { Container } from '../../ui/Container/Container';
-import { Title } from '../../ui/Title/Title';
+import { SideMenu } from '../../../modules/menu';
+import { StoreInformation } from '../../../modules/settings';
+import { Container } from '../../../ui/Container/Container';
+import { Title } from '../../../ui/Title/Title';
 
 export const SettingsStorePage = () => {
   const { t } = useTranslation();

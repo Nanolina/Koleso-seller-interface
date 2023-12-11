@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CheckboxContainer } from '../../components/CheckboxContainer/CheckboxContainer';
-import { LANGUAGE } from '../../consts';
-import { SideMenu } from '../../modules/menu';
-import { Container } from '../../ui/Container/Container';
-import { Title } from '../../ui/Title/Title';
+import { CheckboxContainer } from '../../../components/CheckboxContainer/CheckboxContainer';
+import { LANGUAGE } from '../../../consts';
+import { SideMenu } from '../../../modules/menu';
+import { Container } from '../../../ui/Container/Container';
+import { Title } from '../../../ui/Title/Title';
 
 export const SettingsLanguagePage = () => {
   const { t } = useTranslation();

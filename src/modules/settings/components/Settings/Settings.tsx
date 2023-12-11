@@ -11,10 +11,13 @@ export const Settings: React.FC = () => {
         extra="Marella"
         redirectPage="store"
       />
-      <Setting title={t('settings.phone')} redirectPage="" />
-      <Setting title={t('settings.email')} redirectPage="" />
+      <Setting title={t('settings.phone')} redirectPage="phone" />
+      <Setting title={t('settings.email')} redirectPage="email" />
       <Setting title={t('settings.language')} redirectPage="language" />
-      <Setting title={t('settings.password')} redirectPage="" />
+      <Setting
+        title={t('settings.password.changePassword')}
+        redirectPage="password"
+      />
     </div>
   );
 };

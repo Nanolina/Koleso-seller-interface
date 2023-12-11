@@ -104,6 +104,7 @@ export const StoreInformation = () => {
           label={t('settings.store.email')}
           id="email"
           name="email"
+          inputType="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />

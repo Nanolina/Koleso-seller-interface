@@ -192,8 +192,13 @@
     "phone": "Phone",
     "email": "Email",
     "language": "Language",
-    "password": "Password",
     "noOptions": "No options available",
+    "password": {
+      "changePassword": "Change password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "repeatPassword": "Repeat password"
+    },
     "store": {
       "label": "My store information",
       "name": "Name",

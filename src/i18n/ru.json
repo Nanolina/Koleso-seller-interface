@@ -192,8 +192,13 @@
     "phone": "Номер телефона",
     "email": "Электронная почта",
     "language": "Язык",
-    "password": "Изменить пароль",
     "noOptions": "Нет доступных вариантов",
+    "password": {
+      "changePassword": "Изменить пароль",
+      "currentPassword": "Текущий пароль",
+      "newPassword": "Новый пароль",
+      "repeatPassword": "Повторите пароль"
+    },
     "store": {
       "label": "Информация о моем магазине",
       "name": "Название",
