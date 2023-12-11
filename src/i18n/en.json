@@ -188,6 +188,13 @@
     "rejectionDescription": "Unfortunately, there has been a rejection of an item: item number {{articleKOLESO}} from order number {{orderNumber}} with a value of {{price}} €. You will need to pick up the item from the pickup point at: {{addressPickupPoint}} by {{expirationDate}}.",
     "returnDescription": "Unfortunately, there has been a return of an item: item number {{articleKOLESO}} from order number {{orderNumber}}. Reason for return: {{reason}}. You will need to pick up the item from the pickup location at: {{addressPickupPoint}} by {{expirationDate}}."
   },
+  "settings": {
+    "shop": "My store information",
+    "phone": "Phone",
+    "email": "Email",
+    "language": "Language",
+    "password": "Password"
+  },
   "catalog": {
     "Women": "Women",
     "Men": "Men",

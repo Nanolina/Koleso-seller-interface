@@ -9,6 +9,7 @@ import { NotificationsPage } from './pages/NotificationsPage/NotificationsPage';
 import { OrderPage } from './pages/OrderPage/OrderPage';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import { ProductsPage } from './pages/ProductsPage/ProductsPage';
+import { SettingsPage } from './pages/SettingsPage/SettingsPage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <Route path="/orders" element={<OrdersPage />} />
             <Route path="/order/:orderNumber" element={<OrderPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </div>
       </I18nextProvider>

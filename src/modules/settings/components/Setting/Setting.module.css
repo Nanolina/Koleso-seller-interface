@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.container:hover {
+  background-color: var(--light-gray);
+  border-radius: var(--border-radius);
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.extraContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.extraText {
+  font-size: 18px;
+  font-style: italic;
+}

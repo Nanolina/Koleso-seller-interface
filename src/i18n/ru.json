@@ -188,6 +188,13 @@
     "rejectionDescription": "К сожалению, произошел отказ от товара: артикул № {{articleKOLESO}} из заказа № {{orderNumber}} стоимостью {{price}} €. Вам необходимо будет забрать товар с пункта выдачи по адресу: {{addressPickupPoint}} до {{expirationDate}}.",
     "returnDescription": "К сожалению, произошел возврат товара: артикул № {{articleKOLESO}} из заказа № {{orderNumber}}. Причина возврата: {{reason}}. Вам необходимо будет забрать товар с пункта выдачи по адресу: {{addressPickupPoint}} до {{expirationDate}}."
   },
+  "settings": {
+    "shop": "Информация о моем магазине",
+    "phone": "Номер телефона",
+    "email": "Электронная почта",
+    "language": "Язык",
+    "password": "Изменить пароль"
+  },
   "catalog": {
     "Women": "Женщинам",
     "Men": "Мужчинам",

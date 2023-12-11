@@ -12,7 +12,7 @@ export const menuItems = [
     id: '5bd38cec-073d-4f4b-98f5-e101bada5840',
     title: 'Settings',
     icon: <IoIosSettings size={iconSize} color={color} />,
-    redirectPage: '',
+    redirectPage: '/settings',
   },
   {
     id: '8333921e-0a23-420a-83ad-5a17876140bd',
