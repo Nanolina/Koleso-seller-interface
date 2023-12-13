@@ -1,0 +1,29 @@
+.logInButtonsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 100px;
+  width: 92%;
+}
+
+.signUpButtonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notAccount {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .logInButtonsContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .signUpButtonsContainer {
+    width: 90%;
+    text-align: center;
+  }
+}

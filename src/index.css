@@ -10,6 +10,14 @@ code {
     monospace;
 }
 
+label,
+div,
+select,
+input,
+p {
+  font-size: 16px;
+}
+
 :root {
   /* Colors */
   --main: #6c00ad;
@@ -39,6 +47,20 @@ code {
   gap: 10px;
 }
 
-label, div, select, input, p {
-  font-size: 16px;
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  padding: 50px 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .authContainer {
+    width: 90%;
+  }
 }

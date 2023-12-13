@@ -215,6 +215,21 @@
   "modal": {
     "signOutModalContent": "Вы уверены, что хотите выйти из этого аккаунта?"
   },
+  "auth": {
+    "authorization": "Авторизация",
+    "registration": "Регистрация",
+    "logIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "emailUsernamePhone": "Электронная почта/телефон",
+    "password": "Пароль",
+    "haveAccount": "У меня уже есть аккаунт",
+    "notAccount": "У меня еще нет учетной записи",
+    "email": "Электронная почта",
+    "phone": "Номер телефона",
+    "username": "Логин",
+    "repeatPassword": "Повторите пароль",
+    "forgotPassword": "Забыли пароль"
+  },
   "catalog": {
     "Women": "Женщинам",
     "Men": "Мужчинам",

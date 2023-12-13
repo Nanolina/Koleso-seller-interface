@@ -215,6 +215,20 @@
   "modal": {
     "signOutModalContent": "Are you sure you want to log out of your personal account?"
   },
+  "auth": {
+    "authorization": "Authorization",
+    "registration": "Registration",
+    "logIn": "Log in",
+    "signUp": "Sign up",
+    "emailUsernamePhone": "Email/phone",
+    "password": "Password",
+    "email": "Email",
+    "phone": "Phone",
+    "repeatPassword": "Repeat password",
+    "haveAccount": "Already have an account",
+    "notAccount": "Don't have an account yet",
+    "forgotPassword": "Forgot passord"
+  },
   "catalog": {
     "Women": "Women",
     "Men": "Men",

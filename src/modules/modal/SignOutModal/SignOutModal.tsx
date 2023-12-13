@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../ui/Button/Button';
 import { Modal } from '../Modal/Modal';
 import { ISignOutModalProps } from '../types';
@@ -10,12 +11,14 @@ export const SignOutModal: React.FC<ISignOutModalProps> = ({
 }) => {
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
+
   return (
     <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
       <div className={styles.container}>
         {t('modal.signOutModalContent')}
         <div className={styles.buttonContainer}>
-          <Button text={t('yes')} onClick={() => {}} />
+          <Button text={t('yes')} onClick={() => navigate('/login')} />
         </div>
       </div>
     </Modal>
