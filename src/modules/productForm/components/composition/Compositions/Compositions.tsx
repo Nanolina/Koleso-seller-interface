@@ -13,7 +13,7 @@ import styles from './Compositions.module.css';
 export const Compositions: React.FC = () => {
   const dispatch = useDispatch();
 
-  const сompositions = useSelector(
+  const compositions = useSelector(
     (state: IRootState) => state.productCreation.compositions
   );
 
@@ -24,17 +24,19 @@ export const Compositions: React.FC = () => {
     [dispatch]
   );
 
+  if (!compositions.length) {
+    return null;
+  }
+
   return (
-    !!сompositions.length && (
-      <div className={styles.container}>
-        {сompositions.map((material: IComposition) => (
-          <Composition
-            key={material.title}
-            material={material}
-            handleRemoveComposition={handleRemoveComposition}
-          />
-        ))}
-      </div>
-    )
+    <div className={styles.container}>
+      {compositions.map((material: IComposition) => (
+        <Composition
+          key={material.title}
+          material={material}
+          handleRemoveComposition={handleRemoveComposition}
+        />
+      ))}
+    </div>
   );
 };
