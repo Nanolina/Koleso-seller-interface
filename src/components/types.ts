@@ -20,8 +20,10 @@ export interface IInputLabelProps {
   required?: boolean;
   extraText?: string;
   value?: any;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
+  errors?: any;
+  touched?: any;
 }
 
 export interface IInputUploadLabelProps {

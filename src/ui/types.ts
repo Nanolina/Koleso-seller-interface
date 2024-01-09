@@ -49,3 +49,7 @@ export interface IInputUploadProps {
   acceptFiles: string;
   multiple?: boolean;
 }
+
+export interface IErrorMessageProps {
+  error: string | undefined;
+}

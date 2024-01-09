@@ -227,7 +227,19 @@
     "repeatPassword": "Repeat password",
     "haveAccount": "Already have an account",
     "notAccount": "Don't have an account yet",
-    "forgotPassword": "Forgot passord"
+    "forgotPassword": "Forgot passord",
+    "validation": {
+      "phoneRequired": "Phone is required",
+      "invalidEmail": "Invalid email address",
+      "emailRequired": "Email is required",
+      "passwordMin": "Password must contain 8 or more characters with at least one of each: uppercase, lowercase, number and special",
+      "passwordLowerCase": "Password must contain at least 1 lower case letter",
+      "passwordUpperCase": "Password must contain at least 1 upper case letter",
+      "passwordNumbers": "Password must contain at least 1 number",
+      "passwordSymbols": "Password must contain at least 1 special character",
+      "passwordRequired": "Password is required",
+      "passwordsMustMatch": "Passwords must match"
+    }
   },
   "catalog": {
     "Women": "Women",

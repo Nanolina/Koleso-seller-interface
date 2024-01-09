@@ -1,6 +1,7 @@
 import React from 'react';
 import { IInputProps } from '../types';
 import styles from './Input.module.css';
+import { Field } from 'formik';
 
 export const Input: React.FC<IInputProps> = React.memo(
   ({
@@ -14,14 +15,13 @@ export const Input: React.FC<IInputProps> = React.memo(
     isSmallWidth,
   }) => {
     return (
-      <input
+      <Field
         id={id}
         name={name}
+        as="input"
         type={type || 'text'}
         placeholder={placeholder}
         required={required}
-        value={value}
-        onChange={onChange}
         className={isSmallWidth ? styles.smallWidth : styles.input}
       />
     );
