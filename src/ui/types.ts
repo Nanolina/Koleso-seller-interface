@@ -7,6 +7,7 @@ export interface ITitleProps {
 export interface IButtonProps {
   text: any;
   onClick: any;
+  disabled?: boolean;
   backgroundColor?: string;
   border?: boolean;
   textColor?: string;

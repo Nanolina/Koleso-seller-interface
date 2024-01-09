@@ -4,6 +4,7 @@ import styles from './Button.module.css';
 export const Button: React.FC<IButtonProps> = ({
   text,
   onClick,
+  disabled = false,
   backgroundColor = 'var(--orange)',
   border = false,
   textColor = 'white',
@@ -11,20 +12,23 @@ export const Button: React.FC<IButtonProps> = ({
   hasShadow = false,
 }) => {
   const buttonStyle = {
-    backgroundColor,
-    color: textColor,
-    fontWeight: isBold ? 'bold' : 'normal',
+    backgroundColor: disabled ? 'var(--light-gray)' : backgroundColor,
     border: border ? `1px solid var(--main)` : 'none',
     boxShadow: hasShadow ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none',
   };
 
   const textStyle = {
-    color: textColor,
+    color: disabled ? 'var(--dark-gray)' : textColor,
     fontWeight: isBold ? 'bold' : 'normal',
   };
 
   return (
-    <button className={styles.container} onClick={onClick} style={buttonStyle}>
+    <button
+      className={styles.container}
+      onClick={onClick}
+      disabled={disabled}
+      style={buttonStyle}
+    >
       <div style={textStyle}>{text}</div>
     </button>
   );

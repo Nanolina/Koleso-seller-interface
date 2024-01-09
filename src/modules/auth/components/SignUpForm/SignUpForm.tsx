@@ -57,7 +57,7 @@ export const SignUpForm: React.FC = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        {({ values, errors, touched, setFieldValue }) => (
+        {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
           <Form className="authContainer">
             <div className={styles.phoneContainer}>
               <Label text={`${t('auth.phone')}*`} id="phone" />
@@ -78,9 +78,7 @@ export const SignUpForm: React.FC = () => {
                 }}
               />
             </div>
-            {errors.phone ? (
-              <ErrorMessage error={errors.phone} />
-            ) : null}
+            {errors.phone ? <ErrorMessage error={errors.phone} /> : null}
 
             <InputLabel
               name="email"
@@ -113,7 +111,11 @@ export const SignUpForm: React.FC = () => {
             />
 
             <div className={styles.buttonContainer}>
-              <Button text={t('auth.signUp')} onClick={() => navigate('/')} />
+              <Button
+                text={t('auth.signUp')}
+                onClick={() => navigate('/')}
+                disabled={!isValid || !dirty}
+              />
             </div>
           </Form>
         )}
