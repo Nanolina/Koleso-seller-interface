@@ -57,6 +57,7 @@ export const SignUpForm: React.FC = () => {
     };
 
     try {
+      // Submit a request
       const response = await fetch(
         `${process.env.REACT_APP_BASE_URL}/auth/register`,
         {
@@ -68,9 +69,15 @@ export const SignUpForm: React.FC = () => {
         }
       );
 
+      // In case of error
       if (!response.ok) {
         throw new Error(t('auth.errors.signUp'));
       }
+
+      // Save the received token
+      const data = await response.json();
+
+      localStorage.setItem('token', data.token);
 
       navigate('/');
     } catch (error) {
