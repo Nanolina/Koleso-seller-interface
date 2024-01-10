@@ -4,6 +4,7 @@ import styles from './Button.module.css';
 export const Button: React.FC<IButtonProps> = ({
   text,
   onClick,
+  type = 'submit',
   disabled = false,
   backgroundColor = 'var(--orange)',
   border = false,
@@ -26,6 +27,7 @@ export const Button: React.FC<IButtonProps> = ({
     <button
       className={styles.container}
       onClick={onClick}
+      type={type}
       disabled={disabled}
       style={buttonStyle}
     >

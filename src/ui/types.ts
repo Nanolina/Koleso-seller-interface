@@ -6,7 +6,8 @@ export interface ITitleProps {
 
 export interface IButtonProps {
   text: any;
-  onClick: any;
+  onClick?: any;
+  type?: 'submit' | 'button' | 'reset' | undefined;
   disabled?: boolean;
   backgroundColor?: string;
   border?: boolean;

@@ -9,6 +9,7 @@ import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Button } from '../../../../ui/Button/Button';
 import { ErrorMessage } from '../../../../ui/ErrorMessage/ErrorMessage';
 import { Label } from '../../../../ui/Label/Label';
+import { IRegisterData } from '../../types';
 import styles from './SignUpForm.module.css';
 
 YupPassword(Yup);
@@ -45,9 +46,36 @@ export const SignUpForm: React.FC = () => {
       .required(t('auth.validation.passwordRequired')),
   });
 
-  const onSubmit = (values: any) => {
-    console.log(values);
-    navigate('/');
+  const handleSubmit = async (values: IRegisterData) => {
+    const { email, phone, password, repeatedPassword } = values;
+
+    const userData: IRegisterData = {
+      email,
+      phone,
+      password,
+      repeatedPassword,
+    };
+
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/auth/register`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(t('auth.errors.signUp'));
+      }
+
+      navigate('/');
+    } catch (error) {
+      console.error(t('auth.errors.signUpSendingData'), error);
+    }
   };
 
   return (
@@ -55,7 +83,7 @@ export const SignUpForm: React.FC = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       >
         {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
           <Form className="authContainer">
@@ -113,7 +141,7 @@ export const SignUpForm: React.FC = () => {
             <div className={styles.buttonContainer}>
               <Button
                 text={t('auth.signUp')}
-                onClick={() => navigate('/')}
+                type="submit"
                 disabled={!isValid || !dirty}
               />
             </div>
