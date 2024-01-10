@@ -77,8 +77,6 @@ export const SignUpForm: React.FC = () => {
       // Save the received token
       const data = await response.json();
 
-      localStorage.setItem('token', data.token);
-
       navigate('/');
     } catch (error) {
       console.error(t('auth.errors.signUpSendingData'), error);
