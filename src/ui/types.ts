@@ -27,6 +27,7 @@ export interface IInputProps {
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
   required?: boolean;
+  hasError?: boolean;
   value?: string | number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   isSmallWidth?: boolean;

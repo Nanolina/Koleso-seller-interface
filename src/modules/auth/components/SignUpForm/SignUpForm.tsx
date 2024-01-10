@@ -67,14 +67,14 @@ export const SignUpForm: React.FC = () => {
                 onChange={(value) => setFieldValue('phone', value)}
                 inputStyle={{
                   backgroundColor: 'var(--light-gray)',
-                  borderColor: 'var(--light-gray)',
+                  borderColor: errors.phone ? 'red' : 'var(--light-gray)',
                 }}
                 dropdownStyle={{
                   backgroundColor: 'var(--light-gray)',
                   borderColor: 'var(--light-gray)',
                 }}
                 buttonStyle={{
-                  borderColor: 'var(--light-gray)',
+                  borderColor: errors.phone ? 'red' : 'var(--light-gray)',
                 }}
               />
             </div>

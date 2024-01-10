@@ -27,6 +27,7 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
           name={name}
           type={inputType}
           required={required}
+          hasError={errors[name] && touched[name]}
           placeholder={placeholder}
         />
         {extraText && <i className={styles.extraText}>{extraText}</i>}
