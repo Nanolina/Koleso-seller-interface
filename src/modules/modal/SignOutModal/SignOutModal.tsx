@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { resetValueUser } from '../../../redux/slices/userSlice';
-import { AuthService } from '../../../services';
+import { AppDispatch } from '../../../redux/store';
+import { handleLogout } from '../../../redux/thunks/userThunks';
 import { Button } from '../../../ui/Button/Button';
 import { Modal } from '../Modal/Modal';
 import { ISignOutModalProps } from '../types';
@@ -14,25 +14,14 @@ export const SignOutModal: React.FC<ISignOutModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmit = async () => {
-    try {
-      // Submit a request
-      await AuthService.logout();
+    // Request to server
+    dispatch(handleLogout());
 
-      // Reset access token from the local storage
-      localStorage.removeItem('token');
-
-      // Reset user data from redux store
-      dispatch(resetValueUser({ key: 'id' }));
-      dispatch(resetValueUser({ key: 'isActive' }));
-
-      // Navigate to signup page
-      navigate('/signup');
-    } catch (error) {
-      console.error(error);
-    }
+    // Navigate to login page
+    navigate('/login');
   };
 
   return (

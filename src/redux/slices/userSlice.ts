@@ -2,7 +2,7 @@ import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
 import { IUserState } from '../../modules/auth';
 import { IAuthPayload } from '../../modules/auth/types';
 import { createValueReducers } from '../sliceHelpers';
-import { handleLogin, handleSignUp } from '../thunks/userThunks';
+import { handleLogin, handleLogout, handleSignUp } from '../thunks/userThunks';
 
 const userSlice = createValueReducers(
   {
@@ -47,6 +47,21 @@ const userSlice = createValueReducers(
       .addCase(handleSignUp.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || 'Failed to sign up';
+      })
+
+      // Logout
+      .addCase(handleLogout.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(handleLogout.fulfilled, (state) => {
+        state.id = '';
+        state.isActive = false;
+        state.loading = false;
+      })
+      .addCase(handleLogout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || 'Failed to log out';
       });
   }
 );
