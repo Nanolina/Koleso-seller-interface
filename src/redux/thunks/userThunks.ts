@@ -33,7 +33,7 @@ export const handleLogin = createAsyncThunk(
 // Sign up
 export const handleSignUp = createAsyncThunk(
   'user/signUp',
-  async (userData: ISignUpData, { dispatch, rejectWithValue }) => {
+  async (userData: ISignUpData, { rejectWithValue }) => {
     try {
       // Submit a request
       const response: any = await AuthService.signUp(userData);
@@ -46,6 +46,28 @@ export const handleSignUp = createAsyncThunk(
 
       // Return data to be saved in store
       return { id: user.id, isActive: user.isActive };
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(
+          error.response.data.message || error.response.data
+        );
+      } else {
+        return rejectWithValue(`An unknown error occurred, ${error}`);
+      }
+    }
+  }
+);
+
+// Logout
+export const handleLogout = createAsyncThunk(
+  'user/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      // Submit a request
+      await AuthService.logout();
+
+      // Reset access token from the local storage
+      localStorage.removeItem('token');
     } catch (error: any) {
       if (error.response && error.response.data) {
         return rejectWithValue(
