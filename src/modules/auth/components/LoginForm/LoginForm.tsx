@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
-import { setValueUser } from '../../../../redux/slices/userSlice';
-import { AuthService } from '../../../../services';
+import { AppDispatch } from '../../../../redux/store';
+import { handleLogin } from '../../../../redux/thunks/userThunks';
 import { ILoginData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
 import styles from './LoginForm.module.css';
@@ -12,7 +12,7 @@ import styles from './LoginForm.module.css';
 export const LoginForm: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   // Initial values
   const initialValues = {
@@ -28,25 +28,11 @@ export const LoginForm: React.FC = () => {
       password,
     };
 
-    try {
-      // Submit a request
-      const response = await AuthService.login(userData);
+    // Request to server
+    dispatch(handleLogin(userData));
 
-      // Get data from response
-      const { token, user } = response.data;
-
-      // Set access token to the local storage
-      localStorage.setItem('token', token);
-
-      // Set user data to the redux store
-      dispatch(setValueUser({ key: 'id', value: user.id }));
-      dispatch(setValueUser({ key: 'isActive', value: user.isActive }));
-
-      // Navigate to home
-      navigate('/');
-    } catch (error) {
-      console.error(error);
-    }
+    // Navigate to home
+    navigate('/');
   };
 
   return (

@@ -5,15 +5,20 @@ const authServiceAPI = axios.create({
   baseURL: process.env.REACT_APP_AUTH_SERVICE_URL,
 });
 
-authServiceAPI.interceptors.request.use((config) => {
-  config.headers = config.headers || {};
+authServiceAPI.interceptors.request.use(
+  function (config) {
+    config.headers = config.headers || {};
 
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers['Authorization'] = `Bearer ${token}`;
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
   }
-
-  return config;
-});
+);
 
 export { authServiceAPI };

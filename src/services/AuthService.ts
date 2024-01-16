@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { authServiceAPI } from '../http';
-import { ILoginData, IRegistrationData } from './types/request';
+import { ILoginData, ISignUpData } from './types/request';
 import { AuthResponse } from './types/response';
 
 export class AuthService {
@@ -19,7 +19,7 @@ export class AuthService {
     phone,
     password,
     repeatedPassword,
-  }: IRegistrationData): Promise<AxiosResponse<AuthResponse>> {
+  }: ISignUpData): Promise<AxiosResponse<AuthResponse>> {
     return authServiceAPI.post<AuthResponse>('signup', {
       email,
       phone,

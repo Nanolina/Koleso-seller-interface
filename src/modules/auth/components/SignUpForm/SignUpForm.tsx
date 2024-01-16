@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
-import { setValueUser } from '../../../../redux/slices/userSlice';
-import { AuthService } from '../../../../services';
-import { IRegistrationData } from '../../../../services/types/request';
+import { AppDispatch } from '../../../../redux/store';
+import { handleSignUp } from '../../../../redux/thunks/userThunks';
+import { ISignUpData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
 import { ErrorMessage } from '../../../../ui/ErrorMessage/ErrorMessage';
 import { Label } from '../../../../ui/Label/Label';
@@ -20,7 +20,7 @@ YupPassword(Yup);
 export const SignUpForm: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   // Initial values
   const initialValues = {
@@ -50,34 +50,21 @@ export const SignUpForm: React.FC = () => {
       .required(t('auth.validation.passwordRequired')),
   });
 
-  const handleSubmit = async (values: IRegistrationData) => {
+  const handleSubmit = async (values: ISignUpData) => {
     const { email, phone, password, repeatedPassword } = values;
 
-    const userData: IRegistrationData = {
+    const userData: ISignUpData = {
       email,
       phone,
       password,
       repeatedPassword,
     };
 
-    try {
-      // Submit a request
-      const response = await AuthService.signUp(userData);
-      // Get data from response
-      const { token, user } = response.data;
+    // Request to server
+    dispatch(handleSignUp(userData));
 
-      // Set access token to the local storage
-      localStorage.setItem('token', token);
-
-      // Set user data to the redux store
-      dispatch(setValueUser({ key: 'id', value: user.id }));
-      dispatch(setValueUser({ key: 'isActive', value: user.isActive }));
-
-      // Navigate to home
-      navigate('/');
-    } catch (error) {
-      console.error(error);
-    }
+    // Navigate to home
+    navigate('/');
   };
 
   return (

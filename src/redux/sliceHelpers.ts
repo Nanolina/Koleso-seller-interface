@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export const createValueReducers = <T>(initialState: T) => {
+export const createValueReducers = <T>(
+  initialState: T,
+  extraReducers?: any
+) => {
   return createSlice({
     name: 'value',
     initialState,
@@ -17,5 +20,6 @@ export const createValueReducers = <T>(initialState: T) => {
         (state as T)[key] = initialState[key];
       },
     },
+    extraReducers: extraReducers,
   });
 };
