@@ -1,7 +1,9 @@
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
+import { setValueUser } from '../../../../redux/slices/userSlice';
 import { AuthService } from '../../../../services';
 import { ILoginData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
@@ -10,6 +12,7 @@ import styles from './LoginForm.module.css';
 export const LoginForm: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Initial values
   const initialValues = {
@@ -28,7 +31,18 @@ export const LoginForm: React.FC = () => {
     try {
       // Submit a request
       const response = await AuthService.login(userData);
-      localStorage.setItem('token', response.data.accessToken);
+
+      // Get data from response
+      const { token, user } = response.data;
+
+      // Set access token to the local storage
+      localStorage.setItem('token', token);
+
+      // Set user data to the redux store
+      dispatch(setValueUser({ key: 'id', value: user.id }));
+      dispatch(setValueUser({ key: 'isActive', value: user.isActive }));
+
+      // Navigate to home
       navigate('/');
     } catch (error) {
       console.error(error);

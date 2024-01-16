@@ -1,4 +1,6 @@
+import { IUserState } from '../../../modules/auth';
+
 export interface AuthResponse {
-  accessToken: string;
-  refreshToken: string;
+  token: string;
+  user: IUserState;
 }

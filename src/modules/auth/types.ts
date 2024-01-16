@@ -1,3 +1,4 @@
-export interface IAuthState {
-  isAuth: boolean;
+export interface IUserState {
+  id: string;
+  isActive: boolean;
 }

@@ -2,10 +2,12 @@ import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
+import { setValueUser } from '../../../../redux/slices/userSlice';
 import { AuthService } from '../../../../services';
 import { IRegistrationData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
@@ -18,6 +20,7 @@ YupPassword(Yup);
 export const SignUpForm: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Initial values
   const initialValues = {
@@ -60,7 +63,17 @@ export const SignUpForm: React.FC = () => {
     try {
       // Submit a request
       const response = await AuthService.signUp(userData);
-      localStorage.setItem('token', response.data.accessToken);
+      // Get data from response
+      const { token, user } = response.data;
+
+      // Set access token to the local storage
+      localStorage.setItem('token', token);
+
+      // Set user data to the redux store
+      dispatch(setValueUser({ key: 'id', value: user.id }));
+      dispatch(setValueUser({ key: 'isActive', value: user.isActive }));
+
+      // Navigate to home
       navigate('/');
     } catch (error) {
       console.error(error);
