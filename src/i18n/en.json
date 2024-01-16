@@ -220,7 +220,6 @@
     "registration": "Registration",
     "logIn": "Log in",
     "signUp": "Sign up",
-    "emailUsernamePhone": "Email/phone",
     "password": "Password",
     "email": "Email",
     "phone": "Phone",
@@ -239,10 +238,6 @@
       "passwordSymbols": "Password must contain at least 1 special character",
       "passwordRequired": "Password is required",
       "passwordsMustMatch": "Passwords must match"
-    },
-    "errors": {
-      "signUp": "Error while registering",
-      "signUpSendingData": "Error sending data"
     }
   },
   "catalog": {

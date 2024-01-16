@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
+import { AuthService } from '../../../../services';
+import { IRegistrationData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
 import { ErrorMessage } from '../../../../ui/ErrorMessage/ErrorMessage';
 import { Label } from '../../../../ui/Label/Label';
-import { IRegisterData } from '../../types';
 import styles from './SignUpForm.module.css';
 
 YupPassword(Yup);
@@ -46,10 +47,10 @@ export const SignUpForm: React.FC = () => {
       .required(t('auth.validation.passwordRequired')),
   });
 
-  const handleSubmit = async (values: IRegisterData) => {
+  const handleSubmit = async (values: IRegistrationData) => {
     const { email, phone, password, repeatedPassword } = values;
 
-    const userData: IRegisterData = {
+    const userData: IRegistrationData = {
       email,
       phone,
       password,
@@ -58,28 +59,11 @@ export const SignUpForm: React.FC = () => {
 
     try {
       // Submit a request
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/auth/register`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userData),
-        }
-      );
-
-      // In case of error
-      if (!response.ok) {
-        throw new Error(t('auth.errors.signUp'));
-      }
-
-      // Save the received token
-      const data = await response.json();
-
+      const response = await AuthService.signUp(userData);
+      localStorage.setItem('token', response.data.accessToken);
       navigate('/');
     } catch (error) {
-      console.error(t('auth.errors.signUpSendingData'), error);
+      console.error(error);
     }
   };
 

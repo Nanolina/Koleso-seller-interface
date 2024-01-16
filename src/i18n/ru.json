@@ -220,7 +220,6 @@
     "registration": "Регистрация",
     "logIn": "Войти",
     "signUp": "Зарегистрироваться",
-    "emailUsernamePhone": "Электронная почта/телефон",
     "password": "Пароль",
     "haveAccount": "У меня уже есть аккаунт",
     "notAccount": "У меня еще нет учетной записи",
@@ -240,10 +239,6 @@
       "passwordSymbols": "Пароль должен содержать не менее 1 специального символа",
       "passwordRequired": "Пароль обязателен",
       "passwordsMustMatch": "Пароли должны совпадать"
-    },
-    "errors": {
-      "signUp": "Ошибка при регистрации",
-      "signUpSendingData": "Ошибка при отправке данных"
     }
   },
   "catalog": {

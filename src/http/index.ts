@@ -1,0 +1,1 @@
+export { authServiceAPI } from './authServiceApi';
