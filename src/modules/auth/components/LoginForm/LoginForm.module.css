@@ -1,4 +1,4 @@
-.logInButtonsContainer {
+.loginButtonsContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,7 +6,7 @@
   width: 92%;
 }
 
-.signUpButtonsContainer {
+.signupButtonsContainer {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -17,12 +17,12 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .logInButtonsContainer {
+  .loginButtonsContainer {
     flex-direction: column;
     gap: 10px;
   }
 
-  .signUpButtonsContainer {
+  .signupButtonsContainer {
     width: 90%;
     text-align: center;
   }

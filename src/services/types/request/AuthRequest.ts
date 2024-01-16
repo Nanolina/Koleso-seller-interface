@@ -1,4 +1,4 @@
-export interface ISignUpData {
+export interface ISignupData {
   email: string;
   phone: string;
   password: string;

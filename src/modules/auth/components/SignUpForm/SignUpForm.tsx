@@ -8,16 +8,16 @@ import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { AppDispatch } from '../../../../redux/store';
-import { handleSignUp } from '../../../../redux/thunks/userThunks';
-import { ISignUpData } from '../../../../services/types/request';
+import { handleSignup } from '../../../../redux/thunks/user';
+import { ISignupData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
 import { ErrorMessage } from '../../../../ui/ErrorMessage/ErrorMessage';
 import { Label } from '../../../../ui/Label/Label';
-import styles from './SignUpForm.module.css';
+import styles from './SignupForm.module.css';
 
 YupPassword(Yup);
 
-export const SignUpForm: React.FC = () => {
+export const SignupForm: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
@@ -50,10 +50,10 @@ export const SignUpForm: React.FC = () => {
       .required(t('auth.validation.passwordRequired')),
   });
 
-  const handleSubmit = async (values: ISignUpData) => {
+  const handleSubmit = async (values: ISignupData) => {
     const { email, phone, password, repeatedPassword } = values;
 
-    const userData: ISignUpData = {
+    const userData: ISignupData = {
       email,
       phone,
       password,
@@ -61,7 +61,7 @@ export const SignUpForm: React.FC = () => {
     };
 
     // Request to server
-    dispatch(handleSignUp(userData));
+    dispatch(handleSignup(userData));
 
     // Navigate to home
     navigate('/');
@@ -129,7 +129,7 @@ export const SignUpForm: React.FC = () => {
 
             <div className={styles.buttonContainer}>
               <Button
-                text={t('auth.signUp')}
+                text={t('auth.signup')}
                 type="submit"
                 disabled={!isValid || !dirty}
               />
@@ -138,11 +138,11 @@ export const SignUpForm: React.FC = () => {
         )}
       </Formik>
 
-      <div className={styles.logInButtonsContainer}>
+      <div className={styles.loginButtonsContainer}>
         <span className={styles.haveAccount}>{`${t(
           'auth.haveAccount'
         )}?`}</span>
-        <Button text={t('auth.logIn')} onClick={() => navigate('/login')} />
+        <Button text={t('auth.login')} onClick={() => navigate('/login')} />
       </div>
     </>
   );

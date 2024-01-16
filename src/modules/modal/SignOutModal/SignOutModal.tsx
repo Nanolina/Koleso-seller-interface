@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../../../redux/store';
-import { handleLogout } from '../../../redux/thunks/userThunks';
+import { handleLogout } from '../../../redux/thunks/user';
 import { Button } from '../../../ui/Button/Button';
 import { Modal } from '../Modal/Modal';
 import { ISignOutModalProps } from '../types';

@@ -10,13 +10,13 @@ import { NotificationsPage } from './pages/NotificationsPage/NotificationsPage';
 import { OrderPage } from './pages/OrderPage/OrderPage';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import { ProductsPage } from './pages/ProductsPage/ProductsPage';
-import { SignUpPage } from './pages/SignUpPage/SignUpPage';
 import { SettingsEmailPage } from './pages/settings/SettingsEmailPage/SettingsEmailPage';
 import { SettingsLanguagePage } from './pages/settings/SettingsLanguagePage/SettingsLanguagePage';
 import { SettingsPage } from './pages/settings/SettingsPage/SettingsPage';
 import { SettingsPasswordPage } from './pages/settings/SettingsPasswordPage/SettingsPasswordPage';
 import { SettingsPhonePage } from './pages/settings/SettingsPhonePage/SettingsPhonePage';
 import { SettingsStorePage } from './pages/settings/SettingsStorePage/SettingsStorePage';
+import { SignupPage } from './pages/SignupPage/SignupPage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -29,7 +29,7 @@ const App: React.FC = () => {
         <div className="app">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/signup" element={<SignupPage />} />
             <Route path="/" element={<ProductsPage />} />
             <Route path="/add-product" element={<AddProductPage />} />
             <Route path="/add-documents" element={<AddDocumentsPage />} />

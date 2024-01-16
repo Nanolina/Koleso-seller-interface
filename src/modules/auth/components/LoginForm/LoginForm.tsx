@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { AppDispatch } from '../../../../redux/store';
-import { handleLogin } from '../../../../redux/thunks/userThunks';
+import { handleLogin } from '../../../../redux/thunks/user';
 import { ILoginData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
 import styles from './LoginForm.module.css';
@@ -58,14 +58,14 @@ export const LoginForm: React.FC = () => {
             touched={touched}
             required
           />
-          <div className={styles.logInButtonsContainer}>
+          <div className={styles.loginButtonsContainer}>
             <span>{`${t('auth.forgotPassword')}?`}</span>
-            <Button text={t('auth.logIn')} type="submit" />
+            <Button text={t('auth.login')} type="submit" />
           </div>
-          <div className={styles.signUpButtonsContainer}>
+          <div className={styles.signupButtonsContainer}>
             <span className={styles.notAccount}>{t('auth.notAccount')}</span>
             <Button
-              text={t('auth.signUp')}
+              text={t('auth.signup')}
               onClick={() => navigate('/signup')}
             />
           </div>

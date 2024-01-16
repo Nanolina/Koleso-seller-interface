@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { authServiceAPI } from '../http';
-import { ILoginData, ISignUpData } from './types/request';
+import { ILoginData, ISignupData } from './types/request';
 import { AuthResponse } from './types/response';
 
 export class AuthService {
@@ -14,12 +14,12 @@ export class AuthService {
     });
   }
 
-  static async signUp({
+  static async signup({
     email,
     phone,
     password,
     repeatedPassword,
-  }: ISignUpData): Promise<AxiosResponse<AuthResponse>> {
+  }: ISignupData): Promise<AxiosResponse<AuthResponse>> {
     return authServiceAPI.post<AuthResponse>('signup', {
       email,
       phone,

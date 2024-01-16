@@ -218,8 +218,8 @@
   "auth": {
     "authorization": "Authorization",
     "registration": "Registration",
-    "logIn": "Log in",
-    "signUp": "Sign up",
+    "login": "Log in",
+    "signup": "Sign up",
     "password": "Password",
     "email": "Email",
     "phone": "Phone",
