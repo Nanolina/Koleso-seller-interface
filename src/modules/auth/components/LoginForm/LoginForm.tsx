@@ -28,11 +28,7 @@ export const LoginForm: React.FC = () => {
       password,
     };
 
-    // Request to server
     dispatch(handleLogin(userData));
-
-    // Navigate to home
-    navigate('/');
   };
 
   return (

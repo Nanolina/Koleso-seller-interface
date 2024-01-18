@@ -10,6 +10,7 @@ export const logoutCases = (builder: ActionReducerMapBuilder<IUserState>) => {
     })
     .addCase(handleLogout.fulfilled, (state) => {
       state.id = '';
+      state.isAuth = false;
       state.isActive = false;
       state.loading = false;
     })

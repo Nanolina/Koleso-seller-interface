@@ -1,16 +1,18 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
 import { IUserState } from '../../../modules/auth';
 import { IAuthPayload } from '../../../modules/auth/types';
-import { handleSignup } from '../../thunks/user';
+import { handleCheckAuth } from '../../thunks/user';
 
-export const signupCases = (builder: ActionReducerMapBuilder<IUserState>) => {
+export const checkAuthCases = (
+  builder: ActionReducerMapBuilder<IUserState>
+) => {
   builder
-    .addCase(handleSignup.pending, (state) => {
+    .addCase(handleCheckAuth.pending, (state) => {
       state.loading = true;
       state.error = null;
     })
     .addCase(
-      handleSignup.fulfilled,
+      handleCheckAuth.fulfilled,
       (state, action: PayloadAction<IAuthPayload>) => {
         state.id = action.payload.id;
         state.isAuth = true;
@@ -18,8 +20,8 @@ export const signupCases = (builder: ActionReducerMapBuilder<IUserState>) => {
         state.loading = false;
       }
     )
-    .addCase(handleSignup.rejected, (state, action) => {
+    .addCase(handleCheckAuth.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.payload || 'Failed to sign up';
+      state.error = action.payload || 'Failed to refresh';
     });
 };

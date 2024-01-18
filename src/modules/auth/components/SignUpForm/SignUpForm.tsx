@@ -60,11 +60,7 @@ export const SignupForm: React.FC = () => {
       repeatedPassword,
     };
 
-    // Request to server
     dispatch(handleSignup(userData));
-
-    // Navigate to home
-    navigate('/');
   };
 
   return (

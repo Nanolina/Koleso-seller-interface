@@ -8,7 +8,7 @@ export class AuthService {
     email,
     password,
   }: ILoginData): Promise<AxiosResponse<AuthResponse>> {
-    return authServiceAPI.post<AuthResponse>('login', {
+    return authServiceAPI.post<AuthResponse>('/login', {
       email,
       password,
     });
@@ -20,7 +20,7 @@ export class AuthService {
     password,
     repeatedPassword,
   }: ISignupData): Promise<AxiosResponse<AuthResponse>> {
-    return authServiceAPI.post<AuthResponse>('signup', {
+    return authServiceAPI.post<AuthResponse>('/signup', {
       email,
       phone,
       password,
@@ -29,6 +29,6 @@ export class AuthService {
   }
 
   static async logout(): Promise<void> {
-    return authServiceAPI.post('logout');
+    return authServiceAPI.post('/logout');
   }
 }
