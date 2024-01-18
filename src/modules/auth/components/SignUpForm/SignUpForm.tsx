@@ -2,11 +2,13 @@ import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
+import { Loader } from '../../../../components/Loader/Loader';
+import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleSignup } from '../../../../redux/thunks/user';
 import { ISignupData } from '../../../../services/types/request';
@@ -21,6 +23,8 @@ export const SignupForm: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+
+  const isLoading = useSelector((state: IRootState) => state.user.loading);
 
   // Initial values
   const initialValues = {
@@ -62,6 +66,10 @@ export const SignupForm: React.FC = () => {
 
     dispatch(handleSignup(userData));
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

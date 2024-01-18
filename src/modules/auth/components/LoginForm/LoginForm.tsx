@@ -1,8 +1,10 @@
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
+import { Loader } from '../../../../components/Loader/Loader';
+import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleLogin } from '../../../../redux/thunks/user';
 import { ILoginData } from '../../../../services/types/request';
@@ -13,6 +15,8 @@ export const LoginForm: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+
+  const isLoading = useSelector((state: IRootState) => state.user.loading);
 
   // Initial values
   const initialValues = {
@@ -30,6 +34,10 @@ export const LoginForm: React.FC = () => {
 
     dispatch(handleLogin(userData));
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
