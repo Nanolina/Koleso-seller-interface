@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
+import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleSignup } from '../../../../redux/thunks/user';
@@ -24,7 +25,7 @@ export const SignupForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const isLoading = useSelector((state: IRootState) => state.user.loading);
+  const { loading, error } = useSelector((state: IRootState) => state.user);
 
   // Initial values
   const initialValues = {
@@ -67,7 +68,7 @@ export const SignupForm: React.FC = () => {
     dispatch(handleSignup(userData));
   };
 
-  if (isLoading) {
+  if (loading) {
     return <Loader />;
   }
 
@@ -138,6 +139,7 @@ export const SignupForm: React.FC = () => {
                 disabled={!isValid || !dirty}
               />
             </div>
+            {error && <MessageBox errorMessage={error} />}
           </Form>
         )}
       </Formik>

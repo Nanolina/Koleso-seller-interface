@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
+import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleLogin } from '../../../../redux/thunks/user';
@@ -16,7 +17,7 @@ export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const isLoading = useSelector((state: IRootState) => state.user.loading);
+  const { loading, error } = useSelector((state: IRootState) => state.user);
 
   // Initial values
   const initialValues = {
@@ -35,7 +36,7 @@ export const LoginForm: React.FC = () => {
     dispatch(handleLogin(userData));
   };
 
-  if (isLoading) {
+  if (loading) {
     return <Loader />;
   }
 
@@ -73,6 +74,8 @@ export const LoginForm: React.FC = () => {
               onClick={() => navigate('/signup')}
             />
           </div>
+
+          {error && <MessageBox errorMessage={error} />}
         </Form>
       )}
     </Formik>

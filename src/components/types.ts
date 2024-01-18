@@ -77,3 +77,8 @@ export interface ICheckboxContainerProps {
   options: ICheckboxOption[];
   type?: string;
 }
+
+export interface IMessageBox {
+  errorMessage?: string;
+  successMessage?: string;
+}
