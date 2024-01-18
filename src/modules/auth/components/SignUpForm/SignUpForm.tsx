@@ -13,8 +13,8 @@ import { AppDispatch } from '../../../../redux/store';
 import { handleSignup } from '../../../../redux/thunks/user';
 import { ISignupData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
-import { ErrorMessage } from '../../../../ui/ErrorMessage/ErrorMessage';
 import { Label } from '../../../../ui/Label/Label';
+import { ValidationError } from '../../../../ui/ValidationError/ValidationError';
 import styles from './SignupForm.module.css';
 
 YupPassword(Yup);
@@ -99,7 +99,7 @@ export const SignupForm: React.FC = () => {
                 }}
               />
             </div>
-            {errors.phone ? <ErrorMessage error={errors.phone} /> : null}
+            {errors.phone ? <ValidationError error={errors.phone} /> : null}
 
             <InputLabel
               name="email"

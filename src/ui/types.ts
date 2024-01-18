@@ -53,6 +53,6 @@ export interface IInputUploadProps {
   multiple?: boolean;
 }
 
-export interface IErrorMessageProps {
+export interface IValidationErrorProps {
   error: string | undefined;
 }

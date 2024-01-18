@@ -1,7 +1,7 @@
 import React from 'react';
-import { ErrorMessage } from '../../ui/ErrorMessage/ErrorMessage';
 import { Input } from '../../ui/Input/Input';
 import { Label } from '../../ui/Label/Label';
+import { ValidationError } from '../../ui/ValidationError/ValidationError';
 import { IInputLabelProps } from '../types';
 import styles from './InputLabel.module.css';
 
@@ -31,7 +31,9 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
           placeholder={placeholder}
         />
         {extraText && <i className={styles.extraText}>{extraText}</i>}
-        {errors[name] && touched[name] && <ErrorMessage error={errors[name]} />}
+        {errors[name] && touched[name] && (
+          <ValidationError error={errors[name]} />
+        )}
       </div>
     );
   }
