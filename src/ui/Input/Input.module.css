@@ -24,3 +24,16 @@ input:focus {
 .error {
   border: 1px solid red;
 }
+
+.inputContainer {
+  position: relative;
+  width: 90%;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 12%;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

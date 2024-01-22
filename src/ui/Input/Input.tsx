@@ -1,8 +1,9 @@
+import classNames from 'classnames';
 import { Field } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { IInputProps } from '../types';
 import styles from './Input.module.css';
-import classNames from 'classnames';
 
 export const Input: React.FC<IInputProps> = React.memo(
   ({
@@ -16,22 +17,44 @@ export const Input: React.FC<IInputProps> = React.memo(
     hasError = false,
     isSmallWidth = false,
   }) => {
-      const inputClassNames = classNames({
-        [styles.input]: !isSmallWidth,
-        [styles.smallWidth]: isSmallWidth,
-        [styles.error]: hasError,
-      });
+    // Add eye to input for password
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => setShowPassword(!showPassword);
+    const inputType = type === 'password' && showPassword ? 'text' : type;
+    const isVisiblePassword = type === 'password' && showPassword;
+    const isNotVisiblePassword = type === 'password' && !showPassword;
+
+    const inputClassNames = classNames({
+      [styles.input]: !isSmallWidth,
+      [styles.smallWidth]: isSmallWidth,
+      [styles.error]: hasError,
+    });
 
     return (
-      <Field
-        id={id}
-        name={name}
-        as="input"
-        type={type || 'text'}
-        placeholder={placeholder}
-        required={required}
-        className={inputClassNames}
-      />
+      <div className={styles.inputContainer}>
+        <Field
+          id={id}
+          name={name}
+          as="input"
+          type={inputType}
+          placeholder={placeholder}
+          required={required}
+          className={inputClassNames}
+        />
+        {isNotVisiblePassword && (
+          <FaEye
+            onClick={togglePasswordVisibility}
+            className={styles.eyeIcon}
+          />
+        )}
+
+        {isVisiblePassword && (
+          <FaEyeSlash
+            onClick={togglePasswordVisibility}
+            className={styles.eyeIcon}
+          />
+        )}
+      </div>
     );
   }
 );
