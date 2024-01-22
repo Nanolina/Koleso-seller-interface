@@ -8,19 +8,11 @@ import {
   resendEmailConfirmationCases,
   signupCases,
 } from '../cases/user';
+import { userInitialState } from '../initialStates';
 import { createValueReducers } from '../sliceHelpers';
 
 const userSlice = createValueReducers(
-  {
-    id: '',
-    email: '',
-    activationLinkId: '',
-    isVerifiedEmail: false,
-    isActive: false,
-    isAuth: false,
-    loading: false,
-    error: null,
-  } as IUserState,
+  userInitialState,
   (builder: ActionReducerMapBuilder<IUserState>) => {
     loginCases(builder);
     signupCases(builder);

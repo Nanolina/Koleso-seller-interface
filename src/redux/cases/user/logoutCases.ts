@@ -1,5 +1,6 @@
 import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import { IUserState } from '../../../modules/auth';
+import { userInitialState } from '../../initialStates';
 import { handleLogout } from '../../thunks/user';
 
 export const logoutCases = (builder: ActionReducerMapBuilder<IUserState>) => {
@@ -9,13 +10,7 @@ export const logoutCases = (builder: ActionReducerMapBuilder<IUserState>) => {
       state.error = null;
     })
     .addCase(handleLogout.fulfilled, (state) => {
-      state.id = '';
-      state.email = '';
-      state.activationLinkId = '';
-      state.isAuth = false;
-      state.isActive = false;
-      state.isVerifiedEmail = false;
-      state.loading = false;
+      Object.assign(state, userInitialState);
     })
     .addCase(handleLogout.rejected, (state, action) => {
       state.loading = false;
