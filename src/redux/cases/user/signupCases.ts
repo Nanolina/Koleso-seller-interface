@@ -1,6 +1,5 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
-import { IUserState } from '../../../modules/auth';
-import { IAuthPayload } from '../../../modules/auth/types';
+import { IAuthPayload, IUserState } from '../../../modules/auth';
 import { handleSignup } from '../../thunks/user';
 
 export const signupCases = (builder: ActionReducerMapBuilder<IUserState>) => {

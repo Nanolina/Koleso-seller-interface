@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { authServiceAPI } from '../http';
 import { IChangeEmailData, ILoginData, ISignupData } from './types/request';
-import { AuthResponse } from './types/response';
+import { AuthResponse, IEmailResponse } from './types/response';
 
 export class AuthService {
   static async login({
@@ -34,8 +34,8 @@ export class AuthService {
 
   static async changeEmail({
     email,
-  }: IChangeEmailData): Promise<AxiosResponse<AuthResponse>> {
-    return authServiceAPI.patch<AuthResponse>('/change-email', {
+  }: IChangeEmailData): Promise<AxiosResponse<IEmailResponse>> {
+    return authServiceAPI.patch<IEmailResponse>('/change-email', {
       email,
     });
   }

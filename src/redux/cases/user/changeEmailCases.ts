@@ -1,6 +1,5 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
-import { IUserState } from '../../../modules/auth';
-import { IAuthPayload } from '../../../modules/auth/types';
+import { IEmailPayload, IUserState } from '../../../modules/auth';
 import { handleChangeEmail } from '../../thunks/user';
 
 export const changeEmailCases = (
@@ -13,13 +12,8 @@ export const changeEmailCases = (
     })
     .addCase(
       handleChangeEmail.fulfilled,
-      (state, action: PayloadAction<IAuthPayload>) => {
-        state.id = action.payload.id;
+      (state, action: PayloadAction<IEmailPayload>) => {
         state.email = action.payload.email;
-        state.activationLinkId = action.payload.activationLinkId;
-        state.isActive = action.payload.isActive;
-        state.isVerifiedEmail = action.payload.isVerifiedEmail;
-        state.isAuth = true;
         state.loading = false;
       }
     )

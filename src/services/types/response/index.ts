@@ -1,1 +1,1 @@
-export type { AuthResponse } from './AuthResponse';
+export type { AuthResponse, IEmailResponse } from './AuthResponse';

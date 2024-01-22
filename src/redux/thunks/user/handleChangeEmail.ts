@@ -9,16 +9,9 @@ export const handleChangeEmail = createAsyncThunk(
       // Submit a request
       const response = await AuthService.changeEmail(userData);
 
-      // Get data from response
-      const {  user } = response.data;
-
       // Return data to be saved in store
       return {
-        id: user.id,
-        email: user.email,
-        activationLinkId: user.activationLinkId,
-        isActive: user.isActive,
-        isVerifiedEmail: user.isVerifiedEmail,
+        email: response.data.email,
       };
     } catch (error: any) {
       if (error.response && error.response.data) {

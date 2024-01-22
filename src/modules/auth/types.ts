@@ -19,14 +19,14 @@ export interface IAuthPayload {
   isVerifiedEmail: boolean;
 }
 
-interface IEmail {
+export interface IEmailPayload {
   email: string;
 }
 
-type OnSubmitType = (values: IEmail) => void | Promise<void>;
+type OnSubmitType = (values: IEmailPayload) => void | Promise<void>;
 
 export interface IChangeEmailFormProps {
-  initialValues: IEmail;
-  validationSchema: ObjectSchema<IEmail>;
+  initialValues: IEmailPayload;
+  validationSchema: ObjectSchema<IEmailPayload>;
   onSubmit: OnSubmitType;
 }
