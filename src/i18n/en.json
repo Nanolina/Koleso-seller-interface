@@ -246,7 +246,11 @@
       "caseNotReceive": "If you did not receive our email, please try the following",
       "check": "Make sure you have entered the correct e-mail address",
       "spam": "Check to see if the email has gone to your spam folder or recycle garbage can. The mail service may mistakenly accept some as spam.",
-      "wait": "Wait a few minutes. It is possible that the mail service is running slowly, which may cause the email to arrive late."
+      "wait": "Wait a few minutes. It is possible that the mail service is running slowly, which may cause the email to arrive late.",
+      "buttons": {
+        "changeEmail": "Click here to change email address",
+        "resendEmail": "Click here to try resending the email"
+      }
     }
   },
   "catalog": {

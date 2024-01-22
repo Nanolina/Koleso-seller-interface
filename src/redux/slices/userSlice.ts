@@ -13,6 +13,9 @@ import { createValueReducers } from '../sliceHelpers';
 const userSlice = createValueReducers(
   {
     id: '',
+    email: '',
+    activationLinkId: '',
+    isVerifiedEmail: false,
     isActive: false,
     isAuth: false,
     loading: false,
