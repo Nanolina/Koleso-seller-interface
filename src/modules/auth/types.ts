@@ -7,6 +7,7 @@ export interface IUserState {
   isActive: boolean;
   isVerifiedEmail: boolean;
   isAuth: boolean;
+  success: string;
   loading: boolean;
   error: any;
 }

@@ -7,6 +7,7 @@ export const userInitialState: IUserState = {
   isVerifiedEmail: false,
   isActive: false,
   isAuth: false,
+  success: '',
   loading: false,
   error: null,
 };

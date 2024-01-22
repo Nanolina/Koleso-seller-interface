@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
@@ -8,7 +9,6 @@ import { useEmailForm } from '../../hooks/useEmailForm';
 import { ResendEmailButton } from '../../ui/ResendEmailButton/ResendEmailButton';
 import { ChangeEmailForm } from '../ChangeEmailForm/ChangeEmailForm';
 import { Text } from '../Text/Text';
-import { useTranslation } from 'react-i18next';
 
 export const EmailConfirmation: React.FC = () => {
   const { t } = useTranslation();
@@ -22,7 +22,9 @@ export const EmailConfirmation: React.FC = () => {
     handleSubmitResendEmailConfirmation,
   } = useEmailForm();
 
-  const { loading, error } = useSelector((state: IRootState) => state.user);
+  const { loading, error, success } = useSelector(
+    (state: IRootState) => state.user
+  );
 
   if (loading) {
     return <Loader />;
@@ -48,6 +50,7 @@ export const EmailConfirmation: React.FC = () => {
       )}
       <ResendEmailButton onClick={handleSubmitResendEmailConfirmation} />
       {error && <MessageBox errorMessage={error} />}
+      {success && <MessageBox successMessage={success} />}
     </div>
   );
 };

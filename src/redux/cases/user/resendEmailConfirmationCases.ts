@@ -12,6 +12,7 @@ export const resendEmailConfirmationCases = (
     })
     .addCase(handleResendEmailConfirmation.fulfilled, (state) => {
       state.loading = false;
+      state.success = `Email with a link has been sent to ${state.email}`;
     })
     .addCase(handleResendEmailConfirmation.rejected, (state, action) => {
       state.loading = false;

@@ -15,6 +15,7 @@ export const changeEmailCases = (
       (state, action: PayloadAction<IEmailPayload>) => {
         state.email = action.payload.email;
         state.loading = false;
+        state.success = `The email has been changed to ${action.payload.email}`;
       }
     )
     .addCase(handleChangeEmail.rejected, (state, action) => {
