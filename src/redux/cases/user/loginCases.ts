@@ -13,8 +13,11 @@ export const loginCases = (builder: ActionReducerMapBuilder<IUserState>) => {
       handleLogin.fulfilled,
       (state, action: PayloadAction<IAuthPayload>) => {
         state.id = action.payload.id;
-        state.isAuth = true;
+        state.email = action.payload.email;
+        state.activationLinkId = action.payload.activationLinkId;
         state.isActive = action.payload.isActive;
+        state.isVerifiedEmail = action.payload.isVerifiedEmail;
+        state.isAuth = true;
         state.loading = false;
       }
     )

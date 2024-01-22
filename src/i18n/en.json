@@ -218,6 +218,7 @@
   "auth": {
     "authorization": "Authorization",
     "registration": "Registration",
+    "emailConfirmation": "Email confirmation",
     "login": "Log in",
     "signup": "Sign up",
     "password": "Password",
@@ -238,6 +239,14 @@
       "passwordSymbols": "Password must contain at least 1 special character",
       "passwordRequired": "Password is required",
       "passwordsMustMatch": "Passwords must match"
+    },
+    "changeEmail": {
+      "label": "Change email",
+      "header": "Please follow the link in the email from Koleso to complete the account creation.",
+      "caseNotReceive": "If you did not receive our email, please try the following",
+      "check": "Make sure you have entered the correct e-mail address",
+      "spam": "Check to see if the email has gone to your spam folder or recycle garbage can. The mail service may mistakenly accept some as spam.",
+      "wait": "Wait a few minutes. It is possible that the mail service is running slowly, which may cause the email to arrive late."
     }
   },
   "catalog": {

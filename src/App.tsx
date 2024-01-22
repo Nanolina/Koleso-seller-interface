@@ -11,6 +11,7 @@ import './App.css';
 import i18n from './i18n/i18n';
 import { AddDocumentsPage } from './pages/AddDocumentsPage/AddDocumentsPage';
 import { AddProductPage } from './pages/AddProductPage/AddProductPage';
+import { EmailConfirmationPage } from './pages/EmailConfirmationPage/EmailConfirmationPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
 import { NotificationsPage } from './pages/NotificationsPage/NotificationsPage';
 import { OrderPage } from './pages/OrderPage/OrderPage';
@@ -29,7 +30,9 @@ import { handleCheckAuth } from './redux/thunks/user';
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const isAuth = useSelector((state: IRootState) => state.user.isAuth);
+  const { isAuth, isVerifiedEmail } = useSelector(
+    (state: IRootState) => state.user
+  );
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -47,7 +50,20 @@ const App: React.FC = () => {
       <I18nextProvider i18n={i18n}>
         <div className="app">
           <Routes>
-            {!isAuth && (
+            {isAuth && !isVerifiedEmail && (
+              <>
+                <Route
+                  path="/email-confirmation"
+                  element={<EmailConfirmationPage />}
+                />
+                <Route
+                  path="*"
+                  element={<Navigate to="/email-confirmation" replace />}
+                />
+              </>
+            )}
+
+            {!isAuth && !isVerifiedEmail && (
               <>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
@@ -55,7 +71,7 @@ const App: React.FC = () => {
               </>
             )}
 
-            {isAuth && (
+            {isAuth && isVerifiedEmail && (
               <>
                 <Route path="/" element={<ProductsPage />} />
                 <Route path="/add-product" element={<AddProductPage />} />

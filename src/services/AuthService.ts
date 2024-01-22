@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { authServiceAPI } from '../http';
-import { ILoginData, ISignupData } from './types/request';
+import { IChangeEmailData, ILoginData, ISignupData } from './types/request';
 import { AuthResponse } from './types/response';
 
 export class AuthService {
@@ -30,5 +30,13 @@ export class AuthService {
 
   static async logout(): Promise<void> {
     return authServiceAPI.post('/logout');
+  }
+
+  static async changeEmail({
+    email,
+  }: IChangeEmailData): Promise<AxiosResponse<AuthResponse>> {
+    return authServiceAPI.patch<AuthResponse>('/change-email', {
+      email,
+    });
   }
 }

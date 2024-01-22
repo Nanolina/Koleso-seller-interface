@@ -16,7 +16,13 @@ export const handleLogin = createAsyncThunk(
       localStorage.setItem('token', token);
 
       // Return data to be saved in store
-      return { id: user.id, isActive: user.isActive };
+      return {
+        id: user.id,
+        email: user.email,
+        activationLinkId: user.activationLinkId,
+        isActive: user.isActive,
+        isVerifiedEmail: user.isVerifiedEmail,
+      };
     } catch (error: any) {
       if (error.response && error.response.data) {
         return rejectWithValue(

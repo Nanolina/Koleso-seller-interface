@@ -1,23 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { AuthResponse } from '../../../services/types/response';
+import { AuthService } from '../../../services';
+import { IChangeEmailData } from '../../../services/types/request';
 
-const API_URL = process.env.REACT_APP_AUTH_SERVICE_URL;
-
-export const handleCheckAuth = createAsyncThunk(
-  'user/check-auth',
-  async (_, { rejectWithValue }) => {
+export const handleChangeEmail = createAsyncThunk(
+  'user/change-email',
+  async (userData: IChangeEmailData, { rejectWithValue }) => {
     try {
       // Submit a request
-      const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {
-        withCredentials: true,
-      });
+      const response = await AuthService.changeEmail(userData);
 
       // Get data from response
-      const { token, user } = response.data;
-
-      // Set access token to the local storage
-      localStorage.setItem('token', token);
+      const {  user } = response.data;
 
       // Return data to be saved in store
       return {
