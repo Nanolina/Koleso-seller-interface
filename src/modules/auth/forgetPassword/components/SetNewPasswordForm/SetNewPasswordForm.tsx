@@ -5,6 +5,7 @@ import 'react-phone-input-2/lib/style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+import { ISetNewPasswordFormProps } from '../../..';
 import { InputLabel } from '../../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
@@ -16,13 +17,12 @@ import {
   ISetNewPasswordDataForService,
 } from '../../../../../services/types/request';
 import { Button } from '../../../../../ui/Button/Button';
-import { SetNewPasswordFormProps } from '../../../types';
 import styles from './SetNewPasswordForm.module.css';
 
 YupPassword(Yup);
 
-export const SetNewPasswordForm: React.FC<SetNewPasswordFormProps> = React.memo(
-  ({ userId }) => {
+export const SetNewPasswordForm: React.FC<ISetNewPasswordFormProps> =
+  React.memo(({ userId }) => {
     const { t } = useTranslation();
 
     const dispatch = useDispatch<AppDispatch>();
@@ -108,5 +108,4 @@ export const SetNewPasswordForm: React.FC<SetNewPasswordFormProps> = React.memo(
         </Formik>
       </>
     );
-  }
-);
+  });

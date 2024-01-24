@@ -13,6 +13,7 @@ export const Button: React.FC<IButtonProps> = React.memo(
     textColor = 'white',
     isBold = true,
     hasShadow = false,
+    children,
   }) => {
     const buttonStyle = {
       backgroundColor: disabled ? 'var(--light-gray)' : backgroundColor,
@@ -34,6 +35,7 @@ export const Button: React.FC<IButtonProps> = React.memo(
         style={buttonStyle}
       >
         <div style={textStyle}>{text}</div>
+        {children}
       </button>
     );
   }

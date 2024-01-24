@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
@@ -12,6 +13,9 @@ import { IChangeEmailData } from '../../../../services/types/request';
 export const useEmailForm = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
+  const [timer, setTimer] = useState<number>(0);
 
   // Get data from redux
   const { email, activationLinkId } = useSelector(
@@ -37,10 +41,18 @@ export const useEmailForm = () => {
 
   // Resend email confirmation
   const handleSubmitResendEmailConfirmation = async () => {
+    setIsButtonDisabled(true);
+    setTimer(120); // 2 min = 120 sec
+
     dispatch(handleResendEmailConfirmation({ email, activationLinkId }));
+
+    setTimeout(() => setIsButtonDisabled(false), 120000); // 120000 milliseconds = 2 min
   };
 
   return {
+    isButtonDisabled,
+    timer,
+    setTimer,
     initialValues,
     validationSchema,
     handleSubmitChangeEmail,

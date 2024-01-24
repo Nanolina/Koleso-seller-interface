@@ -253,7 +253,11 @@
       }
     },
     "forgetPassword": "Forgot password",
-    "setNewPassword": "Set new password"
+    "setNewPassword": "Set new password",
+    "timer": {
+      "wait": "Please wait",
+      "seconds": "seconds before next sending"
+    }
   },
   "catalog": {
     "Women": "Women",

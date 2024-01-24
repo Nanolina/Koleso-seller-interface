@@ -14,6 +14,7 @@ export interface IButtonProps {
   textColor?: string;
   isBold?: boolean;
   hasShadow?: boolean;
+  children?: any;
 }
 
 export interface ILabelProps {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Loader } from '../../../../../components/Loader/Loader';
@@ -16,6 +16,9 @@ export const EmailConfirmation: React.FC = () => {
   const [changeEmailOpen, setChangeEmailOpen] = useState<boolean>(false);
 
   const {
+    isButtonDisabled,
+    timer,
+    setTimer,
     initialValues,
     validationSchema,
     handleSubmitChangeEmail,
@@ -25,6 +28,24 @@ export const EmailConfirmation: React.FC = () => {
   const { loading, error, success } = useSelector(
     (state: IRootState) => state.user
   );
+
+  useEffect(() => {
+    let interval: number | undefined;
+
+    if (isButtonDisabled) {
+      interval = window.setInterval(() => {
+        setTimer((oldTimer) => {
+          if (oldTimer > 0) return oldTimer - 1;
+          clearInterval(interval);
+          return 0;
+        });
+      }, 1000);
+    }
+
+    return () => {
+      if (interval !== undefined) clearInterval(interval);
+    };
+  }, [isButtonDisabled, setTimer]);
 
   if (loading) {
     return <Loader />;
@@ -48,7 +69,11 @@ export const EmailConfirmation: React.FC = () => {
           onSubmit={handleSubmitChangeEmail}
         />
       )}
-      <ResendEmailButton onClick={handleSubmitResendEmailConfirmation} />
+      <ResendEmailButton
+        onClick={handleSubmitResendEmailConfirmation}
+        isButtonDisabled={isButtonDisabled}
+        timer={timer}
+      />
 
       {error && <MessageBox errorMessage={error} />}
       {success && <MessageBox successMessage={success} />}

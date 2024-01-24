@@ -32,6 +32,16 @@ export interface IChangeEmailFormProps {
   onSubmit: OnSubmitType;
 }
 
-export interface SetNewPasswordFormProps {
+export interface ISetNewPasswordFormProps {
   userId: string;
+}
+
+export interface IResendEmailButtonProps {
+  isButtonDisabled: boolean;
+  timer: number;
+  onClick: () => void;
+}
+
+export interface ITimerTextProps {
+  timer: number;
 }
