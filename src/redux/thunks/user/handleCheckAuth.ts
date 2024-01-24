@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AuthResponse } from '../../../services/types/response';
+import { handleAsyncThunkError } from '../../functions';
 
 const API_URL = process.env.REACT_APP_AUTH_SERVICE_URL;
 
@@ -28,13 +29,7 @@ export const handleCheckAuth = createAsyncThunk(
         isVerifiedEmail: user.isVerifiedEmail,
       };
     } catch (error: any) {
-      if (error.response && error.response.data) {
-        return rejectWithValue(
-          error.response.data.message || error.response.data
-        );
-      } else {
-        return rejectWithValue(`An unknown error occurred, ${error}`);
-      }
+      return handleAsyncThunkError(error, rejectWithValue);
     }
   }
 );

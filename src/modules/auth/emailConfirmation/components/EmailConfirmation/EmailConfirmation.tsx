@@ -49,6 +49,7 @@ export const EmailConfirmation: React.FC = () => {
         />
       )}
       <ResendEmailButton onClick={handleSubmitResendEmailConfirmation} />
+
       {error && <MessageBox errorMessage={error} />}
       {success && <MessageBox successMessage={success} />}
     </div>

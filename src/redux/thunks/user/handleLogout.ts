@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthService } from '../../../services';
+import { handleAsyncThunkError } from '../../functions';
 
 export const handleLogout = createAsyncThunk(
   'user/logout',
@@ -11,13 +12,7 @@ export const handleLogout = createAsyncThunk(
       // Reset access token from the local storage
       localStorage.removeItem('token');
     } catch (error: any) {
-      if (error.response && error.response.data) {
-        return rejectWithValue(
-          error.response.data.message || error.response.data
-        );
-      } else {
-        return rejectWithValue(`An unknown error occurred, ${error}`);
-      }
+      return handleAsyncThunkError(error, rejectWithValue);
     }
   }
 );

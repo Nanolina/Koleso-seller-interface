@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthService } from '../../../services';
 import { IChangeEmailData } from '../../../services/types/request';
+import { handleAsyncThunkError } from '../../functions';
 
 export const handleChangeEmail = createAsyncThunk(
   'user/change-email',
@@ -14,13 +15,7 @@ export const handleChangeEmail = createAsyncThunk(
         email: response.data.email,
       };
     } catch (error: any) {
-      if (error.response && error.response.data) {
-        return rejectWithValue(
-          error.response.data.message || error.response.data
-        );
-      } else {
-        return rejectWithValue(`An unknown error occurred, ${error}`);
-      }
+      return handleAsyncThunkError(error, rejectWithValue);
     }
   }
 );

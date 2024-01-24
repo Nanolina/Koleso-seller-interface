@@ -42,7 +42,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
+      {({ errors, touched }) => (
         <Form className="authContainer">
           <InputLabel
             name="email"
@@ -64,7 +64,9 @@ export const LoginForm: React.FC = () => {
             required
           />
           <div className={styles.loginButtonsContainer}>
-            <Link to="/password/recovery">{`${t('auth.forgetPassword')}?`}</Link>
+            <Link to="/password/recovery">{`${t(
+              'auth.forgetPassword'
+            )}?`}</Link>
             <Button text={t('auth.login')} type="submit" />
           </div>
           <div className={styles.signupButtonsContainer}>

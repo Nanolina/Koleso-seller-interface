@@ -32,7 +32,7 @@ import { handleCheckAuth } from './redux/thunks/user';
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isAuth, isVerifiedEmail } = useSelector(
+  const { isAuth, isVerifiedEmail, isActive } = useSelector(
     (state: IRootState) => state.user
   );
 
@@ -86,7 +86,7 @@ const App: React.FC = () => {
               </>
             )}
 
-            {isAuth && isVerifiedEmail && (
+            {isAuth && isVerifiedEmail && isActive && (
               <>
                 <Route path="/" element={<ProductsPage />} />
                 <Route path="/add-product" element={<AddProductPage />} />

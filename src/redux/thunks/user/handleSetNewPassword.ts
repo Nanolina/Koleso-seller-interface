@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthService } from '../../../services';
 import { ISetNewPasswordDataForService } from '../../../services/types/request';
+import { handleAsyncThunkError } from '../../functions';
 
 export const handleSetNewPassword = createAsyncThunk(
   'user/password/set',
@@ -24,13 +25,7 @@ export const handleSetNewPassword = createAsyncThunk(
         isVerifiedEmail: user.isVerifiedEmail,
       };
     } catch (error: any) {
-      if (error.response && error.response.data) {
-        return rejectWithValue(
-          error.response.data.message || error.response.data
-        );
-      } else {
-        return rejectWithValue(`An unknown error occurred, ${error}`);
-      }
+      return handleAsyncThunkError(error, rejectWithValue);
     }
   }
 );

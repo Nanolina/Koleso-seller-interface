@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthService } from '../../../services';
 import { IChangeEmailData } from '../../../services/types/request';
+import { handleAsyncThunkError } from '../../functions';
 
 export const handleRequestPasswordRecovery = createAsyncThunk(
   'user/password/recovery',
@@ -9,13 +10,7 @@ export const handleRequestPasswordRecovery = createAsyncThunk(
       // Submit a request
       await AuthService.requestPasswordRecovery(userData);
     } catch (error: any) {
-      if (error.response && error.response.data) {
-        return rejectWithValue(
-          error.response.data.message || error.response.data
-        );
-      } else {
-        return rejectWithValue(`An unknown error occurred, ${error}`);
-      }
+      return handleAsyncThunkError(error, rejectWithValue);
     }
   }
 );

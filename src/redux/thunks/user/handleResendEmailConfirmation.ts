@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { NotificationService } from '../../../services';
 import { IResendEmailConfirmationData } from '../../../services/types/request';
+import { handleAsyncThunkError } from '../../functions';
 
 export const handleResendEmailConfirmation = createAsyncThunk(
   'user/email/resend-confirmation',
@@ -9,13 +10,7 @@ export const handleResendEmailConfirmation = createAsyncThunk(
       // Submit a request
       await NotificationService.resendEmailConfirmation(userData);
     } catch (error: any) {
-      if (error.response && error.response.data) {
-        return rejectWithValue(
-          error.response.data.message || error.response.data
-        );
-      } else {
-        return rejectWithValue(`An unknown error occurred, ${error}`);
-      }
+      return handleAsyncThunkError(error, rejectWithValue);
     }
   }
 );
