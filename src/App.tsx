@@ -17,6 +17,8 @@ import { NotificationsPage } from './pages/NotificationsPage/NotificationsPage';
 import { OrderPage } from './pages/OrderPage/OrderPage';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import { ProductsPage } from './pages/ProductsPage/ProductsPage';
+import { RequestPasswordRecoveryPage } from './pages/RequestPasswordRecoveryPage/RequestPasswordRecoveryPage';
+import { SetNewPasswordPage } from './pages/SetNewPasswordPage/SetNewPasswordPage';
 import { SignupPage } from './pages/SignupPage/SignupPage';
 import { SettingsEmailPage } from './pages/settings/SettingsEmailPage/SettingsEmailPage';
 import { SettingsLanguagePage } from './pages/settings/SettingsLanguagePage/SettingsLanguagePage';
@@ -68,6 +70,19 @@ const App: React.FC = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="*" element={<Navigate to="/login" replace />} />
+              </>
+            )}
+
+            {!isAuth && (
+              <>
+                <Route
+                  path="/password/recovery"
+                  element={<RequestPasswordRecoveryPage />}
+                />
+                <Route
+                  path="/password/set/:userId"
+                  element={<SetNewPasswordPage />}
+                />
               </>
             )}
 

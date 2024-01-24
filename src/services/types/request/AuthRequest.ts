@@ -13,3 +13,14 @@ export interface ILoginData {
 export interface IChangeEmailData {
   email: string;
 }
+
+export interface ISetNewPasswordData {
+  password: string;
+  repeatedPassword: string;
+}
+
+export interface ISetNewPasswordDataForService {
+  userId: string;
+  password: string;
+  repeatedPassword: string;
+}

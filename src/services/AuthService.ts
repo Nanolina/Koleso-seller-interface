@@ -1,6 +1,11 @@
 import { AxiosResponse } from 'axios';
 import { authServiceAPI } from '../http';
-import { IChangeEmailData, ILoginData, ISignupData } from './types/request';
+import {
+  IChangeEmailData,
+  ILoginData,
+  ISetNewPasswordDataForService,
+  ISignupData,
+} from './types/request';
 import { AuthResponse, IEmailResponse } from './types/response';
 
 export class AuthService {
@@ -37,6 +42,26 @@ export class AuthService {
   }: IChangeEmailData): Promise<AxiosResponse<IEmailResponse>> {
     return authServiceAPI.patch<IEmailResponse>('/change-email', {
       email,
+    });
+  }
+
+  // To check email in the DB and send a link "reset password" to email
+  static async requestPasswordRecovery({
+    email,
+  }: IChangeEmailData): Promise<void> {
+    return authServiceAPI.post('/password/recovery', {
+      email,
+    });
+  }
+
+  static async setNewPassword({
+    userId,
+    password,
+    repeatedPassword,
+  }: ISetNewPasswordDataForService): Promise<AxiosResponse<AuthResponse>> {
+    return authServiceAPI.post<AuthResponse>(`/password/set/${userId}`, {
+      password,
+      repeatedPassword,
     });
   }
 }

@@ -5,6 +5,7 @@
   "add": "Add",
   "upload": "Upload",
   "yes": "Yes",
+  "send": "Send",
   "menuItems": {
     "Settings": "Settings",
     "Products": "Products",
@@ -227,7 +228,6 @@
     "repeatPassword": "Repeat password",
     "haveAccount": "Already have an account",
     "notAccount": "Don't have an account yet",
-    "forgotPassword": "Forgot passord",
     "validation": {
       "phoneRequired": "Phone is required",
       "invalidEmail": "Invalid email address",
@@ -251,7 +251,9 @@
         "changeEmail": "Click here to change email address",
         "resendEmail": "Click here to try resending the email"
       }
-    }
+    },
+    "forgetPassword": "Forgot password",
+    "setNewPassword": "Set new password"
   },
   "catalog": {
     "Women": "Women",

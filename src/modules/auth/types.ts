@@ -31,3 +31,7 @@ export interface IChangeEmailFormProps {
   validationSchema: ObjectSchema<IEmailPayload>;
   onSubmit: OnSubmitType;
 }
+
+export interface SetNewPasswordFormProps {
+  userId: string;
+}

@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
@@ -64,7 +64,7 @@ export const LoginForm: React.FC = () => {
             required
           />
           <div className={styles.loginButtonsContainer}>
-            <span>{`${t('auth.forgotPassword')}?`}</span>
+            <Link to="/password/recovery">{`${t('auth.forgetPassword')}?`}</Link>
             <Button text={t('auth.login')} type="submit" />
           </div>
           <div className={styles.signupButtonsContainer}>

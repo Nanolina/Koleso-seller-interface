@@ -5,7 +5,9 @@ import {
   checkAuthCases,
   loginCases,
   logoutCases,
+  requestPasswordRecoveryCases,
   resendEmailConfirmationCases,
+  setNewPasswordCases,
   signupCases,
 } from '../cases/user';
 import { userInitialState } from '../initialStates';
@@ -20,6 +22,8 @@ const userSlice = createValueReducers(
     checkAuthCases(builder);
     changeEmailCases(builder);
     resendEmailConfirmationCases(builder);
+    requestPasswordRecoveryCases(builder);
+    setNewPasswordCases(builder);
   }
 );
 
