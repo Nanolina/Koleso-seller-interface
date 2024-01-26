@@ -11,11 +11,6 @@ export const Settings: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <Setting
-        title={t('settings.store.label')}
-        extra="Marella"
-        redirectPage="store"
-      />
       <Setting title={t('settings.phone')} redirectPage="phone" />
       <Setting title={t('settings.email')} redirectPage="email" />
       <Setting title={t('settings.language')} redirectPage="language" />

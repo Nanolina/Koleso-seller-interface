@@ -8,6 +8,7 @@
   "send": "Отправить",
   "menuItems": {
     "Settings": "Настройки",
+    "Stores": "Мои магазины",
     "Products": "Товары",
     "Documents": "Документы",
     "Finances": "Финансы",
@@ -139,6 +140,17 @@
       "accountNumber": "Номер счета"
     }
   },
+  "stores": {
+    "table": {
+      "name": "Название",
+      "description": "Описание",
+      "logo": "Логотип"
+    },
+    "addStore": "Добавить магазин",
+    "storeDetails": {
+      "notFound": "Магазин не найден"
+    }
+  },
   "orders": {
     "table": {
       "date": "Дата",
@@ -201,16 +213,6 @@
       "currentPassword": "Текущий пароль",
       "newPassword": "Новый пароль",
       "repeatPassword": "Повторите пароль"
-    },
-    "store": {
-      "label": "Информация о моем магазине",
-      "name": "Название",
-      "description": "Описание",
-      "logo": "Логотип",
-      "phone": "Номер телефона",
-      "instagram": "Инстаграм",
-      "email": "Электронная почта",
-      "address": "Адрес"
     }
   },
   "modal": {

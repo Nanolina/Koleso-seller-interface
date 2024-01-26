@@ -10,7 +10,6 @@ export const SideMenu: React.FC<ISideMenuProps> = React.memo(
   ({ isMenuOpen, setIsMenuOpen }) => {
     const handleMenuItemClick = useCallback(
       (itemId: string) => {
-        console.log('Menu item clicked:', itemId);
         setIsMenuOpen(false);
       },
       [setIsMenuOpen]

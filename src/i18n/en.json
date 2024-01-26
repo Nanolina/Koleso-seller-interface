@@ -8,6 +8,7 @@
   "send": "Send",
   "menuItems": {
     "Settings": "Settings",
+    "Stores": "My stores",
     "Products": "Products",
     "Documents": "Documents",
     "Finances": "Finances",
@@ -139,6 +140,17 @@
       "accountNumber": "Account number"
     }
   },
+  "stores": {
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "logo": "Logo"
+    },
+    "addStore": "Add store",
+    "storeDetails": {
+      "notFound": "Store not found"
+    }
+  },
   "orders": {
     "table": {
       "date": "Date",
@@ -201,16 +213,6 @@
       "currentPassword": "Current password",
       "newPassword": "New password",
       "repeatPassword": "Repeat password"
-    },
-    "store": {
-      "label": "My store information",
-      "name": "Name",
-      "description": "Description",
-      "logo": "Logo",
-      "phone": "Phone",
-      "instagram": "Instagram",
-      "email": "Email",
-      "address": "Address"
     }
   },
   "modal": {

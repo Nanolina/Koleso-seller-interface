@@ -59,6 +59,8 @@ export interface ITextareaLabelProps {
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   rows?: number;
   required?: boolean;
+  errors?: any;
+  touched?: any;
 }
 
 export interface ICheckboxWithLabelProps {

@@ -42,6 +42,7 @@ export interface ITextareaProps {
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
   rows?: number;
   required?: boolean;
+  hasError?: boolean;
 }
 
 export interface IInputUploadProps {

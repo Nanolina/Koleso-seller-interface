@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -8,6 +8,7 @@ import {
   Routes,
 } from 'react-router-dom';
 import './App.css';
+import { Loader } from './components/Loader/Loader';
 import i18n from './i18n/i18n';
 import { AddDocumentsPage } from './pages/AddDocumentsPage/AddDocumentsPage';
 import { AddProductPage } from './pages/AddProductPage/AddProductPage';
@@ -20,18 +21,22 @@ import { ProductsPage } from './pages/ProductsPage/ProductsPage';
 import { RequestPasswordRecoveryPage } from './pages/RequestPasswordRecoveryPage/RequestPasswordRecoveryPage';
 import { SetNewPasswordPage } from './pages/SetNewPasswordPage/SetNewPasswordPage';
 import { SignupPage } from './pages/SignupPage/SignupPage';
+import { StorePage } from './pages/StorePage/StorePage';
+import { StoresPage } from './pages/StoresPage/StoresPage';
 import { SettingsEmailPage } from './pages/settings/SettingsEmailPage/SettingsEmailPage';
 import { SettingsLanguagePage } from './pages/settings/SettingsLanguagePage/SettingsLanguagePage';
 import { SettingsPage } from './pages/settings/SettingsPage/SettingsPage';
 import { SettingsPasswordPage } from './pages/settings/SettingsPasswordPage/SettingsPasswordPage';
 import { SettingsPhonePage } from './pages/settings/SettingsPhonePage/SettingsPhonePage';
-import { SettingsStorePage } from './pages/settings/SettingsStorePage/SettingsStorePage';
 import { IRootState } from './redux/rootReducer';
 import { AppDispatch } from './redux/store';
 import { handleCheckAuth } from './redux/thunks/user';
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+
+  const [isInitialized, setIsInitialized] = useState(false);
+
   const { isAuth, isVerifiedEmail, isActive } = useSelector(
     (state: IRootState) => state.user
   );
@@ -39,13 +44,23 @@ const App: React.FC = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      dispatch(handleCheckAuth());
+      dispatch(handleCheckAuth()).then(() => setIsInitialized(true));
+    } else {
+      setIsInitialized(true);
     }
   }, [dispatch]);
 
   useEffect(() => {
     i18n.changeLanguage('Russian');
   }, []);
+
+  if (!isInitialized) {
+    return (
+      <div className="loaderContainer">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <Router>
@@ -90,6 +105,8 @@ const App: React.FC = () => {
               <>
                 <Route path="/" element={<ProductsPage />} />
                 <Route path="/add-product" element={<AddProductPage />} />
+                <Route path="/stores" element={<StoresPage />} />
+                <Route path="/store/:storeId" element={<StorePage />} />
                 <Route path="/add-documents" element={<AddDocumentsPage />} />
                 <Route path="/orders" element={<OrdersPage />} />
                 <Route path="/order/:orderNumber" element={<OrderPage />} />
@@ -99,7 +116,6 @@ const App: React.FC = () => {
                   path="/settings/language"
                   element={<SettingsLanguagePage />}
                 />
-                <Route path="/settings/store" element={<SettingsStorePage />} />
                 <Route path="/settings/phone" element={<SettingsPhonePage />} />
                 <Route path="/settings/email" element={<SettingsEmailPage />} />
                 <Route

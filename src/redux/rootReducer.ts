@@ -5,10 +5,12 @@ import {
   IProductCreationState,
   IProductCreationStringsState,
 } from '../modules/productForm';
+import { IStoresState } from '../modules/stores';
 import accountDataSlice from './slices/accountDataSlice';
 import documentsSlice from './slices/documentsSlice';
 import productCreationSlice from './slices/productCreationSlice';
 import productCreationStringsSlice from './slices/productCreationStringsSlice';
+import storesSlice from './slices/storesSlice';
 import userSlice from './slices/userSlice';
 
 export interface IRootState {
@@ -17,6 +19,7 @@ export interface IRootState {
   documents: IDocumentsState;
   accountData: IAccountDataState;
   user: IUserState;
+  stores: IStoresState;
 }
 
 const rootReducer = combineReducers({
@@ -25,6 +28,7 @@ const rootReducer = combineReducers({
   documents: documentsSlice,
   accountData: accountDataSlice,
   user: userSlice,
+  stores: storesSlice,
 });
 
 export default rootReducer;

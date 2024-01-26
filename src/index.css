@@ -59,6 +59,12 @@ p {
   padding: 50px 20px;
 }
 
+.buttonAddSmthPageContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 @media only screen and (max-width: 600px) {
   .authContainer {
     width: 90%;

@@ -2,6 +2,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsBoxes } from 'react-icons/bs';
 import { IoIosSettings } from 'react-icons/io';
 import { IoDocumentTextOutline } from 'react-icons/io5';
+import { LiaStoreAltSolid } from 'react-icons/lia';
 import { MdNotificationsNone } from 'react-icons/md';
 
 const iconSize = 20;
@@ -13,6 +14,12 @@ export const menuItems = [
     title: 'Settings',
     icon: <IoIosSettings size={iconSize} color={color} />,
     redirectPage: '/settings',
+  },
+  {
+    id: '8333921e-0a23-420a-83ad-5a17876140bd',
+    title: 'Stores',
+    icon: <LiaStoreAltSolid size={iconSize} color={color} />,
+    redirectPage: '/stores',
   },
   {
     id: '8333921e-0a23-420a-83ad-5a17876140bd',

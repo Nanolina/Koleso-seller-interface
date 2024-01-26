@@ -3,7 +3,7 @@ import { ITextareaProps } from '../types';
 import styles from './Textarea.module.css';
 
 export const Textarea: React.FC<ITextareaProps> = React.memo(
-  ({ id, name, value, onChange, rows, required }) => {
+  ({ id, name, value, onChange, rows, required, hasError = false }) => {
     return (
       <textarea
         id={id}
@@ -12,7 +12,7 @@ export const Textarea: React.FC<ITextareaProps> = React.memo(
         onChange={onChange}
         rows={rows}
         required={required}
-        className={styles.textarea}
+        className={hasError ? styles.error : styles.textarea}
       />
     );
   }

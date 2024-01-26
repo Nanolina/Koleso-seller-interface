@@ -1,0 +1,1 @@
+export { handleCreateStore } from './handleCreateStore';
