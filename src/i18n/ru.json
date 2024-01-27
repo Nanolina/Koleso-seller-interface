@@ -141,12 +141,15 @@
     }
   },
   "stores": {
+    "addStore": "Добавить магазин",
     "table": {
       "name": "Название",
       "description": "Описание",
       "logo": "Логотип"
     },
-    "addStore": "Добавить магазин",
+    "validation": {
+      "nameRequired": "Название магазина обязательно"
+    },
     "storeDetails": {
       "notFound": "Магазин не найден"
     }

@@ -141,12 +141,15 @@
     }
   },
   "stores": {
+    "addStore": "Add store",
     "table": {
       "name": "Name",
       "description": "Description",
       "logo": "Logo"
     },
-    "addStore": "Add store",
+    "validation": {
+      "nameRequired": "The name of the store is required"
+    },
     "storeDetails": {
       "notFound": "Store not found"
     }

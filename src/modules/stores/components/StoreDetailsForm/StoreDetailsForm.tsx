@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from 'formik';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -10,10 +10,13 @@ import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
-import { handleCreateStore } from '../../../../redux/thunks/store';
+import {
+  handleCreateStore,
+  handleGetStoreById,
+  handleUpdateStore,
+} from '../../../../redux/thunks/store';
 import { Button } from '../../../../ui/Button/Button';
-import { mockStores } from '../../data';
-import { ICreateStoreData } from '../../types';
+import { ICreateStoreData, IStore } from '../../types';
 import styles from './StoreDetailsForm.module.css';
 
 const StoreNotFound = () => {
@@ -25,36 +28,25 @@ export const StoreDetailsForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
 
+  // Params
+  const { storeId } = useParams<{ storeId: string }>();
+
+  // useState
+  const [initialValues, setInitialValues] = useState({
+    name: '',
+    description: '',
+  });
+  const [store, setStore] = useState<IStore>({
+    id: '',
+    name: '',
+    description: '',
+    // logo: '',
+  });
+
+  // useSelector
   const { loading, error, success } = useSelector(
     (state: IRootState) => state.stores
   );
-
-  const { storeId } = useParams<{ storeId: string }>();
-
-  const store = useMemo(
-    () => mockStores.find((store) => store.id === storeId),
-    [storeId]
-  );
-
-  if (storeId !== 'new' && !store) {
-    return <StoreNotFound />;
-  }
-
-  // Initial values
-  let initialValues;
-  if (storeId === 'new') {
-    initialValues = {
-      name: '',
-      description: '',
-      // logo: null,
-    };
-  } else {
-    initialValues = {
-      name: '',
-      description: '',
-      // logo: null,
-    };
-  }
 
   // const [logoPreviewUrl, setLogoPreviewUrl] = useState<string | null>(null);
 
@@ -84,6 +76,7 @@ export const StoreDetailsForm = () => {
   //   setFieldValue('logo', file);
   // };
 
+  // Submit form
   const handleSubmit = async (values: ICreateStoreData) => {
     const { name, description } = values;
 
@@ -92,39 +85,77 @@ export const StoreDetailsForm = () => {
       description,
     };
 
-    dispatch(handleCreateStore(storeData));
+    if (!store && storeId === 'new') {
+      dispatch(handleCreateStore(storeData));
+    } else if (store && storeId) {
+      dispatch(handleUpdateStore({ id: storeId, ...storeData }));
+    }
   };
+
+  // useEffect
+  useEffect(() => {
+    if (storeId) {
+      dispatch(handleGetStoreById(storeId))
+        .then((response) => {
+          const storeFromDB = response.payload as IStore;
+          if (storeFromDB) {
+            setStore(storeFromDB);
+          }
+        })
+        .catch((error) => {
+          return <MessageBox errorMessage={error} />;
+        });
+    }
+  }, [dispatch, storeId]);
+
+  useEffect(() => {
+    if (store && storeId !== 'new') {
+      setInitialValues({
+        name: store.name,
+        description: store.description || '',
+        // logo: store.logo || null,
+      });
+    }
+  }, [store, storeId]);
+
+  // Early return
+  if (!storeId) {
+    return <StoreNotFound />;
+  }
 
   if (loading) {
     return <Loader />;
   }
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
-        <Form className={styles.container}>
-          <InputLabel
-            label={t('stores.table.name')}
-            id="name"
-            name="name"
-            errors={errors}
-            touched={touched}
-            required
-          />
-          <Field
-            as={TextareaLabel}
-            label={t('stores.table.description')}
-            id="description"
-            name="description"
-            errors={errors}
-            touched={touched}
-            rows={4}
-          />
-          {/* <InputUploadLabel
+    <>
+      {!loading && (
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+          enableReinitialize
+        >
+          {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
+            <Form className={styles.container}>
+              <InputLabel
+                label={t('stores.table.name')}
+                id="name"
+                name="name"
+                errors={errors}
+                touched={touched}
+                required
+              />
+              <Field
+                as={TextareaLabel}
+                label={t('stores.table.description')}
+                id="description"
+                name="description"
+                errors={errors}
+                touched={touched}
+                rows={4}
+              />
+              {/* <InputUploadLabel
               label={t('stores.table.logo')}
               id="logo"
               name="logo"
@@ -132,7 +163,7 @@ export const StoreDetailsForm = () => {
               acceptFiles="image/*"
             /> */}
 
-          {/* {values.logo && (
+              {/* {values.logo && (
               <div className={styles.photo}>
                 <PhotoPreview
                   photo={URL.createObjectURL(values.logo)}
@@ -140,18 +171,20 @@ export const StoreDetailsForm = () => {
                 />
               </div>
             )} */}
-          <div className={styles.buttonContainer}>
-            <Button
-              text={t('send')}
-              type="submit"
-              disabled={!isValid || !dirty}
-            />
-          </div>
+              <div className={styles.buttonContainer}>
+                <Button
+                  text={t('send')}
+                  type="submit"
+                  disabled={!isValid || !dirty}
+                />
+              </div>
 
-          {error && <MessageBox errorMessage={error} />}
-          {success && <MessageBox successMessage={success} />}
-        </Form>
+              {error && <MessageBox errorMessage={error} />}
+              {success && <MessageBox successMessage={success} />}
+            </Form>
+          )}
+        </Formik>
       )}
-    </Formik>
+    </>
   );
 };
