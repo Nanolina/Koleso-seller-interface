@@ -1,14 +1,16 @@
-import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
+import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
 import { IStoresState } from '../../modules/stores';
-import { createStoreCases } from '../cases/store';
+import { createStoreCases, getAllStoresCases } from '../cases/store';
 import { storesInitialState } from '../initialStates';
-import { createValueReducers } from '../sliceHelpers';
 
-const storesSlice = createValueReducers(
-  storesInitialState,
-  (builder: ActionReducerMapBuilder<IStoresState>) => {
+const storesSlice = createSlice({
+  name: 'stores',
+  initialState: storesInitialState,
+  reducers: {},
+  extraReducers: (builder: ActionReducerMapBuilder<IStoresState>) => {
     createStoreCases(builder);
-  }
-);
+    getAllStoresCases(builder);
+  },
+});
 
 export default storesSlice.reducer;

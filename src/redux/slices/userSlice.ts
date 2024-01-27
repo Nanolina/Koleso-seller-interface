@@ -1,4 +1,4 @@
-import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
+import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
 import { IUserState } from '../../modules/auth';
 import {
   changeEmailCases,
@@ -11,11 +11,12 @@ import {
   signupCases,
 } from '../cases/user';
 import { userInitialState } from '../initialStates';
-import { createValueReducers } from '../sliceHelpers';
 
-const userSlice = createValueReducers(
-  userInitialState,
-  (builder: ActionReducerMapBuilder<IUserState>) => {
+const userSlice = createSlice({
+  name: 'user',
+  initialState: userInitialState,
+  reducers: {},
+  extraReducers: (builder: ActionReducerMapBuilder<IUserState>) => {
     loginCases(builder);
     signupCases(builder);
     logoutCases(builder);
@@ -24,9 +25,7 @@ const userSlice = createValueReducers(
     resendEmailConfirmationCases(builder);
     requestPasswordRecoveryCases(builder);
     setNewPasswordCases(builder);
-  }
-);
+  },
+});
 
 export default userSlice.reducer;
-export const { setValue: setValueUser, resetValue: resetValueUser } =
-  userSlice.actions;

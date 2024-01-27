@@ -14,4 +14,8 @@ export class ProductService {
       // logo,
     });
   }
+
+  static async getAllStores(): Promise<AxiosResponse<IStore[]>> {
+    return productServiceAPI.get<IStore[]>('/store');
+  }
 }

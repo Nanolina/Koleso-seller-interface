@@ -16,7 +16,7 @@ export const menuItems = [
     redirectPage: '/settings',
   },
   {
-    id: '8333921e-0a23-420a-83ad-5a17876140bd',
+    id: '4892f81b-041c-4bca-a0fd-91ee52b7d4dd',
     title: 'Stores',
     icon: <LiaStoreAltSolid size={iconSize} color={color} />,
     redirectPage: '/stores',

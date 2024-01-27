@@ -12,7 +12,7 @@ export interface IStore {
 }
 
 export interface IStoresState {
-  stores: IStore[];
+  items: IStore[];
   success: string | null;
   loading: boolean;
   error: any;
