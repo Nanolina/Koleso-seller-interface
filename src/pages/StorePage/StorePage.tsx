@@ -1,19 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SideMenu } from '../../modules/menu';
+import { Modal } from '../../modules/modal/Modal/Modal';
 import { StoreDetailsForm } from '../../modules/stores';
 import { Container } from '../../ui/Container/Container';
 
 export const StorePage: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  // const { storeId } = useParams<{ storeId: string }>();
+  const navigate = useNavigate();
 
-  // find storeName in Redux
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(true);
+
+  // Close modal
+  const handleCloseModal = () => {
+    setModalOpen(!modalOpen);
+    navigate('/stores');
+  };
+
+  useEffect(() => {
+    if (modalOpen) setIsMenuOpen(false);
+  }, [modalOpen]);
+
   return (
     <>
       <SideMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <Container onClick={() => setIsMenuOpen(false)}>
-        {/* <Title text={storeName} /> */}
-        <StoreDetailsForm />
+        <Modal isOpen={modalOpen} onClose={handleCloseModal}>
+          <StoreDetailsForm
+            modalOpen={modalOpen}
+            handleCloseModal={handleCloseModal}
+          />
+        </Modal>
       </Container>
     </>
   );

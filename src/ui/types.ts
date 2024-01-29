@@ -58,3 +58,8 @@ export interface IInputUploadProps {
 export interface IValidationErrorProps {
   error: string | undefined;
 }
+
+export interface IAddItemButtonProps {
+  text: string;
+  onClick: () => void;
+}

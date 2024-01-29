@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo } from 'react';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoIosArrowBack } from 'react-icons/io';
 import { menuItems } from '../../menuItems';
 import { ISideMenuProps } from '../../types';
@@ -31,7 +30,7 @@ export const SideMenu: React.FC<ISideMenuProps> = React.memo(
             className={styles.hamburgerButton}
             onClick={() => setIsMenuOpen(true)}
           >
-            <GiHamburgerMenu size={30} />
+            <img src="logo.png" width={60} height={60} alt="logo" />
           </button>
         ) : (
           <button

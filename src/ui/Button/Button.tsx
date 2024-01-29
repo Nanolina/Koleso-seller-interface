@@ -8,7 +8,7 @@ export const Button: React.FC<IButtonProps> = React.memo(
     onClick,
     type = 'submit',
     disabled = false,
-    backgroundColor = 'var(--orange)',
+    backgroundColor = 'var(--main)',
     border = false,
     textColor = 'white',
     isBold = true,
@@ -18,7 +18,7 @@ export const Button: React.FC<IButtonProps> = React.memo(
     const buttonStyle = {
       backgroundColor: disabled ? 'var(--light-gray)' : backgroundColor,
       border: border ? `1px solid var(--main)` : 'none',
-      boxShadow: hasShadow ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none',
+      boxShadow: hasShadow ? '2px 2px 5px rgba(0, 0, 0, 0.5)' : 'none',
     };
 
     const textStyle = {

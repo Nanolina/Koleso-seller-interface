@@ -15,22 +15,9 @@ html {
   height: 100%;
 }
 
-html::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  background-image: url('/public/logo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top right;
-  z-index: 0;
-}
-
 body::before {
-  background-image: url('/public/background.jpeg');
+  /* background-image: url('/public/background.jpeg'); */
+  transform: scaleX(-1);
   content: '';
   position: absolute;
   top: 0;
@@ -50,14 +37,22 @@ p {
   font-size: 16px;
 }
 
+textarea,
+input,
+select {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 :root {
   /* Colors */
   --main: #6c00ad;
   --main-opacity: #6c00b06c;
+  --dark-main: #1f0032;
   --yellow: #fddc00;
   --orange: #ff7c00;
   --button: #4a0072;
-  /* --pink: #b822c3; */
+  --pink: #f43bff;
   --green: #00b377;
   --red: #ff0000;
   --dark-red: #c80303;
@@ -92,12 +87,6 @@ p {
   border-radius: var(--border-radius);
   padding: 50px 20px;
   background-color: white;
-}
-
-.buttonAddSmthPageContainer {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
 }
 
 @media only screen and (max-width: 600px) {

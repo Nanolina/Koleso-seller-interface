@@ -31,7 +31,6 @@ export class ProductService {
     return productServiceAPI.patch<IStore>(`/store/${id}`, {
       name,
       description,
-      // logo,
     });
   }
 }

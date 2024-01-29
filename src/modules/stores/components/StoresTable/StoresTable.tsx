@@ -38,31 +38,33 @@ export const StoresTable: React.FC = () => {
   }
 
   return (
-    <Table>
-      <TableHeader>
-        <HeaderCell></HeaderCell>
-        <HeaderCell>{t('stores.table.name')}</HeaderCell>
-        <HeaderCell>{t('stores.table.description')}</HeaderCell>
-        <HeaderCell>{t('stores.table.logo')}</HeaderCell>
-      </TableHeader>
+    <>
+      <Table>
+        <TableHeader>
+          <HeaderCell></HeaderCell>
+          <HeaderCell>{t('stores.table.name')}</HeaderCell>
+          <HeaderCell>{t('stores.table.description')}</HeaderCell>
+          <HeaderCell>{t('stores.table.logo')}</HeaderCell>
+        </TableHeader>
 
-      <tbody>
-        {items &&
-          items.map((store: IStore, storeIndex: number) => (
-            <TableRow
-              key={store.id}
-              rowIndex={storeIndex}
-              onClick={() => handleStoreDetails(store.id)}
-            >
-              <TableCell cell={store.name} />
-              <TableCell cell={store.description} />
-              <TableCell cell={store.logo} />
-            </TableRow>
-          ))}
-      </tbody>
+        <tbody>
+          {items &&
+            items.map((store: IStore, storeIndex: number) => (
+              <TableRow
+                key={store.id}
+                rowIndex={storeIndex}
+                onClick={() => handleStoreDetails(store.id)}
+              >
+                <TableCell cell={store.name} />
+                <TableCell cell={store.description} />
+                <TableCell cell={store.logo} />
+              </TableRow>
+            ))}
+        </tbody>
+      </Table>
 
       {error && <MessageBox errorMessage={error} />}
       {success && <MessageBox successMessage={success} />}
-    </Table>
+    </>
   );
 };

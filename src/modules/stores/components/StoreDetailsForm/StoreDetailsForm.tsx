@@ -2,7 +2,7 @@ import { Field, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
@@ -16,7 +16,7 @@ import {
 } from '../../../../redux/thunks/store';
 import { Button } from '../../../../ui/Button/Button';
 import { Modal } from '../../../modal/Modal/Modal';
-import { ICreateStoreData, IStore } from '../../types';
+import { ICreateStoreData, IStore, IStoreDetailsFormProps } from '../../types';
 import styles from './StoreDetailsForm.module.css';
 
 const StoreNotFound = () => {
@@ -24,18 +24,16 @@ const StoreNotFound = () => {
   return <div>{t('stores.storeDetails.notFound')}</div>;
 };
 
-export const StoreDetailsForm: React.FC = () => {
+export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = ({
+  modalOpen,
+  handleCloseModal,
+}) => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+
   const dispatch = useDispatch<AppDispatch>();
 
   // useState
-  const [modalOpen, setModalOpen] = useState<boolean>(true);
-  const [store, setStore] = useState<IStore>({
-    id: '',
-    name: '',
-    description: '',
-  });
+  const [store, setStore] = useState<IStore | null>(null);
 
   // Initial values
   const [initialValues, setInitialValues] = useState<ICreateStoreData>({
@@ -97,14 +95,8 @@ export const StoreDetailsForm: React.FC = () => {
     }
   };
 
-  // Close modal
-  const handleCloseModal = () => {
-    setModalOpen(!modalOpen);
-    navigate('/stores');
-  };
-
   // Early return
-  if (!storeId) return <StoreNotFound />;
+  if (!store && storeId !== 'new') return <StoreNotFound />;
   if (loading)
     return (
       <Modal isOpen={modalOpen} onClose={handleCloseModal}>
@@ -113,45 +105,43 @@ export const StoreDetailsForm: React.FC = () => {
     );
 
   return (
-    <Modal isOpen={modalOpen} onClose={handleCloseModal}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-        enableReinitialize
-      >
-        {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
-          <Form className={styles.container}>
-            <InputLabel
-              label={t('stores.table.name')}
-              id="name"
-              name="name"
-              errors={errors}
-              touched={touched}
-              required
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+      enableReinitialize
+    >
+      {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
+        <Form className={styles.container}>
+          <InputLabel
+            label={t('stores.table.name')}
+            id="name"
+            name="name"
+            errors={errors}
+            touched={touched}
+            required
+          />
+          <Field
+            as={TextareaLabel}
+            label={t('stores.table.description')}
+            id="description"
+            name="description"
+            errors={errors}
+            touched={touched}
+            rows={4}
+          />
+          <div className={styles.buttonContainer}>
+            <Button
+              text={t('save')}
+              type="submit"
+              disabled={!isValid || !dirty}
             />
-            <Field
-              as={TextareaLabel}
-              label={t('stores.table.description')}
-              id="description"
-              name="description"
-              errors={errors}
-              touched={touched}
-              rows={4}
-            />
-            <div className={styles.buttonContainer}>
-              <Button
-                text={t('save')}
-                type="submit"
-                disabled={!isValid || !dirty}
-              />
-            </div>
+          </div>
 
-            {error && <MessageBox errorMessage={error} />}
-            {success && <MessageBox successMessage={success} />}
-          </Form>
-        )}
-      </Formik>
-    </Modal>
+          {error && <MessageBox errorMessage={error} />}
+          {success && <MessageBox successMessage={success} />}
+        </Form>
+      )}
+    </Formik>
   );
 };

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { SideMenu } from '../../modules/menu';
-import { Button } from '../../ui/Button/Button';
+import { ProductsTable } from '../../modules/product';
+import { AddItemButton } from '../../ui/AddItemButton/AddItemButton';
 import { Container } from '../../ui/Container/Container';
 import { Title } from '../../ui/Title/Title';
-import { ProductsTable } from '../../modules/product';
-import { useNavigate } from 'react-router-dom';
 
 export const ProductsPage: React.FC = () => {
   const { t } = useTranslation();
@@ -24,9 +24,10 @@ export const ProductsPage: React.FC = () => {
       <Container onClick={() => setIsMenuOpen(false)}>
         <Title text={t('menuItems.Products')} />
         <SearchBar />
-        <div className="buttonAddSmthPageContainer">
-          <Button text={t('products.addProduct')} onClick={handleAddProduct} />
-        </div>
+        <AddItemButton
+          text={t('products.addProduct')}
+          onClick={handleAddProduct}
+        />
         <ProductsTable />
       </Container>
     </>

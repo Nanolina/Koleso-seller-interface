@@ -17,3 +17,8 @@ export interface IStoresState {
   loading: boolean;
   error: any;
 }
+
+export interface IStoreDetailsFormProps {
+  modalOpen: boolean;
+  handleCloseModal: () => void;
+}
