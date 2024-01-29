@@ -55,11 +55,7 @@ const App: React.FC = () => {
   }, []);
 
   if (!isInitialized) {
-    return (
-      <div className="loaderContainer">
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

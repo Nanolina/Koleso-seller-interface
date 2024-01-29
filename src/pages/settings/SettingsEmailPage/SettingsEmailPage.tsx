@@ -18,7 +18,7 @@ export const SettingsEmailPage = () => {
         <Input
           type="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={(event: any) => setEmail(event.target.value)}
         />
       </Container>
     </>

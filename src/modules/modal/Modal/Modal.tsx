@@ -3,7 +3,7 @@ import { IModalProps } from '../types';
 import styles from './Modal.module.css';
 
 export const Modal: React.FC<IModalProps> = React.memo(
-  ({ isOpen, onClose, children }) => {
+  ({ isOpen, onClose, children, isBig = true }) => {
     // Function for closing the modal window when clicking on the overlay
     const handleOverlayClick = (
       event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -19,7 +19,7 @@ export const Modal: React.FC<IModalProps> = React.memo(
 
     return (
       <div className={styles.modalOverlay} onClick={handleOverlayClick}>
-        <div className={styles.modalContent}>
+        <div className={isBig ? styles.modalBigContent : styles.modalContent}>
           <button className={styles.closeButton} onClick={onClose}>
             ×
           </button>

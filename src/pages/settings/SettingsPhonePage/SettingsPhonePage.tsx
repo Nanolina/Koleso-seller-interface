@@ -17,7 +17,7 @@ export const SettingsPhonePage = () => {
         <Title text={t('settings.phone')} />
         <Input
           value={phone}
-          onChange={(event) => setPhone(event.target.value)}
+          onChange={(event: any) => setPhone(event.target.value)}
           type="tel"
         />
       </Container>

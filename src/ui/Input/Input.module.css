@@ -1,24 +1,15 @@
-.input,
-.smallWidth {
-  background-color: var(--light-gray);
+.input {
   border: 2px solid var(--light-gray);
   border-radius: var(--border-radius);
   outline: none;
   height: 30px;
   text-align: center;
+  width: 100%;
 }
 
-.input {
-  width: 90%;
-}
-
-.smallWidth {
-  max-width: 50px;
-}
-
-input:focus {
+.input:focus {
   outline: none;
-  border: 2px solid var(--main);
+  box-shadow: 0 0 5px rgb(108 0 173 / 27%);
 }
 
 .error {
@@ -27,12 +18,12 @@ input:focus {
 
 .inputContainer {
   position: relative;
-  width: 90%;
+  width: 100%;
 }
 
 .eyeIcon {
   position: absolute;
-  right: 12%;
+  right: 3%;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;

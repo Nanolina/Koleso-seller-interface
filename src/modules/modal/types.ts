@@ -1,6 +1,7 @@
 export interface IModalProps {
   isOpen: boolean;
   onClose: () => void;
+  isBig?: boolean;
   children: React.ReactNode;
 }
 

@@ -10,12 +10,18 @@
   align-items: center;
 }
 
-.modalContent {
+.modalContent,
+.modalBigContent {
   position: relative;
   background-color: white;
   padding: 70px 20px 20px 20px;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+}
+
+.modalBigContent {
+  width: 60%;
+  height: 50%;
 }
 
 .closeButton {

@@ -22,14 +22,11 @@
 .hamburgerButton,
 .arrowLeftButton {
   position: absolute;
-  top: 0;
+  top: 10px;
+  left: 10px;
   border: none;
   background-color: transparent;
   z-index: 1;
-}
-
-.hamburgerButton {
-  left: 0;
 }
 
 .arrowLeftButton {

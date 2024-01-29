@@ -24,11 +24,7 @@ export const SignOutModal: React.FC<ISignOutModalProps> = ({
   };
 
   if (loading) {
-    return (
-      <div className={styles.loaderContainer}>
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
   if (error) {
@@ -36,7 +32,7 @@ export const SignOutModal: React.FC<ISignOutModalProps> = ({
   }
 
   return (
-    <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+    <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} isBig={false}>
       <div className={styles.container}>
         {t('modal.signOutModalContent')}
         <div className={styles.buttonContainer}>
