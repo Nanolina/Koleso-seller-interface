@@ -2,7 +2,7 @@ import { Field, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
@@ -12,10 +12,10 @@ import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import {
   handleCreateStore,
-  handleGetStoreById,
   handleUpdateStore,
 } from '../../../../redux/thunks/store';
 import { Button } from '../../../../ui/Button/Button';
+import { Modal } from '../../../modal/Modal/Modal';
 import { ICreateStoreData, IStore } from '../../types';
 import styles from './StoreDetailsForm.module.css';
 
@@ -24,167 +24,134 @@ const StoreNotFound = () => {
   return <div>{t('stores.storeDetails.notFound')}</div>;
 };
 
-export const StoreDetailsForm = () => {
+export const StoreDetailsForm: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  // Params
-  const { storeId } = useParams<{ storeId: string }>();
-
   // useState
-  const [initialValues, setInitialValues] = useState({
-    name: '',
-    description: '',
-  });
+  const [modalOpen, setModalOpen] = useState<boolean>(true);
   const [store, setStore] = useState<IStore>({
     id: '',
     name: '',
     description: '',
-    // logo: '',
   });
 
-  // useSelector
-  const { loading, error, success } = useSelector(
-    (state: IRootState) => state.stores
-  );
-
-  // const [logoPreviewUrl, setLogoPreviewUrl] = useState<string | null>(null);
+  // Initial values
+  const [initialValues, setInitialValues] = useState<ICreateStoreData>({
+    name: '',
+    description: '',
+  });
 
   // Schema
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required(t('settings.store.validation.nameRequired')),
+    name: Yup.string().required(t('stores.validation.nameRequired')),
     description: Yup.string(),
-    // logo:
   });
 
-  // useEffect(() => {
-  //   if (logo) {
-  //     const newLogoPreviewUrl = URL.createObjectURL(logo);
-  //     setLogoPreviewUrl(newLogoPreviewUrl);
+  // Params
+  const { storeId } = useParams<{ storeId: string }>();
 
-  //     return () => {
-  //       URL.revokeObjectURL(newLogoPreviewUrl);
-  //     };
-  //   }
-  // }, [logo]);
+  // Values from Redux
+  const { items, loading, error, success } = useSelector(
+    (state: IRootState) => state.stores
+  );
 
-  // const handleLogoChange = (
-  //   event: ChangeEvent<HTMLInputElement>,
-  //   setFieldValue: FormikHelpers<StoreFormValues>['setFieldValue']
-  // ) => {
-  //   const file = event.target.files ? event.target.files[0] : null;
-  //   setFieldValue('logo', file);
-  // };
+  // useEffect
+  useEffect(() => {
+    if (storeId && storeId !== 'new') {
+      const existingStore = items.find((item) => item.id === storeId);
+      if (existingStore) {
+        setStore(existingStore);
+        setInitialValues({
+          name: existingStore.name,
+          description: existingStore.description || '',
+        });
+      }
+    }
+  }, [dispatch, storeId, items]);
 
   // Submit form
   const handleSubmit = async (values: ICreateStoreData) => {
     const { name, description } = values;
+    const storeData: ICreateStoreData = { name, description };
 
-    const storeData: ICreateStoreData = {
-      name,
-      description,
-    };
-
-    if (!store && storeId === 'new') {
-      dispatch(handleCreateStore(storeData));
+    let action;
+    if (storeId === 'new') {
+      action = dispatch(handleCreateStore(storeData));
     } else if (store && storeId) {
-      dispatch(handleUpdateStore({ id: storeId, ...storeData }));
+      action = dispatch(handleUpdateStore({ id: storeId, ...storeData }));
+    }
+
+    if (action) {
+      action
+        .then(() => {
+          setInitialValues({
+            name: values.name,
+            description: values.description || '',
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   };
 
-  // useEffect
-  useEffect(() => {
-    if (storeId) {
-      dispatch(handleGetStoreById(storeId))
-        .then((response) => {
-          const storeFromDB = response.payload as IStore;
-          if (storeFromDB) {
-            setStore(storeFromDB);
-          }
-        })
-        .catch((error) => {
-          return <MessageBox errorMessage={error} />;
-        });
-    }
-  }, [dispatch, storeId]);
-
-  useEffect(() => {
-    if (store && storeId !== 'new') {
-      setInitialValues({
-        name: store.name,
-        description: store.description || '',
-        // logo: store.logo || null,
-      });
-    }
-  }, [store, storeId]);
+  // Close modal
+  const handleCloseModal = () => {
+    setModalOpen(!modalOpen);
+    navigate('/stores');
+  };
 
   // Early return
-  if (!storeId) {
-    return <StoreNotFound />;
-  }
-
-  if (loading) {
-    return <Loader />;
-  }
+  if (!storeId) return <StoreNotFound />;
+  if (loading)
+    return (
+      <Modal isOpen={modalOpen} onClose={handleCloseModal}>
+        <Loader />
+      </Modal>
+    );
 
   return (
-    <>
-      {!loading && (
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-          enableReinitialize
-        >
-          {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
-            <Form className={styles.container}>
-              <InputLabel
-                label={t('stores.table.name')}
-                id="name"
-                name="name"
-                errors={errors}
-                touched={touched}
-                required
+    <Modal isOpen={modalOpen} onClose={handleCloseModal}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+        enableReinitialize
+      >
+        {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
+          <Form className={styles.container}>
+            <InputLabel
+              label={t('stores.table.name')}
+              id="name"
+              name="name"
+              errors={errors}
+              touched={touched}
+              required
+            />
+            <Field
+              as={TextareaLabel}
+              label={t('stores.table.description')}
+              id="description"
+              name="description"
+              errors={errors}
+              touched={touched}
+              rows={4}
+            />
+            <div className={styles.buttonContainer}>
+              <Button
+                text={t('save')}
+                type="submit"
+                disabled={!isValid || !dirty}
               />
-              <Field
-                as={TextareaLabel}
-                label={t('stores.table.description')}
-                id="description"
-                name="description"
-                errors={errors}
-                touched={touched}
-                rows={4}
-              />
-              {/* <InputUploadLabel
-              label={t('stores.table.logo')}
-              id="logo"
-              name="logo"
-              onChange={(event) => handleLogoChange(event, setFieldValue)}
-              acceptFiles="image/*"
-            /> */}
+            </div>
 
-              {/* {values.logo && (
-              <div className={styles.photo}>
-                <PhotoPreview
-                  photo={URL.createObjectURL(values.logo)}
-                  onRemove={() => setFieldValue('logo', null)}
-                />
-              </div>
-            )} */}
-              <div className={styles.buttonContainer}>
-                <Button
-                  text={t('send')}
-                  type="submit"
-                  disabled={!isValid || !dirty}
-                />
-              </div>
-
-              {error && <MessageBox errorMessage={error} />}
-              {success && <MessageBox successMessage={success} />}
-            </Form>
-          )}
-        </Formik>
-      )}
-    </>
+            {error && <MessageBox errorMessage={error} />}
+            {success && <MessageBox successMessage={success} />}
+          </Form>
+        )}
+      </Formik>
+    </Modal>
   );
 };

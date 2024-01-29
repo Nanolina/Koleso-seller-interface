@@ -1,6 +1,10 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
 import { IStoresState } from '../../modules/stores';
-import { createStoreCases, getAllStoresCases } from '../cases/store';
+import {
+  createStoreCases,
+  getAllStoresCases,
+  updateStoreCases,
+} from '../cases/store';
 import { storesInitialState } from '../initialStates';
 
 const storesSlice = createSlice({
@@ -10,6 +14,7 @@ const storesSlice = createSlice({
   extraReducers: (builder: ActionReducerMapBuilder<IStoresState>) => {
     createStoreCases(builder);
     getAllStoresCases(builder);
+    updateStoreCases(builder);
   },
 });
 

@@ -21,7 +21,7 @@ export const StoresTable: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { items, loading, error } = useSelector(
+  const { items, loading, error, success } = useSelector(
     (state: IRootState) => state.stores
   );
 
@@ -62,6 +62,7 @@ export const StoresTable: React.FC = () => {
       </tbody>
 
       {error && <MessageBox errorMessage={error} />}
+      {success && <MessageBox successMessage={success} />}
     </Table>
   );
 };
