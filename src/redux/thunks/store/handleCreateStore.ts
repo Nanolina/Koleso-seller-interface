@@ -5,13 +5,13 @@ import { handleAsyncThunkError } from '../../functions';
 
 export const handleCreateStore = createAsyncThunk(
   'store/create',
-  async (storeFormData: FormData, { rejectWithValue }): Promise<IStore[]> => {
+  async (storeFormData: FormData, { rejectWithValue }): Promise<IStore> => {
     try {
       // Submit a request
       const response: any = await ProductService.createStore(storeFormData);
 
       // Return data to be saved in store
-      return response.data.stores;
+      return response.data;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);
     }

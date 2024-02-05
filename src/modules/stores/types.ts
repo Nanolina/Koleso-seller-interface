@@ -13,6 +13,7 @@ export interface IStore {
 
 export interface IStoresState {
   items: IStore[];
+  store: IStore;
   success: string | null;
   loading: boolean;
   error: any;

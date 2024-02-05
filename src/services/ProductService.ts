@@ -25,6 +25,6 @@ export class ProductService {
   }
 
   static async removeStore(id: string): Promise<AxiosResponse<IStore>> {
-    return productServiceAPI.delete(`/store/${id}`);
+    return productServiceAPI.delete<IStore>(`/store/${id}`);
   }
 }

@@ -9,18 +9,16 @@ import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
-import {
-  handleGetAllStores,
-  handleRemoveStore,
-} from '../../../../redux/thunks/store';
+import { handleGetStoreById } from '../../../../redux/thunks/store';
 import { Button } from '../../../../ui/Button/Button';
 import { Modal } from '../../../modal/Modal/Modal';
 import {
+  handleRemoveFormStore,
   handleSubmitFormStore,
   initialValuesStore,
   validationSchemaStore,
 } from '../../storeFormModel';
-import { ICreateStoreData, IStore, IStoreDetailsFormProps } from '../../types';
+import { ICreateStoreData, IStoreDetailsFormProps } from '../../types';
 import { Logo } from '../Logo/Logo';
 import styles from './StoreDetailsForm.module.css';
 
@@ -33,32 +31,35 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = ({
   const { storeId } = useParams<{ storeId: string }>();
 
   // useState
-  const [store, setStore] = useState<IStore | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [initialValues, setInitialValues] =
     useState<ICreateStoreData>(initialValuesStore);
 
   // Values from Redux
-  const { items, loading, error, success } = useSelector(
+  const { store, items, loading, error, success } = useSelector(
     (state: IRootState) => state.stores
   );
 
   // useEffect
   useEffect(() => {
     if (storeId && storeId !== 'new') {
-      const existingStore = items.find((item) => item.id === storeId);
-      if (existingStore) {
-        setStore(existingStore);
+      dispatch(handleGetStoreById(storeId));
+    }
+  }, [dispatch, storeId]);
+
+  useEffect(() => {
+    if (storeId && storeId !== 'new') {
+      if (store) {
         setInitialValues({
-          name: existingStore.name,
-          description: existingStore.description || '',
-          logo: existingStore.logo,
+          name: store.name,
+          description: store.description || '',
+          logo: store.logo,
         });
 
-        if (existingStore.logo) setPreviewUrl(existingStore.logo);
+        if (store.logo) setPreviewUrl(store.logo);
       }
     }
-  }, [dispatch, storeId, items]);
+  }, [dispatch, storeId, items, store]);
 
   useEffect(() => {
     return () => {
@@ -67,10 +68,6 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = ({
       }
     };
   }, [previewUrl]);
-
-  useEffect(() => {
-    dispatch(handleGetAllStores());
-  }, [dispatch]);
 
   // Early return
   if (!store && storeId !== 'new') {
@@ -137,7 +134,14 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = ({
             {storeId && (
               <span
                 className="removeText"
-                onClick={() => dispatch(handleRemoveStore(storeId))}
+                onClick={() =>
+                  handleRemoveFormStore(
+                    storeId,
+                    dispatch,
+                    previewUrl,
+                    setPreviewUrl
+                  )
+                }
               >
                 {t('stores.storeDetails.removeStore')}
               </span>

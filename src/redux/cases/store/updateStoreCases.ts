@@ -1,5 +1,5 @@
-import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
-import { IStoresState } from '../../../modules/stores';
+import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
+import { IStore, IStoresState } from '../../../modules/stores';
 import { handleUpdateStore } from '../../thunks/store';
 
 export const updateStoreCases = (
@@ -11,10 +11,14 @@ export const updateStoreCases = (
       state.error = null;
       state.success = null;
     })
-    .addCase(handleUpdateStore.fulfilled, (state) => {
-      state.success = 'The store has been successfully updated';
-      state.loading = false;
-    })
+    .addCase(
+      handleUpdateStore.fulfilled,
+      (state, action: PayloadAction<IStore>) => {
+        state.store = action.payload;
+        state.success = 'The store has been successfully updated';
+        state.loading = false;
+      }
+    )
     .addCase(handleUpdateStore.rejected, (state, action) => {
       state.loading = false;
       state.success = null;

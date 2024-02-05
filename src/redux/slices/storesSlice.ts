@@ -3,6 +3,7 @@ import { IStoresState } from '../../modules/stores';
 import {
   createStoreCases,
   getAllStoresCases,
+  getStoreByIdCases,
   removeStoreCases,
   updateStoreCases,
 } from '../cases/store';
@@ -15,6 +16,7 @@ const storesSlice = createSlice({
   extraReducers: (builder: ActionReducerMapBuilder<IStoresState>) => {
     createStoreCases(builder);
     getAllStoresCases(builder);
+    getStoreByIdCases(builder);
     updateStoreCases(builder);
     removeStoreCases(builder);
   },

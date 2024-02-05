@@ -1,5 +1,6 @@
 import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import { IStoresState } from '../../../modules/stores';
+import { storeInitialState } from '../../initialStates';
 import { handleRemoveStore } from '../../thunks/store';
 
 export const removeStoreCases = (
@@ -12,6 +13,7 @@ export const removeStoreCases = (
       state.success = null;
     })
     .addCase(handleRemoveStore.fulfilled, (state) => {
+      state.store = Object.assign(state.store, storeInitialState);
       state.success = 'The store has been successfully deleted';
       state.loading = false;
     })

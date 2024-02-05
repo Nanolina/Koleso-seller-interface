@@ -1,6 +1,10 @@
 import { TFunction } from 'i18next';
 import * as Yup from 'yup';
-import { handleCreateStore, handleUpdateStore } from '../../redux/thunks/store';
+import {
+  handleCreateStore,
+  handleRemoveStore,
+  handleUpdateStore,
+} from '../../redux/thunks/store';
 import { AppDispatch } from './../../redux/store';
 import { ICreateStoreData, IStore } from './types';
 
@@ -61,5 +65,21 @@ export const handleSubmitFormStore = async (
       .catch((error) => {
         console.error(error);
       });
+  }
+};
+
+export const handleRemoveFormStore = async (
+  storeId: string | undefined,
+  dispatch: AppDispatch,
+  previewUrl: string | null,
+  setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>
+) => {
+  if (storeId && storeId !== 'new') {
+    dispatch(handleRemoveStore(storeId));
+
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      setPreviewUrl(null);
+    }
   }
 };
