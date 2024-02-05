@@ -5,11 +5,6 @@
   gap: 20px;
 }
 
-.photo {
-  display: flex;
-  justify-content: center;
-}
-
 .contactsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -19,6 +14,11 @@
 }
 
 .buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.notFound {
   display: flex;
   justify-content: center;
 }

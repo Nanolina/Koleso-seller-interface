@@ -4,7 +4,7 @@ import { Label } from '../../ui/Label/Label';
 import { IInputUploadLabelProps } from '../types';
 
 export const InputUploadLabel: React.FC<IInputUploadLabelProps> = React.memo(
-  ({ label, id, name, required, value, onChange, acceptFiles, multiple }) => {
+  ({ label, id, name, required, onChange, acceptFiles, multiple }) => {
     return (
       <div className="elementWithLabelContainer">
         <Label id={id} text={label} required={required} />
@@ -12,7 +12,6 @@ export const InputUploadLabel: React.FC<IInputUploadLabelProps> = React.memo(
           id={id}
           name={name}
           required={required}
-          value={value}
           onChange={onChange}
           acceptFiles={acceptFiles}
           multiple={multiple}

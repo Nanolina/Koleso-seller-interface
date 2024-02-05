@@ -3,52 +3,37 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import * as Yup from 'yup';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
-import {
-  handleCreateStore,
-  handleUpdateStore,
-} from '../../../../redux/thunks/store';
+import { handleGetAllStores } from '../../../../redux/thunks/store';
 import { Button } from '../../../../ui/Button/Button';
 import { Modal } from '../../../modal/Modal/Modal';
+import {
+  handleSubmitFormStore,
+  initialValuesStore,
+  validationSchemaStore,
+} from '../../storeFormModel';
 import { ICreateStoreData, IStore, IStoreDetailsFormProps } from '../../types';
+import { Logo } from '../Logo/Logo';
 import styles from './StoreDetailsForm.module.css';
-
-const StoreNotFound = () => {
-  const { t } = useTranslation();
-  return <div>{t('stores.storeDetails.notFound')}</div>;
-};
 
 export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = ({
   modalOpen,
   handleCloseModal,
 }) => {
   const { t } = useTranslation();
-
   const dispatch = useDispatch<AppDispatch>();
+  const { storeId } = useParams<{ storeId: string }>();
 
   // useState
   const [store, setStore] = useState<IStore | null>(null);
-
-  // Initial values
-  const [initialValues, setInitialValues] = useState<ICreateStoreData>({
-    name: '',
-    description: '',
-  });
-
-  // Schema
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required(t('stores.validation.nameRequired')),
-    description: Yup.string(),
-  });
-
-  // Params
-  const { storeId } = useParams<{ storeId: string }>();
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [initialValues, setInitialValues] =
+    useState<ICreateStoreData>(initialValuesStore);
 
   // Values from Redux
   const { items, loading, error, success } = useSelector(
@@ -64,39 +49,33 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = ({
         setInitialValues({
           name: existingStore.name,
           description: existingStore.description || '',
+          logo: existingStore.logo,
         });
+
+        if (existingStore.logo) setPreviewUrl(existingStore.logo);
       }
     }
   }, [dispatch, storeId, items]);
 
-  // Submit form
-  const handleSubmit = async (values: ICreateStoreData) => {
-    const { name, description } = values;
-    const storeData: ICreateStoreData = { name, description };
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
 
-    let action;
-    if (storeId === 'new') {
-      action = dispatch(handleCreateStore(storeData));
-    } else if (store && storeId) {
-      action = dispatch(handleUpdateStore({ id: storeId, ...storeData }));
-    }
-
-    if (action) {
-      action
-        .then(() => {
-          setInitialValues({
-            name: values.name,
-            description: values.description || '',
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  };
+  useEffect(() => {
+    dispatch(handleGetAllStores());
+  }, [dispatch]);
 
   // Early return
-  if (!store && storeId !== 'new') return <StoreNotFound />;
+  if (!store && storeId !== 'new') {
+    return (
+      <div className={styles.notFound}>{t('stores.storeDetails.notFound')}</div>
+    );
+  }
+
   if (loading)
     return (
       <Modal isOpen={modalOpen} onClose={handleCloseModal}>
@@ -107,11 +86,19 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = ({
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
+      validationSchema={() => validationSchemaStore(t)}
+      onSubmit={(values) =>
+        handleSubmitFormStore(
+          store,
+          storeId,
+          dispatch,
+          setInitialValues,
+          values
+        )
+      }
       enableReinitialize
     >
-      {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
+      {({ errors, touched, setFieldValue, isValid, dirty }) => (
         <Form className={styles.container}>
           <InputLabel
             label={t('stores.table.name')}
@@ -130,6 +117,13 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = ({
             touched={touched}
             rows={4}
           />
+
+          <Logo
+            setFieldValue={setFieldValue}
+            previewUrl={previewUrl}
+            setPreviewUrl={setPreviewUrl}
+          />
+
           <div className={styles.buttonContainer}>
             <Button
               text={t('save')}

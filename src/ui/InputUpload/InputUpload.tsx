@@ -4,7 +4,7 @@ import { IInputUploadProps } from '../types';
 import styles from './InputUpload.module.css';
 
 export const InputUpload: React.FC<IInputUploadProps> = React.memo(
-  ({ id, name, required, value, onChange, acceptFiles, multiple }) => {
+  ({ id, name, required, onChange, acceptFiles, multiple }) => {
     const { t } = useTranslation();
 
     return (
@@ -14,7 +14,6 @@ export const InputUpload: React.FC<IInputUploadProps> = React.memo(
           id={id}
           name={name}
           type="file"
-          value={value}
           onChange={onChange}
           accept={acceptFiles}
           required={required}

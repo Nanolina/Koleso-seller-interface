@@ -149,7 +149,9 @@
       "logo": "Logo"
     },
     "validation": {
-      "nameRequired": "The name of the store is required"
+      "nameRequired": "The name of the store is required",
+      "formatLogo": "The image format should be either jpeg or png",
+      "sizeLogo": "The image size should not exceed 500 KB"
     },
     "storeDetails": {
       "notFound": "Store not found"

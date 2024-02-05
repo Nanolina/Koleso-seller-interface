@@ -1,17 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ICreateStoreData, IStore } from '../../../modules/stores';
+import { IStore } from '../../../modules/stores';
 import { ProductService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
 
 export const handleCreateStore = createAsyncThunk(
   'store/create',
-  async (
-    storesData: ICreateStoreData,
-    { rejectWithValue }
-  ): Promise<IStore[]> => {
+  async (storeFormData: FormData, { rejectWithValue }): Promise<IStore[]> => {
     try {
       // Submit a request
-      const response: any = await ProductService.createStore(storesData);
+      const response: any = await ProductService.createStore(storeFormData);
 
       // Return data to be saved in store
       return response.data.stores;

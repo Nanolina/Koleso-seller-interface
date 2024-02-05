@@ -1,14 +1,14 @@
 export interface ICreateStoreData {
   name: string;
   description?: string;
-  logo?: string | null;
+  logo?: string;
 }
 
 export interface IStore {
   id: string;
   name: string;
   description?: string;
-  logo?: string | null;
+  logo?: string;
 }
 
 export interface IStoresState {
@@ -21,4 +21,16 @@ export interface IStoresState {
 export interface IStoreDetailsFormProps {
   modalOpen: boolean;
   handleCloseModal: () => void;
+}
+
+export interface IUpdateStoreArg {
+  id: string;
+  storeFormData: FormData;
+}
+
+export interface ILogoProps {
+  valuesLogo?: string;
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
+  previewUrl: string | null;
+  setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }

@@ -31,7 +31,6 @@ export interface IInputUploadLabelProps {
   id: string;
   name: string;
   required?: boolean;
-  value?: any;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   acceptFiles: string;
   multiple?: boolean;

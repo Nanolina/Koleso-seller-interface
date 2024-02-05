@@ -1,18 +1,12 @@
 import { AxiosResponse } from 'axios';
 import { productServiceAPI } from '../http';
-import { ICreateStoreData, IStore } from '../modules/stores';
+import { IStore } from '../modules/stores';
 
 export class ProductService {
-  static async createStore({
-    name,
-    description,
-  }: // logo,
-  ICreateStoreData): Promise<AxiosResponse<IStore[]>> {
-    return productServiceAPI.post<IStore[]>('/store', {
-      name,
-      description,
-      // logo,
-    });
+  static async createStore(
+    storeFormData: FormData
+  ): Promise<AxiosResponse<IStore[]>> {
+    return productServiceAPI.post<IStore[]>('/store', storeFormData);
   }
 
   static async getAllStores(): Promise<AxiosResponse<IStore[]>> {
@@ -23,14 +17,10 @@ export class ProductService {
     return productServiceAPI.get<IStore>(`/store/${id}`);
   }
 
-  static async updateStore({
-    id,
-    name,
-    description,
-  }: IStore): Promise<AxiosResponse<IStore>> {
-    return productServiceAPI.patch<IStore>(`/store/${id}`, {
-      name,
-      description,
-    });
+  static async updateStore(
+    id: string,
+    storeFormData: FormData
+  ): Promise<AxiosResponse<IStore>> {
+    return productServiceAPI.patch<IStore>(`/store/${id}`, storeFormData);
   }
 }
