@@ -3,6 +3,7 @@ import { IStoresState } from '../../modules/stores';
 import {
   createStoreCases,
   getAllStoresCases,
+  removeStoreCases,
   updateStoreCases,
 } from '../cases/store';
 import { storesInitialState } from '../initialStates';
@@ -15,6 +16,7 @@ const storesSlice = createSlice({
     createStoreCases(builder);
     getAllStoresCases(builder);
     updateStoreCases(builder);
+    removeStoreCases(builder);
   },
 });
 

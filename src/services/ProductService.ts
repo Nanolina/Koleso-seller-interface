@@ -23,4 +23,8 @@ export class ProductService {
   ): Promise<AxiosResponse<IStore>> {
     return productServiceAPI.patch<IStore>(`/store/${id}`, storeFormData);
   }
+
+  static async removeStore(id: string): Promise<AxiosResponse<IStore>> {
+    return productServiceAPI.delete(`/store/${id}`);
+  }
 }

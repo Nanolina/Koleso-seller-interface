@@ -89,6 +89,13 @@ select {
   background-color: white;
 }
 
+.removeText {
+  padding-top: 100px;
+  color: var(--red);
+  cursor: pointer;
+  text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
   .authContainer {
     width: 90%;

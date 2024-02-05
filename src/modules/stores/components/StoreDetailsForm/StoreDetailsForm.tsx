@@ -9,7 +9,10 @@ import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
-import { handleGetAllStores } from '../../../../redux/thunks/store';
+import {
+  handleGetAllStores,
+  handleRemoveStore,
+} from '../../../../redux/thunks/store';
 import { Button } from '../../../../ui/Button/Button';
 import { Modal } from '../../../modal/Modal/Modal';
 import {
@@ -130,6 +133,15 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = ({
               type="submit"
               disabled={!isValid || !dirty}
             />
+
+            {storeId && (
+              <span
+                className="removeText"
+                onClick={() => dispatch(handleRemoveStore(storeId))}
+              >
+                {t('stores.storeDetails.removeStore')}
+              </span>
+            )}
           </div>
 
           {error && <MessageBox errorMessage={error} />}

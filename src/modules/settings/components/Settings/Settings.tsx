@@ -19,7 +19,7 @@ export const Settings: React.FC = () => {
         redirectPage="password"
       />
 
-      <span className={styles.signOut} onClick={() => setModalOpen(true)}>
+      <span className="removeText" onClick={() => setModalOpen(true)}>
         {t('settings.signOutOfAccount')}
       </span>
 

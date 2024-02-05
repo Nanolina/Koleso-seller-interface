@@ -154,7 +154,8 @@
       "sizeLogo": "The image size should not exceed 500 KB"
     },
     "storeDetails": {
-      "notFound": "Store not found"
+      "notFound": "Store not found",
+      "removeStore": "Delete store"
     }
   },
   "orders": {
