@@ -1,3 +1,4 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import { TFunction } from 'i18next';
 import * as Yup from 'yup';
 import {
@@ -37,34 +38,41 @@ export const handleSubmitFormStore = async (
   storeId: string | undefined,
   dispatch: AppDispatch,
   setInitialValues: React.Dispatch<React.SetStateAction<ICreateStoreData>>,
-  values: ICreateStoreData
+  values: ICreateStoreData,
+  navigate: any
 ) => {
+  // Get data from values
   const { name, description, logo } = values;
 
+  // Add data to form data
   const storeFormData = new FormData();
   storeFormData.append('name', name);
   if (description) storeFormData.append('description', description);
   if (logo) storeFormData.append('logo', logo);
 
-  let action;
+  let data: any;
+  // Create store
   if (storeId === 'new') {
-    action = dispatch(handleCreateStore(storeFormData));
+    data = await dispatch(handleCreateStore(storeFormData));
+
+    // Update store
   } else if (store && storeId) {
-    action = dispatch(handleUpdateStore({ id: storeId, storeFormData }));
+    data = await dispatch(handleUpdateStore({ id: storeId, storeFormData }));
   }
 
-  if (action) {
-    action
-      .then(() => {
-        setInitialValues({
-          name: values.name,
-          description: values.description || '',
-          logo: values.logo,
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  // Get data from DB
+  const storeFromDB: IStore = unwrapResult(data);
+
+  // Set initial values
+  if (storeFromDB) {
+    setInitialValues({
+      name: values.name,
+      description: values.description || '',
+      logo: values.logo,
+    });
+
+    // Navigate
+    navigate(`/store/${storeFromDB.id}`);
   }
 };
 
@@ -72,14 +80,22 @@ export const handleRemoveFormStore = async (
   storeId: string | undefined,
   dispatch: AppDispatch,
   previewUrl: string | null,
-  setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>
+  setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>,
+  setInitialValues: React.Dispatch<React.SetStateAction<ICreateStoreData>>,
+  navigate: any
 ) => {
   if (storeId && storeId !== 'new') {
     dispatch(handleRemoveStore(storeId));
 
+    setInitialValues(initialValuesStore);
+
+    // Clearing preview logo URL to free up resources
     if (previewUrl) {
       URL.revokeObjectURL(previewUrl);
       setPreviewUrl(null);
     }
+
+    // Navigate
+    navigate('/store/new');
   }
 };

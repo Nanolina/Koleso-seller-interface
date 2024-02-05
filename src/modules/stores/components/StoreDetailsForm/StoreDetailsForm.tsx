@@ -3,7 +3,7 @@ import { Field, Form, Formik } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
@@ -27,6 +27,7 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = React.memo(
   ({ modalOpen, handleCloseModal }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
     const { storeId } = useParams<{ storeId: string }>();
 
     // useState
@@ -86,10 +87,11 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = React.memo(
           storeId,
           dispatch,
           setInitialValues,
-          values
+          values,
+          navigate
         );
       },
-      [store, storeId, dispatch]
+      [store, storeId, dispatch, navigate]
     );
 
     // Early returns
@@ -148,7 +150,7 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = React.memo(
                 disabled={!isValid || !dirty}
               />
 
-              {storeId && (
+              {storeId && storeId !== 'new' && store && (
                 <span
                   className="removeText"
                   onClick={() =>
@@ -156,7 +158,9 @@ export const StoreDetailsForm: React.FC<IStoreDetailsFormProps> = React.memo(
                       storeId,
                       dispatch,
                       previewUrl,
-                      setPreviewUrl
+                      setPreviewUrl,
+                      setInitialValues,
+                      navigate
                     )
                   }
                 >
