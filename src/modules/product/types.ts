@@ -60,8 +60,8 @@ export interface IProduct {
   sectionId: number;
   categoryId: number;
   subcategoryId: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IProductsState {

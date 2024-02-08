@@ -226,7 +226,7 @@ export const ProductDetailsForm: React.FC<IProductDetailsFormProps> =
               <Button
                 text={t('save')}
                 type="submit"
-                disabled={!isValid || !dirty}
+                disabled={!isValid}
               />
 
               {productId && productId !== 'new' && product && (

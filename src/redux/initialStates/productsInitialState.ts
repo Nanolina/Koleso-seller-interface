@@ -22,8 +22,8 @@ export const productInitialState = {
   sectionId: 0,
   categoryId: 0,
   subcategoryId: 0,
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
 };
 
 export const productsInitialState: IProductsState = {

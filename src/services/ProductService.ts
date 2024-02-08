@@ -7,8 +7,8 @@ export class ProductService {
   // Stores
   static async createStore(
     storeFormData: FormData
-  ): Promise<AxiosResponse<IStore[]>> {
-    return productServiceAPI.post<IStore[]>('/store', storeFormData);
+  ): Promise<AxiosResponse<IStore>> {
+    return productServiceAPI.post<IStore>('/store', storeFormData);
   }
 
   static async getAllStores(): Promise<AxiosResponse<IStore[]>> {
@@ -31,6 +31,13 @@ export class ProductService {
   }
 
   // Products
+  static async createProduct(
+    productFormData: FormData
+  ): Promise<AxiosResponse<IProduct>> {
+    console.log('sendedData', productFormData);
+    return productServiceAPI.post<IProduct>('/product', productFormData);
+  }
+
   static async getAllProducts(): Promise<AxiosResponse<IProduct[]>> {
     return productServiceAPI.get<IProduct[]>('/product');
   }

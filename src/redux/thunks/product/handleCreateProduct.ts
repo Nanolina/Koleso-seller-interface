@@ -3,12 +3,12 @@ import { IProduct } from '../../../modules/product';
 import { ProductService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
 
-export const handleGetProductById = createAsyncThunk(
-  'product/get-by-id',
-  async (id: string, { rejectWithValue }): Promise<IProduct> => {
+export const handleCreateProduct = createAsyncThunk(
+  'product/create',
+  async (productFormData: any, { rejectWithValue }): Promise<IProduct> => {
     try {
       // Submit a request
-      const response = await ProductService.getProductById(id);
+      const response: any = await ProductService.createProduct(productFormData);
 
       // Return data to be saved in product
       return response.data;

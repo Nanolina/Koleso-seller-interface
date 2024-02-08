@@ -10,7 +10,7 @@ export const handleGetAllProducts = createAsyncThunk(
       // Submit a request
       const response = await ProductService.getAllProducts();
 
-      // Return data to be saved in store
+      // Return data to be saved in product
       return response.data;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);

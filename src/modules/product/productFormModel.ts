@@ -2,6 +2,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { TFunction } from 'i18next';
 import * as Yup from 'yup';
 import { AppDispatch } from '../../redux/store';
+import { handleCreateProduct } from '../../redux/thunks/product';
 import { ColorType, GenderType, ICreateProductData, IProduct } from './types';
 
 export const initialValuesProduct: ICreateProductData = {
@@ -37,17 +38,34 @@ export const handleSubmitFormProduct = async (
   navigate: any
 ) => {
   // Get data from values
-  const { name, description } = values;
+  const {
+    name,
+    description,
+    brand,
+    model,
+    articleSupplier,
+    priceWithoutDiscount,
+    finalPrice,
+  } = values;
+  console.log('name', name)
 
   // Add data to form data
   const productFormData = new FormData();
   productFormData.append('name', name);
+  if (brand) productFormData.append('brand', brand);
+  if (model) productFormData.append('model', model);
+  if (articleSupplier)
+    productFormData.append('articleSupplier', articleSupplier);
   if (description) productFormData.append('description', description);
+  // if (priceWithoutDiscount) productFormData.append('priceWithoutDiscount', priceWithoutDiscount);
+  // if (finalPrice) productFormData.append('finalPrice', finalPrice);
+
 
   let data: any;
   // Create product
   if (productId === 'new') {
-    // data = await dispatch(handleCreateProduct(productFormData));
+    // or try values
+    data = await dispatch(handleCreateProduct(productFormData));
   }
   //   // Update product
   // } else if (product && productId) {
