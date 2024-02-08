@@ -1,3 +1,4 @@
+import { FormikProps } from 'formik';
 import { ChangeEventHandler, HTMLInputTypeAttribute } from 'react';
 
 export interface ISelectProps {
@@ -15,12 +16,14 @@ export interface ISelectProps {
 export interface IInputLabelProps {
   label: string;
   id: string;
+  keyInLocalStorage?: string;
   name: string;
   inputType?: HTMLInputTypeAttribute;
   required?: boolean;
   extraText?: string;
   value?: any;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  setFieldValue?: FormikProps<any>['setFieldValue'];
   placeholder?: string;
   errors?: any;
   touched?: any;
@@ -53,8 +56,10 @@ export interface ISelectLabelProps {
 export interface ITextareaLabelProps {
   label: string;
   id: string;
+  keyInLocalStorage?: string;
   name: string;
   value?: any;
+  setFieldValue?: FormikProps<any>['setFieldValue'];
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
   rows?: number;
   required?: boolean;

@@ -2,6 +2,7 @@ import React from 'react';
 import { Input } from '../../ui/Input/Input';
 import { Label } from '../../ui/Label/Label';
 import { ValidationError } from '../../ui/ValidationError/ValidationError';
+import { saveValuesToLocalStorage } from '../../utils';
 import { IInputLabelProps } from '../types';
 import styles from './InputLabel.module.css';
 
@@ -9,16 +10,28 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
   ({
     label,
     id,
+    keyInLocalStorage,
     name,
     inputType,
     required,
     extraText,
     value,
-    onChange,
+    setFieldValue,
     placeholder,
     errors,
     touched,
   }) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (keyInLocalStorage && setFieldValue) {
+        return saveValuesToLocalStorage(
+          keyInLocalStorage,
+          name,
+          e.target.value,
+          setFieldValue
+        );
+      }
+    };
+
     return (
       <div className="elementWithLabelContainer">
         <Label id={id} text={label} required={required} />
@@ -29,6 +42,8 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
           required={required}
           hasError={errors[name] && touched[name]}
           placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
         />
         {extraText && <i className={styles.extraText}>{extraText}</i>}
         {errors[name] && touched[name] && (

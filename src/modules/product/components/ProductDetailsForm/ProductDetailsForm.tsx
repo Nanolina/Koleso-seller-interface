@@ -33,10 +33,14 @@ export const ProductDetailsForm: React.FC<IProductDetailsFormProps> =
     const navigate = useNavigate();
     const { productId } = useParams<{ productId: string }>();
 
+    const savedProduct = JSON.parse(localStorage.getItem('product') || '{}');
+
     // useState
     const [isProductFound, setIsProductFound] = useState<boolean>(true);
-    const [initialValues, setInitialValues] =
-      useState<ICreateProductData>(initialValuesProduct);
+    const [initialValues, setInitialValues] = useState<ICreateProductData>({
+      ...initialValuesProduct,
+      ...savedProduct,
+    });
 
     // Values from Redux
     const { product, loading, error, success } = useSelector(
@@ -117,12 +121,15 @@ export const ProductDetailsForm: React.FC<IProductDetailsFormProps> =
         onSubmit={handleSubmit}
         enableReinitialize
       >
-        {({ errors, touched, setFieldValue, isValid, dirty }) => (
+        {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
           <Form className={styles.container}>
             <InputLabel
               label={t('products.table.name')}
               id="name"
               name="name"
+              keyInLocalStorage="product"
+              value={values.name}
+              setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
               required
@@ -133,26 +140,32 @@ export const ProductDetailsForm: React.FC<IProductDetailsFormProps> =
               label={t('products.table.brand')}
               id="brand"
               name="brand"
+              keyInLocalStorage="product"
+              value={values.brand}
+              setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
-              required
             />
             <InputLabel
               label={t('products.table.model')}
               id="model"
               name="model"
+              keyInLocalStorage="product"
+              value={values.model}
+              setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
-              required
             />
             <InputLabel
               label={t('products.table.articleSupplier')}
               id="articleSupplier"
               name="articleSupplier"
+              keyInLocalStorage="product"
+              value={values.articleSupplier}
+              setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
               extraText={t('products.form.extraTextArticleSupplier')}
-              required
             />
 
             {/* <SelectLabel
@@ -172,10 +185,12 @@ export const ProductDetailsForm: React.FC<IProductDetailsFormProps> =
               label={t('products.table.description')}
               id="description"
               name="description"
+              keyInLocalStorage="product"
+              value={values.description}
+              setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
               rows={8}
-              required
             />
 
             {/* <PhotoUpload /> */}
@@ -183,6 +198,9 @@ export const ProductDetailsForm: React.FC<IProductDetailsFormProps> =
               label={t('products.table.priceWithoutDiscount')}
               id="priceWithoutDiscount"
               name="priceWithoutDiscount"
+              keyInLocalStorage="product"
+              value={values.priceWithoutDiscount}
+              setFieldValue={setFieldValue}
               extraText={t('products.form.price.oldPriceExtra')}
               errors={errors}
               touched={touched}
@@ -194,6 +212,9 @@ export const ProductDetailsForm: React.FC<IProductDetailsFormProps> =
               label={t('products.table.finalPrice')}
               id="finalPrice"
               name="finalPrice"
+              keyInLocalStorage="product"
+              value={values.finalPrice}
+              setFieldValue={setFieldValue}
               extraText={t('products.form.price.priceExtra')}
               errors={errors}
               touched={touched}

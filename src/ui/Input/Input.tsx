@@ -35,6 +35,8 @@ export const Input: React.FC<IInputProps> = React.memo(
         <Field
           id={id}
           name={name}
+          value={value}
+          onChange={onChange}
           as="input"
           type={inputType}
           placeholder={placeholder}
