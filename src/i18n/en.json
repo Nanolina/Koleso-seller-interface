@@ -20,9 +20,10 @@
   "products": {
     "addProduct": "Add product",
     "table": {
-      "articleKoleso": "Article KOLESO",
+      "name": "Name",
+      "description": "Description",
+      "articleKoleso": "Article Koleso",
       "articleSupplier": "Supplier's article",
-      "title": "Title",
       "brand": "Brand",
       "model": "Model",
       "image": "Image",
@@ -32,8 +33,11 @@
       "finalPrice": "Final price",
       "remainingQuantity": "Remaining quantity"
     },
+    "productDetails": {
+      "notFound": "Product not found",
+      "removeProduct": "Delete product"
+    },
     "form": {
-      "title": "Title",
       "selectSection": "Select a section",
       "selectCategory": "Select a category",
       "selectSubcategory": "Select a subcategory",
@@ -115,7 +119,6 @@
         "White": "White",
         "Yellow": "Yellow"
       },
-      "description": "Description",
       "photo": {
         "label": "Photo",
         "select": "Choose the color of the product for the photo",
@@ -187,7 +190,7 @@
   "orderDetails": {
     "title": "Order",
     "from": "from",
-    "articleKoleso": "Article KOLESO",
+    "articleKoleso": "Article Koleso",
     "articleSupplier": "Supplier's article",
     "color": "Color",
     "size": "Size",
@@ -206,8 +209,8 @@
   "notifications": {
     "newOrder": "New order",
     "newOrderDescription": "You have a new order № {{orderNumber}} with shipping {{deliveryMethod}}. Please go to ”Orders” and process the corresponding order. Don't forget to update the status.",
-    "rejectionDescription": "Unfortunately, there has been a rejection of an item: item number {{articleKOLESO}} from order number {{orderNumber}} with a value of {{price}} €. You will need to pick up the item from the pickup point at: {{addressPickupPoint}} by {{expirationDate}}.",
-    "returnDescription": "Unfortunately, there has been a return of an item: item number {{articleKOLESO}} from order number {{orderNumber}}. Reason for return: {{reason}}. You will need to pick up the item from the pickup location at: {{addressPickupPoint}} by {{expirationDate}}."
+    "rejectionDescription": "Unfortunately, there has been a rejection of an item: item number {{articleKoleso}} from order number {{orderNumber}} with a value of {{price}} €. You will need to pick up the item from the pickup point at: {{addressPickupPoint}} by {{expirationDate}}.",
+    "returnDescription": "Unfortunately, there has been a return of an item: item number {{articleKoleso}} from order number {{orderNumber}}. Reason for return: {{reason}}. You will need to pick up the item from the pickup location at: {{addressPickupPoint}} by {{expirationDate}}."
   },
   "settings": {
     "phone": "Phone",

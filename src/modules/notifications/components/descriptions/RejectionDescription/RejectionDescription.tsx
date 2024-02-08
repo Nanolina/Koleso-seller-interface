@@ -8,7 +8,7 @@ export const RejectionDescription: React.FC<INotificationProps> = React.memo(
     const { t } = useTranslation();
 
     return t('notifications.rejectionDescription', {
-      articleKOLESO: notification.articleKOLESO,
+      articleKoleso: notification.articleKoleso,
       orderNumber: notification.orderNumber,
       price: notification.price,
       expirationDate: notification.expirationDate,

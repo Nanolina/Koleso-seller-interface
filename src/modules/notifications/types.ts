@@ -4,7 +4,7 @@ export interface INotification {
   date: string;
   orderNumber: string;
   deliveryMethod?: string;
-  articleKOLESO?: string;
+  articleKoleso?: string;
   price?: string;
   expirationDate?: string;
   reason?: string;

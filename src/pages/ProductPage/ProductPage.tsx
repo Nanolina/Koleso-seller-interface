@@ -14,7 +14,7 @@ export const ProductPage: React.FC = () => {
   // Close modal
   const handleCloseModal = () => {
     setModalOpen(!modalOpen);
-    navigate('/stores');
+    navigate('/products');
   };
 
   useEffect(() => {

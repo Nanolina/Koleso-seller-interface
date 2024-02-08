@@ -18,11 +18,12 @@
     "Notifications": "Уведомления"
   },
   "products": {
-    "addProduct": "Добавить товар",
+    "addProduct": "Добавить магазин",
     "table": {
-      "articleKoleso": "Артикул KOLESO",
+      "name": "Название",
+      "description": "Описание",
+      "articleKoleso": "Артикул Koleso",
       "articleSupplier": "Артикул поставщика",
-      "title": "Название",
       "brand": "Бренд",
       "model": "Модель",
       "image": "Изображение",
@@ -32,8 +33,11 @@
       "finalPrice": "Конечная цена",
       "remainingQuantity": "Оставшееся количество"
     },
+    "productDetails": {
+      "notFound": "Продукт не найден",
+      "removeProduct": "Удалить магазин"
+    },
     "form": {
-      "title": "Название",
       "selectSection": "Выберите раздел",
       "selectCategory": "Выберите категорию",
       "selectSubcategory": "Выберите подкатегорию",
@@ -115,7 +119,6 @@
         "White": "Белый",
         "Yellow": "Желтый"
       },
-      "description": "Описание",
       "photo": {
         "label": "Фото",
         "select": "Выберите цвет товара для фото",
@@ -187,7 +190,7 @@
   "orderDetails": {
     "title": "Заказ",
     "from": "от",
-    "articleKoleso": "Артикул KOLESO",
+    "articleKoleso": "Артикул Koleso",
     "articleSupplier": "Артикул поставщика",
     "color": "Цвет",
     "size": "Размер",
@@ -206,8 +209,8 @@
   "notifications": {
     "newOrder": "Новый заказ",
     "newOrderDescription": "У вас появился новый заказ № {{orderNumber}} с доставкой {{deliveryMethod}}. Пожалуйста, перейдите в раздел “Заказы” и обработайте соответствующий заказ. Не забудьте обновить статус.",
-    "rejectionDescription": "К сожалению, произошел отказ от товара: артикул № {{articleKOLESO}} из заказа № {{orderNumber}} стоимостью {{price}} €. Вам необходимо будет забрать товар с пункта выдачи по адресу: {{addressPickupPoint}} до {{expirationDate}}.",
-    "returnDescription": "К сожалению, произошел возврат товара: артикул № {{articleKOLESO}} из заказа № {{orderNumber}}. Причина возврата: {{reason}}. Вам необходимо будет забрать товар с пункта выдачи по адресу: {{addressPickupPoint}} до {{expirationDate}}."
+    "rejectionDescription": "К сожалению, произошел отказ от товара: артикул № {{articleKoleso}} из заказа № {{orderNumber}} стоимостью {{price}} €. Вам необходимо будет забрать товар с пункта выдачи по адресу: {{addressPickupPoint}} до {{expirationDate}}.",
+    "returnDescription": "К сожалению, произошел возврат товара: артикул № {{articleKoleso}} из заказа № {{orderNumber}}. Причина возврата: {{reason}}. Вам необходимо будет забрать товар с пункта выдачи по адресу: {{addressPickupPoint}} до {{expirationDate}}."
   },
   "settings": {
     "phone": "Номер телефона",

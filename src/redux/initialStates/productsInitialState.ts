@@ -2,7 +2,7 @@ import { ColorType, GenderType, IProductsState } from '../../modules/product';
 
 export const productInitialState = {
   id: '',
-  title: '',
+  name: '',
   description: '',
   image: '',
   imagePublicId: '',
@@ -18,6 +18,7 @@ export const productInitialState = {
   priceWithoutDiscount: 0,
   finalPrice: 0,
   storeId: '',
+  userId: '',
   sectionId: 0,
   categoryId: 0,
   subcategoryId: 0,

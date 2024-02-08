@@ -17,6 +17,8 @@
   padding: 70px 20px 20px 20px;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  max-height: 70vh; /* 90% of the height of the visible part of the screen */
+  overflow-y: auto;
 }
 
 .modalBigContent {

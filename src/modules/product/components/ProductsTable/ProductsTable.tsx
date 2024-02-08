@@ -44,7 +44,7 @@ export const ProductsTable: React.FC = () => {
           <HeaderCell></HeaderCell>
           <HeaderCell>{t('products.table.image')}</HeaderCell>
           <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
-          <HeaderCell>{t('products.table.title')}</HeaderCell>
+          <HeaderCell>{t('products.table.name')}</HeaderCell>
           <HeaderCell>{t('products.table.brand')}</HeaderCell>
           <HeaderCell>{t('products.table.model')}</HeaderCell>
           <HeaderCell>{t('products.table.color')}</HeaderCell>
@@ -64,7 +64,7 @@ export const ProductsTable: React.FC = () => {
               >
                 <TableCell cell={product.image} />
                 <TableCell cell={product.articleKoleso} />
-                <TableCell cell={product.title} />
+                <TableCell cell={product.name} />
                 <TableCell cell={product.brand} />
                 <TableCell cell={product.model} />
                 <TableCell cell={t(`products.form.color.${product.color}`)} />

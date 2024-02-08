@@ -15,7 +15,7 @@ export const ProductsPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const handleAddProduct = () => {
-    navigate('/add-product');
+    navigate('/product/new');
   };
 
   return (

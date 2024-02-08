@@ -1,112 +1,236 @@
-import React from 'react';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { Field, Form, Formik } from 'formik';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
-import { SelectLabel } from '../../../../components/SelectLabel/SelectLabel';
+import { Loader } from '../../../../components/Loader/Loader';
+import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
-import { GENDERS } from '../../../../consts';
 import { IRootState } from '../../../../redux/rootReducer';
+import { AppDispatch } from '../../../../redux/store';
+import { handleGetProductById } from '../../../../redux/thunks/product';
 import { Button } from '../../../../ui/Button/Button';
-import { PhotoUpload } from '../../../photo';
-import { AddParameters } from '../../../productForm/components/AddParameters/AddParameters';
-import { CatalogSelects } from '../../../productForm/components/CatalogSelects/CatalogSelects';
-import { AddComposition } from '../../../productForm/components/composition/AddComposition/AddComposition';
-import { useProductForm } from '../../../productForm/hooks/useProductForm';
-import { IProductDetailsFormProps } from '../../types';
+import { Modal } from '../../../modal/Modal/Modal';
+import {
+  handleSubmitFormProduct,
+  initialValuesProduct,
+  validationSchemaProduct,
+} from '../../productFormModel';
+import {
+  ColorType,
+  ICreateProductData,
+  IProduct,
+  IProductDetailsFormProps,
+} from '../../types';
+import styles from './ProductDetailsForm.module.css';
 
 export const ProductDetailsForm: React.FC<IProductDetailsFormProps> =
   React.memo(({ modalOpen, handleCloseModal }) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
+    const { productId } = useParams<{ productId: string }>();
 
-    const {
-      title,
-      brand,
-      model,
-      articleSupplier,
-      gender,
-      description,
-      oldPrice,
-      price,
-    } = useSelector((state: IRootState) => state.productCreationStrings);
+    // useState
+    const [isProductFound, setIsProductFound] = useState<boolean>(true);
+    const [initialValues, setInitialValues] =
+      useState<ICreateProductData>(initialValuesProduct);
 
-    const { handleChange } = useProductForm();
+    // Values from Redux
+    const { product, loading, error, success } = useSelector(
+      (state: IRootState) => state.products
+    );
+
+    // useEffect
+    useEffect(() => {
+      const fetchData = async () => {
+        // If the correct productId in the url
+        if (productId && productId !== 'new') {
+          // Get data of product from DB
+          const data = await dispatch(handleGetProductById(productId));
+
+          // Retrieve data from a completed promise
+          const product: IProduct = unwrapResult(data);
+
+          // Set initial values based on the data from DB
+          if (product) {
+            setInitialValues({
+              name: product.name,
+              description: product.description || '',
+              image: '',
+              color: ColorType.White,
+              composition: [],
+              quantity: 0,
+              priceWithoutDiscount: 0,
+              finalPrice: 0,
+              storeId: '',
+              sectionId: 0,
+              categoryId: 0,
+              subcategoryId: 0,
+            });
+          } else {
+            setIsProductFound(false);
+          }
+        }
+      };
+
+      fetchData();
+    }, [dispatch, productId]);
+
+    // Submit data
+    const handleSubmit = useCallback(
+      (values: ICreateProductData) => {
+        handleSubmitFormProduct(
+          product,
+          productId,
+          dispatch,
+          setInitialValues,
+          values,
+          navigate
+        );
+      },
+      [product, productId, dispatch, navigate]
+    );
+
+    // Early returns
+    if (!isProductFound) {
+      return (
+        <div className={styles.notFound}>
+          {t('products.productDetails.notFound')}
+        </div>
+      );
+    }
+
+    if (loading)
+      return (
+        <Modal isOpen={modalOpen} onClose={handleCloseModal}>
+          <Loader />
+        </Modal>
+      );
 
     return (
-      <>
-        <InputLabel
-          label={t('products.form.title')}
-          id="title"
-          name="title"
-          value={title}
-          onChange={handleChange('title')}
-          required
-        />
-        <CatalogSelects />
-        <InputLabel
-          label={t('products.table.brand')}
-          id="brand"
-          name="brand"
-          value={brand}
-          onChange={handleChange('brand')}
-        />
-        <InputLabel
-          label={t('products.table.model')}
-          id="model"
-          name="model"
-          value={model}
-          onChange={handleChange('model')}
-        />
-        <InputLabel
-          label={t('products.table.articleSupplier')}
-          id="articleSupplier"
-          name="articleSupplier"
-          extraText={t('products.form.extraTextArticleSupplier')}
-          value={articleSupplier}
-          onChange={handleChange('articleSupplier')}
-        />
-        <SelectLabel
-          id="gender"
-          name="gender"
-          label={t('products.form.gender.label')}
-          options={GENDERS}
-          onChange={handleChange('gender')}
-          value={gender}
-          firstText={t('products.form.gender.select')}
-          translationType="products.form.gender"
-        />
-        <AddComposition />
-        <AddParameters />
-        <TextareaLabel
-          label={t('products.form.description')}
-          id="description"
-          name="description"
-          value={description}
-          onChange={handleChange('description')}
-          rows={8}
-          required
-        />
-        <PhotoUpload />
-        <InputLabel
-          label={t('products.table.priceWithoutDiscount')}
-          id="oldPrice"
-          name="oldPrice"
-          extraText={t('products.form.price.oldPriceExtra')}
-          value={oldPrice}
-          onChange={handleChange('oldPrice')}
-          placeholder="0"
-          required
-        />
-        <InputLabel
-          label={t('products.table.finalPrice')}
-          id="price"
-          name="price"
-          extraText={t('products.form.price.priceExtra')}
-          value={price}
-          onChange={handleChange('price')}
-          placeholder="0"
-          required
-        />
-        <Button text={t('products.addProduct')} onClick={() => {}} />
-      </>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={() => validationSchemaProduct(t)}
+        onSubmit={handleSubmit}
+        enableReinitialize
+      >
+        {({ errors, touched, setFieldValue, isValid, dirty }) => (
+          <Form className={styles.container}>
+            <InputLabel
+              label={t('products.table.name')}
+              id="name"
+              name="name"
+              errors={errors}
+              touched={touched}
+              required
+            />
+
+            {/* <CatalogSelects /> */}
+            <InputLabel
+              label={t('products.table.brand')}
+              id="brand"
+              name="brand"
+              errors={errors}
+              touched={touched}
+              required
+            />
+            <InputLabel
+              label={t('products.table.model')}
+              id="model"
+              name="model"
+              errors={errors}
+              touched={touched}
+              required
+            />
+            <InputLabel
+              label={t('products.table.articleSupplier')}
+              id="articleSupplier"
+              name="articleSupplier"
+              errors={errors}
+              touched={touched}
+              extraText={t('products.form.extraTextArticleSupplier')}
+              required
+            />
+
+            {/* <SelectLabel
+              id="gender"
+              name="gender"
+              label={t('products.form.gender.label')}
+              options={GENDERS}
+              onChange={handleChange('gender')}
+              value={gender}
+              firstText={t('products.form.gender.select')}
+              translationType="products.form.gender"
+            />
+            <AddComposition />
+            <AddParameters /> */}
+            <Field
+              as={TextareaLabel}
+              label={t('products.table.description')}
+              id="description"
+              name="description"
+              errors={errors}
+              touched={touched}
+              rows={8}
+              required
+            />
+
+            {/* <PhotoUpload /> */}
+            <InputLabel
+              label={t('products.table.priceWithoutDiscount')}
+              id="priceWithoutDiscount"
+              name="priceWithoutDiscount"
+              extraText={t('products.form.price.oldPriceExtra')}
+              errors={errors}
+              touched={touched}
+              placeholder="0"
+              required
+            />
+
+            <InputLabel
+              label={t('products.table.finalPrice')}
+              id="finalPrice"
+              name="finalPrice"
+              extraText={t('products.form.price.priceExtra')}
+              errors={errors}
+              touched={touched}
+              placeholder="0"
+              required
+            />
+
+            <div className={styles.buttonContainer}>
+              <Button
+                text={t('save')}
+                type="submit"
+                disabled={!isValid || !dirty}
+              />
+
+              {productId && productId !== 'new' && product && (
+                <span
+                  className="removeText"
+                  // onClick={() =>
+                  // handleRemoveFormStore(
+                  //   storeId,
+                  //   dispatch,
+                  //   previewUrl,
+                  //   setPreviewUrl,
+                  //   setInitialValues,
+                  //   navigate
+                  // )
+                  // }
+                >
+                  {t('products.productDetails.removeProduct')}
+                </span>
+              )}
+            </div>
+
+            {error && <MessageBox errorMessage={error} />}
+            {success && <MessageBox successMessage={success} />}
+          </Form>
+        )}
+      </Formik>
     );
   });

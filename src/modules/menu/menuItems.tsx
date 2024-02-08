@@ -25,7 +25,7 @@ export const menuItems = [
     id: '8333921e-0a23-420a-83ad-5a17876140bd',
     title: 'Products',
     icon: <BsBoxes size={iconSize} color={color} />,
-    redirectPage: '/',
+    redirectPage: '/products',
   },
   {
     id: '501d827c-ba6f-4d20-b95e-c406dd6cc1c3',

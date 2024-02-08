@@ -118,7 +118,7 @@ const App: React.FC = () => {
                   path="/settings/password"
                   element={<SettingsPasswordPage />}
                 />
-                <Route path="*" element={<Navigate to="/products" replace />} />
+                {/* <Route path="*" element={<Navigate to="/products" replace />} /> */}
               </>
             )}
           </Routes>

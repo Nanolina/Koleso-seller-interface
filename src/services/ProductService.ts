@@ -34,4 +34,8 @@ export class ProductService {
   static async getAllProducts(): Promise<AxiosResponse<IProduct[]>> {
     return productServiceAPI.get<IProduct[]>('/product');
   }
+
+  static async getProductById(id: string): Promise<AxiosResponse<IProduct>> {
+    return productServiceAPI.get<IProduct>(`/product/${id}`);
+  }
 }

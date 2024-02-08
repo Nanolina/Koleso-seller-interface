@@ -40,12 +40,12 @@ interface IComposition {
 
 export interface IProduct {
   id: string;
-  title: string;
+  name: string;
   description?: string;
   image: string;
-  imagePublicId?: string; // only from DB
+  imagePublicId: string;
   articleSupplier?: string;
-  articleKoleso?: string; // only from DB
+  articleKoleso: string;
   color: ColorType;
   size?: string;
   brand?: string;
@@ -56,7 +56,7 @@ export interface IProduct {
   priceWithoutDiscount: number;
   finalPrice: number;
   storeId: string;
-  userId?: string; // only from DB
+  userId: string;
   sectionId: number;
   categoryId: number;
   subcategoryId: number;
@@ -75,4 +75,24 @@ export interface IProductsState {
 export interface IProductDetailsFormProps {
   modalOpen: boolean;
   handleCloseModal: () => void;
+}
+
+export interface ICreateProductData {
+  name: string;
+  description?: string;
+  image: string;
+  articleSupplier?: string;
+  color: ColorType;
+  size?: string;
+  brand?: string;
+  model?: string;
+  gender?: GenderType;
+  composition: IComposition[];
+  quantity: number;
+  priceWithoutDiscount: number;
+  finalPrice: number;
+  storeId: string;
+  sectionId: number;
+  categoryId: number;
+  subcategoryId: number;
 }
