@@ -11,12 +11,12 @@ import './App.css';
 import { Loader } from './components/Loader/Loader';
 import i18n from './i18n/i18n';
 import { AddDocumentsPage } from './pages/AddDocumentsPage/AddDocumentsPage';
-import { AddProductPage } from './pages/AddProductPage/AddProductPage';
 import { EmailConfirmationPage } from './pages/EmailConfirmationPage/EmailConfirmationPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
 import { NotificationsPage } from './pages/NotificationsPage/NotificationsPage';
 import { OrderPage } from './pages/OrderPage/OrderPage';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
+import { ProductPage } from './pages/ProductPage/ProductPage';
 import { ProductsPage } from './pages/ProductsPage/ProductsPage';
 import { RequestPasswordRecoveryPage } from './pages/RequestPasswordRecoveryPage/RequestPasswordRecoveryPage';
 import { SetNewPasswordPage } from './pages/SetNewPasswordPage/SetNewPasswordPage';
@@ -99,8 +99,8 @@ const App: React.FC = () => {
 
             {isAuth && isVerifiedEmail && isActive && (
               <>
-                <Route path="/" element={<ProductsPage />} />
-                <Route path="/add-product" element={<AddProductPage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/product/:productId" element={<ProductPage />} />
                 <Route path="/stores" element={<StoresPage />} />
                 <Route path="/store/:storeId" element={<StorePage />} />
                 <Route path="/add-documents" element={<AddDocumentsPage />} />
@@ -118,7 +118,7 @@ const App: React.FC = () => {
                   path="/settings/password"
                   element={<SettingsPasswordPage />}
                 />
-                <Route path="*" element={<Navigate to="/" replace />} />
+                <Route path="*" element={<Navigate to="/products" replace />} />
               </>
             )}
           </Routes>

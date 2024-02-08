@@ -1,8 +1,10 @@
 import { AxiosResponse } from 'axios';
 import { productServiceAPI } from '../http';
+import { IProduct } from '../modules/product';
 import { IStore } from '../modules/stores';
 
 export class ProductService {
+  // Stores
   static async createStore(
     storeFormData: FormData
   ): Promise<AxiosResponse<IStore[]>> {
@@ -26,5 +28,10 @@ export class ProductService {
 
   static async removeStore(id: string): Promise<AxiosResponse<IStore>> {
     return productServiceAPI.delete<IStore>(`/store/${id}`);
+  }
+
+  // Products
+  static async getAllProducts(): Promise<AxiosResponse<IProduct[]>> {
+    return productServiceAPI.get<IProduct[]>('/product');
   }
 }

@@ -1,2 +1,6 @@
-export { storeInitialState, storesInitialState } from './storeInitialState';
+export {
+  productInitialState,
+  productsInitialState,
+} from './productsInitialState';
+export { storeInitialState, storesInitialState } from './storesInitialState';
 export { userInitialState } from './userInitialState';

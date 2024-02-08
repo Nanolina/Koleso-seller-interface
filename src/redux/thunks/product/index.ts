@@ -1,0 +1,1 @@
+export { handleGetAllProducts } from './handleGetAllProducts';
