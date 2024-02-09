@@ -62,3 +62,8 @@ export interface IAddItemButtonProps {
   text: string;
   onClick: () => void;
 }
+
+export interface IContainerProps {
+  isSmallContainer?: boolean;
+  children: any;
+}

@@ -21,15 +21,23 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
     errors,
     touched,
   }) => {
+    console.log('name', name);
+    console.log('value', value);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (keyInLocalStorage && setFieldValue) {
+      const eventValue = e.target.value;
+
+      // change setFieldValue as required field
+      if (setFieldValue && !keyInLocalStorage) {
+        setFieldValue(name, eventValue);
+      } else if (keyInLocalStorage && setFieldValue) {
         return saveValuesToLocalStorage(
           keyInLocalStorage,
           name,
-          e.target.value,
+          eventValue,
           setFieldValue
         );
       }
+      return;
     };
 
     return (

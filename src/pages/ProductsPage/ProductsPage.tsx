@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
@@ -12,16 +11,14 @@ export const ProductsPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
   const handleAddProduct = () => {
     navigate('/product/new');
   };
 
   return (
     <>
-      <SideMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      <Container onClick={() => setIsMenuOpen(false)}>
+      <SideMenu />
+      <Container>
         <Title text={t('menuItems.Products')} />
         <SearchBar />
         <AddItemButton

@@ -5,7 +5,6 @@ export interface IMenuItem {
   redirectPage: string;
 }
 
-export interface ISideMenuProps {
+export interface IMenuState {
   isMenuOpen: boolean;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }

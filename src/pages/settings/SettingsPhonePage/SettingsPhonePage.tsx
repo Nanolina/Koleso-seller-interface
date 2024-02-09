@@ -7,13 +7,12 @@ import { Title } from '../../../ui/Title/Title';
 
 export const SettingsPhonePage = () => {
   const { t } = useTranslation();
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [phone, setPhone] = useState<string>('');
 
   return (
     <>
-      <SideMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      <Container onClick={() => setIsMenuOpen(false)}>
+      <SideMenu />
+      <Container>
         <Title text={t('settings.phone')} />
         <Input
           value={phone}

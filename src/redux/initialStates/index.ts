@@ -1,3 +1,4 @@
+export { menuInitialState } from './menuInitialState';
 export {
   productInitialState,
   productsInitialState,

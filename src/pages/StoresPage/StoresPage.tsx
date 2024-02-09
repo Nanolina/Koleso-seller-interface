@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { SideMenu } from '../../modules/menu';
@@ -11,16 +10,14 @@ export const StoresPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
   const handleAddStore = () => {
     navigate('/store/new');
   };
 
   return (
     <>
-      <SideMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      <Container onClick={() => setIsMenuOpen(false)}>
+      <SideMenu />
+      <Container>
         <Title text={t('menuItems.Stores')} />
         <AddItemButton text={t('stores.addStore')} onClick={handleAddStore} />
         <StoresTable />

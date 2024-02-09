@@ -16,3 +16,9 @@
   padding: 3% 3%;
   background-color: white;
 }
+
+@media only screen and (max-width: 600px) {
+  .smallContainer {
+    margin: 0;
+  }
+}
