@@ -19,11 +19,6 @@ export interface IStoresState {
   error: any;
 }
 
-export interface IStoreDetailsFormProps {
-  modalOpen: boolean;
-  handleCloseModal: () => void;
-}
-
 export interface IUpdateStoreArg {
   id: string;
   storeFormData: FormData;

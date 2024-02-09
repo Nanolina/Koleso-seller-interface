@@ -72,11 +72,6 @@ export interface IProductsState {
   error: any;
 }
 
-export interface IProductDetailsFormProps {
-  modalOpen: boolean;
-  handleCloseModal: () => void;
-}
-
 export interface ICreateProductData {
   name: string;
   description?: string;
