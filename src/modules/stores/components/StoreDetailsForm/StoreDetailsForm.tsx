@@ -114,6 +114,7 @@ export const StoreDetailsForm: React.FC = () => {
             label={t('stores.table.name')}
             id="name"
             name="name"
+            keyInLocalStorage="store"
             value={values.name}
             setFieldValue={setFieldValue}
             errors={errors}
@@ -125,6 +126,7 @@ export const StoreDetailsForm: React.FC = () => {
             label={t('stores.table.description')}
             id="description"
             name="description"
+            keyInLocalStorage="store"
             value={values.description}
             setFieldValue={setFieldValue}
             errors={errors}

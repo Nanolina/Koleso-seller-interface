@@ -65,6 +65,7 @@ export interface IAddItemButtonProps {
 
 export interface IContainerProps {
   isSmallContainer?: boolean;
+  redirectToItemsPage?: any;
   onClick?: any;
   children: any;
 }

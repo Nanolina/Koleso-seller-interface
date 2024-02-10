@@ -2,5 +2,5 @@
   text-align: center;
   align-self: center;
   margin: 0;
-  color: #253858;
+  color: var(--dark-blue);
 }
