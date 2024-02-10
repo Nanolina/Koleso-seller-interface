@@ -21,8 +21,6 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
     errors,
     touched,
   }) => {
-    console.log('name', name);
-    console.log('value', value);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const eventValue = e.target.value;
 

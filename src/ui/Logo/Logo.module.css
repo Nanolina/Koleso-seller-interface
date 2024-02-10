@@ -1,0 +1,13 @@
+.authButton,
+.notAuthButton {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  border: none;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.authButton {
+  cursor: pointer;
+}

@@ -47,7 +47,6 @@ export const handleSubmitFormProduct = async (
     priceWithoutDiscount,
     finalPrice,
   } = values;
-  console.log('name', name)
 
   // Add data to form data
   const productFormData = new FormData();

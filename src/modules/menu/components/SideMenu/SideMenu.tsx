@@ -3,6 +3,7 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../../../../redux/rootReducer';
 import { toggleMenu } from '../../../../redux/slices/menuSlice';
+import { Logo } from '../../../../ui/Logo/Logo';
 import { menuItems } from '../../menuItems';
 import { MenuItem } from '../MenuItem/MenuItem';
 import styles from './SideMenu.module.css';
@@ -27,9 +28,7 @@ export const SideMenu: React.FC = () => {
         <ul className={styles.menuList}>{renderedMenuItems}</ul>
       </div>
       {!isMenuOpen ? (
-        <button className={styles.hamburgerButton} onClick={handleToggleMenu}>
-          <img src="logo.png" width={60} height={60} alt="logo" />
-        </button>
+        <Logo onClick={handleToggleMenu} />
       ) : (
         <button className={styles.arrowLeftButton} onClick={handleToggleMenu}>
           <IoIosArrowBack size={40} color="white" />
