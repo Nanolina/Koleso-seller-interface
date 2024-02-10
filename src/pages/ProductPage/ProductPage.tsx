@@ -1,14 +1,19 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SideMenu, useSideMenu } from '../../modules/menu';
 import { ProductDetailsFormik } from '../../modules/product';
+import { IRootState } from '../../redux/rootReducer';
 import { Container } from '../../ui/Container/Container';
 import { Title } from '../../ui/Title/Title';
 
 export const ProductPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { productId } = useParams<{ productId: string }>();
   const { handleCloseSideMenu } = useSideMenu();
+
+  const product = useSelector((state: IRootState) => state.products.product);
 
   return (
     <>
@@ -18,7 +23,13 @@ export const ProductPage: React.FC = () => {
         redirectToItemsPage={() => navigate('/products')}
         isSmallContainer
       >
-        <Title text={t('products.addProduct')} />
+        <Title
+          text={
+            product?.name && productId !== 'new'
+              ? product?.name
+              : t('products.addProduct')
+          }
+        />
         <ProductDetailsFormik />
       </Container>
     </>

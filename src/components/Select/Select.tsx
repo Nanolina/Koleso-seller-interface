@@ -11,7 +11,6 @@ export const Select: React.FC<ISelectProps> = React.memo(
     onChange,
     value,
     translationType,
-    firstText,
     isHalfWidth,
   }) => {
     const { t } = useTranslation();
@@ -24,11 +23,11 @@ export const Select: React.FC<ISelectProps> = React.memo(
         value={value}
         className={isHalfWidth ? styles.halfWidth : styles.select}
       >
-        <option value="">{firstText}</option>
+        <option value=""></option>
         {options.map((option: any) =>
           option.id ? (
             <option key={option.id} value={option.id}>
-              {t(`${translationType}.${option.title}`)}
+              {option.name}
             </option>
           ) : (
             <option key={option} value={option}>

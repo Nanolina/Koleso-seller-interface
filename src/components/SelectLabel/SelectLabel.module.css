@@ -5,13 +5,6 @@
   align-items: center;
   gap: 10px;
   position: relative;
-}
-
-.container {
-  width: 90.7%;
-}
-
-.fullWidth {
   width: 100%;
 }
 

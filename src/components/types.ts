@@ -44,13 +44,14 @@ export interface ISelectLabelProps {
   name: string;
   label: string;
   options: any;
+  keyInLocalStorage?: string;
   value?: any;
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  setFieldValue?: FormikProps<any>['setFieldValue'];
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   firstText: string;
   translationType?: string;
   extraText?: string;
   required?: boolean;
-  isFullWidth?: boolean;
 }
 
 export interface ITextareaLabelProps {

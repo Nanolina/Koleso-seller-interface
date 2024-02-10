@@ -44,7 +44,6 @@ export const PhotoUpload: React.FC = () => {
         firstText={t('products.form.photo.select')}
         translationType="products.form.color"
         extraText={t('products.form.photo.upTo')}
-        isFullWidth
         required
       />
 

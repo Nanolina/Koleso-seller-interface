@@ -35,7 +35,10 @@
     },
     "productDetails": {
       "notFound": "Продукт не найден",
-      "removeProduct": "Удалить магазин"
+      "removeProduct": "Удалить магазин",
+      "go": "Пожалуйста перейдите во вкладку",
+      "myStores": "Мои магазины",
+      "addAtLeastStore": "и добавьте хотя бы 1 магазин"
     },
     "form": {
       "selectSection": "Выберите раздел",
@@ -145,6 +148,7 @@
     }
   },
   "stores": {
+    "label": "Магазин",
     "addStore": "Добавить магазин",
     "table": {
       "name": "Название",

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Label } from '../../ui/Label/Label';
+import { saveValuesToLocalStorage } from '../../utils';
 import { Select } from '../Select/Select';
 import { ISelectLabelProps } from '../types';
 import styles from './SelectLabel.module.css';
@@ -10,16 +11,35 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
     name,
     label,
     options,
-    onChange,
+    keyInLocalStorage,
     value,
+    setFieldValue,
+    onChange,
     firstText,
     translationType,
     extraText,
     required,
-    isFullWidth,
   }) => {
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const eventValue = e.target.value;
+
+      // change setFieldValue as required field
+      if (setFieldValue && !keyInLocalStorage) {
+        setFieldValue(name, eventValue);
+      } else if (keyInLocalStorage && setFieldValue) {
+        return saveValuesToLocalStorage(
+          keyInLocalStorage,
+          name,
+          eventValue,
+          setFieldValue
+        );
+      }
+
+      return;
+    };
+
     return (
-      <div className={isFullWidth ? styles.fullWidth : styles.container}>
+      <div className={styles.container}>
         {extraText ? (
           <>
             <Label id={id} text={label} required={required} />
@@ -33,8 +53,8 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
           id={id}
           name={name}
           options={options}
-          onChange={onChange}
           value={value}
+          onChange={handleChange}
           translationType={translationType}
           firstText={firstText}
         />

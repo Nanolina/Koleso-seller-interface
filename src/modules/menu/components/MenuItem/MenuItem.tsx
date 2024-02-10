@@ -19,7 +19,6 @@ export const MenuItem: React.FC<{
         key={item.id}
         className={styles.item}
         onClick={() => {
-          // onClick(item.id);
           dispatch(setMenuOpen(false));
         }}
       >

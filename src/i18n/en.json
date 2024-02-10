@@ -35,7 +35,10 @@
     },
     "productDetails": {
       "notFound": "Product not found",
-      "removeProduct": "Delete product"
+      "removeProduct": "Delete product",
+      "go": "Please go to the",
+      "myStores": "My stores tab",
+      "addAtLeastStore": "tab and add at least 1 store"
     },
     "form": {
       "selectSection": "Select a section",
@@ -145,6 +148,7 @@
     }
   },
   "stores": {
+    "label": "Store",
     "addStore": "Add store",
     "table": {
       "name": "Name",

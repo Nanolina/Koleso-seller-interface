@@ -109,7 +109,7 @@ export const ProductDetailsFormik: React.FC = () => {
       enableReinitialize
     >
       {({ values, errors, touched, setFieldValue, isValid, resetForm }) => (
-        <Form className={styles.container}>
+        <Form>
           <ProductFormFields
             values={values}
             setFieldValue={setFieldValue}
