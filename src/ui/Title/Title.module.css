@@ -1,6 +1,13 @@
 .text {
   text-align: center;
   align-self: center;
-  margin: 0;
   color: var(--dark-blue);
+  font-size: 30px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .text {
+    font-size: 25px;
+  }
 }

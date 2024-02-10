@@ -13,17 +13,17 @@
 
 .smallContainer {
   margin: 1% 20%;
-  padding: 3% 3%;
+  padding: 0% 3% 3%;
   background-color: white;
 }
 
 .redirectButton {
   position: absolute;
-  top: 1.5%;
-  right: 20%;
+  top: 2.5%;
+  right: 21%;
   border: none;
   background: none;
-  font-size: 28px;
+  font-size: 30px;
   color: var(--dark-blue);
   cursor: pointer;
 }
@@ -31,5 +31,9 @@
 @media only screen and (max-width: 600px) {
   .smallContainer {
     margin: 0;
+  }
+
+  .redirectButton {
+    right: 0;
   }
 }

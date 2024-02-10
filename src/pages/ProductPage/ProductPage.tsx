@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { SideMenu, useSideMenu } from '../../modules/menu';
-import { ProductDetailsForm } from '../../modules/product';
+import { ProductDetailsFormik } from '../../modules/product';
 import { Container } from '../../ui/Container/Container';
 import { Title } from '../../ui/Title/Title';
 
@@ -19,7 +19,7 @@ export const ProductPage: React.FC = () => {
         isSmallContainer
       >
         <Title text={t('products.addProduct')} />
-        <ProductDetailsForm />
+        <ProductDetailsFormik />
       </Container>
     </>
   );

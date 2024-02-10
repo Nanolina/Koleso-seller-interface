@@ -1,3 +1,10 @@
+import {
+  FormikErrors,
+  FormikHelpers,
+  FormikProps,
+  FormikTouched,
+} from 'formik';
+
 export enum ColorType {
   Aquamarine,
   Beige,
@@ -90,4 +97,13 @@ export interface ICreateProductData {
   sectionId: number;
   categoryId: number;
   subcategoryId: number;
+}
+
+export interface IProductFormFieldsProps {
+  values: ICreateProductData;
+  setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
+  errors: FormikErrors<ICreateProductData>;
+  touched: FormikTouched<ICreateProductData>;
+  resetForm: FormikHelpers<ICreateProductData>['resetForm'];
+  initialValuesProduct: ICreateProductData;
 }
