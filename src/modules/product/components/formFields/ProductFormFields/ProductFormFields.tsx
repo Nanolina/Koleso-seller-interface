@@ -2,14 +2,16 @@ import { Field } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaTrashAlt } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { InputLabel } from '../../../../../components/InputLabel/InputLabel';
+import { Loader } from '../../../../../components/Loader/Loader';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { TextareaLabel } from '../../../../../components/TextareaLabel/TextareaLabel';
 import { IRootState } from '../../../../../redux/rootReducer';
+import { AppDispatch } from '../../../../../redux/store';
+import { handleGetAllStores } from '../../../../../redux/thunks/store';
 import { IProductFormFieldsProps } from '../../../types';
-import styles from './ProductFormFields.module.css';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -21,8 +23,9 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
     initialValuesProduct,
   }) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch<AppDispatch>();
 
-    const stores = useSelector((state: IRootState) => state.stores.items);
+    const { items, loading } = useSelector((state: IRootState) => state.stores);
 
     const [hasStore, setHasStore] = useState<boolean>(false);
 
@@ -32,26 +35,29 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
     }, [initialValuesProduct, resetForm]);
 
     useEffect(() => {
-      stores.length ? setHasStore(true) : setHasStore(false);
-    }, [stores]);
+      dispatch(handleGetAllStores());
+    }, [dispatch]);
+
+    useEffect(() => {
+      items.length ? setHasStore(true) : setHasStore(false);
+    }, [items]);
+
+    if (loading) return <Loader />;
 
     return (
       <>
-        <FaTrashAlt
-          className={styles.clearLocalStorageButton}
-          onClick={handleClick}
-        />
+        <FaTrashAlt className="clearLocalStorageButton" onClick={handleClick} />
 
-        <div className={styles.container}>
+        <div className="formFieldsContainer">
           <SelectLabel
             id="storeId"
             name="storeId"
             label={t('stores.label')}
-            options={stores}
+            options={items}
             value={values.storeId}
             setFieldValue={setFieldValue}
             keyInLocalStorage="product"
-            firstText={stores[0]?.name || ''}
+            firstText={items[0]?.name || ''}
           />
 
           {!hasStore && (

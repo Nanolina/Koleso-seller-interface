@@ -6,7 +6,6 @@ import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { IStoreFormFieldsProps } from '../../types';
 import { LogoForStore } from '../LogoForStore/LogoForStore';
-import styles from './StoreFormFields.module.css';
 
 export const StoreFormFields: React.FC<IStoreFormFieldsProps> = React.memo(
   ({
@@ -28,12 +27,9 @@ export const StoreFormFields: React.FC<IStoreFormFieldsProps> = React.memo(
 
     return (
       <>
-        <FaTrashAlt
-          className={styles.clearLocalStorageButton}
-          onClick={handleClick}
-        />
+        <FaTrashAlt className="clearLocalStorageButton" onClick={handleClick} />
 
-        <div className={styles.container}>
+        <div className="formFieldsContainer">
           <InputLabel
             label={t('stores.table.name')}
             id="name"

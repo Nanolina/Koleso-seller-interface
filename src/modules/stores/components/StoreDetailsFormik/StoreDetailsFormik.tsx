@@ -97,7 +97,7 @@ export const StoreDetailsFormik: React.FC = () => {
   // Early returns
   if (!isStoreFound) {
     return (
-      <div className={styles.notFound}>{t('stores.storeDetails.notFound')}</div>
+      <div className="itemNotFound">{t('stores.storeDetails.notFound')}</div>
     );
   }
 
@@ -131,7 +131,7 @@ export const StoreDetailsFormik: React.FC = () => {
             setPreviewUrl={setPreviewUrl}
           />
 
-          <div className={styles.buttonContainer}>
+          <div className="buttonSaveItemContainer">
             <Button
               text={t('save')}
               type="submit"

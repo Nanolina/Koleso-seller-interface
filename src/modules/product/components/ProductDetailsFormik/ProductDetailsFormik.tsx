@@ -17,7 +17,6 @@ import {
 } from '../../productFormModel';
 import { ColorType, ICreateProductData, IProduct } from '../../types';
 import { ProductFormFields } from '../formFields/ProductFormFields/ProductFormFields';
-import styles from './ProductDetailsFormik.module.css';
 
 export const ProductDetailsFormik: React.FC = () => {
   const { t } = useTranslation();
@@ -93,7 +92,7 @@ export const ProductDetailsFormik: React.FC = () => {
   // Early returns
   if (!isProductFound) {
     return (
-      <div className={styles.notFound}>
+      <div className="itemNotFound">
         {t('products.productDetails.notFound')}
       </div>
     );
@@ -119,7 +118,7 @@ export const ProductDetailsFormik: React.FC = () => {
             initialValuesProduct={initialValuesProduct}
           />
 
-          <div className={styles.buttonContainer}>
+          <div className="buttonSaveItemContainer">
             <Button text={t('save')} type="submit" disabled={!isValid} />
 
             {productId && productId !== 'new' && product && (

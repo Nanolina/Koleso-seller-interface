@@ -59,7 +59,7 @@ export const handleSubmitFormProduct = async (
   // if (priceWithoutDiscount) productFormData.append('priceWithoutDiscount', priceWithoutDiscount);
   // if (finalPrice) productFormData.append('finalPrice', finalPrice);
 
-
+  console.log('productFormData', productFormData);
   let data: any;
   // Create product
   if (productId === 'new') {
