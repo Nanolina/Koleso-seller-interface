@@ -5,23 +5,21 @@
   gap: 20px;
 }
 
+.clearLocalStorageButton {
+  position: absolute;
+  top: 4%;
+  left: 21%;
+  border: none;
+  background: none;
+  font-size: 15px;
+  color: var(--dark-blue);
+  cursor: pointer;
+}
+
 .contactsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding-left: 2.5%;
   padding-right: 2.5%;
-}
-
-.buttonContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 20px;
-}
-
-.notFound {
-  display: flex;
-  justify-content: center;
 }

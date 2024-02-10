@@ -1,13 +1,11 @@
 import { unwrapResult } from '@reduxjs/toolkit';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
-import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleGetStoreById } from '../../../../redux/thunks/store';
@@ -19,20 +17,24 @@ import {
   validationSchemaStore,
 } from '../../storeFormModel';
 import { ICreateStoreData, IStore } from '../../types';
-import { LogoForStore } from '../LogoForStore/LogoForStore';
-import styles from './StoreDetailsForm.module.css';
+import { StoreFormFields } from '../StoreFormFields/StoreFormFields';
+import styles from './StoreDetailsFormik.module.css';
 
-export const StoreDetailsForm: React.FC = () => {
+export const StoreDetailsFormik: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { storeId } = useParams<{ storeId: string }>();
 
+  const savedStore = JSON.parse(localStorage.getItem('store') || '{}');
+
   // useState
   const [isStoreFound, setIsStoreFound] = useState<boolean>(true);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [initialValues, setInitialValues] =
-    useState<ICreateStoreData>(initialValuesStore);
+  const [initialValues, setInitialValues] = useState<ICreateStoreData>({
+    ...initialValuesStore,
+    ...savedStore,
+  });
 
   // Values from Redux
   const { store, loading, error, success } = useSelector(
@@ -108,34 +110,23 @@ export const StoreDetailsForm: React.FC = () => {
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
+      {({
+        values,
+        errors,
+        touched,
+        setFieldValue,
+        isValid,
+        dirty,
+        resetForm,
+      }) => (
         <Form className={styles.container}>
-          <InputLabel
-            label={t('stores.table.name')}
-            id="name"
-            name="name"
-            keyInLocalStorage="store"
-            value={values.name}
-            setFieldValue={setFieldValue}
+          <StoreFormFields
+            values={values}
             errors={errors}
             touched={touched}
-            required
-          />
-          <Field
-            as={TextareaLabel}
-            label={t('stores.table.description')}
-            id="description"
-            name="description"
-            keyInLocalStorage="store"
-            value={values.description}
             setFieldValue={setFieldValue}
-            errors={errors}
-            touched={touched}
-            rows={4}
-          />
-
-          <LogoForStore
-            setFieldValue={setFieldValue}
+            resetForm={resetForm}
+            initialValuesStore={initialValuesStore}
             previewUrl={previewUrl}
             setPreviewUrl={setPreviewUrl}
           />

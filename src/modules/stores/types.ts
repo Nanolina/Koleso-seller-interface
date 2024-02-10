@@ -1,3 +1,10 @@
+import {
+  FormikErrors,
+  FormikHelpers,
+  FormikProps,
+  FormikTouched,
+} from 'formik';
+
 export interface ICreateStoreData {
   name: string;
   description?: string;
@@ -27,6 +34,17 @@ export interface IUpdateStoreArg {
 export interface ILogoProps {
   valuesLogo?: string;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
+  previewUrl: string | null;
+  setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export interface IStoreFormFieldsProps {
+  values: ICreateStoreData;
+  setFieldValue: FormikProps<ICreateStoreData>['setFieldValue'];
+  errors: FormikErrors<ICreateStoreData>;
+  touched: FormikTouched<ICreateStoreData>;
+  resetForm: FormikHelpers<ICreateStoreData>['resetForm'];
+  initialValuesStore: ICreateStoreData;
   previewUrl: string | null;
   setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }

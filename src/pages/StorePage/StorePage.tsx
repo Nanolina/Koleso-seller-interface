@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SideMenu, useSideMenu } from '../../modules/menu';
-import { StoreDetailsForm } from '../../modules/stores';
+import { StoreDetailsFormik } from '../../modules/stores';
 import { IRootState } from '../../redux/rootReducer';
 import { Container } from '../../ui/Container/Container';
 import { Title } from '../../ui/Title/Title';
@@ -30,7 +30,7 @@ export const StorePage: React.FC = () => {
               : t('stores.addStore')
           }
         />
-        <StoreDetailsForm />
+        <StoreDetailsFormik />
       </Container>
     </>
   );
