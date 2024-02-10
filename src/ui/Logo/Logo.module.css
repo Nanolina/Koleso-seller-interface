@@ -1,5 +1,5 @@
-.authButton,
-.notAuthButton {
+.clickableButton,
+.notClickableButton {
   position: absolute;
   top: 10px;
   left: 0;
@@ -8,6 +8,6 @@
   z-index: 1;
 }
 
-.authButton {
+.clickableButton {
   cursor: pointer;
 }

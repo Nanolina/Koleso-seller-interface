@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../../../../redux/rootReducer';
-import { toggleMenu } from '../../../../redux/slices/menuSlice';
+import { setMenuOpen, toggleMenu } from '../../../../redux/slices/menuSlice';
 import { Logo } from '../../../../ui/Logo/Logo';
 import { menuItems } from '../../menuItems';
 import { MenuItem } from '../MenuItem/MenuItem';
@@ -23,17 +23,20 @@ export const SideMenu: React.FC = () => {
   }, [handleToggleMenu]);
 
   return (
-    <div>
+    <>
       <div className={`${styles.sidebar} ${isMenuOpen ? styles.open : ''}`}>
         <ul className={styles.menuList}>{renderedMenuItems}</ul>
       </div>
       {!isMenuOpen ? (
         <Logo onClick={handleToggleMenu} />
       ) : (
-        <button className={styles.arrowLeftButton} onClick={handleToggleMenu}>
+        <button
+          className={styles.arrowLeftButton}
+          onClick={() => dispatch(setMenuOpen(false))}
+        >
           <IoIosArrowBack size={40} color="white" />
         </button>
       )}
-    </div>
+    </>
   );
 };

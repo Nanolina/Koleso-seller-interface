@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
-import { SideMenu } from '../../modules/menu';
+import { SideMenu, useSideMenu } from '../../modules/menu';
 import { ProductsTable } from '../../modules/product';
 import { AddItemButton } from '../../ui/AddItemButton/AddItemButton';
 import { Container } from '../../ui/Container/Container';
@@ -11,6 +11,8 @@ export const ProductsPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const { handleCloseSideMenu } = useSideMenu();
+
   const handleAddProduct = () => {
     navigate('/product/new');
   };
@@ -18,7 +20,7 @@ export const ProductsPage: React.FC = () => {
   return (
     <>
       <SideMenu />
-      <Container>
+      <Container onClick={handleCloseSideMenu}>
         <Title text={t('menuItems.Products')} />
         <SearchBar />
         <AddItemButton

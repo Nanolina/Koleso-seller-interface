@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { CheckboxContainer } from '../../../components/CheckboxContainer/CheckboxContainer';
 import { LANGUAGE } from '../../../consts';
-import { SideMenu } from '../../../modules/menu';
+import { SideMenu, useSideMenu } from '../../../modules/menu';
 import { Container } from '../../../ui/Container/Container';
 import { Title } from '../../../ui/Title/Title';
 
 export const SettingsLanguagePage = () => {
   const { t } = useTranslation();
+  const { handleCloseSideMenu } = useSideMenu();
 
   const options = [
     { name: 'English', label: t('English') },
@@ -16,7 +17,7 @@ export const SettingsLanguagePage = () => {
   return (
     <>
       <SideMenu />
-      <Container>
+      <Container onClick={handleCloseSideMenu}>
         <Title text={t('settings.language')} />
         <CheckboxContainer options={options} type={LANGUAGE} />
       </Container>

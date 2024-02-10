@@ -6,7 +6,7 @@ import { Title } from '../../ui/Title/Title';
 
 export const RequestPasswordRecoveryPage: React.FC = () => {
   const { t } = useTranslation();
-console.log('here')
+
   return (
     <Container>
       <Logo />

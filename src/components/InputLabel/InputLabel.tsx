@@ -35,6 +35,7 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
           setFieldValue
         );
       }
+
       return;
     };
 

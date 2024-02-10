@@ -20,14 +20,21 @@ export const TextareaLabel: React.FC<ITextareaLabelProps> = React.memo(
     touched,
   }) => {
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      return keyInLocalStorage && setFieldValue
-        ? saveValuesToLocalStorage(
-            keyInLocalStorage,
-            name,
-            e.target.value,
-            setFieldValue
-          )
-        : onChange;
+      const eventValue = e.target.value;
+
+      // change setFieldValue as required field
+      if (setFieldValue && !keyInLocalStorage) {
+        setFieldValue(name, eventValue);
+      } else if (keyInLocalStorage && setFieldValue) {
+        return saveValuesToLocalStorage(
+          keyInLocalStorage,
+          name,
+          eventValue,
+          setFieldValue
+        );
+      }
+
+      return;
     };
 
     return (

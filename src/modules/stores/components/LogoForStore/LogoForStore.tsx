@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { InputUploadLabel } from '../../../../components/InputUploadLabel/InputUploadLabel';
 import { PhotoPreview } from '../../../photo';
 import { ILogoProps } from '../../types';
-import styles from './Logo.module.css';
+import styles from './LogoForStore.module.css';
 
-export const Logo: React.FC<ILogoProps> = React.memo(
+export const LogoForStore: React.FC<ILogoProps> = React.memo(
   ({ setFieldValue, previewUrl, setPreviewUrl }) => {
     const { t } = useTranslation();
 

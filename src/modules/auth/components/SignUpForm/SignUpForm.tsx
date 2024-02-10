@@ -107,6 +107,8 @@ export const SignupForm: React.FC = () => {
               inputType="email"
               label={t('auth.email')}
               id="email"
+              value={values.email}
+              setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
               required
@@ -117,6 +119,8 @@ export const SignupForm: React.FC = () => {
               id="password"
               name="password"
               inputType="password"
+              value={values.password}
+              setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
               required
@@ -127,6 +131,8 @@ export const SignupForm: React.FC = () => {
               id="repeatedPassword"
               name="repeatedPassword"
               inputType="password"
+              value={values.repeatedPassword}
+              setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
               required

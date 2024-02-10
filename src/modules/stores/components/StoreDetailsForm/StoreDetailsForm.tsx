@@ -19,7 +19,7 @@ import {
   validationSchemaStore,
 } from '../../storeFormModel';
 import { ICreateStoreData, IStore } from '../../types';
-import { Logo } from '../Logo/Logo';
+import { LogoForStore } from '../LogoForStore/LogoForStore';
 import styles from './StoreDetailsForm.module.css';
 
 export const StoreDetailsForm: React.FC = () => {
@@ -108,12 +108,14 @@ export const StoreDetailsForm: React.FC = () => {
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {({ errors, touched, setFieldValue, isValid, dirty }) => (
+      {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
         <Form className={styles.container}>
           <InputLabel
             label={t('stores.table.name')}
             id="name"
             name="name"
+            value={values.name}
+            setFieldValue={setFieldValue}
             errors={errors}
             touched={touched}
             required
@@ -123,12 +125,14 @@ export const StoreDetailsForm: React.FC = () => {
             label={t('stores.table.description')}
             id="description"
             name="description"
+            value={values.description}
+            setFieldValue={setFieldValue}
             errors={errors}
             touched={touched}
             rows={4}
           />
 
-          <Logo
+          <LogoForStore
             setFieldValue={setFieldValue}
             previewUrl={previewUrl}
             setPreviewUrl={setPreviewUrl}
