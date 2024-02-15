@@ -22,10 +22,10 @@
     "table": {
       "name": "Name",
       "description": "Description",
-      "articleKoleso": "Article Koleso",
-      "articleSupplier": "Supplier's article",
       "brand": "Brand",
       "model": "Model",
+      "articleSupplier": "Supplier's article",
+      "articleKoleso": "Article Koleso",
       "image": "Image",
       "color": "Color",
       "size": "Size",
@@ -39,6 +39,10 @@
       "go": "Please go to the",
       "myStores": "My stores tab",
       "addAtLeastStore": "tab and add at least 1 store"
+    },
+    "validation": {
+      "nameRequired": "The name of the product is required",
+      "storeIdRequired": "The store is required"
     },
     "form": {
       "selectSection": "Select a section",

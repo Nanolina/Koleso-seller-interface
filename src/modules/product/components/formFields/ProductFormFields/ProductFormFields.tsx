@@ -36,7 +36,8 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
 
     useEffect(() => {
       dispatch(handleGetAllStores());
-    }, [dispatch]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
       items.length ? setHasStore(true) : setHasStore(false);
@@ -83,8 +84,18 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 touched={touched}
                 required
               />
-
-              {/* <CatalogSelects /> */}
+              <Field
+                as={TextareaLabel}
+                label={t('products.table.description')}
+                id="description"
+                name="description"
+                keyInLocalStorage="product"
+                value={values.description}
+                setFieldValue={setFieldValue}
+                errors={errors}
+                touched={touched}
+                rows={8}
+              />
               <InputLabel
                 label={t('products.table.brand')}
                 id="brand"
@@ -117,33 +128,24 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 extraText={t('products.form.extraTextArticleSupplier')}
               />
 
+              {/* <CatalogSelects /> */}
+
               {/* <SelectLabel
-id="gender"
-name="gender"
-label={t('products.form.gender.label')}
-options={GENDERS}
-onChange={handleChange('gender')}
-value={gender}
-firstText={t('products.form.gender.select')}
-translationType="products.form.gender"
-/>
-<AddComposition />
-<AddParameters /> */}
-              <Field
-                as={TextareaLabel}
-                label={t('products.table.description')}
-                id="description"
-                name="description"
-                keyInLocalStorage="product"
-                value={values.description}
-                setFieldValue={setFieldValue}
-                errors={errors}
-                touched={touched}
-                rows={8}
+              id="gender"
+              name="gender"
+              label={t('products.form.gender.label')}
+              options={GENDERS}
+              onChange={handleChange('gender')}
+              value={gender}
+              firstText={t('products.form.gender.select')}
+              translationType="products.form.gender"
               />
 
+              <AddComposition />
+              <AddParameters /> */}
+
               {/* <PhotoUpload /> */}
-              <InputLabel
+              {/* <InputLabel
                 label={t('products.table.priceWithoutDiscount')}
                 id="priceWithoutDiscount"
                 name="priceWithoutDiscount"
@@ -169,7 +171,7 @@ translationType="products.form.gender"
                 touched={touched}
                 placeholder="0"
                 required
-              />
+              /> */}
             </>
           )}
         </div>

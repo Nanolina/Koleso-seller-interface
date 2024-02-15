@@ -69,8 +69,8 @@ export const ProductsTable: React.FC = () => {
                 <TableCell cell={product.model} />
                 <TableCell cell={t(`products.form.color.${product.color}`)} />
                 <TableCell cell={product.size} />
-                <TableCell cell={product.priceWithoutDiscount} />
-                <TableCell cell={product.finalPrice} />
+                {/* <TableCell cell={product.priceWithoutDiscount} />
+                <TableCell cell={product.finalPrice} /> */}
                 <TableCell cell={product.quantity} />
               </TableRow>
             ))}

@@ -47,22 +47,22 @@ interface IComposition {
 
 export interface IProduct {
   id: string;
+  storeId: string;
   name: string;
   description?: string;
-  image: string;
-  imagePublicId: string;
-  articleSupplier?: string;
-  articleKoleso: string;
-  color: ColorType;
-  size?: string;
   brand?: string;
   model?: string;
+  articleSupplier?: string;
+  articleKoleso: string;
+  image: string;
+  imagePublicId: string;
+  color: ColorType;
+  size?: string;
   gender?: GenderType;
   composition: IComposition[];
   quantity: number;
-  priceWithoutDiscount: number;
-  finalPrice: number;
-  storeId: string;
+  // priceWithoutDiscount: number;
+  // finalPrice: number;
   userId: string;
   sectionId: number;
   categoryId: number;
@@ -80,20 +80,20 @@ export interface IProductsState {
 }
 
 export interface ICreateProductData {
+  storeId: string;
   name: string;
   description?: string;
-  image: string;
-  articleSupplier?: string;
-  color: ColorType;
-  size?: string;
   brand?: string;
   model?: string;
+  articleSupplier?: string;
+  image: string;
+  color: ColorType;
+  size?: string;
   gender?: GenderType;
   composition: IComposition[];
   quantity: number;
-  priceWithoutDiscount: number;
-  finalPrice: number;
-  storeId: string;
+  // priceWithoutDiscount: number;
+  // finalPrice: number;
   sectionId: number;
   categoryId: number;
   subcategoryId: number;

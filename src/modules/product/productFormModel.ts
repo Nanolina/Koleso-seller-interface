@@ -8,17 +8,17 @@ import { ColorType, GenderType, ICreateProductData, IProduct } from './types';
 export const initialValuesProduct: ICreateProductData = {
   name: '',
   description: '',
-  image: '',
-  articleSupplier: '',
-  color: ColorType.White,
-  size: '',
   brand: '',
   model: '',
+  articleSupplier: '',
+  image: '',
+  color: ColorType.White,
+  size: '',
   gender: GenderType.Female,
   composition: [],
   quantity: 0,
-  priceWithoutDiscount: 0,
-  finalPrice: 0,
+  // priceWithoutDiscount: 0,
+  // finalPrice: 0,
   storeId: '',
   sectionId: 0,
   categoryId: 0,
@@ -27,7 +27,11 @@ export const initialValuesProduct: ICreateProductData = {
 
 export const validationSchemaProduct = (
   t: TFunction<'translation', undefined>
-) => Yup.object().shape({});
+) =>
+  Yup.object().shape({
+    storeId: Yup.string().uuid().required(t('products.validation.storeIdRequired')),
+    name: Yup.string().required(t('products.validation.nameRequired')),
+  });
 
 export const handleSubmitFormProduct = async (
   product: IProduct | null,
@@ -39,31 +43,34 @@ export const handleSubmitFormProduct = async (
 ) => {
   // Get data from values
   const {
+    storeId,
     name,
     description,
     brand,
     model,
     articleSupplier,
-    priceWithoutDiscount,
-    finalPrice,
+    // priceWithoutDiscount,
+    // finalPrice,
   } = values;
 
   // Add data to form data
   const productFormData = new FormData();
+  productFormData.append('storeId', storeId);
   productFormData.append('name', name);
+  if (description) productFormData.append('description', description);
   if (brand) productFormData.append('brand', brand);
   if (model) productFormData.append('model', model);
   if (articleSupplier)
     productFormData.append('articleSupplier', articleSupplier);
-  if (description) productFormData.append('description', description);
-  // if (priceWithoutDiscount) productFormData.append('priceWithoutDiscount', priceWithoutDiscount);
-  // if (finalPrice) productFormData.append('finalPrice', finalPrice);
+  // if (priceWithoutDiscount) productFormData.append(
+  //   'priceWithoutDiscount',
+  //   priceWithoutDiscount.toString()
+  // );
+  // if (finalPrice) productFormData.append('finalPrice', finalPrice.toString());
 
-  console.log('productFormData', productFormData);
   let data: any;
   // Create product
   if (productId === 'new') {
-    // or try values
     data = await dispatch(handleCreateProduct(productFormData));
   }
   //   // Update product
@@ -79,20 +86,20 @@ export const handleSubmitFormProduct = async (
   // Set initial values
   if (productFromDB) {
     setInitialValues({
+      storeId: values.storeId,
       name: values.name,
       description: values.description || '',
-      image: '',
-      articleSupplier: values.name,
-      color: values.color,
-      size: values.size || '',
       brand: values.brand || '',
       model: values.model || '',
+      articleSupplier: values.articleSupplier || '',
+      image: '',
+      color: values.color,
+      size: values.size || '',
       gender: values.gender || GenderType.Female,
       composition: values.composition || [],
       quantity: values.quantity,
-      priceWithoutDiscount: values.priceWithoutDiscount,
-      finalPrice: values.finalPrice,
-      storeId: values.storeId,
+      // priceWithoutDiscount: values.priceWithoutDiscount,
+      // finalPrice: values.finalPrice,
       sectionId: values.sectionId,
       categoryId: values.categoryId || 0,
       subcategoryId: values.subcategoryId || 0,

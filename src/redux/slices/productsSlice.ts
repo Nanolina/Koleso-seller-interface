@@ -12,9 +12,9 @@ const productsSlice = createSlice({
   initialState: productsInitialState,
   reducers: {},
   extraReducers: (builder: ActionReducerMapBuilder<IProductsState>) => {
+    createProductCases(builder);
     getAllProductsCases(builder);
     getProductByIdCases(builder);
-    createProductCases(builder);
   },
 });
 

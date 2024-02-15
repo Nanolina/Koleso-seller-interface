@@ -22,10 +22,10 @@
     "table": {
       "name": "Название",
       "description": "Описание",
-      "articleKoleso": "Артикул Koleso",
-      "articleSupplier": "Артикул поставщика",
       "brand": "Бренд",
       "model": "Модель",
+      "articleSupplier": "Артикул поставщика",
+      "articleKoleso": "Артикул Koleso",
       "image": "Изображение",
       "color": "Цвет",
       "size": "Размер",
@@ -39,6 +39,10 @@
       "go": "Пожалуйста перейдите во вкладку",
       "myStores": "Мои магазины",
       "addAtLeastStore": "и добавьте хотя бы 1 магазин"
+    },
+    "validation": {
+      "nameRequired": "Название продукта обязательно",
+      "storeIdRequired": "Выбор магазина обязателен"
     },
     "form": {
       "selectSection": "Выберите раздел",

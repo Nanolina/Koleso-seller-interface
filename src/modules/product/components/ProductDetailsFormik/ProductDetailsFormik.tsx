@@ -52,15 +52,18 @@ export const ProductDetailsFormik: React.FC = () => {
         // Set initial values based on the data from DB
         if (product) {
           setInitialValues({
+            storeId: product.storeId,
             name: product.name,
             description: product.description || '',
+            brand: product.brand || '',
+            model: product.model || '',
+            articleSupplier: product.articleSupplier || '',
             image: '',
             color: ColorType.White,
             composition: [],
             quantity: 0,
-            priceWithoutDiscount: 0,
-            finalPrice: 0,
-            storeId: '',
+            // priceWithoutDiscount: 0,
+            // finalPrice: 0,
             sectionId: 0,
             categoryId: 0,
             subcategoryId: 0,
