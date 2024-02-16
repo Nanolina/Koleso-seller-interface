@@ -127,25 +127,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 touched={touched}
                 extraText={t('products.form.extraTextArticleSupplier')}
               />
-
-              {/* <CatalogSelects /> */}
-
-              {/* <SelectLabel
-              id="gender"
-              name="gender"
-              label={t('products.form.gender.label')}
-              options={GENDERS}
-              onChange={handleChange('gender')}
-              value={gender}
-              firstText={t('products.form.gender.select')}
-              translationType="products.form.gender"
-              />
-
-              <AddComposition />
-              <AddParameters /> */}
-
-              {/* <PhotoUpload /> */}
-              {/* <InputLabel
+              <InputLabel
                 label={t('products.table.priceWithoutDiscount')}
                 id="priceWithoutDiscount"
                 name="priceWithoutDiscount"
@@ -171,7 +153,25 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 touched={touched}
                 placeholder="0"
                 required
-              /> */}
+              />
+
+              {/* <CatalogSelects /> */}
+
+              {/* <SelectLabel
+              id="gender"
+              name="gender"
+              label={t('products.form.gender.label')}
+              options={GENDERS}
+              onChange={handleChange('gender')}
+              value={gender}
+              firstText={t('products.form.gender.select')}
+              translationType="products.form.gender"
+              />
+
+              <AddComposition />
+              <AddParameters /> */}
+
+              {/* <PhotoUpload /> */}
             </>
           )}
         </div>

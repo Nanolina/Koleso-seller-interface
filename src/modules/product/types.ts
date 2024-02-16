@@ -54,6 +54,8 @@ export interface IProduct {
   model?: string;
   articleSupplier?: string;
   articleKoleso: string;
+  priceWithoutDiscount: number;
+  finalPrice: number;
   image: string;
   imagePublicId: string;
   color: ColorType;
@@ -61,8 +63,6 @@ export interface IProduct {
   gender?: GenderType;
   composition: IComposition[];
   quantity: number;
-  // priceWithoutDiscount: number;
-  // finalPrice: number;
   userId: string;
   sectionId: number;
   categoryId: number;
@@ -86,14 +86,14 @@ export interface ICreateProductData {
   brand?: string;
   model?: string;
   articleSupplier?: string;
+  priceWithoutDiscount: number;
+  finalPrice: number;
   image: string;
   color: ColorType;
   size?: string;
   gender?: GenderType;
   composition: IComposition[];
   quantity: number;
-  // priceWithoutDiscount: number;
-  // finalPrice: number;
   sectionId: number;
   categoryId: number;
   subcategoryId: number;

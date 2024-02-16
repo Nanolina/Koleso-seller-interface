@@ -11,14 +11,14 @@ export const initialValuesProduct: ICreateProductData = {
   brand: '',
   model: '',
   articleSupplier: '',
+  priceWithoutDiscount: 0,
+  finalPrice: 0,
   image: '',
   color: ColorType.White,
   size: '',
   gender: GenderType.Female,
   composition: [],
   quantity: 0,
-  // priceWithoutDiscount: 0,
-  // finalPrice: 0,
   storeId: '',
   sectionId: 0,
   categoryId: 0,
@@ -29,8 +29,16 @@ export const validationSchemaProduct = (
   t: TFunction<'translation', undefined>
 ) =>
   Yup.object().shape({
-    storeId: Yup.string().uuid().required(t('products.validation.storeIdRequired')),
+    storeId: Yup.string()
+      .uuid()
+      .required(t('products.validation.storeIdRequired')),
     name: Yup.string().required(t('products.validation.nameRequired')),
+    priceWithoutDiscount: Yup.number()
+      .typeError(t('products.validation.priceWithoutDiscountNotNumber'))
+      .required(t('products.validation.priceWithoutDiscountRequired')),
+    finalPrice: Yup.number()
+      .typeError(t('products.validation.finalPriceNotNumber'))
+      .required(t('products.validation.finalPriceRequired')),
   });
 
 export const handleSubmitFormProduct = async (
@@ -49,8 +57,8 @@ export const handleSubmitFormProduct = async (
     brand,
     model,
     articleSupplier,
-    // priceWithoutDiscount,
-    // finalPrice,
+    priceWithoutDiscount,
+    finalPrice,
   } = values;
 
   // Add data to form data
@@ -62,11 +70,12 @@ export const handleSubmitFormProduct = async (
   if (model) productFormData.append('model', model);
   if (articleSupplier)
     productFormData.append('articleSupplier', articleSupplier);
-  // if (priceWithoutDiscount) productFormData.append(
-  //   'priceWithoutDiscount',
-  //   priceWithoutDiscount.toString()
-  // );
-  // if (finalPrice) productFormData.append('finalPrice', finalPrice.toString());
+  if (priceWithoutDiscount)
+    productFormData.append(
+      'priceWithoutDiscount',
+      priceWithoutDiscount.toString()
+    );
+  if (finalPrice) productFormData.append('finalPrice', finalPrice.toString());
 
   let data: any;
   // Create product
@@ -92,14 +101,14 @@ export const handleSubmitFormProduct = async (
       brand: values.brand || '',
       model: values.model || '',
       articleSupplier: values.articleSupplier || '',
+      priceWithoutDiscount: values.priceWithoutDiscount,
+      finalPrice: values.finalPrice,
       image: '',
       color: values.color,
       size: values.size || '',
       gender: values.gender || GenderType.Female,
       composition: values.composition || [],
       quantity: values.quantity,
-      // priceWithoutDiscount: values.priceWithoutDiscount,
-      // finalPrice: values.finalPrice,
       sectionId: values.sectionId,
       categoryId: values.categoryId || 0,
       subcategoryId: values.subcategoryId || 0,
