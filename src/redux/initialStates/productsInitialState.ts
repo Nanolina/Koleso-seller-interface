@@ -1,4 +1,4 @@
-import { ColorType, GenderType, IProductsState } from '../../modules/product';
+import { ColorType, IProductsState } from '../../modules/product';
 
 export const productInitialState = {
   id: '',
@@ -10,11 +10,11 @@ export const productInitialState = {
   articleKoleso: '',
   priceWithoutDiscount: 0,
   finalPrice: 0,
+  gender: undefined,
   color: ColorType.White,
   size: '',
   brand: '',
   model: '',
-  gender: GenderType.Female,
   composition: [],
   quantity: 0,
   storeId: '',

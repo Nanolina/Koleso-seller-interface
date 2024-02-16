@@ -8,6 +8,7 @@ import { InputLabel } from '../../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../../components/Loader/Loader';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { TextareaLabel } from '../../../../../components/TextareaLabel/TextareaLabel';
+import { GENDERS } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
@@ -140,7 +141,6 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 placeholder="0"
                 required
               />
-
               <InputLabel
                 label={t('products.table.finalPrice')}
                 id="finalPrice"
@@ -154,21 +154,21 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 placeholder="0"
                 required
               />
+              <SelectLabel
+                id="gender"
+                name="gender"
+                label={t('products.form.gender.label')}
+                options={GENDERS}
+                value={values.gender}
+                setFieldValue={setFieldValue}
+                keyInLocalStorage="product"
+                firstText={t('products.form.gender.select')}
+                translationType="products.form.gender"
+              />
 
               {/* <CatalogSelects /> */}
 
-              {/* <SelectLabel
-              id="gender"
-              name="gender"
-              label={t('products.form.gender.label')}
-              options={GENDERS}
-              onChange={handleChange('gender')}
-              value={gender}
-              firstText={t('products.form.gender.select')}
-              translationType="products.form.gender"
-              />
-
-              <AddComposition />
+              {/* <AddComposition />
               <AddParameters /> */}
 
               {/* <PhotoUpload /> */}

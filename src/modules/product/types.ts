@@ -45,28 +45,31 @@ interface IComposition {
   percentage: number;
 }
 
-export interface IProduct {
-  id: string;
+export interface ICreateProductData {
   storeId: string;
   name: string;
   description?: string;
   brand?: string;
   model?: string;
   articleSupplier?: string;
-  articleKoleso: string;
   priceWithoutDiscount: number;
   finalPrice: number;
+  gender?: GenderType;
   image: string;
-  imagePublicId: string;
   color: ColorType;
   size?: string;
-  gender?: GenderType;
   composition: IComposition[];
   quantity: number;
-  userId: string;
   sectionId: number;
   categoryId: number;
   subcategoryId: number;
+}
+
+export interface IProduct extends ICreateProductData {
+  id: string;
+  articleKoleso: string;
+  imagePublicId: string;
+  userId: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -77,26 +80,6 @@ export interface IProductsState {
   success: string | null;
   loading: boolean;
   error: any;
-}
-
-export interface ICreateProductData {
-  storeId: string;
-  name: string;
-  description?: string;
-  brand?: string;
-  model?: string;
-  articleSupplier?: string;
-  priceWithoutDiscount: number;
-  finalPrice: number;
-  image: string;
-  color: ColorType;
-  size?: string;
-  gender?: GenderType;
-  composition: IComposition[];
-  quantity: number;
-  sectionId: number;
-  categoryId: number;
-  subcategoryId: number;
 }
 
 export interface IProductFormFieldsProps {

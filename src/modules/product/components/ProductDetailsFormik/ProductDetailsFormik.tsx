@@ -60,6 +60,7 @@ export const ProductDetailsFormik: React.FC = () => {
             articleSupplier: product.articleSupplier || '',
             priceWithoutDiscount: product.priceWithoutDiscount,
             finalPrice: product.finalPrice,
+            gender: product?.gender,
             image: '',
             color: ColorType.White,
             composition: [],

@@ -13,10 +13,10 @@ export const initialValuesProduct: ICreateProductData = {
   articleSupplier: '',
   priceWithoutDiscount: 0,
   finalPrice: 0,
+  gender: undefined,
   image: '',
   color: ColorType.White,
   size: '',
-  gender: GenderType.Female,
   composition: [],
   quantity: 0,
   storeId: '',
@@ -59,6 +59,7 @@ export const handleSubmitFormProduct = async (
     articleSupplier,
     priceWithoutDiscount,
     finalPrice,
+    gender,
   } = values;
 
   // Add data to form data
@@ -76,6 +77,7 @@ export const handleSubmitFormProduct = async (
       priceWithoutDiscount.toString()
     );
   if (finalPrice) productFormData.append('finalPrice', finalPrice.toString());
+  if (gender) productFormData.append('gender', gender.toString());
 
   let data: any;
   // Create product
