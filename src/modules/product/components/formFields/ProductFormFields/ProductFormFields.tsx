@@ -13,6 +13,7 @@ import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
 import { IProductFormFieldsProps } from '../../../types';
+import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -166,7 +167,10 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 translationType="products.form.gender"
               />
 
-              {/* <CatalogSelects /> */}
+              <CatalogStructureSelects
+                values={values}
+                setFieldValue={setFieldValue}
+              />
 
               {/* <AddComposition />
               <AddParameters /> */}

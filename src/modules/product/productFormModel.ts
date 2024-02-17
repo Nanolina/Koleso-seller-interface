@@ -3,7 +3,7 @@ import { TFunction } from 'i18next';
 import * as Yup from 'yup';
 import { AppDispatch } from '../../redux/store';
 import { handleCreateProduct } from '../../redux/thunks/product';
-import { ColorType, GenderType, ICreateProductData, IProduct } from './types';
+import { ColorType, ICreateProductData, IProduct } from './types';
 
 export const initialValuesProduct: ICreateProductData = {
   name: '',
@@ -14,15 +14,15 @@ export const initialValuesProduct: ICreateProductData = {
   priceWithoutDiscount: 0,
   finalPrice: 0,
   gender: undefined,
+  sectionId: 0,
+  categoryId: undefined,
+  subcategoryId: undefined,
   image: '',
   color: ColorType.White,
   size: '',
   composition: [],
   quantity: 0,
   storeId: '',
-  sectionId: 0,
-  categoryId: 0,
-  subcategoryId: 0,
 };
 
 export const validationSchemaProduct = (
@@ -39,6 +39,9 @@ export const validationSchemaProduct = (
     finalPrice: Yup.number()
       .typeError(t('products.validation.finalPriceNotNumber'))
       .required(t('products.validation.finalPriceRequired')),
+    sectionId: Yup.number().required(
+      t('products.validation.sectionIdRequired')
+    ),
   });
 
 export const handleSubmitFormProduct = async (
@@ -60,12 +63,16 @@ export const handleSubmitFormProduct = async (
     priceWithoutDiscount,
     finalPrice,
     gender,
+    sectionId,
+    categoryId,
+    subcategoryId,
   } = values;
 
   // Add data to form data
   const productFormData = new FormData();
   productFormData.append('storeId', storeId);
   productFormData.append('name', name);
+  productFormData.append('sectionId', sectionId.toString());
   if (description) productFormData.append('description', description);
   if (brand) productFormData.append('brand', brand);
   if (model) productFormData.append('model', model);
@@ -78,6 +85,9 @@ export const handleSubmitFormProduct = async (
     );
   if (finalPrice) productFormData.append('finalPrice', finalPrice.toString());
   if (gender) productFormData.append('gender', gender.toString());
+  if (categoryId) productFormData.append('categoryId', categoryId.toString());
+  if (subcategoryId)
+    productFormData.append('subcategoryId', subcategoryId.toString());
 
   let data: any;
   // Create product
@@ -105,15 +115,15 @@ export const handleSubmitFormProduct = async (
       articleSupplier: values.articleSupplier || '',
       priceWithoutDiscount: values.priceWithoutDiscount,
       finalPrice: values.finalPrice,
+      gender: values.gender || undefined,
+      sectionId: values.sectionId,
+      categoryId: values.categoryId || undefined,
+      subcategoryId: values.subcategoryId || undefined,
       image: '',
       color: values.color,
       size: values.size || '',
-      gender: values.gender || GenderType.Female,
       composition: values.composition || [],
       quantity: values.quantity,
-      sectionId: values.sectionId,
-      categoryId: values.categoryId || 0,
-      subcategoryId: values.subcategoryId || 0,
     });
 
     // Navigate

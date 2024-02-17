@@ -55,14 +55,14 @@ export interface ICreateProductData {
   priceWithoutDiscount: number;
   finalPrice: number;
   gender?: GenderType;
+  sectionId: number;
+  categoryId?: number;
+  subcategoryId?: number;
   image: string;
   color: ColorType;
   size?: string;
   composition: IComposition[];
   quantity: number;
-  sectionId: number;
-  categoryId: number;
-  subcategoryId: number;
 }
 
 export interface IProduct extends ICreateProductData {
@@ -89,4 +89,40 @@ export interface IProductFormFieldsProps {
   touched: FormikTouched<ICreateProductData>;
   resetForm: FormikHelpers<ICreateProductData>['resetForm'];
   initialValuesProduct: ICreateProductData;
+}
+
+export interface ICatalogItemType {
+  id: number;
+  image?: string;
+  title: string;
+}
+
+export interface ICategoryType extends ICatalogItemType {
+  subcategories?: ICatalogItemType[];
+}
+
+export interface ISectionType extends ICatalogItemType {
+  categories?: ICategoryType[];
+}
+
+export interface ICatalogStructureState {
+  catalogStructure: ISectionType[];
+  loading: boolean;
+  error: any;
+}
+
+export interface IOptions {
+  categoryOptions: ICategoryType[];
+  subcategoryOptions: ICatalogItemType[];
+}
+
+interface ICatalogValues {
+  sectionId: number;
+  categoryId?: number;
+  subcategoryId?: number;
+}
+
+export interface CatalogStructureSelectsProps {
+  values: ICatalogValues;
+  setFieldValue: FormikProps<ISectionType>['setFieldValue'];
 }

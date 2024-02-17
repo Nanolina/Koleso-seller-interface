@@ -1,0 +1,1 @@
+export { getCatalogStructureCases } from './getCatalogStructureCases';

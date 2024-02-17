@@ -2,13 +2,14 @@ import { combineReducers } from 'redux';
 import { IUserState } from '../modules/auth';
 import { IAccountDataState, IDocumentsState } from '../modules/documentsForm';
 import { IMenuState } from '../modules/menu';
-import { IProductsState } from '../modules/product';
+import { ICatalogStructureState, IProductsState } from '../modules/product';
 import {
   IProductCreationState,
   IProductCreationStringsState,
 } from '../modules/productForm';
 import { IStoresState } from '../modules/stores';
 import accountDataSlice from './slices/accountDataSlice';
+import catalogStructureSlice from './slices/catalogStructureSlice';
 import documentsSlice from './slices/documentsSlice';
 import menuSlice from './slices/menuSlice';
 import productCreationSlice from './slices/productCreationSlice';
@@ -26,6 +27,7 @@ export interface IRootState {
   stores: IStoresState;
   products: IProductsState;
   menu: IMenuState;
+  catalog: ICatalogStructureState;
 }
 
 const rootReducer = combineReducers({
@@ -37,6 +39,7 @@ const rootReducer = combineReducers({
   stores: storesSlice,
   products: productsSlice,
   menu: menuSlice,
+  catalog: catalogStructureSlice,
 });
 
 export default rootReducer;

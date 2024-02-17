@@ -1,4 +1,3 @@
-export { useProductForm } from './hooks/useProductForm';
 export type {
   IChangeCompositionPayload,
   IComposition,

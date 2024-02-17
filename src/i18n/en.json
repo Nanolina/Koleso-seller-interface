@@ -46,7 +46,8 @@
       "priceWithoutDiscountRequired": "The price without discount is required",
       "priceWithoutDiscountNotNumber": "The price without discount can only include numbers",
       "finalPriceRequired": "The final price is required",
-      "finalPriceNotNumber": "The final price can only include numbers"
+      "finalPriceNotNumber": "The final price can only include numbers",
+      "sectionIdRequired": "The section is required"
     },
     "form": {
       "selectSection": "Select a section",

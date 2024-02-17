@@ -1,3 +1,4 @@
+export { catalogStructureInitialState } from './catalogStructureInitialState';
 export { menuInitialState } from './menuInitialState';
 export {
   productInitialState,

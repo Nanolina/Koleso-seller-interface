@@ -54,20 +54,20 @@ export const ProductDetailsFormik: React.FC = () => {
           setInitialValues({
             storeId: product.storeId,
             name: product.name,
-            description: product.description || '',
-            brand: product.brand || '',
-            model: product.model || '',
-            articleSupplier: product.articleSupplier || '',
+            description: product.description,
+            brand: product.brand,
+            model: product.model,
+            articleSupplier: product.articleSupplier,
             priceWithoutDiscount: product.priceWithoutDiscount,
             finalPrice: product.finalPrice,
-            gender: product?.gender,
+            gender: product.gender,
+            sectionId: product.sectionId,
+            categoryId: product.categoryId,
+            subcategoryId: product.subcategoryId,
             image: '',
             color: ColorType.White,
             composition: [],
             quantity: 0,
-            sectionId: 0,
-            categoryId: 0,
-            subcategoryId: 0,
           });
         } else {
           setIsProductFound(false);

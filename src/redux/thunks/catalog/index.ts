@@ -1,0 +1,1 @@
+export { handleGetCatalogStructure } from './handleGetCatalogStructure';
