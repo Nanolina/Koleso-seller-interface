@@ -111,7 +111,15 @@ export const ProductDetailsFormik: React.FC = () => {
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {({ values, errors, touched, setFieldValue, isValid, resetForm }) => (
+      {({
+        values,
+        errors,
+        touched,
+        setFieldValue,
+        isValid,
+        dirty,
+        resetForm,
+      }) => (
         <Form>
           <ProductFormFields
             values={values}
@@ -123,7 +131,11 @@ export const ProductDetailsFormik: React.FC = () => {
           />
 
           <div className="buttonSaveItemContainer">
-            <Button text={t('save')} type="submit" disabled={!isValid} />
+            <Button
+              text={t('save')}
+              type="submit"
+              disabled={!isValid || !dirty}
+            />
 
             {productId && productId !== 'new' && product && (
               <span

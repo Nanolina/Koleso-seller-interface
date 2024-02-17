@@ -56,6 +56,21 @@ export const CatalogStructureSelects: React.FC<CatalogStructureSelectsProps> =
       setOptions({ categoryOptions, subcategoryOptions });
     }, [catalogStructure, values.sectionId, values.categoryId]);
 
+    // Reset categoryId и subcategoryId when change sectionId
+    useEffect(() => {
+      if (values.sectionId) {
+        setFieldValue('categoryId', undefined);
+        setFieldValue('subcategoryId', undefined);
+      }
+    }, [values.sectionId, setFieldValue]);
+
+    // Reset subcategoryId when change categoryId
+    useEffect(() => {
+      if (values.categoryId) {
+        setFieldValue('subcategoryId', undefined);
+      }
+    }, [values.categoryId, setFieldValue]);
+
     if (loading) return <Loader />;
 
     return (
@@ -73,7 +88,7 @@ export const CatalogStructureSelects: React.FC<CatalogStructureSelectsProps> =
           required
         />
 
-        {values.sectionId && (
+        {values.sectionId !== 0 && (
           <SelectLabel
             id="categoryId"
             name="categoryId"
