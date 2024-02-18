@@ -95,7 +95,6 @@ export const CatalogStructureSelects: React.FC<ICatalogStructureSelectsProps> =
             keyInLocalStorage="product"
             firstText={t('products.form.selectCategory')}
             translationType="catalog"
-            required
           />
         )}
 
@@ -110,7 +109,6 @@ export const CatalogStructureSelects: React.FC<ICatalogStructureSelectsProps> =
             keyInLocalStorage="product"
             firstText={t('products.form.selectSubcategory')}
             translationType="catalog"
-            required
           />
         )}
 

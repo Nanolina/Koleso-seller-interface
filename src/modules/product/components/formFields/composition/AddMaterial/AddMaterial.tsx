@@ -45,7 +45,11 @@ export const AddMaterial: React.FC<IAddCompositionProps> = React.memo(
           materialPercentage={materialPercentage}
           setMaterialPercentage={setMaterialPercentage}
         />
-        <Button text={t('add')} onClick={handleChangeComposition} />
+        <Button
+          text={t('add')}
+          type="button"
+          onClick={handleChangeComposition}
+        />
       </div>
     );
   }

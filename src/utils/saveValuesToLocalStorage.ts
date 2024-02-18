@@ -4,7 +4,7 @@ import { FormikProps } from 'formik';
 export const saveValuesToLocalStorage = (
   key: string,
   name: string,
-  value: string | number,
+  value: any,
   setFieldValue: FormikProps<any>['setFieldValue']
 ) => {
   // Get the current state of the data from localStorage or create a new object if it does not exist

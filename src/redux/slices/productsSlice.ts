@@ -32,7 +32,7 @@ const productsSlice = createSlice({
         });
       }
     },
-    removeComposition: (state, action: PayloadAction<string>) => {
+    removeCompositionElem: (state, action: PayloadAction<string>) => {
       state.product.composition = state.product.composition?.filter(
         (composition) => composition.title !== action.payload
       );
@@ -45,6 +45,7 @@ const productsSlice = createSlice({
   },
 });
 
-export const { changeComposition, removeComposition } = productsSlice.actions;
+export const { changeComposition, removeCompositionElem } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;

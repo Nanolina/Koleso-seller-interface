@@ -9,13 +9,13 @@ import styles from './Composition.module.css';
  * Shows the composition's title and percentage, and provides a way to remove it.
  */
 export const Composition: React.FC<ICompositionProps> = React.memo(
-  ({ material, handleRemoveComposition }) => {
+  ({ material, handleRemoveCompositionElem }) => {
     const { t } = useTranslation();
 
     return (
       <div className={styles.container}>
         <BoxWithCloseButton
-          onClick={() => handleRemoveComposition(material.title)}
+          onClick={() => handleRemoveCompositionElem(material.title)}
         >
           {t(`products.form.composition.${material.title}`)} -{' '}
           {material.percentage} %

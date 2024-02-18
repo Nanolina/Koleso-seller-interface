@@ -20,7 +20,7 @@ export const AddComposition: React.FC<IAddCompositionProps> = React.memo(
           <Label id="material" text={t('products.form.composition.label')} />
           <AddMaterial values={values} setFieldValue={setFieldValue} />
         </div>
-        <Compositions />
+        <Compositions setFieldValue={setFieldValue} />
       </>
     );
   }
