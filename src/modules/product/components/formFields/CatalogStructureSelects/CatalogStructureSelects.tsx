@@ -84,7 +84,7 @@ export const CatalogStructureSelects: React.FC<ICatalogStructureSelectsProps> =
           required
         />
 
-        {values.sectionId && (
+        {values.sectionId ? (
           <SelectLabel
             id="categoryId"
             name="categoryId"
@@ -96,9 +96,9 @@ export const CatalogStructureSelects: React.FC<ICatalogStructureSelectsProps> =
             firstText={t('products.form.selectCategory')}
             translationType="catalog"
           />
-        )}
+        ) : null}
 
-        {values.categoryId && (
+        {values.categoryId ? (
           <SelectLabel
             id="subcategoryId"
             name="subcategoryId"
@@ -110,7 +110,7 @@ export const CatalogStructureSelects: React.FC<ICatalogStructureSelectsProps> =
             firstText={t('products.form.selectSubcategory')}
             translationType="catalog"
           />
-        )}
+        ) : null}
 
         {error && <MessageBox errorMessage={error} />}
       </>
