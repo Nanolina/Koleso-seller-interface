@@ -132,7 +132,7 @@ export const handleSubmitFormProduct = async (
     });
 
     // Navigate
-    navigate(`/product/${productFromDB.id}`);
+    navigate('/products');
   }
 };
 
