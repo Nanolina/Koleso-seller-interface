@@ -56,7 +56,7 @@ export interface ICreateProductData {
   subcategoryId?: number;
   composition?: IComposition[];
   image: string;
-  color: ColorType;
+  color?: ColorType;
   size?: string;
   quantity: number;
 }

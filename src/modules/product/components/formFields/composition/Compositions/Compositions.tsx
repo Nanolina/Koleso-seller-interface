@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../../../../../../redux/rootReducer';
+import { removeComposition } from '../../../../../../redux/slices/productsSlice';
 import { AppDispatch } from '../../../../../../redux/store';
 import { IComposition } from '../../../../types';
 import { Composition } from '../Composition/Composition';
@@ -19,7 +20,7 @@ export const Compositions: React.FC = () => {
 
   const handleRemoveComposition = useCallback(
     (title: string) => {
-      // dispatch(removeComposition(title));
+      dispatch(removeComposition(title));
     },
     [dispatch]
   );

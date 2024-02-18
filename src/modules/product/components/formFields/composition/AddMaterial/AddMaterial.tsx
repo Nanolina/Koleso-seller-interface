@@ -24,7 +24,7 @@ export const AddMaterial: React.FC<IAddCompositionProps> = React.memo(
     const [materialPercentage, setMaterialPercentage] = useState<number>(0);
 
     const handleChangeComposition = useCallback(() => {
-      // dispatch(changeComposition({ material, materialPercentage }));
+      dispatch(changeComposition({ material, materialPercentage }));
     }, [dispatch, material, materialPercentage]);
 
     return (

@@ -1,4 +1,4 @@
-import { ColorType, IProductsState } from '../../modules/product';
+import { IProductsState } from '../../modules/product';
 
 export const productInitialState = {
   id: '',
@@ -17,7 +17,7 @@ export const productInitialState = {
   composition: [],
   image: '',
   imagePublicId: '',
-  color: ColorType.White,
+  color: undefined,
   size: '',
   quantity: 0,
   storeId: '',

@@ -3,7 +3,7 @@ import { TFunction } from 'i18next';
 import * as Yup from 'yup';
 import { AppDispatch } from '../../redux/store';
 import { handleCreateProduct } from '../../redux/thunks/product';
-import { ColorType, ICreateProductData, IProduct } from './types';
+import { ICreateProductData, IProduct } from './types';
 
 export const initialValuesProduct: ICreateProductData = {
   name: '',
@@ -19,7 +19,7 @@ export const initialValuesProduct: ICreateProductData = {
   subcategoryId: undefined,
   composition: [],
   image: '',
-  color: ColorType.White,
+  color: undefined,
   size: '',
   quantity: 0,
   storeId: '',
