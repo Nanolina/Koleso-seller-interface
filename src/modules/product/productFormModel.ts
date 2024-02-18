@@ -35,13 +35,15 @@ export const validationSchemaProduct = (
     name: Yup.string().required(t('products.validation.nameRequired')),
     priceWithoutDiscount: Yup.number()
       .typeError(t('products.validation.priceWithoutDiscountNotNumber'))
+      .min(0.01, t('products.validation.priceMustBeGreaterThanZero'))
       .required(t('products.validation.priceWithoutDiscountRequired')),
     finalPrice: Yup.number()
       .typeError(t('products.validation.finalPriceNotNumber'))
+      .min(0.01, t('products.validation.priceMustBeGreaterThanZero'))
       .required(t('products.validation.finalPriceRequired')),
-    sectionId: Yup.number().required(
-      t('products.validation.sectionIdRequired')
-    ),
+    sectionId: Yup.number()
+      .min(1, t('products.validation.sectionIdRequired'))
+      .required(t('products.validation.sectionIdRequired')),
   });
 
 export const handleSubmitFormProduct = async (

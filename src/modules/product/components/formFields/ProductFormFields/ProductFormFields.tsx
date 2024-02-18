@@ -62,6 +62,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
             setFieldValue={setFieldValue}
             keyInLocalStorage="product"
             firstText={items[0]?.name || ''}
+            required
           />
 
           {!hasStore && (

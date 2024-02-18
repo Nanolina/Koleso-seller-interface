@@ -47,7 +47,8 @@
       "priceWithoutDiscountNotNumber": "Цена без скидки должна включать только цифры",
       "finalPriceRequired": "Конечная цена бязательна",
       "finalPriceNotNumber": "Конечная цена должна включать только цифры",
-      "sectionIdRequired": "Раздел обязателен"
+      "sectionIdRequired": "Раздел обязателен",
+      "priceMustBeGreaterThanZero": "Цена не должна равняться 0"
     },
     "form": {
       "selectSection": "Выберите раздел",

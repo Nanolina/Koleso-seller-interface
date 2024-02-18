@@ -12,16 +12,18 @@ export const AddPercentage: React.FC<IAddPercentageProps> = React.memo(
     // Callback to handle changes in material percentage input
     const handleChangeMaterialPercentage = useCallback(
       (value: string) => {
-        // Convert the input value to a number and update the state
-        // Ensures that the percentage is a valid number and not greater than 100
-        if (value === '') {
-          setMaterialPercentage(0);
-        } else {
-          const parsedValue = parseFloat(value);
-          if (isFinite(parsedValue) && parsedValue <= 100) {
-            setMaterialPercentage(parsedValue);
-          }
+        let parsedValue = parseFloat(value);
+
+        // Check that the value is a number
+        if (!isFinite(parsedValue)) {
+          parsedValue = 1; // Default value if a non-number is entered
+        } else if (parsedValue < 1) {
+          parsedValue = 1; // Min value
+        } else if (parsedValue > 100) {
+          parsedValue = 100; // Max value
         }
+
+        setMaterialPercentage(parsedValue);
       },
       [setMaterialPercentage]
     );
@@ -29,6 +31,8 @@ export const AddPercentage: React.FC<IAddPercentageProps> = React.memo(
     return (
       <div className={styles.container}>
         <Input
+          id="percentage"
+          name="percentage"
           type="number"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             handleChangeMaterialPercentage(event.target.value);

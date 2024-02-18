@@ -1,13 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { Select } from '../../../../../../components/Select/Select';
 import { COMPOSITIONS } from '../../../../../../consts';
-import { changeComposition } from '../../../../../../redux/slices/productsSlice';
-import { AppDispatch } from '../../../../../../redux/store';
 import { Button } from '../../../../../../ui/Button/Button';
-import { IAddCompositionProps } from '../../../../types';
+import { ICreateProductValuesProps } from '../../../../types';
 import { AddPercentage } from '../AddPercentage/AddPercentage';
 import styles from './AddMaterial.module.css';
 
@@ -15,17 +12,28 @@ import styles from './AddMaterial.module.css';
  * Component to add a material with its percentage in a composition.
  * Allows selecting a material and defining its percentage in a composition.
  */
-export const AddMaterial: React.FC<IAddCompositionProps> = React.memo(
+export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
   ({ values, setFieldValue }) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch<AppDispatch>();
 
     const [material, setMaterial] = useState<string>('');
-    const [materialPercentage, setMaterialPercentage] = useState<number>(0);
+    const [materialPercentage, setMaterialPercentage] = useState<number>(1);
 
-    const handleChangeComposition = useCallback(() => {
-      dispatch(changeComposition({ material, materialPercentage }));
-    }, [dispatch, material, materialPercentage]);
+    const addCompositionToValues = () => {
+      const currentComposition = values.composition || [];
+      const newComposition = [
+        ...currentComposition,
+        { title: material, percentage: materialPercentage },
+      ];
+
+      // Update the composition in Formik
+      setFieldValue('composition', newComposition);
+
+      // Update the composition in localStorage
+      const currentData = JSON.parse(localStorage.getItem('product') || '{}');
+      currentData['composition'] = newComposition;
+      localStorage.setItem('product', JSON.stringify(currentData));
+    };
 
     return (
       <div className={styles.container}>
@@ -48,7 +56,7 @@ export const AddMaterial: React.FC<IAddCompositionProps> = React.memo(
         <Button
           text={t('add')}
           type="button"
-          onClick={handleChangeComposition}
+          onClick={addCompositionToValues}
         />
       </div>
     );

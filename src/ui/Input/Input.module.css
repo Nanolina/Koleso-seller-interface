@@ -1,4 +1,4 @@
-.input {
+.input, .error {
   border: 2px solid var(--light-gray);
   border-radius: var(--border-radius);
   outline: none;

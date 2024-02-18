@@ -112,12 +112,7 @@ export interface IOptions {
   subcategoryOptions: ICatalogItemType[];
 }
 
-export interface ICatalogStructureSelectsProps {
-  values: ICreateProductData;
-  setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
-}
-
-export interface IAddCompositionProps {
+export interface ICreateProductValuesProps {
   values: ICreateProductData;
   setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
 }
@@ -141,8 +136,4 @@ export interface ICompositionProps {
 export interface IChangeCompositionPayload {
   material: string;
   materialPercentage: number;
-}
-
-export interface ICompositionsProps {
-  setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
 }
