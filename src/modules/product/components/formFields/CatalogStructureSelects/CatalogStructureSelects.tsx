@@ -9,8 +9,8 @@ import { AppDispatch } from '../../../../../redux/store';
 import { handleGetCatalogStructure } from '../../../../../redux/thunks/catalog';
 import { getOptions } from '../../../functions';
 import {
-  CatalogStructureSelectsProps,
   ICatalogItemType,
+  ICatalogStructureSelectsProps,
   ICategoryType,
   IOptions,
 } from '../../../types';
@@ -20,7 +20,7 @@ import {
  * Allows the user to select a section, then a category within that section,
  * and finally a subcategory within that category.
  */
-export const CatalogStructureSelects: React.FC<CatalogStructureSelectsProps> =
+export const CatalogStructureSelects: React.FC<ICatalogStructureSelectsProps> =
   React.memo(({ values, setFieldValue }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();

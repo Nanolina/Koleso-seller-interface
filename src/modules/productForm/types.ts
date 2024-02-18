@@ -1,5 +1,4 @@
 import { ChangeEvent } from 'react';
-import { SetStateAction } from '../../types';
 
 export interface IParameter {
   id: string;
@@ -23,7 +22,6 @@ export interface IPhotosWith1Color {
 }
 
 export interface IProductCreationState {
-  compositions: IComposition[];
   parameters: IParameter[];
   colorsWithPhotos: IPhotosWith1Color[];
 }
@@ -50,27 +48,6 @@ export type ISetValuePayloadProductCreation = {
 export type IResetValuePayloadProductCreation = {
   key: keyof IProductCreationStringsState;
 };
-
-// Composition
-export interface IComposition {
-  title: string;
-  percentage: number;
-}
-
-export interface IAddPercentageProps {
-  materialPercentage: number;
-  setMaterialPercentage: SetStateAction<number>;
-}
-
-export interface ICompositionProps {
-  material: IComposition;
-  handleRemoveComposition: (title: string) => void;
-}
-
-export interface IChangeCompositionPayload {
-  material: string;
-  materialPercentage: number;
-}
 
 export interface IFileInputProps {
   color: string;

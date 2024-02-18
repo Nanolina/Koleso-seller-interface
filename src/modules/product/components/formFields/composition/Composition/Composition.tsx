@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { BoxWithCloseButton } from '../../../../../components/BoxWithCloseButton/BoxWithCloseButton';
-import { ICompositionProps } from '../../../types';
+import { BoxWithCloseButton } from '../../../../../../components/BoxWithCloseButton/BoxWithCloseButton';
+import { ICompositionProps } from '../../../../types';
 import styles from './Composition.module.css';
 
 /**

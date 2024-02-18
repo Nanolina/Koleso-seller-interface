@@ -64,9 +64,9 @@ export const ProductDetailsFormik: React.FC = () => {
             sectionId: product.sectionId,
             categoryId: product.categoryId,
             subcategoryId: product.subcategoryId,
+            composition: product.composition,
             image: '',
             color: ColorType.White,
-            composition: [],
             quantity: 0,
           });
         } else {

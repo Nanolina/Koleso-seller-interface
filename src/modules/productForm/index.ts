@@ -1,6 +1,4 @@
 export type {
-  IChangeCompositionPayload,
-  IComposition,
   IParameter,
   IPhotosWith1Color,
   IProductCreationActionPayload,

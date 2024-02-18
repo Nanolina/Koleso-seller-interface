@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
-import { Input } from '../../../../../ui/Input/Input';
+import { Input } from '../../../../../../ui/Input/Input';
+import { IAddPercentageProps } from '../../../../types';
 import styles from './AddPercentage.module.css';
-import { IAddPercentageProps } from '../../../types';
 
 /**
  * Component to add the percentage of a material in a composition.
@@ -17,14 +17,13 @@ export const AddPercentage: React.FC<IAddPercentageProps> = React.memo(
         if (value === '') {
           setMaterialPercentage(0);
         } else {
-          const parsedValue = parseInt(value);
-          if (!isNaN(parsedValue) && parsedValue <= 100) {
+          const parsedValue = parseFloat(value);
+          if (isFinite(parsedValue) && parsedValue <= 100) {
             setMaterialPercentage(parsedValue);
           }
         }
       },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [materialPercentage]
+      [setMaterialPercentage]
     );
 
     return (
@@ -35,7 +34,6 @@ export const AddPercentage: React.FC<IAddPercentageProps> = React.memo(
             handleChangeMaterialPercentage(event.target.value);
           }}
           value={materialPercentage}
-          isSmallWidth
         />
         <span className={styles.percentage}>%</span>
       </div>

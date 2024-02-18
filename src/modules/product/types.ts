@@ -4,6 +4,7 @@ import {
   FormikProps,
   FormikTouched,
 } from 'formik';
+import { SetStateAction } from '../../types';
 
 export enum ColorType {
   Aquamarine,
@@ -40,11 +41,6 @@ export enum GenderType {
   Female,
 }
 
-interface IComposition {
-  title: string;
-  percentage: number;
-}
-
 export interface ICreateProductData {
   storeId: string;
   name: string;
@@ -58,10 +54,10 @@ export interface ICreateProductData {
   sectionId: number;
   categoryId?: number;
   subcategoryId?: number;
+  composition?: IComposition[];
   image: string;
   color: ColorType;
   size?: string;
-  composition: IComposition[];
   quantity: number;
 }
 
@@ -122,7 +118,33 @@ interface ICatalogValues {
   subcategoryId?: number;
 }
 
-export interface CatalogStructureSelectsProps {
+export interface ICatalogStructureSelectsProps {
   values: ICatalogValues;
   setFieldValue: FormikProps<ISectionType>['setFieldValue'];
+}
+
+export interface IAddCompositionProps {
+  values: ICatalogValues;
+  setFieldValue: FormikProps<any>['setFieldValue'];
+}
+
+// Composition
+export interface IComposition {
+  title: string;
+  percentage: number;
+}
+
+export interface IAddPercentageProps {
+  materialPercentage: number;
+  setMaterialPercentage: SetStateAction<number>;
+}
+
+export interface ICompositionProps {
+  material: IComposition;
+  handleRemoveComposition: (title: string) => void;
+}
+
+export interface IChangeCompositionPayload {
+  material: string;
+  materialPercentage: number;
 }

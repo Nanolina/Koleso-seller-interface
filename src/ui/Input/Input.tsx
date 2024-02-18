@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { Field } from 'formik';
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -15,7 +14,6 @@ export const Input: React.FC<IInputProps> = React.memo(
     value,
     onChange,
     hasError = false,
-    isSmallWidth = false,
   }) => {
     // Add eye to input for password
     const [showPassword, setShowPassword] = useState(false);
@@ -23,12 +21,6 @@ export const Input: React.FC<IInputProps> = React.memo(
     const inputType = type === 'password' && showPassword ? 'text' : type;
     const isVisiblePassword = type === 'password' && showPassword;
     const isNotVisiblePassword = type === 'password' && !showPassword;
-
-    const inputClassNames = classNames({
-      [styles.input]: !isSmallWidth,
-      [styles.smallWidth]: isSmallWidth,
-      [styles.error]: hasError,
-    });
 
     return (
       <div className={styles.inputContainer}>
@@ -41,7 +33,7 @@ export const Input: React.FC<IInputProps> = React.memo(
           type={inputType}
           placeholder={placeholder}
           required={required}
-          className={inputClassNames}
+          className={hasError ? styles.error : styles.input}
         />
         {isNotVisiblePassword && (
           <FaEye

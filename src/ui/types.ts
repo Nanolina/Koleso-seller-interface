@@ -32,7 +32,6 @@ export interface IInputProps {
   hasError?: boolean;
   value?: string | number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  isSmallWidth?: boolean;
 }
 
 export interface ITextareaProps {

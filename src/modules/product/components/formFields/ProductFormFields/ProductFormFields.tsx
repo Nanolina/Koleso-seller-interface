@@ -14,6 +14,7 @@ import { AppDispatch } from '../../../../../redux/store';
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
 import { IProductFormFieldsProps } from '../../../types';
 import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
+import { AddComposition } from '../composition/AddComposition/AddComposition';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -172,8 +173,8 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 setFieldValue={setFieldValue}
               />
 
-              {/* <AddComposition />
-              <AddParameters /> */}
+              <AddComposition values={values} setFieldValue={setFieldValue} />
+              {/* <AddParameters /> */}
 
               {/* <PhotoUpload /> */}
             </>

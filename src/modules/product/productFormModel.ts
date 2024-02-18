@@ -17,10 +17,10 @@ export const initialValuesProduct: ICreateProductData = {
   sectionId: 0,
   categoryId: undefined,
   subcategoryId: undefined,
+  composition: [],
   image: '',
   color: ColorType.White,
   size: '',
-  composition: [],
   quantity: 0,
   storeId: '',
 };
@@ -66,6 +66,7 @@ export const handleSubmitFormProduct = async (
     sectionId,
     categoryId,
     subcategoryId,
+    composition,
   } = values;
 
   // Add data to form data
@@ -88,6 +89,8 @@ export const handleSubmitFormProduct = async (
   if (categoryId) productFormData.append('categoryId', categoryId.toString());
   if (subcategoryId)
     productFormData.append('subcategoryId', subcategoryId.toString());
+  if (composition?.length)
+    productFormData.append('composition', JSON.stringify(composition));
 
   let data: any;
   // Create product
@@ -119,10 +122,10 @@ export const handleSubmitFormProduct = async (
       sectionId: values.sectionId,
       categoryId: values.categoryId || undefined,
       subcategoryId: values.subcategoryId || undefined,
+      composition: values.composition || [],
       image: '',
       color: values.color,
       size: values.size || '',
-      composition: values.composition || [],
       quantity: values.quantity,
     });
 
