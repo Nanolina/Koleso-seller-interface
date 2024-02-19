@@ -43,6 +43,7 @@ export enum GenderType {
 
 export interface ICreateProductData {
   storeId: string;
+  groupId: string;
   name: string;
   description?: string;
   brand?: string;
@@ -75,6 +76,7 @@ export interface IProduct extends ICreateProductData {
 export interface IProductsState {
   items: IProduct[];
   product: IProduct;
+  groupedProducts: IGroupedProducts[];
   success: string | null;
   loading: boolean;
   error: any;
@@ -150,4 +152,12 @@ export interface IParameter {
 
 export interface IParameterProps extends ICreateProductValuesProps {
   parameter: IParameter;
+}
+
+export interface IGroupedProducts {
+  groupId: string;
+  name: string;
+  finalPrice: number;
+  brand?: string;
+  model?: string;
 }

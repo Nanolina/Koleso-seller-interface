@@ -135,7 +135,7 @@ export const StoreDetailsFormik: React.FC = () => {
             <Button
               text={t('save')}
               type="submit"
-              disabled={!isValid || !dirty}
+              disabled={!isValid}
             />
 
             {storeId && storeId !== 'new' && store && (

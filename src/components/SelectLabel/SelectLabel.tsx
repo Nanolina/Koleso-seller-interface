@@ -43,14 +43,7 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
 
     return (
       <div className={styles.container}>
-        {extraText ? (
-          <>
-            <Label id={id} text={label} required={required} />
-            <div className={styles.extraText}>{extraText}</div>
-          </>
-        ) : (
-          <Label id={id} text={label} required={required} />
-        )}
+        <Label id={id} text={label} required={required} />
 
         <Select
           id={id}
@@ -61,6 +54,8 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
           translationType={translationType}
           firstText={firstText}
         />
+
+        {extraText && <div className={styles.extraText}>{extraText}</div>}
       </div>
     );
   }

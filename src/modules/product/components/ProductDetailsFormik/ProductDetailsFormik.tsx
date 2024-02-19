@@ -9,7 +9,10 @@ import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
-import { handleGetProductById } from '../../../../redux/thunks/product';
+import {
+  handleGetGroupedProducts,
+  handleGetProductById,
+} from '../../../../redux/thunks/product';
 import { Button } from '../../../../ui/Button/Button';
 import {
   handleSubmitFormProduct,
@@ -39,6 +42,10 @@ export const ProductDetailsFormik: React.FC = () => {
     (state: IRootState) => state.products
   );
 
+  useEffect(() => {
+    dispatch(handleGetGroupedProducts());
+  }, [dispatch]);
+
   // useEffect
   useEffect(() => {
     const fetchData = async () => {
@@ -54,6 +61,7 @@ export const ProductDetailsFormik: React.FC = () => {
         if (product) {
           setInitialValues({
             storeId: product.storeId,
+            groupId: product.groupId,
             name: product.name,
             description: product.description,
             brand: product.brand,

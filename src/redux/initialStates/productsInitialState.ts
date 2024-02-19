@@ -3,6 +3,7 @@ import { ColorType, IProductsState } from '../../modules/product';
 export const productInitialState = {
   id: '',
   storeId: '',
+  groupId: '',
   name: '',
   description: '',
   brand: '',
@@ -30,6 +31,7 @@ export const productInitialState = {
 export const productsInitialState: IProductsState = {
   items: [],
   product: productInitialState,
+  groupedProducts: [],
   loading: false,
   success: null,
   error: null,

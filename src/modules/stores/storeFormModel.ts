@@ -72,7 +72,7 @@ export const handleSubmitFormStore = async (
     });
 
     // Navigate
-    navigate(`/store/${storeFromDB.id}`);
+    navigate('/store');
   }
 };
 

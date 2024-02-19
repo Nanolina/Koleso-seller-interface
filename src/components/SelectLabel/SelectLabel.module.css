@@ -9,11 +9,9 @@
 }
 
 .extraText {
-  color: var(--dark-gray);
-  font-size: 14px;
-  position: absolute;
-  top: 0;
-  right: 0;
+  font-size: 12px;
+  text-align: right;
+  width: 100%;
 }
 
 @media only screen and (max-width: 600px) {

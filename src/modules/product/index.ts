@@ -10,4 +10,5 @@ export type {
   IChangeCompositionPayload,
   IParameter,
   ICreateProductData,
+  IGroupedProducts,
 } from './types';
