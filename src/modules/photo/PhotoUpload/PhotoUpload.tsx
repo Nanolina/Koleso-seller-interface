@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { SelectLabel } from '../../../components/SelectLabel/SelectLabel';
+import { COLORS } from '../../../consts';
 import { IRootState } from '../../../redux/rootReducer';
 import { removePhotosWith1Color } from '../../../redux/slices/productCreationSlice';
 import { InputUpload } from '../../../ui/InputUpload/InputUpload';
-import { useColorSelection } from '../../productForm/hooks/useColorSelection';
 import { useFileHandler } from '../../productForm/hooks/useFileHandler';
 import { PhotoPreviews } from '../PhotoPreviews/PhotoPreviews';
 import styles from './PhotoUpload.module.css';
@@ -16,12 +16,13 @@ export const PhotoUpload: React.FC = () => {
   const dispatch = useDispatch();
 
   // Redux store
-  const { colorsWithPhotos, parameters } = useSelector(
+  const { colorsWithPhotos } = useSelector(
     (state: IRootState) => state.productCreation
   );
+  // parameters
 
   // Getting data from hooks
-  const { handleAddColor, existingColors } = useColorSelection(parameters);
+  // const { handleAddColor, existingColors } = useColorSelection(parameters);
   const { handleFileSelect } = useFileHandler();
 
   const handleRemovePhotosWith1Color = useCallback(
@@ -37,9 +38,10 @@ export const PhotoUpload: React.FC = () => {
         id="photo"
         name="photo"
         label={t('products.form.photo.label')}
-        options={existingColors}
-        onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-          handleAddColor(event.target.value)
+        options={COLORS} // existingColors
+        onChange={
+          (event: React.ChangeEvent<HTMLSelectElement>) => console.log('event')
+          // handleAddColor(event.target.value)
         }
         firstText={t('products.form.photo.select')}
         translationType="products.form.color"

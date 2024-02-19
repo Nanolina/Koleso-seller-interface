@@ -1,58 +1,55 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import {
-  IParameter,
   IPhotosWith1Color,
-  IProductCreationActionPayload,
   IProductCreationState,
 } from '../../modules/productForm';
 
 const productCreationSlice = createSlice({
   name: 'productCreation',
   initialState: {
-    parameters: [],
+    // parameters: [],
     colorsWithPhotos: [],
   } as IProductCreationState,
   reducers: {
     // Parameters
-    addOrUpdateParameter: (
-      state,
-      action: PayloadAction<IProductCreationActionPayload>
-    ) => {
-      const { id, ...newValues } = action.payload;
+    // addOrUpdateParameter: (
+    //   state,
+    //   action: PayloadAction<IProductCreationActionPayload>
+    // ) => {
+    //   const { id, ...newValues } = action.payload;
 
-      // Check if there is an object with the given id in the array
-      const existingIndex = state.parameters.findIndex(
-        (parameter: IParameter) => parameter.id === id
-      );
+    //   // Check if there is an object with the given id in the array
+    //   const existingIndex = state.parameters.findIndex(
+    //     (parameter: IParameter) => parameter.id === id
+    //   );
 
-      // If an object with the same id is found, update its properties
-      if (existingIndex !== -1) {
-        state.parameters[existingIndex] = {
-          ...state.parameters[existingIndex],
-          ...newValues,
-        };
-      } else {
-        // If an object with this id is not found, add a new object
-        state.parameters.push({ id, ...newValues });
-      }
-    },
+    //   // If an object with the same id is found, update its properties
+    //   if (existingIndex !== -1) {
+    //     state.parameters[existingIndex] = {
+    //       ...state.parameters[existingIndex],
+    //       ...newValues,
+    //     };
+    //   } else {
+    //     // If an object with this id is not found, add a new object
+    //     state.parameters.push({ id, ...newValues });
+    //   }
+    // },
 
-    removeParameter: (state, action: PayloadAction<string>) => {
-      state.parameters = state.parameters.filter(
-        (parameter: IParameter) => parameter.id !== action.payload
-      );
-    },
+    // removeParameter: (state, action: PayloadAction<string>) => {
+    //   state.parameters = state.parameters.filter(
+    //     (parameter: IParameter) => parameter.id !== action.payload
+    //   );
+    // },
 
-    copyParameter: (state, action: PayloadAction<string>) => {
-      const parameterToCopy = state.parameters.find(
-        (parameter) => parameter.id === action.payload
-      );
+    // copyParameter: (state, action: PayloadAction<string>) => {
+    //   const parameterToCopy = state.parameters.find(
+    //     (parameter) => parameter.id === action.payload
+    //   );
 
-      if (parameterToCopy) {
-        state.parameters.push({ ...parameterToCopy, id: uuidv4() });
-      }
-    },
+    //   if (parameterToCopy) {
+    //     state.parameters.push({ ...parameterToCopy, id: uuidv4() });
+    //   }
+    // },
 
     // ColorsWithPhotos
     addOrUpdateColorWithPhotos: (
@@ -109,9 +106,9 @@ const productCreationSlice = createSlice({
 
 export default productCreationSlice.reducer;
 export const {
-  addOrUpdateParameter,
-  removeParameter,
-  copyParameter,
+  // addOrUpdateParameter,
+  // removeParameter,
+  // copyParameter,
   addOrUpdateColorWithPhotos,
   removePhoto,
   removePhotosWith1Color,

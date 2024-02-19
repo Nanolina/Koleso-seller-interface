@@ -6,6 +6,7 @@ import { handleCreateProduct } from '../../redux/thunks/product';
 import { ICreateProductData, IProduct } from './types';
 
 export const initialValuesProduct: ICreateProductData = {
+  storeId: '',
   name: '',
   description: '',
   brand: '',
@@ -18,11 +19,11 @@ export const initialValuesProduct: ICreateProductData = {
   categoryId: undefined,
   subcategoryId: undefined,
   composition: [],
-  image: '',
-  color: undefined,
-  size: '',
-  quantity: 0,
-  storeId: '',
+  parameters: [],
+  // image: '',
+  // color: undefined,
+  // size: '',
+  // quantity: 0,
 };
 
 export const validationSchemaProduct = (
@@ -69,6 +70,7 @@ export const handleSubmitFormProduct = async (
     categoryId,
     subcategoryId,
     composition,
+    parameters,
   } = values;
 
   // Add data to form data
@@ -93,11 +95,41 @@ export const handleSubmitFormProduct = async (
     productFormData.append('subcategoryId', subcategoryId.toString());
   if (composition?.length)
     productFormData.append('composition', JSON.stringify(composition));
+  if (parameters.length) {
+    productFormData.append('parameters', JSON.stringify(parameters));
+  }
 
   let data: any;
   // Create product
   if (productId === 'new') {
     data = await dispatch(handleCreateProduct(productFormData));
+
+    // Get data from DB
+    const productFromDB: IProduct = unwrapResult(data);
+
+    // Set initial values
+    if (productFromDB) {
+      setInitialValues({
+        storeId: values.storeId,
+        name: values.name,
+        description: values.description || '',
+        brand: values.brand || '',
+        model: values.model || '',
+        articleSupplier: values.articleSupplier || '',
+        priceWithoutDiscount: values.priceWithoutDiscount,
+        finalPrice: values.finalPrice,
+        gender: values.gender || undefined,
+        sectionId: values.sectionId,
+        categoryId: values.categoryId || undefined,
+        subcategoryId: values.subcategoryId || undefined,
+        composition: values.composition || [],
+        parameters: values.parameters || [],
+        // image: '',
+        // color: values.color,
+        // size: values.size || '',
+        // quantity: values.quantity,
+      });
+    }
   }
   //   // Update product
   // } else if (product && productId) {
@@ -106,34 +138,8 @@ export const handleSubmitFormProduct = async (
   //   );
   // }
 
-  // Get data from DB
-  const productFromDB: IProduct = unwrapResult(data);
-
-  // Set initial values
-  if (productFromDB) {
-    setInitialValues({
-      storeId: values.storeId,
-      name: values.name,
-      description: values.description || '',
-      brand: values.brand || '',
-      model: values.model || '',
-      articleSupplier: values.articleSupplier || '',
-      priceWithoutDiscount: values.priceWithoutDiscount,
-      finalPrice: values.finalPrice,
-      gender: values.gender || undefined,
-      sectionId: values.sectionId,
-      categoryId: values.categoryId || undefined,
-      subcategoryId: values.subcategoryId || undefined,
-      composition: values.composition || [],
-      image: '',
-      color: values.color,
-      size: values.size || '',
-      quantity: values.quantity,
-    });
-
-    // Navigate
-    navigate('/products');
-  }
+  // Navigate
+  navigate('/products');
 };
 
 // export const handleRemoveFormProduct = async (

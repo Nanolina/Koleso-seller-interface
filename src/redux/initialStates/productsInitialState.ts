@@ -1,7 +1,8 @@
-import { IProductsState } from '../../modules/product';
+import { ColorType, IProductsState } from '../../modules/product';
 
 export const productInitialState = {
   id: '',
+  storeId: '',
   name: '',
   description: '',
   brand: '',
@@ -15,12 +16,12 @@ export const productInitialState = {
   categoryId: 0,
   subcategoryId: 0,
   composition: [],
-  image: '',
-  imagePublicId: '',
-  color: undefined,
+  parameters: [],
+  color: ColorType.White,
   size: '',
   quantity: 0,
-  storeId: '',
+  image: '',
+  imagePublicId: '',
   userId: '',
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),

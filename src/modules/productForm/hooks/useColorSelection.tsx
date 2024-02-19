@@ -1,16 +1,14 @@
 import { useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { addOrUpdateColorWithPhotos } from '../../../redux/slices/productCreationSlice';
-import { IColorSelectionReturn, IParameter } from '../types';
+import { IColorSelectionReturn } from '../types';
 
-export const useColorSelection = (
-  parameters: IParameter[]
-): IColorSelectionReturn => {
+export const useColorSelection = (parameters: any): IColorSelectionReturn => {
   const dispatch = useDispatch();
 
   const existingColors = useMemo(() => {
     const set = new Set<string>();
-    parameters.forEach((parameter) => {
+    parameters.forEach((parameter: any) => {
       if (parameter.color) {
         set.add(parameter.color);
       }

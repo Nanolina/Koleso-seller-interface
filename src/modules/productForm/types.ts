@@ -1,16 +1,5 @@
 import { ChangeEvent } from 'react';
 
-export interface IParameter {
-  id: string;
-  color?: string;
-  quantity?: string;
-  size?: string;
-}
-
-export interface IParameterProps {
-  parameter: IParameter;
-}
-
 export interface IProductCreationActionPayload {
   id: string;
   [key: string]: any;
@@ -22,7 +11,7 @@ export interface IPhotosWith1Color {
 }
 
 export interface IProductCreationState {
-  parameters: IParameter[];
+  // parameters: IParameter[];
   colorsWithPhotos: IPhotosWith1Color[];
 }
 

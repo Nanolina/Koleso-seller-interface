@@ -55,10 +55,11 @@ export interface ICreateProductData {
   categoryId?: number;
   subcategoryId?: number;
   composition?: IComposition[];
-  image: string;
-  color?: ColorType;
-  size?: string;
-  quantity: number;
+  parameters: IParameter[];
+  // image: string;
+  // color?: ColorType;
+  // size?: string;
+  // quantity: number;
 }
 
 export interface IProduct extends ICreateProductData {
@@ -66,6 +67,10 @@ export interface IProduct extends ICreateProductData {
   articleKoleso: string;
   imagePublicId: string;
   userId: string;
+  image: string;
+  color: ColorType;
+  size?: string;
+  quantity: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -136,4 +141,16 @@ export interface ICompositionProps {
 export interface IChangeCompositionPayload {
   material: string;
   materialPercentage: number;
+}
+
+// Parameters
+export interface IParameter {
+  id: string;
+  color: ColorType;
+  quantity: number;
+  size?: string;
+}
+
+export interface IParameterProps extends ICreateProductValuesProps {
+  parameter: IParameter;
 }

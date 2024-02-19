@@ -21,6 +21,7 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
     required,
   }) => {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      console.log('event', e.target.value)
       const eventValue = e.target.value;
 
       // change setFieldValue as required field
@@ -33,6 +34,8 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
           eventValue,
           setFieldValue
         );
+      } else if (onChange) {
+        onChange(eventValue);
       }
 
       return;

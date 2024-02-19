@@ -15,7 +15,7 @@ import {
   initialValuesProduct,
   validationSchemaProduct,
 } from '../../productFormModel';
-import { ColorType, ICreateProductData, IProduct } from '../../types';
+import { ICreateProductData, IProduct } from '../../types';
 import { ProductFormFields } from '../formFields/ProductFormFields/ProductFormFields';
 
 export const ProductDetailsFormik: React.FC = () => {
@@ -65,9 +65,8 @@ export const ProductDetailsFormik: React.FC = () => {
             categoryId: product.categoryId,
             subcategoryId: product.subcategoryId,
             composition: product.composition,
-            image: '',
-            color: ColorType.White,
-            quantity: 0,
+            parameters: product.parameters,
+            // image: '',
           });
         } else {
           setIsProductFound(false);
@@ -134,7 +133,7 @@ export const ProductDetailsFormik: React.FC = () => {
             <Button
               text={t('save')}
               type="submit"
-              disabled={!isValid || !dirty}
+              disabled={!isValid}
             />
 
             {productId && productId !== 'new' && product && (

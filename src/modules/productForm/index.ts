@@ -1,5 +1,4 @@
 export type {
-  IParameter,
   IPhotosWith1Color,
   IProductCreationActionPayload,
   IProductCreationState,

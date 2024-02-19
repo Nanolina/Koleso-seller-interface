@@ -47,7 +47,7 @@ export interface ISelectLabelProps {
   keyInLocalStorage?: string;
   value?: any;
   setFieldValue?: FormikProps<any>['setFieldValue'];
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  onChange?: any;
   firstText: string;
   translationType?: string;
   extraText?: string;

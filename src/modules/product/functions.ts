@@ -27,3 +27,9 @@ export const getOptions = (
     return category?.subcategories || [];
   }
 };
+
+export const updateLocalStorage = (newParameters: any) => {
+  const currentData = JSON.parse(localStorage.getItem('product') || '{}');
+  currentData['parameters'] = newParameters;
+  localStorage.setItem('product', JSON.stringify(currentData));
+};
