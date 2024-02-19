@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../redux/rootReducer';
@@ -65,7 +66,14 @@ export const ProductDetailsFormik: React.FC = () => {
             categoryId: product.categoryId,
             subcategoryId: product.subcategoryId,
             composition: product.composition,
-            parameters: product.parameters,
+            parameters: [
+              {
+                id: uuidv4(),
+                color: product.color,
+                size: product.size,
+                quantity: product.quantity,
+              },
+            ],
             // image: '',
           });
         } else {
@@ -130,11 +138,7 @@ export const ProductDetailsFormik: React.FC = () => {
           />
 
           <div className="buttonSaveItemContainer">
-            <Button
-              text={t('save')}
-              type="submit"
-              disabled={!isValid}
-            />
+            <Button text={t('save')} type="submit" disabled={!isValid} />
 
             {productId && productId !== 'new' && product && (
               <span

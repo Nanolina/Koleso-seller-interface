@@ -33,7 +33,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
 
     const [hasStore, setHasStore] = useState<boolean>(false);
 
-    const handleClick = useCallback(() => {
+    const handleClearValues = useCallback(() => {
       localStorage.removeItem('product');
       resetForm({ values: { ...initialValuesProduct } });
     }, [initialValuesProduct, resetForm]);
@@ -51,7 +51,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
 
     return (
       <>
-        <FaTrashAlt className="clearLocalStorageButton" onClick={handleClick} />
+        <FaTrashAlt className="clearValuesButton" onClick={handleClearValues} />
 
         <div className="formFieldsContainer">
           <SelectLabel

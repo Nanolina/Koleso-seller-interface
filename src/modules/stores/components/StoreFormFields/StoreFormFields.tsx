@@ -27,7 +27,7 @@ export const StoreFormFields: React.FC<IStoreFormFieldsProps> = React.memo(
 
     return (
       <>
-        <FaTrashAlt className="clearLocalStorageButton" onClick={handleClick} />
+        <FaTrashAlt className="clearValuesButton" onClick={handleClick} />
 
         <div className="formFieldsContainer">
           <InputLabel
