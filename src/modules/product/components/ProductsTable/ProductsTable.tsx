@@ -51,7 +51,7 @@ export const ProductsTable: React.FC = () => {
           <HeaderCell>{t('products.table.size')}</HeaderCell>
           <HeaderCell>{t('products.table.priceWithoutDiscount')}</HeaderCell>
           <HeaderCell>{t('products.table.finalPrice')}</HeaderCell>
-          <HeaderCell>{t('products.table.remainingQuantity')}</HeaderCell>
+          <HeaderCell>{t('products.table.quantity')}</HeaderCell>
         </TableHeader>
 
         <tbody>
@@ -69,8 +69,8 @@ export const ProductsTable: React.FC = () => {
                 <TableCell cell={product.model} />
                 <TableCell cell={t(`products.form.color.${product.color}`)} />
                 <TableCell cell={product.size} />
-                {/* <TableCell cell={product.priceWithoutDiscount} />
-                <TableCell cell={product.finalPrice} /> */}
+                <TableCell cell={product.priceWithoutDiscount} />
+                <TableCell cell={product.finalPrice} />
                 <TableCell cell={product.quantity} />
               </TableRow>
             ))}

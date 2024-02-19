@@ -31,7 +31,7 @@
       "size": "Size",
       "priceWithoutDiscount": "Price without discount",
       "finalPrice": "Final price",
-      "remainingQuantity": "Remaining quantity"
+      "quantity": "Quantity"
     },
     "productDetails": {
       "notFound": "Product not found",

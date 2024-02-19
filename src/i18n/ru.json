@@ -31,7 +31,7 @@
       "size": "Размер",
       "priceWithoutDiscount": "Цена без скидки",
       "finalPrice": "Конечная цена",
-      "remainingQuantity": "Оставшееся количество"
+      "quantity": "Количество"
     },
     "productDetails": {
       "notFound": "Продукт не найден",
