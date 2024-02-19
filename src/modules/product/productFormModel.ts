@@ -3,7 +3,7 @@ import { TFunction } from 'i18next';
 import * as Yup from 'yup';
 import { AppDispatch } from '../../redux/store';
 import { handleCreateProduct } from '../../redux/thunks/product';
-import { ICreateProductData, IProduct } from './types';
+import { ColorType, ICreateProductData, IProduct } from './types';
 
 export const initialValuesProduct: ICreateProductData = {
   storeId: '',
@@ -21,10 +21,22 @@ export const initialValuesProduct: ICreateProductData = {
   composition: [],
   parameters: [],
   // image: '',
-  // color: undefined,
-  // size: '',
-  // quantity: 0,
 };
+
+const colorTypeValues = Object.values(ColorType).filter((key) =>
+  isNaN(Number(key))
+);
+
+const validationSchemaParameters = (t: TFunction<'translation', undefined>) =>
+  Yup.object().shape({
+    color: Yup.mixed()
+      .oneOf(colorTypeValues, t('products.validation.colorType'))
+      .required(t('products.validation.colorRequired')),
+    quantity: Yup.number()
+      .min(1, t('products.validation.quantityMustBeGreaterThanZero'))
+      .integer(t('products.validation.quantityInteger'))
+      .required(t('products.validation.quantityRequired')),
+  });
 
 export const validationSchemaProduct = (
   t: TFunction<'translation', undefined>
@@ -45,6 +57,9 @@ export const validationSchemaProduct = (
     sectionId: Yup.number()
       .min(1, t('products.validation.sectionIdRequired'))
       .required(t('products.validation.sectionIdRequired')),
+    parameters: Yup.array()
+      .of(validationSchemaParameters(t))
+      .min(1, t('products.validation.atLeastOneParameter')),
   });
 
 export const handleSubmitFormProduct = async (

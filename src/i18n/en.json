@@ -48,7 +48,13 @@
       "finalPriceRequired": "The final price is required",
       "finalPriceNotNumber": "The final price can only include numbers",
       "sectionIdRequired": "The section is required",
-      "priceMustBeGreaterThanZero": "The price must not equal 0"
+      "priceMustBeGreaterThanZero": "The price must not equal 0",
+      "colorType": "Invalid color type",
+      "colorRequired": "The color is required",
+      "quantityMustBeGreaterThanZero": "The quantity must be greater than zero",
+      "quantityInteger": "The quantity must be an integer",
+      "quantityRequired": "The quantity is required",
+      "atLeastOneParameter": "Please select the color and quantity of the product"
     },
     "form": {
       "selectSection": "Select a section",

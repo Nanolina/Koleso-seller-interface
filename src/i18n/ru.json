@@ -48,7 +48,13 @@
       "finalPriceRequired": "Конечная цена бязательна",
       "finalPriceNotNumber": "Конечная цена должна включать только цифры",
       "sectionIdRequired": "Раздел обязателен",
-      "priceMustBeGreaterThanZero": "Цена не должна равняться 0"
+      "priceMustBeGreaterThanZero": "Цена не должна равняться 0",
+      "colorType": "Невалидный тип для цвета",
+      "colorRequired": "Цвет продукта обязателен",
+      "quantityMustBeGreaterThanZero": "Количество продукта должно быть больше 0",
+      "quantityInteger": "Количество продукта должно быть целым числом",
+      "quantityRequired": "Количество продукта обязательно",
+      "atLeastOneParameter": "Пожалуйста, выберите цвет и количество товара"
     },
     "form": {
       "selectSection": "Выберите раздел",
