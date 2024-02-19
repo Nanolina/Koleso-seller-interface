@@ -18,11 +18,11 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
     firstText,
     translationType,
     extraText,
+    isNumber = false,
     required,
   }) => {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      console.log('event', e.target.value)
-      const eventValue = e.target.value;
+      const eventValue = isNumber ? parseFloat(e.target.value) : e.target.value;
 
       // change setFieldValue as required field
       if (setFieldValue && !keyInLocalStorage) {

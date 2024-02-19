@@ -57,9 +57,6 @@ export interface ICreateProductData {
   composition?: IComposition[];
   parameters: IParameter[];
   // image: string;
-  // color?: ColorType;
-  // size?: string;
-  // quantity: number;
 }
 
 export interface IProduct extends ICreateProductData {

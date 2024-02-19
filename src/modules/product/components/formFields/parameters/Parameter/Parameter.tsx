@@ -16,7 +16,7 @@ export const Parameter: React.FC<IParameterProps> = React.memo(
 
     // Common function
     const updateParameter = (key: string, value: string | number) => {
-      const newParameters = values.parameters.map((p) =>
+      const newParameters = values.parameters.map((p: IParameter) =>
         p.id === parameter.id ? { ...p, [key]: value } : p
       );
       setFieldValue('parameters', newParameters);

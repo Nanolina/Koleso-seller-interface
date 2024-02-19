@@ -81,6 +81,7 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
           keyInLocalStorage="product"
           firstText={t('products.form.selectSection')}
           translationType="catalog"
+          isNumber
           required
         />
 

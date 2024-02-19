@@ -51,6 +51,7 @@ export interface ISelectLabelProps {
   firstText: string;
   translationType?: string;
   extraText?: string;
+  isNumber?: boolean;
   required?: boolean;
 }
 

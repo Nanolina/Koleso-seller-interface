@@ -9,4 +9,5 @@ export type {
   ISectionType,
   IChangeCompositionPayload,
   IParameter,
+  ICreateProductData,
 } from './types';

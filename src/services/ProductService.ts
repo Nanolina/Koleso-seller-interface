@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { productServiceAPI } from '../http';
-import { IProduct, ISectionType } from '../modules/product';
+import { ICreateProductData, IProduct, ISectionType } from '../modules/product';
 import { IStore } from '../modules/stores';
 
 export class ProductService {
@@ -32,9 +32,9 @@ export class ProductService {
 
   // Products
   static async createProduct(
-    productFormData: FormData
+    productValues: ICreateProductData
   ): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.post<IProduct>('/product', productFormData);
+    return productServiceAPI.post<IProduct>('/product', productValues);
   }
 
   static async getAllProducts(): Promise<AxiosResponse<IProduct[]>> {

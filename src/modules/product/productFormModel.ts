@@ -70,54 +70,10 @@ export const handleSubmitFormProduct = async (
   values: ICreateProductData,
   navigate: any
 ) => {
-  // Get data from values
-  const {
-    storeId,
-    name,
-    description,
-    brand,
-    model,
-    articleSupplier,
-    priceWithoutDiscount,
-    finalPrice,
-    gender,
-    sectionId,
-    categoryId,
-    subcategoryId,
-    composition,
-    parameters,
-  } = values;
-
-  // Add data to form data
-  const productFormData = new FormData();
-  productFormData.append('storeId', storeId);
-  productFormData.append('name', name);
-  productFormData.append('sectionId', sectionId.toString());
-  if (description) productFormData.append('description', description);
-  if (brand) productFormData.append('brand', brand);
-  if (model) productFormData.append('model', model);
-  if (articleSupplier)
-    productFormData.append('articleSupplier', articleSupplier);
-  if (priceWithoutDiscount)
-    productFormData.append(
-      'priceWithoutDiscount',
-      priceWithoutDiscount.toString()
-    );
-  if (finalPrice) productFormData.append('finalPrice', finalPrice.toString());
-  if (gender) productFormData.append('gender', gender.toString());
-  if (categoryId) productFormData.append('categoryId', categoryId.toString());
-  if (subcategoryId)
-    productFormData.append('subcategoryId', subcategoryId.toString());
-  if (composition?.length)
-    productFormData.append('composition', JSON.stringify(composition));
-  if (parameters.length) {
-    productFormData.append('parameters', JSON.stringify(parameters));
-  }
-
   let data: any;
   // Create product
   if (productId === 'new') {
-    data = await dispatch(handleCreateProduct(productFormData));
+    data = await dispatch(handleCreateProduct(values));
 
     // Get data from DB
     const productFromDB: IProduct = unwrapResult(data);
@@ -138,11 +94,8 @@ export const handleSubmitFormProduct = async (
         categoryId: values.categoryId || undefined,
         subcategoryId: values.subcategoryId || undefined,
         composition: values.composition || [],
-        parameters: values.parameters || [],
+        parameters: values.parameters,
         // image: '',
-        // color: values.color,
-        // size: values.size || '',
-        // quantity: values.quantity,
       });
     }
   }

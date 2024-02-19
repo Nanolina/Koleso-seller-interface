@@ -22,10 +22,11 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
     touched,
   }) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const eventValue = e.target.value;
+      const eventValue =
+        inputType === 'number' ? parseFloat(e.target.value) : e.target.value;
 
-      // change setFieldValue as required field
       if (setFieldValue && !keyInLocalStorage) {
+        // change setFieldValue as required field
         setFieldValue(name, eventValue);
       } else if (keyInLocalStorage && setFieldValue) {
         return saveValuesToLocalStorage(
