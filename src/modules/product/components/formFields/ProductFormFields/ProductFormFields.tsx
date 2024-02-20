@@ -67,6 +67,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
             value={values.storeId}
             setFieldValue={setFieldValue}
             keyInLocalStorage="product"
+            firstText={t('products.form.selectStore')}
             required
           />
 
@@ -91,7 +92,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 setFieldValue={setFieldValue}
                 keyInLocalStorage="product"
                 extraText={t('products.table.groupIdExtraText')}
-                firstText={t('products.form.newGroupId')}
+                firstText={t('products.form.selectGroupId')}
                 required
               />
               <InputLabel

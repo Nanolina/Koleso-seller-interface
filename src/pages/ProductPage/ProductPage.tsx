@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { NEW } from '../../consts';
 import { SideMenu, useSideMenu } from '../../modules/menu';
 import { ProductDetailsFormik } from '../../modules/product';
 import { IRootState } from '../../redux/rootReducer';
@@ -25,7 +26,7 @@ export const ProductPage: React.FC = () => {
       >
         <Title
           text={
-            product?.name && productId !== 'new'
+            product?.name && productId !== NEW
               ? product?.name
               : t('products.addProduct')
           }

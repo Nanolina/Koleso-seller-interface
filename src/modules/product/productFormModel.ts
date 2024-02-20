@@ -1,6 +1,7 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { TFunction } from 'i18next';
 import * as Yup from 'yup';
+import { NEW } from '../../consts';
 import { AppDispatch } from '../../redux/store';
 import { handleCreateProduct } from '../../redux/thunks/product';
 import { ColorType, ICreateProductData, IProduct } from './types';
@@ -43,9 +44,7 @@ export const validationSchemaProduct = (
   t: TFunction<'translation', undefined>
 ) =>
   Yup.object().shape({
-    groupId: Yup.string()
-      .uuid()
-      .required(t('products.validation.groupIdRequired')),
+    groupId: Yup.string().required(t('products.validation.groupIdRequired')),
     storeId: Yup.string()
       .uuid()
       .required(t('products.validation.storeIdRequired')),
@@ -76,7 +75,7 @@ export const handleSubmitFormProduct = async (
 ) => {
   let data: any;
   // Create product
-  if (productId === 'new') {
+  if (productId === NEW) {
     data = await dispatch(handleCreateProduct(values));
 
     // Get data from DB
@@ -121,7 +120,7 @@ export const handleSubmitFormProduct = async (
 //   setInitialValues: React.Dispatch<React.SetStateAction<ICreateProductData>>,
 //   navigate: any
 // ) => {
-//   if (productId && productId !== 'new') {
+//   if (productId && productId !== NEW) {
 //     dispatch(handleRemoveProduct(productId));
 
 //     setInitialValues(initialValuesProduct);

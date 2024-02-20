@@ -60,7 +60,8 @@
       "atLeastOneParameter": "Please select the color and quantity of the product"
     },
     "form": {
-      "newGroupId": "New group",
+      "selectGroupId": "Select a group",
+      "selectStore": "Select a store",
       "selectSection": "Select a section",
       "selectCategory": "Select a category",
       "selectSubcategory": "Select a subcategory",

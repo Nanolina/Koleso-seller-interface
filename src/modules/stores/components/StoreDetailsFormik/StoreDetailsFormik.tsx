@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
+import { NEW } from '../../../../consts';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleGetStoreById } from '../../../../redux/thunks/store';
@@ -45,7 +46,7 @@ export const StoreDetailsFormik: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       // If the correct storeId in the url
-      if (storeId && storeId !== 'new') {
+      if (storeId && storeId !== NEW) {
         // Get data of store from DB
         const data = await dispatch(handleGetStoreById(storeId));
 
@@ -132,13 +133,9 @@ export const StoreDetailsFormik: React.FC = () => {
           />
 
           <div className="buttonSaveItemContainer">
-            <Button
-              text={t('save')}
-              type="submit"
-              disabled={!isValid}
-            />
+            <Button text={t('save')} type="submit" disabled={!isValid} />
 
-            {storeId && storeId !== 'new' && store && (
+            {storeId && storeId !== NEW && store && (
               <span
                 className="removeText"
                 onClick={() =>

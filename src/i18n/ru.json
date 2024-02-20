@@ -60,7 +60,8 @@
       "atLeastOneParameter": "Пожалуйста, выберите цвет и количество товара"
     },
     "form": {
-      "newGroupId": "Новая группа",
+      "selectGroupId": "Выберите группу",
+      "selectStore": "Выберите магазин",
       "selectSection": "Выберите раздел",
       "selectCategory": "Выберите категорию",
       "selectSubcategory": "Выберите подкатегорию",

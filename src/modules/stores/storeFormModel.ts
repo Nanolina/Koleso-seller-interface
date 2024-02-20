@@ -1,6 +1,7 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { TFunction } from 'i18next';
 import * as Yup from 'yup';
+import { NEW } from '../../consts';
 import {
   handleCreateStore,
   handleRemoveStore,
@@ -52,7 +53,7 @@ export const handleSubmitFormStore = async (
 
   let data: any;
   // Create store
-  if (storeId === 'new') {
+  if (storeId === NEW) {
     data = await dispatch(handleCreateStore(storeFormData));
 
     // Update store
@@ -84,7 +85,7 @@ export const handleRemoveFormStore = async (
   setInitialValues: React.Dispatch<React.SetStateAction<ICreateStoreData>>,
   navigate: any
 ) => {
-  if (storeId && storeId !== 'new') {
+  if (storeId && storeId !== NEW) {
     dispatch(handleRemoveStore(storeId));
 
     setInitialValues(initialValuesStore);

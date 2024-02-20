@@ -1,5 +1,6 @@
 import { IStatuses } from './types';
 
+export const NEW = 'new';
 export const GENDERS: string[] = ['Male', 'Female'];
 
 export const COMPOSITIONS: string[] = [

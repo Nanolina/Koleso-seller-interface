@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { NEW } from '../../consts';
 import { SideMenu, useSideMenu } from '../../modules/menu';
 import { StoreDetailsFormik } from '../../modules/stores';
 import { IRootState } from '../../redux/rootReducer';
@@ -25,9 +26,7 @@ export const StorePage: React.FC = () => {
       >
         <Title
           text={
-            store?.name && storeId !== 'new'
-              ? store?.name
-              : t('stores.addStore')
+            store?.name && storeId !== NEW ? store?.name : t('stores.addStore')
           }
         />
         <StoreDetailsFormik />

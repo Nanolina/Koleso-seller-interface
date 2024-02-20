@@ -1,4 +1,5 @@
 /* eslint-disable eqeqeq */
+import { NEW } from '../../consts';
 import { ICategoryType, IGroupedProducts, ISectionType } from './types';
 
 /**
@@ -35,9 +36,14 @@ export const updateLocalStorage = (newParameters: any) => {
 };
 
 export const formatGroupedProducts = (products: IGroupedProducts[]) => {
-  return products.map((product: IGroupedProducts) => {
-    return `name: ${product.name}/price: ${product.finalPrice}${
+  const newGroupOption = { id: NEW, name: NEW };
+
+  const formattedProducts = products.map((product) => ({
+    id: product.groupId,
+    name: `name: ${product.name}/price: ${product.finalPrice}${
       product.brand ? `/brand: ${product.brand}` : ''
-    }${product.model ? `/model: ${product.model}` : ''}`.trim();
-  });
+    }${product.model ? `/model: ${product.model}` : ''}`.trim(),
+  }));
+
+  return [newGroupOption, ...formattedProducts];
 };

@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
+import { NEW } from '../../../../consts';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import {
@@ -50,7 +51,7 @@ export const ProductDetailsFormik: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       // If the correct productId in the url
-      if (productId && productId !== 'new') {
+      if (productId && productId !== NEW) {
         // Get data of product from DB
         const data = await dispatch(handleGetProductById(productId));
 
@@ -148,7 +149,7 @@ export const ProductDetailsFormik: React.FC = () => {
           <div className="buttonSaveItemContainer">
             <Button text={t('save')} type="submit" disabled={!isValid} />
 
-            {productId && productId !== 'new' && product && (
+            {productId && productId !== NEW && product && (
               <span
                 className="removeText"
                 // onClick={() =>
@@ -169,6 +170,7 @@ export const ProductDetailsFormik: React.FC = () => {
 
           {error && <MessageBox errorMessage={error} />}
           {success && <MessageBox successMessage={success} />}
+          {console.log('errors', errors)}
         </Form>
       )}
     </Formik>
