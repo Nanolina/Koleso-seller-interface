@@ -12,7 +12,6 @@ import { GENDERS } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
-import { formatGroupedProducts } from '../../../functions';
 import { IProductFormFieldsProps } from '../../../types';
 import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
 import { AddComposition } from '../composition/AddComposition/AddComposition';
@@ -83,18 +82,6 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
 
           {hasStore && (
             <>
-              <SelectLabel
-                id="groupId"
-                name="groupId"
-                label={t('products.table.groupId')}
-                options={formatGroupedProducts(groupedProducts)}
-                value={values.groupId}
-                setFieldValue={setFieldValue}
-                keyInLocalStorage="product"
-                extraText={t('products.table.groupIdExtraText')}
-                firstText={t('products.form.selectGroupId')}
-                required
-              />
               <InputLabel
                 label={t('products.table.name')}
                 id="name"

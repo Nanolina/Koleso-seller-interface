@@ -63,7 +63,6 @@ export const ProductDetailsFormik: React.FC = () => {
         if (product) {
           setInitialValues({
             storeId: product.storeId,
-            groupId: product.groupId,
             name: product.name,
             description: product.description,
             brand: product.brand,

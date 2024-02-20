@@ -8,7 +8,6 @@ import { ColorType, ICreateProductData, IProduct } from './types';
 
 export const initialValuesProduct: ICreateProductData = {
   storeId: '',
-  groupId: '',
   name: '',
   description: '',
   brand: '',
@@ -44,7 +43,6 @@ export const validationSchemaProduct = (
   t: TFunction<'translation', undefined>
 ) =>
   Yup.object().shape({
-    groupId: Yup.string().required(t('products.validation.groupIdRequired')),
     storeId: Yup.string()
       .uuid()
       .required(t('products.validation.storeIdRequired')),
@@ -88,7 +86,6 @@ export const handleSubmitFormProduct = async (
     if (productFromDB) {
       setInitialValues({
         storeId: values.storeId,
-        groupId: values.groupId,
         name: values.name,
         description: values.description || '',
         brand: values.brand || '',

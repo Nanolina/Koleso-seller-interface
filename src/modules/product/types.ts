@@ -43,7 +43,6 @@ export enum GenderType {
 
 export interface ICreateProductData {
   storeId: string;
-  groupId: string;
   name: string;
   description?: string;
   brand?: string;

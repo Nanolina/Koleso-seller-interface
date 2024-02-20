@@ -1,6 +1,5 @@
 /* eslint-disable eqeqeq */
-import { NEW } from '../../consts';
-import { ICategoryType, IGroupedProducts, ISectionType } from './types';
+import { ICategoryType, ISectionType } from './types';
 
 /**
  * Retrieves options for the select elements based on the current selection and the type of options needed.
@@ -33,17 +32,4 @@ export const updateLocalStorage = (newParameters: any) => {
   const currentData = JSON.parse(localStorage.getItem('product') || '{}');
   currentData['parameters'] = newParameters;
   localStorage.setItem('product', JSON.stringify(currentData));
-};
-
-export const formatGroupedProducts = (products: IGroupedProducts[]) => {
-  const newGroupOption = { id: NEW, name: NEW };
-
-  const formattedProducts = products.map((product) => ({
-    id: product.groupId,
-    name: `name: ${product.name}/price: ${product.finalPrice}${
-      product.brand ? `/brand: ${product.brand}` : ''
-    }${product.model ? `/model: ${product.model}` : ''}`.trim(),
-  }));
-
-  return [newGroupOption, ...formattedProducts];
 };

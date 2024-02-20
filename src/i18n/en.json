@@ -21,8 +21,6 @@
     "addProduct": "Add product",
     "table": {
       "name": "Name",
-      "groupId": "Select a group of combined products",
-      "groupIdExtraText": "Group of combined products have everything the same except color, size, quantity",
       "description": "Description",
       "brand": "Brand",
       "model": "Model",
@@ -43,7 +41,6 @@
       "addAtLeastStore": "tab and add at least 1 store"
     },
     "validation": {
-      "groupIdRequired": "The group of product is required",
       "nameRequired": "The name of the product is required",
       "storeIdRequired": "The store is required",
       "priceWithoutDiscountRequired": "The price without discount is required",
@@ -60,7 +57,6 @@
       "atLeastOneParameter": "Please select the color and quantity of the product"
     },
     "form": {
-      "selectGroupId": "Select a group",
       "selectStore": "Select a store",
       "selectSection": "Select a section",
       "selectCategory": "Select a category",
