@@ -21,7 +21,7 @@ export const initialValuesProduct: ICreateProductData = {
   subcategoryId: undefined,
   composition: [],
   parameters: [],
-  // image: '',
+  colorWithImages: [],
 };
 
 const colorTypeValues = Object.values(ColorType).filter((key) =>
@@ -99,7 +99,7 @@ export const handleSubmitFormProduct = async (
         subcategoryId: values.subcategoryId || undefined,
         composition: values.composition || [],
         parameters: values.parameters,
-        // image: '',
+        colorWithImages: values.colorWithImages,
       });
     }
   }

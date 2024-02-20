@@ -4,10 +4,10 @@ import { IPhotoPreviewProps } from '../types';
 import styles from './PhotoPreview.module.css';
 
 export const PhotoPreview: React.FC<IPhotoPreviewProps> = React.memo(
-  ({ photo, onRemove }) => {
+  ({ image, onRemove }) => {
     return (
       <div className={styles.container}>
-        <img src={photo} alt="Uploaded" />
+        <img src={image} alt="Uploaded" />
         <IoCloseOutline
           color="var(--dark-gray)"
           onClick={onRemove}

@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { ColorType } from '../../modules/product';
 import {
   IPhotosWith1Color,
   IProductCreationState,
@@ -77,13 +78,13 @@ const productCreationSlice = createSlice({
 
     removePhoto: (
       state,
-      action: PayloadAction<{ color: string; index: number }>
+      action: PayloadAction<{ color: ColorType; index: number }>
     ) => {
       const { color, index } = action.payload;
 
       // Find already added color
       const colorEntry = state.colorsWithPhotos.find(
-        (item) => item.color === color
+        (item) => item.color === color.toString()
       );
 
       /**

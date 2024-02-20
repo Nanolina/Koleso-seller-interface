@@ -11,10 +11,7 @@ import { TooltipTextErrors } from '../../../../components/TooltipTextErrors/Tool
 import { NEW } from '../../../../consts';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
-import {
-  handleGetGroupedProducts,
-  handleGetProductById,
-} from '../../../../redux/thunks/product';
+import { handleGetProductById } from '../../../../redux/thunks/product';
 import { Button } from '../../../../ui/Button/Button';
 import {
   handleSubmitFormProduct,
@@ -44,10 +41,6 @@ export const ProductDetailsFormik: React.FC = () => {
     (state: IRootState) => state.products
   );
 
-  useEffect(() => {
-    dispatch(handleGetGroupedProducts());
-  }, [dispatch]);
-
   // useEffect
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +51,9 @@ export const ProductDetailsFormik: React.FC = () => {
 
         // Retrieve data from a completed promise
         const product: IProduct = unwrapResult(data);
+
+        const imagesURL: string[] = [];
+        product.images.forEach((image) => imagesURL.push(image.url));
 
         // Set initial values based on the data from DB
         if (product) {
@@ -83,7 +79,13 @@ export const ProductDetailsFormik: React.FC = () => {
                 quantity: product.quantity,
               },
             ],
-            // image: '',
+            colorWithImages: [
+              {
+                id: uuidv4(),
+                color: product.color,
+                images: imagesURL,
+              },
+            ],
           });
         } else {
           setIsProductFound(false);

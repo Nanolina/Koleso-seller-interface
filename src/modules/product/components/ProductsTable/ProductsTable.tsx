@@ -62,7 +62,7 @@ export const ProductsTable: React.FC = () => {
                 rowIndex={productIndex}
                 onClick={() => handleProductDetails(product.id)}
               >
-                <TableCell cell={product.image} />
+                {/* <TableCell cell={product.image} /> */}
                 <TableCell cell={product.articleKoleso} />
                 <TableCell cell={product.name} />
                 <TableCell cell={product.brand} />

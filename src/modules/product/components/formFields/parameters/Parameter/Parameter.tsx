@@ -55,10 +55,7 @@ export const Parameter: React.FC<IParameterProps> = React.memo(
       }
 
       const newParameter = { ...existingParameter, id: uuidv4() };
-      console.log('newParameter', newParameter);
-
       const newParameters = [newParameter, ...values.parameters];
-      console.log('newParameters', newParameters);
 
       setFieldValue('parameters', newParameters);
       updateLocalStorage(newParameters);

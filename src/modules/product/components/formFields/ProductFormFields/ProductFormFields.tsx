@@ -16,6 +16,7 @@ import { IProductFormFieldsProps } from '../../../types';
 import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
 import { AddComposition } from '../composition/AddComposition/AddComposition';
 import { AddParameters } from '../parameters/AddParameters/AddParameters';
+import { PhotoUpload } from '../photo/PhotoUpload/PhotoUpload';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -30,11 +31,6 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
     const dispatch = useDispatch<AppDispatch>();
 
     const { items, loading } = useSelector((state: IRootState) => state.stores);
-    const { groupedProducts } = useSelector(
-      (state: IRootState) => state.products
-    );
-
-    console.log('groupedProducts', groupedProducts);
 
     const [hasStore, setHasStore] = useState<boolean>(false);
 
@@ -184,7 +180,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
               <AddComposition values={values} setFieldValue={setFieldValue} />
               <AddParameters values={values} setFieldValue={setFieldValue} />
 
-              {/* <PhotoUpload /> */}
+              <PhotoUpload values={values} setFieldValue={setFieldValue} />
             </>
           )}
         </div>

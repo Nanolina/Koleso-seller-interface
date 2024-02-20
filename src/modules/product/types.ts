@@ -56,15 +56,19 @@ export interface ICreateProductData {
   subcategoryId?: number;
   composition?: IComposition[];
   parameters: IParameter[];
-  // image: string;
+  colorWithImages: IColorWithImages[];
+}
+
+interface IImages {
+  url: string;
+  publicId: string;
 }
 
 export interface IProduct extends ICreateProductData {
   id: string;
   articleKoleso: string;
-  imagePublicId: string;
   userId: string;
-  image: string;
+  images: IImages[];
   color: ColorType;
   size?: string;
   quantity: number;
@@ -159,4 +163,11 @@ export interface IGroupedProducts {
   finalPrice: number;
   brand?: string;
   model?: string;
+}
+
+// Images
+export interface IColorWithImages {
+  id: string;
+  color: ColorType;
+  images: string[];
 }

@@ -1,9 +1,4 @@
 export interface IPhotoPreviewProps {
-  photo: string;
+  image: string;
   onRemove: () => void;
-}
-
-export interface IPhotoPreviewsProps {
-  photos: string[];
-  color: string;
 }

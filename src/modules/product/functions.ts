@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import { ICategoryType, ISectionType } from './types';
+import { ColorType, ICategoryType, IParameter, ISectionType } from './types';
 
 /**
  * Retrieves options for the select elements based on the current selection and the type of options needed.
@@ -32,4 +32,19 @@ export const updateLocalStorage = (newParameters: any) => {
   const currentData = JSON.parse(localStorage.getItem('product') || '{}');
   currentData['parameters'] = newParameters;
   localStorage.setItem('product', JSON.stringify(currentData));
+};
+
+export const getExistingColors = () => {
+  const savedProductParameters: IParameter[] | undefined = JSON.parse(
+    localStorage.getItem('product') || '{}'
+  ).parameters;
+
+  const set = new Set<ColorType>();
+  if (savedProductParameters) {
+    savedProductParameters.forEach((parameter: IParameter) =>
+      set.add(parameter.color)
+    );
+  }
+
+  return [...set];
 };
