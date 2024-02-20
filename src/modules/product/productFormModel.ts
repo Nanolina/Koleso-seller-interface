@@ -51,11 +51,14 @@ export const validationSchemaProduct = (
     name: Yup.string().required(t('products.validation.nameRequired')),
     priceWithoutDiscount: Yup.number()
       .typeError(t('products.validation.priceWithoutDiscountNotNumber'))
-      .min(0.01, t('products.validation.priceMustBeGreaterThanZero'))
+      .min(
+        0.01,
+        t('products.validation.priceWithoutDiscountMustBeGreaterThanZero')
+      )
       .required(t('products.validation.priceWithoutDiscountRequired')),
     finalPrice: Yup.number()
       .typeError(t('products.validation.finalPriceNotNumber'))
-      .min(0.01, t('products.validation.priceMustBeGreaterThanZero'))
+      .min(0.01, t('products.validation.finalPriceMustBeGreaterThanZero'))
       .required(t('products.validation.finalPriceRequired')),
     sectionId: Yup.number()
       .min(1, t('products.validation.sectionIdRequired'))

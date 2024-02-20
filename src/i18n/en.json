@@ -50,7 +50,7 @@
       "priceWithoutDiscountNotNumber": "The price without discount can only include numbers",
       "finalPriceRequired": "The final price is required",
       "finalPriceNotNumber": "The final price can only include numbers",
-      "sectionIdRequired": "The section is required",
+      "sectionIdRequired": "The section of the catalog is required",
       "priceMustBeGreaterThanZero": "The price must not equal 0",
       "colorType": "Invalid color type",
       "colorRequired": "The color is required",
