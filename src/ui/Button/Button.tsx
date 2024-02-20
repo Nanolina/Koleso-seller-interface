@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tooltip } from 'react-tooltip';
 import { IButtonProps } from '../types';
 import styles from './Button.module.css';
 
@@ -13,6 +14,7 @@ export const Button: React.FC<IButtonProps> = React.memo(
     textColor = 'white',
     isBold = true,
     hasShadow = false,
+    tooltipText,
     children,
   }) => {
     const buttonStyle = {
@@ -33,7 +35,10 @@ export const Button: React.FC<IButtonProps> = React.memo(
         type={type}
         disabled={disabled}
         style={buttonStyle}
+        data-tooltip-id="tooltip"
+        data-tooltip-html={tooltipText}
       >
+        <Tooltip id="tooltip" />
         <div style={textStyle}>{text}</div>
         {children}
       </button>

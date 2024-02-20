@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
+import { TooltipTextErrors } from '../../../../components/TooltipTextErrors/TooltipTextErrors';
 import { NEW } from '../../../../consts';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
@@ -147,7 +148,12 @@ export const ProductDetailsFormik: React.FC = () => {
           />
 
           <div className="buttonSaveItemContainer">
-            <Button text={t('save')} type="submit" disabled={!isValid} />
+            <Button
+              text={t('save')}
+              type="submit"
+              disabled={!isValid}
+              tooltipText={errors ? TooltipTextErrors(errors) : ''}
+            />
 
             {productId && productId !== NEW && product && (
               <span
@@ -170,7 +176,6 @@ export const ProductDetailsFormik: React.FC = () => {
 
           {error && <MessageBox errorMessage={error} />}
           {success && <MessageBox successMessage={success} />}
-          {console.log('errors', errors)}
         </Form>
       )}
     </Formik>
