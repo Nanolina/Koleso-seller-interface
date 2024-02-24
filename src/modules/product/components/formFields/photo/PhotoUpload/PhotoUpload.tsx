@@ -27,7 +27,7 @@ export const PhotoUpload: React.FC<ICreateProductValuesProps> = React.memo(
 
     return (
       <div className={styles.container}>
-        <SelectLabel
+        {/* <SelectLabel
           id="color"
           name="color"
           label={t('products.form.photo.label')}
@@ -40,7 +40,7 @@ export const PhotoUpload: React.FC<ICreateProductValuesProps> = React.memo(
           translationType="products.form.color"
           extraText={t('products.form.photo.upTo')}
           required
-        />
+        /> */}
 
         {/* {colorsWithPhotos.map((photosWith1Color) => (
         <div

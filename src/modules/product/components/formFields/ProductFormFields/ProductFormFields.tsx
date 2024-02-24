@@ -121,7 +121,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 errors={errors}
                 touched={touched}
               />
-              <InputLabel
+              {/* <InputLabel
                 label={t('products.table.articleSupplier')}
                 id="articleSupplier"
                 name="articleSupplier"
@@ -159,7 +159,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 touched={touched}
                 placeholder="0"
                 required
-              />
+              /> */}
               <SelectLabel
                 id="gender"
                 name="gender"
@@ -178,9 +178,9 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
               />
 
               <AddComposition values={values} setFieldValue={setFieldValue} />
-              <AddParameters values={values} setFieldValue={setFieldValue} />
+              {/* <AddParameters values={values} setFieldValue={setFieldValue} /> */}
 
-              <PhotoUpload values={values} setFieldValue={setFieldValue} />
+              {/* <PhotoUpload values={values} setFieldValue={setFieldValue} /> */}
             </>
           )}
         </div>

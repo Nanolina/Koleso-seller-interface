@@ -42,16 +42,16 @@ export const ProductsTable: React.FC = () => {
       <Table>
         <TableHeader>
           <HeaderCell></HeaderCell>
-          <HeaderCell>{t('products.table.image')}</HeaderCell>
-          <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
+          {/* <HeaderCell>{t('products.table.image')}</HeaderCell>
+          <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell> */}
           <HeaderCell>{t('products.table.name')}</HeaderCell>
           <HeaderCell>{t('products.table.brand')}</HeaderCell>
           <HeaderCell>{t('products.table.model')}</HeaderCell>
-          <HeaderCell>{t('products.table.color')}</HeaderCell>
+          {/* <HeaderCell>{t('products.table.color')}</HeaderCell>
           <HeaderCell>{t('products.table.size')}</HeaderCell>
           <HeaderCell>{t('products.table.priceWithoutDiscount')}</HeaderCell>
           <HeaderCell>{t('products.table.finalPrice')}</HeaderCell>
-          <HeaderCell>{t('products.table.quantity')}</HeaderCell>
+          <HeaderCell>{t('products.table.quantity')}</HeaderCell> */}
         </TableHeader>
 
         <tbody>
@@ -63,15 +63,15 @@ export const ProductsTable: React.FC = () => {
                 onClick={() => handleProductDetails(product.id)}
               >
                 {/* <TableCell cell={product.image} /> */}
-                <TableCell cell={product.articleKoleso} />
+                {/* <TableCell cell={product.articleKoleso} /> */}
                 <TableCell cell={product.name} />
                 <TableCell cell={product.brand} />
                 <TableCell cell={product.model} />
-                <TableCell cell={t(`products.form.color.${product.color}`)} />
+                {/* <TableCell cell={t(`products.form.color.${product.color}`)} />
                 <TableCell cell={product.size} />
                 <TableCell cell={product.priceWithoutDiscount} />
                 <TableCell cell={product.finalPrice} />
-                <TableCell cell={product.quantity} />
+                <TableCell cell={product.quantity} /> */}
               </TableRow>
             ))}
         </tbody>

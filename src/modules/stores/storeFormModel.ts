@@ -20,18 +20,6 @@ export const validationSchemaStore = (t: TFunction<'translation', undefined>) =>
   Yup.object().shape({
     name: Yup.string().required(t('stores.validation.nameRequired')),
     description: Yup.string(),
-    logo: Yup.mixed()
-      .nullable()
-      .test('fileType', t('stores.validation.formatLogo'), (value) => {
-        const file = value as File;
-        return (
-          !file || (file && ['image/jpeg', 'image/png'].includes(file.type))
-        );
-      })
-      .test('fileSize', t('stores.validation.sizeLogo'), (value) => {
-        const file = value as File;
-        return !file || (file && file.size <= 512000); // Size <= 500KB
-      }),
   });
 
 export const handleSubmitFormStore = async (
@@ -49,7 +37,11 @@ export const handleSubmitFormStore = async (
   const storeFormData = new FormData();
   storeFormData.append('name', name);
   if (description) storeFormData.append('description', description);
-  if (logo) storeFormData.append('logo', logo);
+  if (logo) {
+    storeFormData.append('logo', logo);
+  } else {
+    storeFormData.append('isRemoveLogo', 'true');
+  }
 
   let data: any;
   // Create store
@@ -58,7 +50,12 @@ export const handleSubmitFormStore = async (
 
     // Update store
   } else if (store && storeId) {
-    data = await dispatch(handleUpdateStore({ id: storeId, storeFormData }));
+    data = await dispatch(
+      handleUpdateStore({
+        id: storeId,
+        storeFormData,
+      })
+    );
   }
 
   // Get data from DB
@@ -73,7 +70,7 @@ export const handleSubmitFormStore = async (
     });
 
     // Navigate
-    navigate('/store');
+    navigate('/stores');
   }
 };
 

@@ -17,7 +17,7 @@ export const AddParameters: React.FC<ICreateProductValuesProps> = React.memo(
       setColor(colorValue);
 
       const newParameters = [
-        ...values.parameters,
+        // ...values.parameters,
         { id: uuidv4(), color: colorValue, quantity: 1 },
       ];
       setFieldValue('parameters', newParameters);

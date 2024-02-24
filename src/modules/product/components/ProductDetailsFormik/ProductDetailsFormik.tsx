@@ -52,8 +52,8 @@ export const ProductDetailsFormik: React.FC = () => {
         // Retrieve data from a completed promise
         const product: IProduct = unwrapResult(data);
 
-        const imagesURL: string[] = [];
-        product.images.forEach((image) => imagesURL.push(image.url));
+        // const imagesURL: string[] = [];
+        // product.images.forEach((image) => imagesURL.push(image.url));
 
         // Set initial values based on the data from DB
         if (product) {
@@ -63,29 +63,29 @@ export const ProductDetailsFormik: React.FC = () => {
             description: product.description,
             brand: product.brand,
             model: product.model,
-            articleSupplier: product.articleSupplier,
-            priceWithoutDiscount: product.priceWithoutDiscount,
-            finalPrice: product.finalPrice,
+            // articleSupplier: product.articleSupplier,
+            // priceWithoutDiscount: product.priceWithoutDiscount,
+            // finalPrice: product.finalPrice,
             gender: product.gender,
             sectionId: product.sectionId,
             categoryId: product.categoryId,
             subcategoryId: product.subcategoryId,
             composition: product.composition,
-            parameters: [
-              {
-                id: uuidv4(),
-                color: product.color,
-                size: product.size,
-                quantity: product.quantity,
-              },
-            ],
-            colorWithImages: [
-              {
-                id: uuidv4(),
-                color: product.color,
-                images: imagesURL,
-              },
-            ],
+            // parameters: [
+            //   {
+            //     id: uuidv4(),
+            //     color: product.color,
+            //     size: product.size,
+            //     quantity: product.quantity,
+            //   },
+            // ],
+            // colorWithImages: [
+            //   {
+            //     id: uuidv4(),
+            //     color: product.color,
+            //     images: imagesURL,
+            //   },
+            // ],
           });
         } else {
           setIsProductFound(false);

@@ -57,7 +57,7 @@ export const StoresTable: React.FC = () => {
               >
                 <TableCell cell={store.name} />
                 <TableCell cell={store.description} />
-                <TableCell cell={store.logo} />
+                <TableCell cell={store.image?.url} />
               </TableRow>
             ))}
         </tbody>

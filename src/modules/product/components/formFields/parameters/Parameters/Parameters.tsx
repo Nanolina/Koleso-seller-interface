@@ -21,7 +21,7 @@ export const Parameters: React.FC<ICreateProductValuesProps> = React.memo(
             {t('products.form.parameters.size')}
           </div>
         </div>
-        {values.parameters &&
+        {/* {values.parameters &&
           values.parameters.map((parameter: IParameter) => (
             <Parameter
               key={parameter.id}
@@ -29,7 +29,7 @@ export const Parameters: React.FC<ICreateProductValuesProps> = React.memo(
               values={values}
               setFieldValue={setFieldValue}
             />
-          ))}
+          ))} */}
       </div>
     );
   }

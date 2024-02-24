@@ -47,16 +47,16 @@ export interface ICreateProductData {
   description?: string;
   brand?: string;
   model?: string;
-  articleSupplier?: string;
-  priceWithoutDiscount: number;
-  finalPrice: number;
+  // articleSupplier?: string;
+  // priceWithoutDiscount: number;
+  // finalPrice: number;
   gender?: GenderType;
   sectionId: number;
   categoryId?: number;
   subcategoryId?: number;
   composition?: IComposition[];
-  parameters: IParameter[];
-  colorWithImages: IColorWithImages[];
+  // parameters: IParameter[];
+  // colorWithImages: IColorWithImages[];
 }
 
 interface IImages {
@@ -66,12 +66,12 @@ interface IImages {
 
 export interface IProduct extends ICreateProductData {
   id: string;
-  articleKoleso: string;
+  // articleKoleso: string;
   userId: string;
-  images: IImages[];
-  color: ColorType;
-  size?: string;
-  quantity: number;
+  // images: IImages[];
+  // color: ColorType;
+  // size?: string;
+  // quantity: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -79,7 +79,6 @@ export interface IProduct extends ICreateProductData {
 export interface IProductsState {
   items: IProduct[];
   product: IProduct;
-  groupedProducts: IGroupedProducts[];
   success: string | null;
   loading: boolean;
   error: any;
@@ -155,14 +154,6 @@ export interface IParameter {
 
 export interface IParameterProps extends ICreateProductValuesProps {
   parameter: IParameter;
-}
-
-export interface IGroupedProducts {
-  groupId: string;
-  name: string;
-  finalPrice: number;
-  brand?: string;
-  model?: string;
 }
 
 // Images

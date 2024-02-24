@@ -1,11 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { productServiceAPI } from '../http';
-import {
-  ICreateProductData,
-  IGroupedProducts,
-  IProduct,
-  ISectionType,
-} from '../modules/product';
+import { ICreateProductData, IProduct, ISectionType } from '../modules/product';
 import { IStore } from '../modules/stores';
 
 export class ProductService {
@@ -48,10 +43,6 @@ export class ProductService {
 
   static async getProductById(id: string): Promise<AxiosResponse<IProduct>> {
     return productServiceAPI.get<IProduct>(`/product/${id}`);
-  }
-
-  static getGroupedProducts(): Promise<AxiosResponse<IGroupedProducts[]>> {
-    return productServiceAPI.get<IGroupedProducts[]>('/product/group');
   }
 
   // Catalog

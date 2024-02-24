@@ -55,13 +55,14 @@ export const StoreDetailsFormik: React.FC = () => {
 
         // Set initial values based on the data from DB
         if (store) {
+          const logo = store.image?.url;
           setInitialValues({
             name: store.name,
             description: store.description || '',
-            logo: store.logo,
+            logo: logo,
           });
 
-          if (store.logo) setPreviewUrl(store.logo);
+          if (logo) setPreviewUrl(logo);
         } else {
           setIsStoreFound(false);
         }

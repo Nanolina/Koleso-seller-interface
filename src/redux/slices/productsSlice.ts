@@ -3,7 +3,6 @@ import { IProductsState } from '../../modules/product';
 import {
   createProductCases,
   getAllProductsCases,
-  getGroupedProductsCases,
   getProductByIdCases,
 } from '../cases/product';
 import { productsInitialState } from '../initialStates';
@@ -16,7 +15,6 @@ const productsSlice = createSlice({
     createProductCases(builder);
     getAllProductsCases(builder);
     getProductByIdCases(builder);
-    getGroupedProductsCases(builder);
   },
 });
 

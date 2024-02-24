@@ -16,11 +16,11 @@ export const Parameter: React.FC<IParameterProps> = React.memo(
 
     // Common function
     const updateParameter = (key: string, value: string | number) => {
-      const newParameters = values.parameters.map((p: IParameter) =>
-        p.id === parameter.id ? { ...p, [key]: value } : p
-      );
-      setFieldValue('parameters', newParameters);
-      updateLocalStorage(newParameters);
+      // const newParameters = values.parameters.map((p: IParameter) =>
+      //   p.id === parameter.id ? { ...p, [key]: value } : p
+      // );
+      // setFieldValue('parameters', newParameters);
+      // updateLocalStorage(newParameters);
     };
 
     // Quantity
@@ -37,28 +37,28 @@ export const Parameter: React.FC<IParameterProps> = React.memo(
 
     // Remove
     const handleRemoveParameter = () => {
-      const newParameters = values.parameters.filter(
-        (p: IParameter) => p.id !== parameter.id
-      );
-      setFieldValue('parameters', newParameters);
-      updateLocalStorage(newParameters);
+      // const newParameters = values.parameters.filter(
+        // (p: IParameter) => p.id !== parameter.id
+      // );
+      // setFieldValue('parameters', newParameters);
+      // updateLocalStorage(newParameters);
     };
 
     // Copy
     const handleCopyParameter = () => {
-      const existingParameter = values.parameters.find(
-        (p: IParameter) => p.id === parameter.id
-      );
+      // const existingParameter = values.parameters.find(
+      //   (p: IParameter) => p.id === parameter.id
+      // );
 
-      if (!existingParameter) {
-        return;
-      }
+      // if (!existingParameter) {
+      //   return;
+      // }
 
-      const newParameter = { ...existingParameter, id: uuidv4() };
-      const newParameters = [newParameter, ...values.parameters];
+      // const newParameter = { ...existingParameter, id: uuidv4() };
+      // const newParameters = [newParameter, ...values.parameters];
 
-      setFieldValue('parameters', newParameters);
-      updateLocalStorage(newParameters);
+      // setFieldValue('parameters', newParameters);
+      // updateLocalStorage(newParameters);
     };
 
     return (
