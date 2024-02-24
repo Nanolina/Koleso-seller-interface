@@ -17,10 +17,10 @@ export const initialValuesProduct: ICreateProductData = {
   // finalPrice: 0,
   gender: undefined,
   sectionId: 0,
-  categoryId: undefined,
-  subcategoryId: undefined,
+  categoryId: 0,
+  subcategoryId: 0,
   composition: [],
-  // parameters: [],
+  variants: [],
   // colorWithImages: [],
 };
 
@@ -28,7 +28,7 @@ const colorTypeValues = Object.values(ColorType).filter((key) =>
   isNaN(Number(key))
 );
 
-const validationSchemaParameters = (t: TFunction<'translation', undefined>) =>
+const validationSchemaVariants = (t: TFunction<'translation', undefined>) =>
   Yup.object().shape({
     color: Yup.mixed()
       .oneOf(colorTypeValues, t('products.validation.colorType'))
@@ -37,6 +37,17 @@ const validationSchemaParameters = (t: TFunction<'translation', undefined>) =>
       .min(1, t('products.validation.quantityMustBeGreaterThanZero'))
       .integer(t('products.validation.quantityInteger'))
       .required(t('products.validation.quantityRequired')),
+    priceWithoutDiscount: Yup.number()
+      .typeError(t('products.validation.priceWithoutDiscountNotNumber'))
+      .min(
+        0.01,
+        t('products.validation.priceWithoutDiscountMustBeGreaterThanZero')
+      )
+      .required(t('products.validation.priceWithoutDiscountRequired')),
+    finalPrice: Yup.number()
+      .typeError(t('products.validation.finalPriceNotNumber'))
+      .min(0.01, t('products.validation.finalPriceMustBeGreaterThanZero'))
+      .required(t('products.validation.finalPriceRequired')),
   });
 
 export const validationSchemaProduct = (
@@ -47,23 +58,12 @@ export const validationSchemaProduct = (
       .uuid()
       .required(t('products.validation.storeIdRequired')),
     name: Yup.string().required(t('products.validation.nameRequired')),
-    // priceWithoutDiscount: Yup.number()
-    //   .typeError(t('products.validation.priceWithoutDiscountNotNumber'))
-    //   .min(
-    //     0.01,
-    //     t('products.validation.priceWithoutDiscountMustBeGreaterThanZero')
-    //   )
-    //   .required(t('products.validation.priceWithoutDiscountRequired')),
-    // finalPrice: Yup.number()
-    //   .typeError(t('products.validation.finalPriceNotNumber'))
-    //   .min(0.01, t('products.validation.finalPriceMustBeGreaterThanZero'))
-    //   .required(t('products.validation.finalPriceRequired')),
     sectionId: Yup.number()
       .min(1, t('products.validation.sectionIdRequired'))
       .required(t('products.validation.sectionIdRequired')),
-    // parameters: Yup.array()
-    //   .of(validationSchemaParameters(t))
-    //   .min(1, t('products.validation.atLeastOneParameter')),
+    variants: Yup.array()
+      .of(validationSchemaVariants(t))
+      .min(1, t('products.validation.atLeastOneParameter')),
   });
 
 export const handleSubmitFormProduct = async (
@@ -95,10 +95,10 @@ export const handleSubmitFormProduct = async (
         // finalPrice: values.finalPrice,
         gender: values.gender || undefined,
         sectionId: values.sectionId,
-        categoryId: values.categoryId || undefined,
-        subcategoryId: values.subcategoryId || undefined,
+        categoryId: values.categoryId,
+        subcategoryId: values.subcategoryId,
         composition: values.composition || [],
-        // parameters: values.parameters,
+        variants: values.variants,
         // colorWithImages: values.colorWithImages,
       });
     }

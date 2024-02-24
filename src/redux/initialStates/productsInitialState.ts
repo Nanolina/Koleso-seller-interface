@@ -16,7 +16,7 @@ export const productInitialState = {
   categoryId: 0,
   subcategoryId: 0,
   composition: [],
-  // parameters: [],
+  variants: [],
   // colorWithImages: [],
   // color: ColorType.White,
   // size: '',

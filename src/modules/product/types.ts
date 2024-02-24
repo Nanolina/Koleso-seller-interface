@@ -55,7 +55,7 @@ export interface ICreateProductData {
   categoryId?: number;
   subcategoryId?: number;
   composition?: IComposition[];
-  // parameters: IParameter[];
+  variants: IVariant[];
   // colorWithImages: IColorWithImages[];
 }
 
@@ -72,6 +72,9 @@ export interface IProduct extends ICreateProductData {
   // color: ColorType;
   // size?: string;
   // quantity: number;
+  // priceWithoutDiscount: number;
+  // finalPrice: number;
+  // articleSupplier?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -144,16 +147,28 @@ export interface IChangeCompositionPayload {
   materialPercentage: number;
 }
 
-// Parameters
-export interface IParameter {
+// Variants
+export interface IVariant {
   id: string;
   color: ColorType;
   quantity: number;
   size?: string;
+  priceWithoutDiscount: number;
+  finalPrice: number;
+  articleSupplier?: string;
 }
 
-export interface IParameterProps extends ICreateProductValuesProps {
-  parameter: IParameter;
+export interface IVariantProps extends ICreateProductValuesProps {
+  variant: IVariant;
+  errors: FormikErrors<ICreateProductData>;
+  touched: FormikTouched<ICreateProductData>;
+}
+
+export interface IVariantsProps {
+  values: ICreateProductData;
+  setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
+  errors: FormikErrors<ICreateProductData>;
+  touched: FormikTouched<ICreateProductData>;
 }
 
 // Images

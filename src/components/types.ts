@@ -22,7 +22,7 @@ export interface IInputLabelProps {
   required?: boolean;
   extraText?: string;
   value?: any;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: any;
   setFieldValue?: FormikProps<any>['setFieldValue'];
   placeholder?: string;
   errors?: any;

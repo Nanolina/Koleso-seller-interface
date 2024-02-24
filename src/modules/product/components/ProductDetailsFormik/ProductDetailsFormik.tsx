@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { TooltipTextErrors } from '../../../../components/TooltipTextErrors/TooltipTextErrors';
@@ -57,6 +56,7 @@ export const ProductDetailsFormik: React.FC = () => {
 
         // Set initial values based on the data from DB
         if (product) {
+          console.log('product', product);
           setInitialValues({
             storeId: product.storeId,
             name: product.name,
@@ -71,14 +71,17 @@ export const ProductDetailsFormik: React.FC = () => {
             categoryId: product.categoryId,
             subcategoryId: product.subcategoryId,
             composition: product.composition,
-            // parameters: [
-            //   {
-            //     id: uuidv4(),
-            //     color: product.color,
-            //     size: product.size,
-            //     quantity: product.quantity,
-            //   },
-            // ],
+            variants: [
+              // {
+              //   id: uuidv4(),
+              //   color: product.color,
+              //   size: product.size,
+              //   quantity: product.quantity,
+              //   priceWithoutDiscount: product.priceWithoutDiscount,
+              //   finalPrice: product.finalPrice,
+              //   articleSupplier: product.articleSupplier,
+              // },
+            ],
             // colorWithImages: [
             //   {
             //     id: uuidv4(),

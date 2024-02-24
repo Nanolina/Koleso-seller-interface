@@ -12,11 +12,11 @@ import { GENDERS } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
+import { Title } from '../../../../../ui/Title/Title';
 import { IProductFormFieldsProps } from '../../../types';
 import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
 import { AddComposition } from '../composition/AddComposition/AddComposition';
-import { AddParameters } from '../parameters/AddParameters/AddParameters';
-import { PhotoUpload } from '../photo/PhotoUpload/PhotoUpload';
+import { AddVariants } from '../variants/AddVariants/AddVariants';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -121,45 +121,6 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 errors={errors}
                 touched={touched}
               />
-              {/* <InputLabel
-                label={t('products.table.articleSupplier')}
-                id="articleSupplier"
-                name="articleSupplier"
-                keyInLocalStorage="product"
-                value={values.articleSupplier || ''}
-                setFieldValue={setFieldValue}
-                errors={errors}
-                touched={touched}
-                extraText={t('products.form.extraTextArticleSupplier')}
-              />
-              <InputLabel
-                label={t('products.table.priceWithoutDiscount')}
-                id="priceWithoutDiscount"
-                name="priceWithoutDiscount"
-                keyInLocalStorage="product"
-                inputType="number"
-                value={values.priceWithoutDiscount || ''}
-                setFieldValue={setFieldValue}
-                extraText={t('products.form.price.oldPriceExtra')}
-                errors={errors}
-                touched={touched}
-                placeholder="0"
-                required
-              />
-              <InputLabel
-                label={t('products.table.finalPrice')}
-                id="finalPrice"
-                name="finalPrice"
-                keyInLocalStorage="product"
-                inputType="number"
-                value={values.finalPrice || ''}
-                setFieldValue={setFieldValue}
-                extraText={t('products.form.price.priceExtra')}
-                errors={errors}
-                touched={touched}
-                placeholder="0"
-                required
-              /> */}
               <SelectLabel
                 id="gender"
                 name="gender"
@@ -178,9 +139,13 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
               />
 
               <AddComposition values={values} setFieldValue={setFieldValue} />
-              {/* <AddParameters values={values} setFieldValue={setFieldValue} /> */}
-
-              {/* <PhotoUpload values={values} setFieldValue={setFieldValue} /> */}
+              <Title text={t('products.form.variants.label')} />
+              <AddVariants
+                values={values}
+                setFieldValue={setFieldValue}
+                errors={errors}
+                touched={touched}
+              />
             </>
           )}
         </div>

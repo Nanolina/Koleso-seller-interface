@@ -103,9 +103,10 @@
         "label": "Size",
         "select": "Select a size"
       },
-      "parameters": {
+      "variants": {
+        "label": "Variants",
         "colors": "Colors",
-        "quantity": "Number of pieces in stock",
+        "quantity": "Number of pieces",
         "size": "Size"
       },
       "color": {

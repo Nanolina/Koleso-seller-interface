@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { SelectLabel } from '../../../../../../components/SelectLabel/SelectLabel';
 import { removePhotosWith1Color } from '../../../../../../redux/slices/productCreationSlice';
 import { useFileHandler } from '../../../../../productForm/hooks/useFileHandler';
 import { getExistingColors } from '../../../../functions';

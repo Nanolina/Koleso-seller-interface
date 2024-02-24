@@ -7,7 +7,7 @@ import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetCatalogStructure } from '../../../../../redux/thunks/catalog';
-import { getOptions } from '../../../functions';
+import { getOptions } from '../../../functions/functions';
 import {
   ICatalogItemType,
   ICategoryType,
@@ -96,6 +96,7 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
             keyInLocalStorage="product"
             firstText={t('products.form.selectCategory')}
             translationType="catalog"
+            isNumber
           />
         ) : null}
 
@@ -110,6 +111,7 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
             keyInLocalStorage="product"
             firstText={t('products.form.selectSubcategory')}
             translationType="catalog"
+            isNumber
           />
         ) : null}
 

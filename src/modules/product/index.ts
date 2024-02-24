@@ -6,8 +6,8 @@ export type {
   IChangeCompositionPayload,
   IComposition,
   ICreateProductData,
-  IParameter,
   IProduct,
   IProductsState,
   ISectionType,
+  IVariant,
 } from './types';

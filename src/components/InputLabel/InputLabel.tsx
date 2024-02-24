@@ -16,6 +16,7 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
     required,
     extraText,
     value,
+    onChange,
     setFieldValue,
     placeholder,
     errors,
@@ -35,6 +36,8 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
           eventValue,
           setFieldValue
         );
+      } else if (onChange) {
+        onChange(eventValue);
       }
 
       return;

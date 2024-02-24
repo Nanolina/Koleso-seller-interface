@@ -17,7 +17,9 @@ export const ChangePassword: React.FC = () => {
         id="currentPassword"
         name="currentPassword"
         value={currentPassword}
-        onChange={(event) => setCurrentPassword(event.target.value)}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setCurrentPassword(event.target.value)
+        }
         required
       />
       <InputLabel
@@ -25,7 +27,9 @@ export const ChangePassword: React.FC = () => {
         id="newPassword"
         name="newPassword"
         value={newPassword}
-        onChange={(event) => setNewPassword(event.target.value)}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setNewPassword(event.target.value)
+        }
         required
       />
       <InputLabel
@@ -33,7 +37,9 @@ export const ChangePassword: React.FC = () => {
         id="repeatedPassword"
         name="repeatedPassword"
         value={repeatedPassword}
-        onChange={(event) => setRepeatedPassword(event.target.value)}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setRepeatedPassword(event.target.value)
+        }
         required
       />
 
