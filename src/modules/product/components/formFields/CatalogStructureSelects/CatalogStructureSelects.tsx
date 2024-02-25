@@ -98,7 +98,7 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
             translationType="catalog"
             isNumber
           />
-        ) : null}
+        ) : undefined}
 
         {values.categoryId ? (
           <SelectLabel
@@ -113,7 +113,7 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
             translationType="catalog"
             isNumber
           />
-        ) : null}
+        ) : undefined}
 
         {error && <MessageBox errorMessage={error} />}
       </>
