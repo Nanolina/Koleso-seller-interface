@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { SelectLabel } from '../../../../../../components/SelectLabel/SelectLabel';
@@ -17,38 +17,42 @@ import styles from './ImageUpload.module.css';
 export const ImageUpload: React.FC<ICreateProductValuesProps> = React.memo(
   ({ values, setFieldValue }) => {
     const { t } = useTranslation();
-
     const [color, setColor] = useState<ColorType | string>('');
-
-    // Get data from hooks
     const { handleFileSelect } = useImageHandler();
-
     const uniqueColors = getExistingUniqueColors();
 
-    const handleCreateNewColorsWithImages = (colorValue: ColorType) => {
-      if (!colorValue) return;
-      setColor(colorValue);
-      const existingColorIndex = values.colorsWithImages.findIndex(
-        (imagesWith1Color) => imagesWith1Color.color === colorValue
-      );
-      if (existingColorIndex !== -1) {
-        return;
-      }
-      const newColorsWithImages = createColorsWithImages(
-        colorValue,
-        values.colorsWithImages
-      );
-      setFieldValue('colorsWithImages', newColorsWithImages);
-      updateColorsWithImagesLocalStorage(newColorsWithImages);
-    };
+    const handleCreateNewColorsWithImages = useCallback(
+      (colorValue: ColorType) => {
+        if (!colorValue) return;
 
-    const handleRemoveColorWithImages = (color: ColorType) => {
-      const newColorsWithImages = removeColor(values.colorsWithImages, color);
-      setFieldValue('colorsWithImages', newColorsWithImages);
-      updateColorsWithImagesLocalStorage(newColorsWithImages);
-    };
+        // There must not be 2 objects with the same color in the array
+        const existingColorIndex = values.colorsWithImages.findIndex(
+          (imagesWith1Color) => imagesWith1Color.color === colorValue
+        );
+        if (existingColorIndex !== -1) {
+          return;
+        }
 
-    console.log('values.colorsWithImages', values.colorsWithImages);
+        const newColorsWithImages = createColorsWithImages(
+          colorValue,
+          values.colorsWithImages
+        );
+        setColor(colorValue);
+        setFieldValue('colorsWithImages', newColorsWithImages);
+        updateColorsWithImagesLocalStorage(newColorsWithImages);
+      },
+      [values.colorsWithImages, setFieldValue]
+    );
+
+    const handleRemoveColorWithImages = useCallback(
+      (color: ColorType) => {
+        const newColorsWithImages = removeColor(values.colorsWithImages, color);
+        setFieldValue('colorsWithImages', newColorsWithImages);
+        updateColorsWithImagesLocalStorage(newColorsWithImages);
+      },
+      [values.colorsWithImages, setFieldValue]
+    );
+
     return (
       <div className={styles.container}>
         <SelectLabel
@@ -78,7 +82,6 @@ export const ImageUpload: React.FC<ICreateProductValuesProps> = React.memo(
               images={imagesWith1Color.images}
               color={imagesWith1Color.color}
             />
-
             {imagesWith1Color.images.length < 5 && (
               <InputUpload
                 onChange={handleFileSelect(
@@ -90,7 +93,6 @@ export const ImageUpload: React.FC<ICreateProductValuesProps> = React.memo(
                 multiple
               />
             )}
-
             <IoCloseOutline
               color="var(--dark-gray)"
               onClick={() =>
