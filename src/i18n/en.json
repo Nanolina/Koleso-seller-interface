@@ -141,10 +141,10 @@
         "White": "White",
         "Yellow": "Yellow"
       },
-      "photo": {
-        "label": "Photo",
-        "select": "Choose the color of the product for the photo",
-        "upTo": "No more than 5 photos per 1 color"
+      "image": {
+        "label": "Images",
+        "select": "Choose the color of the product for the images",
+        "upTo": "No more than 5 images per 1 color"
       },
       "price": {
         "oldPriceExtra": "Will be shown crossed out",

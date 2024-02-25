@@ -4,6 +4,7 @@ import {
   FormikProps,
   FormikTouched,
 } from 'formik';
+import { ChangeEvent } from 'react';
 import { SetStateAction } from '../../types';
 
 export enum ColorType {
@@ -53,12 +54,15 @@ export interface ICreateProductData {
   subcategoryId?: number;
   composition?: IComposition[];
   variants: IVariant[];
-  // colorWithImages: IColorWithImages[];
+  colorsWithImages: IColorsWithImages[];
 }
 
 interface IImages {
+  id: string;
   url: string;
   publicId: string;
+  variantId?: string;
+  storeId?: string;
 }
 
 export interface IProduct extends ICreateProductData {
@@ -178,8 +182,21 @@ export interface IVariantsProps {
 }
 
 // Images
-export interface IColorWithImages {
-  id: string;
+export interface IColorsWithImages {
   color: ColorType;
   images: string[];
+}
+
+export interface IImagePreviewsProps {
+  colorsWithImages: IColorsWithImages[];
+  setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
+  color: ColorType;
+  images: string[];
+}
+
+export interface IFileHandlerReturn {
+  handleFileSelect: (
+    color: string,
+    currentPhotos: string[]
+  ) => (event: ChangeEvent<HTMLInputElement>) => void;
 }

@@ -4,7 +4,7 @@ import {
   FormikProps,
   FormikTouched,
 } from 'formik';
-import { IImage } from '../photo';
+import { IImage } from '../image';
 
 export interface ICreateStoreData {
   name: string;

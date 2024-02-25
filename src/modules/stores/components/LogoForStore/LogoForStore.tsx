@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { InputUploadLabel } from '../../../../components/InputUploadLabel/InputUploadLabel';
-import { PhotoPreview } from '../../../photo/PhotoPreview/PhotoPreview';
+import { ImagePreview } from '../../../image/ImagePreview/ImagePreview';
 import { ILogoProps } from '../../types';
 import styles from './LogoForStore.module.css';
 
@@ -45,7 +45,7 @@ export const LogoForStore: React.FC<ILogoProps> = React.memo(
 
         {previewUrl && (
           <div className={styles.logo}>
-            <PhotoPreview
+            <ImagePreview
               image={previewUrl}
               onRemove={() => {
                 setFieldValue('logo', null);

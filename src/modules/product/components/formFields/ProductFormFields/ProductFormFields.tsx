@@ -19,6 +19,7 @@ import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStruc
 import { AddComposition } from '../composition/AddComposition/AddComposition';
 import { AddVariants } from '../variants/AddVariants/AddVariants';
 import styles from './ProductFormFields.module.css';
+import { ImageUpload } from '../image/ImageUpload/ImageUpload';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -164,6 +165,9 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 errors={errors}
                 touched={touched}
               />
+
+              <Title text={t('products.form.image.label')} />
+              <ImageUpload values={values} setFieldValue={setFieldValue} />
             </>
           )}
         </div>

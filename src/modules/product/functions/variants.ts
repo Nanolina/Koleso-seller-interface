@@ -45,22 +45,9 @@ export const removeVariant = (variants: IVariant[], variantId: string) => {
   return variants.filter((variant) => variant.id !== variantId);
 };
 
-// Other functions
+// Local storage
 export const updateVariantsLocalStorage = (newVariants: any) => {
   const currentData = JSON.parse(localStorage.getItem('product') || '{}');
   currentData['variants'] = newVariants;
   localStorage.setItem('product', JSON.stringify(currentData));
-};
-
-export const getExistingColors = () => {
-  const savedProductVariants: IVariant[] | undefined = JSON.parse(
-    localStorage.getItem('product') || '{}'
-  ).variants;
-
-  const set = new Set<ColorType>();
-  if (savedProductVariants) {
-    savedProductVariants.forEach((variant: IVariant) => set.add(variant.color));
-  }
-
-  return [...set];
 };

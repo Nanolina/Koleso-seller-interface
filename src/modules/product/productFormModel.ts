@@ -18,7 +18,7 @@ export const initialValuesProduct: ICreateProductData = {
   subcategoryId: 0,
   composition: [],
   variants: [],
-  // colorWithImages: [],
+  colorsWithImages: [],
 };
 
 const colorTypeValues = Object.values(ColorType).filter((key) =>
@@ -93,7 +93,7 @@ export const handleSubmitFormProduct = async (
         subcategoryId: values.subcategoryId,
         composition: values.composition || [],
         variants: values.variants,
-        // colorWithImages: values.colorWithImages,
+        colorsWithImages: values.colorsWithImages,
       });
     }
   }

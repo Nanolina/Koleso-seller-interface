@@ -69,7 +69,7 @@ export const ProductDetailsFormik: React.FC = () => {
             subcategoryId: product.subcategoryId,
             composition: product.composition,
             variants: product.variants,
-            // colorWithImages: [
+            colorsWithImages: [],
             //   {
             //     id: uuidv4(),
             //     color: product.color,
