@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { IComposition, ICreateProductValuesProps } from '../../../../types';
+import { IComposition, ICreateProductValuesProps } from '../../../types';
 import { Composition } from '../Composition/Composition';
 import styles from './Compositions.module.css';
 

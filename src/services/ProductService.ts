@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { productServiceAPI } from '../http';
-import { ICreateProductData, IProduct, ISectionType } from '../modules/product';
+import { ISectionType } from '../modules/product';
+import { ICreateProductData, IProduct } from '../modules/product/productForm';
 import { IStore } from '../modules/stores';
 
 export class ProductService {

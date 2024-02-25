@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProduct } from '../../../modules/product';
 import { ProductService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
+import { IProduct } from '../../../modules/product/productForm';
 
 export const handleGetAllProducts = createAsyncThunk(
   'product/get-all',

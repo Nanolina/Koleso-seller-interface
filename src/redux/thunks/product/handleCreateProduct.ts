@@ -1,5 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ICreateProductData, IProduct } from '../../../modules/product';
+import {
+  ICreateProductData,
+  IProduct,
+} from '../../../modules/product/productForm';
 import { ProductService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
 

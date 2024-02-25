@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
-import { IProduct, IProductsState } from '../../../modules/product';
+import { IProduct, IProductsState } from '../../../modules/product/productForm';
 import { handleCreateProduct } from '../../thunks/product';
 
 export const createProductCases = (

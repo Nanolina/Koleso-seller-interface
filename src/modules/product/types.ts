@@ -80,15 +80,6 @@ export interface IProductsState {
   error: any;
 }
 
-export interface IProductFormFieldsProps {
-  values: ICreateProductData;
-  setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
-  errors: FormikErrors<ICreateProductData>;
-  touched: FormikTouched<ICreateProductData>;
-  resetForm: FormikHelpers<ICreateProductData>['resetForm'];
-  initialValuesProduct: ICreateProductData;
-}
-
 export interface ICatalogItemType {
   id: number;
   image?: string;
@@ -112,11 +103,6 @@ export interface ICatalogStructureState {
 export interface IOptions {
   categoryOptions: ICategoryType[];
   subcategoryOptions: ICatalogItemType[];
-}
-
-export interface ICreateProductValuesProps {
-  values: ICreateProductData;
-  setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
 }
 
 // Composition
@@ -158,6 +144,11 @@ export interface IVariantErrors {
   priceWithoutDiscount?: string;
   finalPrice?: string;
   articleSupplier?: string;
+}
+
+export interface ICreateProductValuesProps {
+  values: ICreateProductData;
+  setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
 }
 
 export interface IVariantProps extends ICreateProductValuesProps {

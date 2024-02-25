@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Input } from '../../../../../../ui/Input/Input';
-import { IAddPercentageProps } from '../../../../types';
+import { IAddPercentageProps } from '../../../types';
 import styles from './AddPercentage.module.css';
 
 /**

@@ -13,13 +13,10 @@ import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
 import { Label } from '../../../../../ui/Label/Label';
-import { Title } from '../../../../../ui/Title/Title';
-import { IProductFormFieldsProps } from '../../../types';
 import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
 import { AddComposition } from '../composition/AddComposition/AddComposition';
-import { AddVariants } from '../variants/AddVariants/AddVariants';
 import styles from './ProductFormFields.module.css';
-import { ImageUpload } from '../image/ImageUpload/ImageUpload';
+import { IProductFormFieldsProps } from '../../types';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -158,16 +155,6 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
               />
 
               <AddComposition values={values} setFieldValue={setFieldValue} />
-              <Title text={t('products.form.variants.label')} />
-              <AddVariants
-                values={values}
-                setFieldValue={setFieldValue}
-                errors={errors}
-                touched={touched}
-              />
-
-              <Title text={t('products.form.image.label')} />
-              <ImageUpload values={values} setFieldValue={setFieldValue} />
             </>
           )}
         </div>

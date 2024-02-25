@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select } from '../../../../../../components/Select/Select';
 import { COMPOSITIONS } from '../../../../../../consts';
 import { Button } from '../../../../../../ui/Button/Button';
-import { ICreateProductValuesProps } from '../../../../types';
+import { ICreateProductValuesProps } from '../../../types';
 import { AddPercentage } from '../AddPercentage/AddPercentage';
 import styles from './AddMaterial.module.css';
 

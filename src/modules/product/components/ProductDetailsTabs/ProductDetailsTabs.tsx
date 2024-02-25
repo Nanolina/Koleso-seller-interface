@@ -5,8 +5,8 @@ import { IoColorFilterSharp } from 'react-icons/io5';
 import { Button } from '../../../../ui/Button/Button';
 import { Tab } from '../../../../ui/Tab/Tab';
 import { ImageUploadForm } from '../../ImageUploadForm/ImageUploadForm';
-import { ProductDetailsForm } from '../../ProductDetailsForm/ProductDetailsForm';
 import { VariantDetailsForm } from '../../VariantDetailsForm/VariantDetailsForm';
+import { ProductDetailsForm } from '../../productForm/components/ProductDetailsForm/ProductDetailsForm';
 import styles from './ProductDetailsTabs.module.css';
 
 export const ProductDetailsTabs: React.FC = () => {

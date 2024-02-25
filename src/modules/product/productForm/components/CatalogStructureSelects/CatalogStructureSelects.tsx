@@ -13,7 +13,7 @@ import {
   ICategoryType,
   ICreateProductValuesProps,
   IOptions,
-} from '../../../types';
+} from '../../types';
 
 /**
  * Component for rendering cascading selects for a catalog.

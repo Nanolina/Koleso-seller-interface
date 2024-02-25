@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Label } from '../../../../../../ui/Label/Label';
-import { ICreateProductValuesProps } from '../../../../types';
+import { ICreateProductValuesProps } from '../../../types';
 import { AddMaterial } from '../AddMaterial/AddMaterial';
 import { Compositions } from '../Compositions/Compositions';
 import styles from './AddComposition.module.css';

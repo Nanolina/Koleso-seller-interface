@@ -1,26 +1,22 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { Form, Formik } from 'formik';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Loader } from '../../../../components/Loader/Loader';
-import { MessageBox } from '../../../../components/MessageBox/MessageBox';
-import { NEW } from '../../../../consts';
-import { IRootState } from '../../../../redux/rootReducer';
-import { AppDispatch } from '../../../../redux/store';
-import { handleGetProductById } from '../../../../redux/thunks/product';
-import { Button } from '../../../../ui/Button/Button';
-import { formatErrors } from '../../../../utils';
-import { ICreateProductData, IProduct } from '../../productForm';
-import { ProductFormFields } from '../../productForm/components/ProductFormFields/ProductFormFields';
-import { handleSubmitFormProduct } from '../../productForm/handlers';
-import {
-  initialValuesProduct,
-  validationSchemaProduct,
-} from '../../productFormModel';
+import { Loader } from '../../../../../components/Loader/Loader';
+import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
+import { NEW } from '../../../../../consts';
+import { IRootState } from '../../../../../redux/rootReducer';
+import { AppDispatch } from '../../../../../redux/store';
+import { handleGetProductById } from '../../../../../redux/thunks/product';
+import { handleSubmitFormProduct } from '../../handlers';
+import { initialValuesProduct } from '../../initialValues';
+import { ICreateProductData, IProduct } from '../../types';
+import { validationSchema } from '../../validationSchema';
+import { ProductFormFields } from '../ProductFormFields/ProductFormFields';
 
-export const ProductDetailsFormik: React.FC = () => {
+export const ProductDetailsForm: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -51,12 +47,8 @@ export const ProductDetailsFormik: React.FC = () => {
         // Retrieve data from a completed promise
         const product: IProduct = unwrapResult(data);
 
-        // const imagesURL: string[] = [];
-        // product.images.forEach((image) => imagesURL.push(image.url));
-
         // Set initial values based on the data from DB
         if (product) {
-          console.log('product', product);
           setInitialValues({
             storeId: product.storeId,
             name: product.name,
@@ -107,7 +99,7 @@ export const ProductDetailsFormik: React.FC = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={() => validationSchemaProduct(t)}
+      validationSchema={() => validationSchema(t)}
       onSubmit={handleSubmit}
       enableReinitialize
     >
@@ -129,32 +121,6 @@ export const ProductDetailsFormik: React.FC = () => {
             resetForm={resetForm}
             initialValuesProduct={initialValuesProduct}
           />
-
-          <div className="buttonSaveItemContainer">
-            <Button
-              text={t('save')}
-              type="submit"
-              disabled={!isValid}
-              tooltipText={errors ? formatErrors(errors) : ''}
-            />
-            {productId && productId !== NEW && product && (
-              <span
-                className="removeText"
-                // onClick={() =>
-                // handleRemoveFormStore(
-                //   storeId,
-                //   dispatch,
-                //   previewUrl,
-                //   setPreviewUrl,
-                //   setInitialValues,
-                //   navigate
-                // )
-                // }
-              >
-                {t('products.productDetails.removeProduct')}
-              </span>
-            )}
-          </div>
 
           {error && <MessageBox errorMessage={error} />}
           {success && <MessageBox successMessage={success} />}
