@@ -67,15 +67,7 @@ interface IImages {
 
 export interface IProduct extends ICreateProductData {
   id: string;
-  // articleKoleso: string;
   userId: string;
-  // images: IImages[];
-  // color: ColorType;
-  // size?: string;
-  // quantity: number;
-  // priceWithoutDiscount: number;
-  // finalPrice: number;
-  // articleSupplier?: string;
   createdAt: string;
   updatedAt: string;
 }

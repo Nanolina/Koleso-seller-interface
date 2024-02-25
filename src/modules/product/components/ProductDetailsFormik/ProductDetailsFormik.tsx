@@ -70,12 +70,6 @@ export const ProductDetailsFormik: React.FC = () => {
             composition: product.composition,
             variants: product.variants,
             colorsWithImages: [],
-            //   {
-            //     id: uuidv4(),
-            //     color: product.color,
-            //     images: imagesURL,
-            //   },
-            // ],
           });
         } else {
           setIsProductFound(false);
