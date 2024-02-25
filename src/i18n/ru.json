@@ -45,17 +45,17 @@
       "storeIdRequired": "Выбор магазина обязателен",
       "priceWithoutDiscountRequired": "Цена без скидки обязательна",
       "priceWithoutDiscountNotNumber": "Цена без скидки должна включать только цифры",
-      "priceWithoutDiscountMustBeGreaterThanZero": "Цена без скидки не должна равняться 0",
+      "priceWithoutDiscountMustBeGreaterThanZero": "Цена без скидки должна быть больше 0",
       "finalPriceRequired": "Конечная цена бязательна",
       "finalPriceNotNumber": "Конечная цена должна включать только цифры",
-      "finalPriceMustBeGreaterThanZero": "Конечная цена не должна равняться 0",
+      "finalPriceMustBeGreaterThanZero": "Конечная цена должна быть больше 0",
       "sectionIdRequired": "Раздел каталога обязателен",
       "colorType": "Невалидный тип для цвета",
       "colorRequired": "Цвет продукта обязателен",
       "quantityMustBeGreaterThanZero": "Количество продукта должно быть больше 0",
       "quantityInteger": "Количество продукта должно быть целым числом",
       "quantityRequired": "Количество продукта обязательно",
-      "atLeastOneParameter": "Пожалуйста, выберите цвет и количество товара"
+      "atLeastOneParameter": "Цвет и количество товара обязательны"
     },
     "form": {
       "selectStore": "Выберите магазин",

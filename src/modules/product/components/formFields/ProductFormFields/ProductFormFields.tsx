@@ -12,11 +12,13 @@ import { GENDERS } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
+import { Label } from '../../../../../ui/Label/Label';
 import { Title } from '../../../../../ui/Title/Title';
 import { IProductFormFieldsProps } from '../../../types';
 import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
 import { AddComposition } from '../composition/AddComposition/AddComposition';
 import { AddVariants } from '../variants/AddVariants/AddVariants';
+import styles from './ProductFormFields.module.css';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -33,6 +35,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
     const { items, loading } = useSelector((state: IRootState) => state.stores);
 
     const [hasStore, setHasStore] = useState<boolean>(false);
+    const [hasOnlyOneStore, setHasOnlyOneStore] = useState<boolean>(false);
 
     const handleClearValues = useCallback(() => {
       localStorage.removeItem('product');
@@ -45,7 +48,13 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
 
     useEffect(() => {
       items.length ? setHasStore(true) : setHasStore(false);
-    }, [items]);
+      if (items.length === 1) {
+        setHasOnlyOneStore(true);
+        setFieldValue('storeId', items[0].id);
+      } else {
+        setHasOnlyOneStore(false);
+      }
+    }, [items, setFieldValue]);
 
     if (loading) return <Loader />;
 
@@ -54,17 +63,26 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
         <FaTrashAlt className="clearValuesButton" onClick={handleClearValues} />
 
         <div className="formFieldsContainer">
-          <SelectLabel
-            id="storeId"
-            name="storeId"
-            label={t('stores.label')}
-            options={items}
-            value={values.storeId}
-            setFieldValue={setFieldValue}
-            keyInLocalStorage="product"
-            firstText={t('products.form.selectStore')}
-            required
-          />
+          {hasStore && !hasOnlyOneStore && (
+            <SelectLabel
+              id="storeId"
+              name="storeId"
+              label={t('stores.label')}
+              options={items}
+              value={values.storeId}
+              setFieldValue={setFieldValue}
+              keyInLocalStorage="product"
+              firstText={t('products.form.selectStore')}
+              required
+            />
+          )}
+
+          {hasStore && hasOnlyOneStore && (
+            <div className={styles.storeContainer}>
+              <Label text={t('stores.label')} id="storeId" />
+              <h3>{items[0].name}</h3>
+            </div>
+          )}
 
           {!hasStore && (
             <p>

@@ -158,17 +158,26 @@ export interface IVariant {
   articleSupplier?: string;
 }
 
+export interface IVariantErrors {
+  color?: string;
+  quantity?: string;
+  size?: string;
+  priceWithoutDiscount?: string;
+  finalPrice?: string;
+  articleSupplier?: string;
+}
+
 export interface IVariantProps extends ICreateProductValuesProps {
   variant: IVariant;
-  errors: FormikErrors<ICreateProductData>;
+  errors: IVariantErrors | undefined;
   touched: FormikTouched<ICreateProductData>;
 }
 
 export interface IVariantsProps {
   values: ICreateProductData;
   setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
-  errors: FormikErrors<ICreateProductData>;
-  touched: FormikTouched<ICreateProductData>;
+  errors: FormikErrors<any>;
+  touched: FormikTouched<any>;
 }
 
 // Images

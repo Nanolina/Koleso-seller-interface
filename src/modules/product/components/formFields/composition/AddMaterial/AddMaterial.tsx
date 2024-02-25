@@ -21,6 +21,11 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
 
     const addCompositionToValues = () => {
       const currentComposition = values.composition || [];
+
+      if (currentComposition.some((comp) => comp.title === material)) {
+        return;
+      }
+
       const newComposition = [
         ...currentComposition,
         { title: material, percentage: materialPercentage },

@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
-import { TooltipTextErrors } from '../../../../components/TooltipTextErrors/TooltipTextErrors';
 import { NEW } from '../../../../consts';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleGetProductById } from '../../../../redux/thunks/product';
 import { Button } from '../../../../ui/Button/Button';
+import { formatErrors } from '../../../../utils';
 import {
   handleSubmitFormProduct,
   initialValuesProduct,
@@ -71,17 +71,7 @@ export const ProductDetailsFormik: React.FC = () => {
             categoryId: product.categoryId,
             subcategoryId: product.subcategoryId,
             composition: product.composition,
-            variants: [
-              // {
-              //   id: uuidv4(),
-              //   color: product.color,
-              //   size: product.size,
-              //   quantity: product.quantity,
-              //   priceWithoutDiscount: product.priceWithoutDiscount,
-              //   finalPrice: product.finalPrice,
-              //   articleSupplier: product.articleSupplier,
-              // },
-            ],
+            variants: product.variants,
             // colorWithImages: [
             //   {
             //     id: uuidv4(),
@@ -156,9 +146,8 @@ export const ProductDetailsFormik: React.FC = () => {
               text={t('save')}
               type="submit"
               disabled={!isValid}
-              tooltipText={errors ? TooltipTextErrors(errors) : ''}
+              tooltipText={errors ? formatErrors(errors) : ''}
             />
-
             {productId && productId !== NEW && product && (
               <span
                 className="removeText"

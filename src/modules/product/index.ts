@@ -10,4 +10,5 @@ export type {
   IProductsState,
   ISectionType,
   IVariant,
+  IVariantErrors,
 } from './types';
