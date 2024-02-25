@@ -4,7 +4,7 @@ import {
   updateVariant,
   updateVariantsLocalStorage,
 } from '../functions';
-import { IVariant } from '../types';
+import { IVariant } from './types';
 
 const useVariants = (variants: IVariant[], setFieldValue: any) => {
   const handleUpdateVariant = (

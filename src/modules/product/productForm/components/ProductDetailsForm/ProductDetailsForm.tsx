@@ -112,7 +112,7 @@ export const ProductDetailsForm: React.FC = () => {
         dirty,
         resetForm,
       }) => (
-        <Form>
+        <Form className="formFieldsContainer">
           <ProductFormFields
             values={values}
             setFieldValue={setFieldValue}

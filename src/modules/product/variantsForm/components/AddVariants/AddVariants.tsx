@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SelectLabel } from '../../../../../../components/SelectLabel/SelectLabel';
-import { COLORS } from '../../../../../../consts';
+import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
+import { COLORS } from '../../../../../consts';
 import {
   createNewVariant,
   updateVariantsLocalStorage,
-} from '../../../../functions';
-import { ColorType, IVariantsProps } from '../../../../types';
+} from '../../../functions';
+import { ColorType } from '../../../types';
+import { IVariantsProps } from '../../types';
 import { Variants } from '../Variants/Variants';
 
 export const AddVariants: React.FC<IVariantsProps> = React.memo(
-  ({ values, setFieldValue, errors, touched }) => {
+  ({ values, setFieldValue, errors, touched, resetForm, initialValues }) => {
     const { t } = useTranslation();
 
     const [color, setColor] = useState<ColorType | string>('');

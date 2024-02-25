@@ -2,22 +2,19 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { MdContentCopy } from 'react-icons/md';
-import { InputLabel } from '../../../../../../components/InputLabel/InputLabel';
-import { SelectLabel } from '../../../../../../components/SelectLabel/SelectLabel';
-import { SIZES } from '../../../../../../consts';
-import useVariants from '../../../../hooks/useVariants';
-import { IVariantProps } from '../../../../types';
+import { InputLabel } from '../../../../../components/InputLabel/InputLabel';
+import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
+import { SIZES } from '../../../../../consts';
+import { IVariantProps } from '../../types';
 import styles from './Variant.module.css';
+import useVariants from '../../useVariants';
 
 export const Variant: React.FC<IVariantProps> = React.memo(
   ({ variant, values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
 
-    const {
-      handleUpdateVariant,
-      handleRemoveVariant,
-      handleCopyVariant,
-    } = useVariants(values.variants, setFieldValue);
+    const { handleUpdateVariant, handleRemoveVariant, handleCopyVariant } =
+      useVariants(values.variants, setFieldValue);
 
     // Quantity
     const handleQuantityUpdate = (quantityValue: string) => {

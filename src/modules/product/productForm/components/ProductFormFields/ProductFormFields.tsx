@@ -13,10 +13,10 @@ import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
 import { Label } from '../../../../../ui/Label/Label';
+import { IProductFormFieldsProps } from '../../types';
 import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
 import { AddComposition } from '../composition/AddComposition/AddComposition';
 import styles from './ProductFormFields.module.css';
-import { IProductFormFieldsProps } from '../../types';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -60,7 +60,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
       <>
         <FaTrashAlt className="clearValuesButton" onClick={handleClearValues} />
 
-        <div className="formFieldsContainer">
+        <>
           {hasStore && !hasOnlyOneStore && (
             <SelectLabel
               id="storeId"
@@ -157,7 +157,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
               <AddComposition values={values} setFieldValue={setFieldValue} />
             </>
           )}
-        </div>
+        </>
       </>
     );
   }

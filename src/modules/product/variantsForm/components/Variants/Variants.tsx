@@ -1,5 +1,5 @@
 import React from 'react';
-import { IVariant, IVariantErrors, IVariantsProps } from '../../../../types';
+import { IVariant, IVariantErrors, IVariantsProps } from '../../types';
 import { Variant } from '../Variant/Variant';
 import styles from './Variants.module.css';
 
