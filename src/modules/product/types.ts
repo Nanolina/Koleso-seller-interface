@@ -47,9 +47,6 @@ export interface ICreateProductData {
   description?: string;
   brand?: string;
   model?: string;
-  // articleSupplier?: string;
-  // priceWithoutDiscount: number;
-  // finalPrice: number;
   gender?: GenderType;
   sectionId: number;
   categoryId?: number;
