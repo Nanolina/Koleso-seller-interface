@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { NEW } from '../../consts';
 import { SideMenu, useSideMenu } from '../../modules/menu';
-import { ProductDetailsFormik } from '../../modules/product';
+import { ProductDetailsTabs } from '../../modules/product';
 import { IRootState } from '../../redux/rootReducer';
 import { Container } from '../../ui/Container/Container';
 import { Title } from '../../ui/Title/Title';
@@ -31,7 +31,7 @@ export const ProductPage: React.FC = () => {
               : t('products.addProduct')
           }
         />
-        <ProductDetailsFormik />
+        <ProductDetailsTabs />
       </Container>
     </>
   );

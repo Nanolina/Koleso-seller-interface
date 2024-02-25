@@ -1,4 +1,5 @@
-import { HTMLInputTypeAttribute } from 'react';
+import { HTMLInputTypeAttribute, ReactElement } from 'react';
+import { SetStateAction } from './../types';
 
 export interface ITitleProps {
   text: string;
@@ -68,4 +69,12 @@ export interface IContainerProps {
   redirectToItemsPage?: any;
   onClick?: any;
   children: any;
+}
+
+export interface ITabProps {
+  activeTab: string;
+  setActiveTab: SetStateAction<string>;
+  tabName: string;
+  text: string;
+  icon: ReactElement;
 }

@@ -1,0 +1,19 @@
+button {
+  display: flex;
+  gap: 5px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  font-size: 15px;
+  border-bottom: 1px solid #efefef;
+}
+
+button:hover,
+.active {
+  background-color: var(--light-gray);
+  border-bottom: 1px solid var(--main);
+  color: var(--main);
+}
