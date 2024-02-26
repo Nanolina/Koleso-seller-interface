@@ -1,0 +1,1 @@
+export { handleCreateVariants } from './handleCreateVariants';

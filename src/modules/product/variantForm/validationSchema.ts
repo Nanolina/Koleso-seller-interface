@@ -6,7 +6,7 @@ const colorTypeValues = Object.values(ColorType).filter((key) =>
   isNaN(Number(key))
 );
 
-export const validationSchema = (t: TFunction<'translation', undefined>) =>
+const variantValidationSchema = (t: TFunction<'translation', undefined>) =>
   Yup.object().shape({
     color: Yup.mixed()
       .oneOf(colorTypeValues, t('products.validation.colorType'))
@@ -26,4 +26,11 @@ export const validationSchema = (t: TFunction<'translation', undefined>) =>
       .typeError(t('products.validation.finalPriceNotNumber'))
       .min(0.01, t('products.validation.finalPriceMustBeGreaterThanZero'))
       .required(t('products.validation.finalPriceRequired')),
+  });
+
+export const validationSchema = (t: TFunction<'translation', undefined>) =>
+  Yup.object().shape({
+    variants: Yup.array()
+      .of(variantValidationSchema(t))
+      .min(1, t('products.validation.atLeastOneVariant')),
   });

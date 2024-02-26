@@ -48,7 +48,5 @@ export const removeVariant = (variants: IVariant[], variantId: string) => {
 
 // Local storage
 export const updateVariantsLocalStorage = (newVariants: any) => {
-  const currentData = JSON.parse(localStorage.getItem('product') || '{}');
-  currentData['variants'] = newVariants;
-  localStorage.setItem('product', JSON.stringify(currentData));
+  localStorage.setItem('variants', JSON.stringify(newVariants));
 };

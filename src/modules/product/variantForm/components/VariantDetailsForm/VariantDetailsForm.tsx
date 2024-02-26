@@ -1,85 +1,55 @@
 import { Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
+import { handleSubmitFormVariants } from '../../handlers';
 import { initialValuesVariant } from '../../initialValues';
-import { ICreateVariantData } from '../../types';
+import { ICreateVariantsData } from '../../types';
 import { validationSchema } from '../../validationSchema';
 import { AddVariants } from '../AddVariants/AddVariants';
 
 export const VariantDetailsForm: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { productId } = useParams<{ productId: string }>();
 
-  const savedProduct = JSON.parse(localStorage.getItem('product') || '{}');
+  const savedVariants = JSON.parse(localStorage.getItem('variants') || '[]');
 
-  // useState
-  const [isProductFound, setIsProductFound] = useState<boolean>(true);
-  const [initialValues, setInitialValues] = useState<ICreateVariantData>({
+  const [initialValues, setInitialValues] = useState<ICreateVariantsData>({
     ...initialValuesVariant,
-    ...savedProduct,
+    ...savedVariants,
   });
 
   // Values from Redux
-  const { product, loading, error, success } = useSelector(
-    (state: IRootState) => state.products
+  const { variants, loading, error, success } = useSelector(
+    (state: IRootState) => state.variants
   );
 
-  // useEffect
-  useEffect(() => {
-    const fetchData = async () => {
-      // If the correct productId in the url
-      // if (productId && productId !== NEW) {
-      //   // Get data of product from DB
-      //   const data = await dispatch(handleGetVariantsByProductId(productId));
-      //   // Retrieve data from a completed promise
-      //   const variants: IVariant[] = unwrapResult(data);
-      //   // Set initial values based on the data from DB
-      //   if (variants && variants.length) {
-      //     setInitialValues({
-      //       variants,
-      //     });
-      //   } else {
-      //     setIsProductFound(false);
-      //   }
-      // }
-    };
-
-    fetchData();
-  }, [dispatch, productId]);
-
   // Submit data
-  const handleSubmit = () => console.log('submit variants');
-  // const handleSubmit = useCallback(
-  //   (values: ICreateProductData) => {
-  //     handleSubmitFormProduct(
-  //       product,
-  //       productId,
-  //       dispatch,
-  //       setInitialValues,
-  //       values,
-  //       navigate
-  //     );
-  //   },
-  //   [product, productId, dispatch, navigate]
-  // );
+  const handleSubmit = useCallback(
+    (values: ICreateVariantsData) => {
+      if (!productId) {
+        return;
+      }
 
-  // Early returns
-  if (!isProductFound) {
-    return (
-      <div className="itemNotFound">
-        {t('products.productDetails.notFound')}
-      </div>
-    );
-  }
+      handleSubmitFormVariants(
+        productId,
+        dispatch,
+        setInitialValues,
+        values,
+        navigate
+      );
+    },
+    [productId, dispatch, navigate]
+  );
 
   if (loading) return <Loader />;
 

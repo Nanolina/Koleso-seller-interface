@@ -1,5 +1,5 @@
-import { ICreateVariantData } from './types';
+import { ICreateVariantsData } from './types';
 
-export const initialValuesVariant: ICreateVariantData = {
+export const initialValuesVariant: ICreateVariantsData = {
   variants: [],
 };

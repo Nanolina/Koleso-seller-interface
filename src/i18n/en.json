@@ -56,7 +56,7 @@
       "quantityMustBeGreaterThanZero": "The quantity must be greater than zero",
       "quantityInteger": "The quantity must be an integer",
       "quantityRequired": "The quantity is required",
-      "atLeastOneParameter": "The color and quantity of the product is required"
+      "atLeastOneVariant": "The color and quantity of the product is required"
     },
     "form": {
       "selectStore": "Select a store",

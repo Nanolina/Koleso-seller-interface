@@ -6,3 +6,4 @@ export {
 } from './productsInitialState';
 export { storeInitialState, storesInitialState } from './storesInitialState';
 export { userInitialState } from './userInitialState';
+export { variantsInitialState } from './variantsInitialState';

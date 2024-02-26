@@ -56,7 +56,7 @@
       "quantityMustBeGreaterThanZero": "Количество продукта должно быть больше 0",
       "quantityInteger": "Количество продукта должно быть целым числом",
       "quantityRequired": "Количество продукта обязательно",
-      "atLeastOneParameter": "Цвет и количество товара обязательны"
+      "atLeastOneVariant": "Цвет и количество товара обязательны"
     },
     "form": {
       "selectStore": "Выберите магазин",

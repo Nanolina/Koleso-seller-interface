@@ -1,7 +1,7 @@
 import { FormikErrors, FormikProps, FormikTouched } from 'formik';
 import { ColorType } from '../types';
 
-export interface ICreateVariantData {
+export interface ICreateVariantsData {
   variants: IVariant[];
 }
 
@@ -17,15 +17,15 @@ export interface IVariant {
 
 export interface IVariantProps {
   variant: IVariant;
-  values: ICreateVariantData;
-  setFieldValue: FormikProps<ICreateVariantData>['setFieldValue'];
+  values: ICreateVariantsData;
+  setFieldValue: FormikProps<ICreateVariantsData>['setFieldValue'];
   errors: IVariantErrors | undefined;
-  touched: FormikTouched<ICreateVariantData>;
+  touched: FormikTouched<ICreateVariantsData>;
 }
 
 export interface IVariantsProps {
-  values: ICreateVariantData;
-  setFieldValue: FormikProps<ICreateVariantData>['setFieldValue'];
+  values: ICreateVariantsData;
+  setFieldValue: FormikProps<ICreateVariantsData>['setFieldValue'];
   errors: FormikErrors<any>;
   touched: FormikTouched<any>;
 }
@@ -37,4 +37,16 @@ export interface IVariantErrors {
   priceWithoutDiscount?: string;
   finalPrice?: string;
   articleSupplier?: string;
+}
+
+export interface IVariantsState {
+  variants: IVariant[];
+  loading: boolean;
+  success: string | null;
+  error: any;
+}
+
+export interface ICreateVariantsArg {
+  productId: string;
+  variants: IVariant[];
 }

@@ -5,6 +5,7 @@ import {
   IProduct,
   ISectionType,
 } from '../modules/product/productForm';
+import { IVariant } from '../modules/product/variantForm';
 import { IStore } from '../modules/stores';
 
 export class ProductService {
@@ -52,5 +53,16 @@ export class ProductService {
   // Catalog
   static async getCatalogStructure(): Promise<AxiosResponse<ISectionType[]>> {
     return productServiceAPI.get<ISectionType[]>('/catalog');
+  }
+
+  // Variants
+  static async createVariants(
+    variants: IVariant[],
+    productId: string
+  ): Promise<AxiosResponse<IVariant[]>> {
+    return productServiceAPI.post<IVariant[]>(
+      `/product/${productId}/variants`,
+      variants
+    );
   }
 }
