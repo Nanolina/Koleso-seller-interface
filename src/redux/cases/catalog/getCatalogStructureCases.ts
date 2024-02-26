@@ -1,5 +1,8 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
-import { ICatalogStructureState, ISectionType } from '../../../modules/product';
+import {
+  ICatalogStructureState,
+  ISectionType,
+} from '../../../modules/product/productForm';
 import { handleGetCatalogStructure } from '../../thunks/catalog';
 
 export const getCatalogStructureCases = (

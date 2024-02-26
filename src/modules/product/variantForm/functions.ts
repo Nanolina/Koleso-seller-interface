@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ColorType, IVariant } from '../types';
+import { ColorType } from '../types';
+import { IVariant } from './types';
 
 // Update
 export const updateVariant = (

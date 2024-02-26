@@ -1,4 +1,4 @@
-import { IProductsState } from '../../modules/product';
+import { IProductsState } from '../../modules/product/productForm';
 
 export const productInitialState = {
   id: '',

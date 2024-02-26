@@ -1,2 +1,8 @@
 export { ProductDetailsForm } from './components/ProductDetailsForm/ProductDetailsForm';
-export type { ICreateProductData, IProduct, IProductsState } from './types';
+export type {
+  ICatalogStructureState,
+  ICreateProductData,
+  IProduct,
+  IProductsState,
+  ISectionType,
+} from './types';

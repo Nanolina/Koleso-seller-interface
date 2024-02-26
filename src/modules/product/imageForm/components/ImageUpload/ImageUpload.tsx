@@ -1,20 +1,21 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
-import { SelectLabel } from '../../../../../../components/SelectLabel/SelectLabel';
-import { InputUpload } from '../../../../../../ui/InputUpload/InputUpload';
+import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
+import { InputUpload } from '../../../../../ui/InputUpload/InputUpload';
+import { ColorType } from '../../../types';
 import {
   createColorsWithImages,
   getExistingUniqueColors,
   removeColor,
   updateColorsWithImagesLocalStorage,
-} from '../../../../functions';
-import { useImageHandler } from '../../../../hooks/useImageHandler';
-import { ColorType, ICreateProductValuesProps } from '../../../../types';
+} from '../../functions';
+import { IImageUploadProps } from '../../types';
+import { useImageHandler } from '../../useImageHandler';
 import { ImagePreviews } from '../ImagePreviews/ImagePreviews';
 import styles from './ImageUpload.module.css';
 
-export const ImageUpload: React.FC<ICreateProductValuesProps> = React.memo(
+export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
   ({ values, setFieldValue }) => {
     const { t } = useTranslation();
     const [color, setColor] = useState<ColorType | string>('');

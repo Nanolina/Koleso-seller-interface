@@ -7,7 +7,7 @@ import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetCatalogStructure } from '../../../../../redux/thunks/catalog';
-import { getOptions } from '../../../functions/functions';
+import { getOptions } from '../../functions';
 import {
   ICatalogItemType,
   ICategoryType,

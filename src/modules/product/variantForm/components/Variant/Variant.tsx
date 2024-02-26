@@ -6,15 +6,15 @@ import { InputLabel } from '../../../../../components/InputLabel/InputLabel';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { SIZES } from '../../../../../consts';
 import { IVariantProps } from '../../types';
+import useVariant from '../../useVariant';
 import styles from './Variant.module.css';
-import useVariants from '../../useVariants';
 
 export const Variant: React.FC<IVariantProps> = React.memo(
   ({ variant, values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
 
     const { handleUpdateVariant, handleRemoveVariant, handleCopyVariant } =
-      useVariants(values.variants, setFieldValue);
+      useVariant(values.variants, setFieldValue);
 
     // Quantity
     const handleQuantityUpdate = (quantityValue: string) => {

@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
-import { IProductsState } from '../../modules/product';
+import { IProductsState } from '../../modules/product/productForm';
 import {
   createProductCases,
   getAllProductsCases,

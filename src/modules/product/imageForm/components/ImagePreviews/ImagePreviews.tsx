@@ -1,7 +1,7 @@
 import React from 'react';
-import { ImagePreview } from '../../../../../image/ImagePreview/ImagePreview';
-import { useImageHandler } from '../../../../hooks/useImageHandler';
-import { IImagePreviewsProps } from '../../../../types';
+import { ImagePreview } from '../../../../image/ImagePreview/ImagePreview';
+import { IImagePreviewsProps } from '../../types';
+import { useImageHandler } from '../../useImageHandler';
 import styles from './ImagePreviews.module.css';
 
 export const ImagePreviews: React.FC<IImagePreviewsProps> = React.memo(
@@ -11,7 +11,7 @@ export const ImagePreviews: React.FC<IImagePreviewsProps> = React.memo(
 
     return (
       <div className={styles.container}>
-        {images.map((image) => (
+        {images.map((image: string) => (
           <ImagePreview
             key={`${color}-${image}`}
             image={image}

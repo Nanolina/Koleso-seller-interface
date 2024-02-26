@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
 import { IUserState } from '../modules/auth';
 import { IMenuState } from '../modules/menu';
-import { ICatalogStructureState, IProductsState } from '../modules/product';
+import {
+  ICatalogStructureState,
+  IProductsState,
+} from '../modules/product/productForm';
 import { IStoresState } from '../modules/stores';
 import catalogStructureSlice from './slices/catalogStructureSlice';
 import menuSlice from './slices/menuSlice';

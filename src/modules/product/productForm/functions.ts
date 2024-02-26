@@ -1,5 +1,6 @@
 /* eslint-disable eqeqeq */
-import { ICategoryType, ISectionType } from '../types';
+
+import { ICategoryType, ISectionType } from './types';
 
 /**
  * Retrieves options for the select elements based on the current selection and the type of options needed.

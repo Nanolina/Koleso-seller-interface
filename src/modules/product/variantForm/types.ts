@@ -6,7 +6,7 @@ import {
 } from 'formik';
 import { ColorType } from '../types';
 
-export interface ICreateVariantsData {
+export interface ICreateVariantData {
   variants: IVariant[];
 }
 
@@ -22,19 +22,19 @@ export interface IVariant {
 
 export interface IVariantProps {
   variant: IVariant;
-  values: ICreateVariantsData;
-  setFieldValue: FormikProps<ICreateVariantsData>['setFieldValue'];
+  values: ICreateVariantData;
+  setFieldValue: FormikProps<ICreateVariantData>['setFieldValue'];
   errors: IVariantErrors | undefined;
-  touched: FormikTouched<ICreateVariantsData>;
+  touched: FormikTouched<ICreateVariantData>;
 }
 
 export interface IVariantsProps {
-  values: ICreateVariantsData;
-  setFieldValue: FormikProps<ICreateVariantsData>['setFieldValue'];
+  values: ICreateVariantData;
+  setFieldValue: FormikProps<ICreateVariantData>['setFieldValue'];
   errors: FormikErrors<any>;
   touched: FormikTouched<any>;
-  resetForm?: FormikHelpers<ICreateVariantsData>['resetForm'];
-  initialValues?: ICreateVariantsData;
+  resetForm?: FormikHelpers<ICreateVariantData>['resetForm'];
+  initialValues?: ICreateVariantData;
 }
 
 export interface IVariantErrors {

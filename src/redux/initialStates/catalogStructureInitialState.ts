@@ -1,4 +1,4 @@
-import { ICatalogStructureState } from '../../modules/product';
+import { ICatalogStructureState } from '../../modules/product/productForm';
 
 export const catalogStructureInitialState: ICatalogStructureState = {
   catalogStructure: [],

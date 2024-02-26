@@ -14,7 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from '../../../table';
-import { IProduct } from '../../types';
+import { IProduct } from '../../productForm';
 
 export const ProductsTable: React.FC = () => {
   const { t } = useTranslation();

@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { COLORS } from '../../../../../consts';
-import {
-  createNewVariant,
-  updateVariantsLocalStorage,
-} from '../../../functions';
 import { ColorType } from '../../../types';
+import { createNewVariant, updateVariantsLocalStorage } from '../../functions';
 import { IVariantsProps } from '../../types';
 import { Variants } from '../Variants/Variants';
 

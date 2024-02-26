@@ -4,9 +4,9 @@ import { BsBox, BsImages } from 'react-icons/bs';
 import { IoColorFilterSharp } from 'react-icons/io5';
 import { Button } from '../../../../ui/Button/Button';
 import { Tab } from '../../../../ui/Tab/Tab';
-import { ImageUploadForm } from '../../ImageUploadForm/ImageUploadForm';
+import { ImageUploadForm } from '../../imageForm/components/ImageUploadForm/ImageUploadForm';
 import { ProductDetailsForm } from '../../productForm';
-import { VariantsDetailsForm } from '../../variantsForm';
+import { VariantDetailsForm } from '../../variantForm';
 import styles from './ProductDetailsTabs.module.css';
 
 export const ProductDetailsTabs: React.FC = () => {
@@ -54,7 +54,7 @@ export const ProductDetailsTabs: React.FC = () => {
       </div>
       <div>
         {activeTab === 'product' && <ProductDetailsForm />}
-        {activeTab === 'variants' && <VariantsDetailsForm />}
+        {activeTab === 'variants' && <VariantDetailsForm />}
         {activeTab === 'images' && <ImageUploadForm />}
       </div>
     </>

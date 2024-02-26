@@ -1,17 +1,18 @@
 import { FormikProps } from 'formik';
 import { ChangeEvent } from 'react';
+import { ColorType } from '../types';
 import {
   removeImages,
   updateColorsWithImagesLocalStorage,
   updateImages,
-} from '../functions';
-import { ColorType, IColorsWithImages, ICreateProductData } from '../types';
+} from './functions';
+import { IColorsWithImages, ICreateImageData } from './types';
 
 export const useImageHandler = () => {
   const handleFileSelect =
     (
       colorsWithImages: IColorsWithImages[],
-      setFieldValue: FormikProps<ICreateProductData>['setFieldValue'],
+      setFieldValue: FormikProps<ICreateImageData>['setFieldValue'],
       imagesWith1Color: IColorsWithImages
     ) =>
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +37,7 @@ export const useImageHandler = () => {
 
   const handleRemoveImage = (
     colorsWithImages: IColorsWithImages[],
-    setFieldValue: FormikProps<ICreateProductData>['setFieldValue'],
+    setFieldValue: FormikProps<ICreateImageData>['setFieldValue'],
     color: ColorType,
     imageToRemove: string
   ) => {

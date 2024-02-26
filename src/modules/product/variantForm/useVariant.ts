@@ -3,10 +3,10 @@ import {
   removeVariant,
   updateVariant,
   updateVariantsLocalStorage,
-} from '../functions';
+} from './functions';
 import { IVariant } from './types';
 
-const useVariants = (variants: IVariant[], setFieldValue: any) => {
+const useVariant = (variants: IVariant[], setFieldValue: any) => {
   const handleUpdateVariant = (
     variantId: string,
     key: string,
@@ -36,4 +36,4 @@ const useVariants = (variants: IVariant[], setFieldValue: any) => {
   };
 };
 
-export default useVariants;
+export default useVariant;

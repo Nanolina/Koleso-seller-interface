@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
-import { ICatalogStructureState } from '../../modules/product';
+import { ICatalogStructureState } from '../../modules/product/productForm';
 import { getCatalogStructureCases } from '../cases/catalog';
 import { catalogStructureInitialState } from '../initialStates';
 

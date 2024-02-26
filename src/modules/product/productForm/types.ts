@@ -5,7 +5,11 @@ import {
   FormikTouched,
 } from 'formik';
 import { SetStateAction } from '../../../types';
-import { GenderType } from '../types';
+
+export enum GenderType {
+  Male,
+  Female,
+}
 
 export interface ICreateProductData {
   storeId: string;
@@ -18,11 +22,6 @@ export interface ICreateProductData {
   categoryId?: number;
   subcategoryId?: number;
   composition?: IComposition[];
-}
-
-export interface IComposition {
-  title: string;
-  percentage: number;
 }
 
 export interface IProduct extends ICreateProductData {

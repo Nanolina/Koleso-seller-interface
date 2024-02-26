@@ -2,28 +2,27 @@ import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Loader } from '../../../../components/Loader/Loader';
-import { MessageBox } from '../../../../components/MessageBox/MessageBox';
-import { IRootState } from '../../../../redux/rootReducer';
-import { AppDispatch } from '../../../../redux/store';
-import { AddVariants } from '../components/AddVariants/AddVariants';
-import { initialValuesVariants } from '../initialValues';
-import { ICreateVariantsData } from '../types';
-import { validationSchema } from '../validationSchema';
+import { useParams } from 'react-router-dom';
+import { Loader } from '../../../../../components/Loader/Loader';
+import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
+import { IRootState } from '../../../../../redux/rootReducer';
+import { AppDispatch } from '../../../../../redux/store';
+import { initialValuesVariant } from '../../initialValues';
+import { ICreateVariantData } from '../../types';
+import { AddVariants } from '../AddVariants/AddVariants';
+import { validationSchema } from '../../validationSchema';
 
-export const VariantsDetailsForm: React.FC = () => {
+export const VariantDetailsForm: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const { productId } = useParams<{ productId: string }>();
 
   const savedProduct = JSON.parse(localStorage.getItem('product') || '{}');
 
   // useState
   const [isProductFound, setIsProductFound] = useState<boolean>(true);
-  const [initialValues, setInitialValues] = useState<ICreateVariantsData>({
-    ...initialValuesVariants,
+  const [initialValues, setInitialValues] = useState<ICreateVariantData>({
+    ...initialValuesVariant,
     ...savedProduct,
   });
 
@@ -105,7 +104,7 @@ export const VariantsDetailsForm: React.FC = () => {
             errors={errors}
             touched={touched}
             resetForm={resetForm}
-            initialValues={initialValuesVariants}
+            initialValues={initialValuesVariant}
           />
 
           {error && <MessageBox errorMessage={error} />}

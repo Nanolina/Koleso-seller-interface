@@ -1,4 +1,6 @@
-import { ColorType, IColorsWithImages, IVariant } from '../types';
+import { ColorType } from '../types';
+import { IVariant } from '../variantForm/types';
+import { IColorsWithImages } from './types';
 
 // Update
 export const updateImages = (
@@ -48,7 +50,9 @@ export const removeImages = (
 ): IColorsWithImages[] => {
   return colorsWithImages.map((item) => {
     if (item.color === color) {
-      const newImages = item.images.filter((image) => image !== removedImage);
+      const newImages = item.images.filter(
+        (image: string) => image !== removedImage
+      );
 
       return { ...item, images: newImages };
     }

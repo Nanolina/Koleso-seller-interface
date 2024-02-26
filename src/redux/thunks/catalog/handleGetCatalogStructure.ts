@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ISectionType } from '../../../modules/product';
+import { ISectionType } from '../../../modules/product/productForm';
 import { ProductService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
 
