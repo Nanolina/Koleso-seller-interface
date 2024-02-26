@@ -27,7 +27,7 @@ export const ProductDetailsTabs: React.FC = () => {
           activeTab={activeTab}
           setActiveTab={() => changeTab('product')}
           tabName="product"
-          text={t('menuItems.Products')}
+          text={t('products.tabs.product')}
           icon={<BsBox />}
         />
 

@@ -5,7 +5,7 @@ import {
   IProduct,
   ISectionType,
 } from '../modules/product/productForm';
-import { IVariant } from '../modules/product/variantForm';
+import { ICreateVariantsData } from '../modules/product/variantForm';
 import { IStore } from '../modules/stores';
 
 export class ProductService {
@@ -57,10 +57,10 @@ export class ProductService {
 
   // Variants
   static async createVariants(
-    variants: IVariant[],
+    variants: ICreateVariantsData,
     productId: string
-  ): Promise<AxiosResponse<IVariant[]>> {
-    return productServiceAPI.post<IVariant[]>(
+  ): Promise<AxiosResponse<ICreateVariantsData>> {
+    return productServiceAPI.post<ICreateVariantsData>(
       `/product/${productId}/variants`,
       variants
     );

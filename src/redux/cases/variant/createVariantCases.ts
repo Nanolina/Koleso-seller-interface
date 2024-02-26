@@ -1,5 +1,5 @@
-import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
-import { IVariant, IVariantsState } from '../../../modules/product/variantForm';
+import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
+import { IVariantsState } from '../../../modules/product/variantForm';
 import { handleCreateVariants } from '../../thunks/variants';
 
 export const createVariantsCases = (
@@ -11,14 +11,10 @@ export const createVariantsCases = (
       state.error = null;
       state.success = null;
     })
-    .addCase(
-      handleCreateVariants.fulfilled,
-      (state, action: PayloadAction<IVariant[]>) => {
-        state.variants = action.payload;
-        state.success = 'Variants for the product has been successfully set up';
-        state.loading = false;
-      }
-    )
+    .addCase(handleCreateVariants.fulfilled, (state) => {
+      state.success = 'Variants for the product has been successfully set up';
+      state.loading = false;
+    })
     .addCase(handleCreateVariants.rejected, (state, action) => {
       state.loading = false;
       state.success = null;

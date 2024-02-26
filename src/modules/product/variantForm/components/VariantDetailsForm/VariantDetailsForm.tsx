@@ -10,7 +10,6 @@ import { AppDispatch } from '../../../../../redux/store';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
 import { handleSubmitFormVariants } from '../../handlers';
-import { initialValuesVariant } from '../../initialValues';
 import { ICreateVariantsData } from '../../types';
 import { validationSchema } from '../../validationSchema';
 import { AddVariants } from '../AddVariants/AddVariants';
@@ -24,12 +23,11 @@ export const VariantDetailsForm: React.FC = () => {
   const savedVariants = JSON.parse(localStorage.getItem('variants') || '[]');
 
   const [initialValues, setInitialValues] = useState<ICreateVariantsData>({
-    ...initialValuesVariant,
-    ...savedVariants,
+    variants: savedVariants,
   });
 
   // Values from Redux
-  const { variants, loading, error, success } = useSelector(
+  const { loading, error, success } = useSelector(
     (state: IRootState) => state.variants
   );
 

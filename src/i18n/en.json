@@ -34,6 +34,9 @@
       "finalPrice": "Final price",
       "quantity": "Quantity"
     },
+    "tabs": {
+      "product": "Product"
+    },
     "productDetails": {
       "notFound": "Product not found",
       "removeProduct": "Delete product",

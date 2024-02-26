@@ -34,6 +34,9 @@
       "finalPrice": "Конечная цена",
       "quantity": "Количество"
     },
+    "tabs": {
+      "product": "Товар"
+    },
     "productDetails": {
       "notFound": "Продукт не найден",
       "removeProduct": "Удалить магазин",
