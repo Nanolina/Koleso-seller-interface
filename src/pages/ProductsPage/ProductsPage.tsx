@@ -13,7 +13,7 @@ export const ProductsPage: React.FC = () => {
 
   const { handleCloseSideMenu } = useSideMenu();
 
-  const handleAddProduct = () => {
+  const handleCreateProduct = () => {
     navigate('/product/new');
   };
 
@@ -24,8 +24,8 @@ export const ProductsPage: React.FC = () => {
         <Title text={t('menuItems.Products')} />
         <SearchBar />
         <AddItemButton
-          text={t('products.addProduct')}
-          onClick={handleAddProduct}
+          text={t('products.createProduct')}
+          onClick={handleCreateProduct}
         />
         <ProductsTable />
       </Container>

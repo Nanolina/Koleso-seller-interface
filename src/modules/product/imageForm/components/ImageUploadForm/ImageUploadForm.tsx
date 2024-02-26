@@ -107,7 +107,7 @@ export const ImageUploadForm: React.FC = () => {
         dirty,
         resetForm,
       }) => (
-        <Form>
+        <Form className="formFieldsContainer">
           <ImageUpload values={values} setFieldValue={setFieldValue} />
 
           {error && <MessageBox errorMessage={error} />}

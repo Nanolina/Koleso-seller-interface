@@ -1,14 +1,12 @@
-.tabs {
+.container {
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 20px;
-  position: sticky;
-  top: 0;
+  width: 100%;
 }
 
-.buttons {
+.button {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
+  margin-left: auto;
 }

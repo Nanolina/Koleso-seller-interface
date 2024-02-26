@@ -15,7 +15,7 @@ export const ProductDetailsTabs: React.FC = () => {
 
   return (
     <>
-      <div className={styles.tabs}>
+      <div className={styles.container}>
         <Tab
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -41,22 +41,12 @@ export const ProductDetailsTabs: React.FC = () => {
         />
       </div>
 
-      <div className={styles.buttons}>
-        <Button
-          text={t('cancel')}
-          backgroundColor="white"
-          textColor="var(--dark-main)"
-          border={false}
-          isBold={false}
-          hasShadow
-        />
+      <div className={styles.button}>
         <Button text={t('save')} isBold={false} hasShadow border />
       </div>
-      <div>
-        {activeTab === 'product' && <ProductDetailsForm />}
-        {activeTab === 'variants' && <VariantDetailsForm />}
-        {activeTab === 'images' && <ImageUploadForm />}
-      </div>
+      {activeTab === 'product' && <ProductDetailsForm />}
+      {activeTab === 'variants' && <VariantDetailsForm />}
+      {activeTab === 'images' && <ImageUploadForm />}
     </>
   );
 };

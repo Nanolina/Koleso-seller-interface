@@ -28,7 +28,7 @@ export const ProductPage: React.FC = () => {
           text={
             product?.name && productId !== NEW
               ? product?.name
-              : t('products.addProduct')
+              : t('products.createProduct')
           }
         />
         <ProductDetailsTabs />

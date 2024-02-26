@@ -19,7 +19,7 @@
     "Notifications": "Уведомления"
   },
   "products": {
-    "addProduct": "Добавить товар",
+    "createProduct": "Создать товар",
     "table": {
       "name": "Название",
       "description": "Описание",

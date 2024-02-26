@@ -19,7 +19,7 @@
     "Notifications": "Notifications"
   },
   "products": {
-    "addProduct": "Add product",
+    "createProduct": "Create a product",
     "table": {
       "name": "Name",
       "description": "Description",
