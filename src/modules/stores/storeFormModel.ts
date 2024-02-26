@@ -70,7 +70,7 @@ export const handleSubmitFormStore = async (
     });
 
     // Navigate
-    navigate('/stores');
+    navigate(-1);
   }
 };
 

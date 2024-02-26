@@ -7,10 +7,12 @@ import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
+import { Button } from '../../../../../ui/Button/Button';
+import { formatErrors } from '../../../../../utils';
 import { initialValuesVariant } from '../../initialValues';
 import { ICreateVariantData } from '../../types';
-import { AddVariants } from '../AddVariants/AddVariants';
 import { validationSchema } from '../../validationSchema';
+import { AddVariants } from '../AddVariants/AddVariants';
 
 export const VariantDetailsForm: React.FC = () => {
   const { t } = useTranslation();
@@ -88,23 +90,23 @@ export const VariantDetailsForm: React.FC = () => {
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {({
-        values,
-        errors,
-        touched,
-        setFieldValue,
-        isValid,
-        dirty,
-        resetForm,
-      }) => (
+      {({ values, errors, touched, setFieldValue, isValid }) => (
         <Form className="formFieldsContainer">
+          <div className="formSaveButton">
+            <Button
+              text={t('save')}
+              isBold={false}
+              disabled={!isValid}
+              tooltipText={errors ? formatErrors(errors) : ''}
+              hasShadow
+            />
+          </div>
+
           <AddVariants
             values={values}
             setFieldValue={setFieldValue}
             errors={errors}
             touched={touched}
-            resetForm={resetForm}
-            initialValues={initialValuesVariant}
           />
 
           {error && <MessageBox errorMessage={error} />}

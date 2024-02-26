@@ -7,6 +7,8 @@ import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
+import { Button } from '../../../../../ui/Button/Button';
+import { formatErrors } from '../../../../../utils';
 import { initialValuesImage } from '../../initialValues';
 import { ICreateImageData } from '../../types';
 import { ImageUpload } from '../ImageUpload/ImageUpload';
@@ -98,16 +100,18 @@ export const ImageUploadForm: React.FC = () => {
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {({
-        values,
-        errors,
-        touched,
-        setFieldValue,
-        isValid,
-        dirty,
-        resetForm,
-      }) => (
+      {({ values, errors, setFieldValue, isValid }) => (
         <Form className="formFieldsContainer">
+          <div className="formSaveButton">
+            <Button
+              text={t('save')}
+              isBold={false}
+              disabled={!isValid}
+              tooltipText={errors ? formatErrors(errors) : ''}
+              hasShadow
+            />
+          </div>
+
           <ImageUpload values={values} setFieldValue={setFieldValue} />
 
           {error && <MessageBox errorMessage={error} />}

@@ -1,9 +1,4 @@
-import {
-  FormikErrors,
-  FormikHelpers,
-  FormikProps,
-  FormikTouched,
-} from 'formik';
+import { FormikErrors, FormikProps, FormikTouched } from 'formik';
 import { ColorType } from '../types';
 
 export interface ICreateVariantData {
@@ -33,8 +28,6 @@ export interface IVariantsProps {
   setFieldValue: FormikProps<ICreateVariantData>['setFieldValue'];
   errors: FormikErrors<any>;
   touched: FormikTouched<any>;
-  resetForm?: FormikHelpers<ICreateVariantData>['resetForm'];
-  initialValues?: ICreateVariantData;
 }
 
 export interface IVariantErrors {

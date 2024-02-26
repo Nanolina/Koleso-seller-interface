@@ -3,10 +3,3 @@
   justify-content: flex-start;
   width: 100%;
 }
-
-.button {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-left: auto;
-}

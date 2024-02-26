@@ -8,7 +8,7 @@ import { IVariantsProps } from '../../types';
 import { Variants } from '../Variants/Variants';
 
 export const AddVariants: React.FC<IVariantsProps> = React.memo(
-  ({ values, setFieldValue, errors, touched, resetForm, initialValues }) => {
+  ({ values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
 
     const [color, setColor] = useState<ColorType | string>('');

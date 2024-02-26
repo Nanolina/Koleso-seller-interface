@@ -100,7 +100,10 @@ const App: React.FC = () => {
             {isAuth && isVerifiedEmail && isActive && (
               <>
                 <Route path="/products" element={<ProductsPage />} />
-                <Route path="/product/:productId" element={<ProductPage />} />
+                <Route
+                  path="/product/:productId/:tab"
+                  element={<ProductPage />}
+                ></Route>
                 <Route path="/stores" element={<StoresPage />} />
                 <Route path="/store/:storeId" element={<StorePage />} />
                 <Route path="/add-documents" element={<AddDocumentsPage />} />

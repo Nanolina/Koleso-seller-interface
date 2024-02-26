@@ -1,4 +1,4 @@
-button {
+.button {
   display: flex;
   gap: 5px;
   border: none;
@@ -10,7 +10,7 @@ button {
   justify-content: center;
 }
 
-button:hover,
+.button:hover,
 .active {
   background-color: var(--light-gray);
   border-bottom: 1px solid var(--main);

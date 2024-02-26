@@ -112,6 +112,13 @@ select {
   gap: 20px;
 }
 
+.formSaveButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+}
+
 .clearValuesButton {
   position: absolute;
   top: 4%;

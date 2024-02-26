@@ -5,7 +5,8 @@ import styles from './Tab.module.css';
 export const Tab: React.FC<ITabProps> = React.memo(
   ({ activeTab, setActiveTab, tabName, text, icon }) => {
     const getTabClass = (tabName: string) => {
-      return activeTab === tabName ? `${styles.active}` : '';
+      const isActive = activeTab === tabName;
+      return `${styles.button} ${isActive ? styles.active : ''}`;
     };
 
     return (

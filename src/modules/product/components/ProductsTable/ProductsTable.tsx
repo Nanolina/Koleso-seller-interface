@@ -26,7 +26,7 @@ export const ProductsTable: React.FC = () => {
   );
 
   const handleProductDetails = (productId: string) => {
-    navigate(`/product/${productId}`);
+    navigate(`/product/${productId}/product`);
   };
 
   useEffect(() => {

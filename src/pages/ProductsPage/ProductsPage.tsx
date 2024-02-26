@@ -14,7 +14,7 @@ export const ProductsPage: React.FC = () => {
   const { handleCloseSideMenu } = useSideMenu();
 
   const handleCreateProduct = () => {
-    navigate('/product/new');
+    navigate('/product/new/product');
   };
 
   return (

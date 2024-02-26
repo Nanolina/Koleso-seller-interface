@@ -5,7 +5,6 @@ import { handleCreateProduct } from '../../../redux/thunks/product';
 import { ICreateProductData, IProduct } from './types';
 
 export const handleSubmitFormProduct = async (
-  product: IProduct | null,
   productId: string | undefined,
   dispatch: AppDispatch,
   setInitialValues: React.Dispatch<React.SetStateAction<ICreateProductData>>,
@@ -18,10 +17,10 @@ export const handleSubmitFormProduct = async (
     data = await dispatch(handleCreateProduct(values));
 
     // Get data from DB
-    const productFromDB: IProduct = unwrapResult(data);
+    const product: IProduct = unwrapResult(data);
 
     // Set initial values
-    if (productFromDB) {
+    if (product) {
       setInitialValues({
         storeId: values.storeId,
         name: values.name,
@@ -34,6 +33,8 @@ export const handleSubmitFormProduct = async (
         subcategoryId: values.subcategoryId,
         composition: values.composition || [],
       });
+
+      navigate(`/product/${product.id}/variant`);
     }
   }
   //   // Update product
@@ -44,5 +45,4 @@ export const handleSubmitFormProduct = async (
   // }
 
   // Navigate
-  navigate('/products');
 };

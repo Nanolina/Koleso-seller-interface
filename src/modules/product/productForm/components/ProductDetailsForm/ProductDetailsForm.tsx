@@ -10,6 +10,8 @@ import { NEW } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetProductById } from '../../../../../redux/thunks/product';
+import { Button } from '../../../../../ui/Button/Button';
+import { formatErrors } from '../../../../../utils';
 import { handleSubmitFormProduct } from '../../handlers';
 import { initialValuesProduct } from '../../initialValues';
 import { ICreateProductData, IProduct } from '../../types';
@@ -74,7 +76,6 @@ export const ProductDetailsForm: React.FC = () => {
   const handleSubmit = useCallback(
     (values: ICreateProductData) => {
       handleSubmitFormProduct(
-        product,
         productId,
         dispatch,
         setInitialValues,
@@ -82,7 +83,7 @@ export const ProductDetailsForm: React.FC = () => {
         navigate
       );
     },
-    [product, productId, dispatch, navigate]
+    [productId, dispatch, navigate]
   );
 
   // Early returns
@@ -113,6 +114,16 @@ export const ProductDetailsForm: React.FC = () => {
         resetForm,
       }) => (
         <Form className="formFieldsContainer">
+          <div className="formSaveButton">
+            <Button
+              text={t('save')}
+              isBold={false}
+              disabled={!isValid}
+              tooltipText={errors ? formatErrors(errors) : ''}
+              hasShadow
+            />
+          </div>
+
           <ProductFormFields
             values={values}
             setFieldValue={setFieldValue}
