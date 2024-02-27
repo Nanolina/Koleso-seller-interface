@@ -5,7 +5,7 @@ import {
   IProduct,
   ISectionType,
 } from '../modules/product/productForm';
-import { ICreateVariantsData } from '../modules/product/variantForm';
+import { IUpdateVariantsData, IVariant } from '../modules/product/variantForm';
 import { IStore } from '../modules/stores';
 
 export class ProductService {
@@ -56,13 +56,19 @@ export class ProductService {
   }
 
   // Variants
-  static async createVariants(
-    variants: ICreateVariantsData,
+  static async updateVariants(
+    variants: IUpdateVariantsData,
     productId: string
-  ): Promise<AxiosResponse<ICreateVariantsData>> {
-    return productServiceAPI.post<ICreateVariantsData>(
+  ): Promise<AxiosResponse<IUpdateVariantsData>> {
+    return productServiceAPI.post<IUpdateVariantsData>(
       `/product/${productId}/variants`,
       variants
     );
+  }
+
+  static async getAllVariants(
+    productId: string
+  ): Promise<AxiosResponse<IVariant[]>> {
+    return productServiceAPI.get<IVariant[]>(`/product/${productId}/variants`);
   }
 }

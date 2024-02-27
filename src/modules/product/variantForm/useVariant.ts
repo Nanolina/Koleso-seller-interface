@@ -1,9 +1,4 @@
-import {
-  copyVariant,
-  removeVariant,
-  updateVariant,
-  updateVariantsLocalStorage,
-} from './functions';
+import { copyVariant, removeVariant, updateVariant } from './functions';
 import { IVariant } from './types';
 
 const useVariant = (variants: IVariant[], setFieldValue: any) => {
@@ -14,19 +9,16 @@ const useVariant = (variants: IVariant[], setFieldValue: any) => {
   ) => {
     const newVariants = updateVariant(variants, variantId, key, value);
     setFieldValue('variants', newVariants);
-    updateVariantsLocalStorage(newVariants);
   };
 
   const handleRemoveVariant = (variantId: string) => {
     const newVariants = removeVariant(variants, variantId);
     setFieldValue('variants', newVariants);
-    updateVariantsLocalStorage(newVariants);
   };
 
   const handleCopyVariant = (variantId: string) => {
     const newVariants = copyVariant(variants, variantId);
     setFieldValue('variants', newVariants);
-    updateVariantsLocalStorage(newVariants);
   };
 
   return {

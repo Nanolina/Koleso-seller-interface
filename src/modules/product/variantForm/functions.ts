@@ -45,8 +45,3 @@ export const copyVariant = (variants: IVariant[], variantId: string) => {
 export const removeVariant = (variants: IVariant[], variantId: string) => {
   return variants.filter((variant) => variant.id !== variantId);
 };
-
-// Local storage
-export const updateVariantsLocalStorage = (newVariants: any) => {
-  localStorage.setItem('variants', JSON.stringify(newVariants));
-};

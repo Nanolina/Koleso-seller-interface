@@ -1,7 +1,7 @@
 export { VariantDetailsForm } from './components/VariantDetailsForm/VariantDetailsForm';
 export type {
-  ICreateVariantsData,
+  IUpdateVariantsArg,
+  IUpdateVariantsData,
   IVariant,
   IVariantsState,
-  ICreateVariantsArg,
 } from './types';

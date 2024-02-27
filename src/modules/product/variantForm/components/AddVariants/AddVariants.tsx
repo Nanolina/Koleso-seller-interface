@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { COLORS } from '../../../../../consts';
 import { ColorType } from '../../../types';
-import { createNewVariant, updateVariantsLocalStorage } from '../../functions';
+import { createNewVariant } from '../../functions';
 import { IVariantsProps } from '../../types';
 import { Variants } from '../Variants/Variants';
 
@@ -15,12 +15,9 @@ export const AddVariants: React.FC<IVariantsProps> = React.memo(
 
     const handleCreateNewVariant = (colorValue: ColorType) => {
       if (!colorValue) return;
-
       setColor(colorValue);
-
       const newVariants = createNewVariant(colorValue, values.variants);
       setFieldValue('variants', newVariants);
-      updateVariantsLocalStorage(newVariants);
     };
 
     return (

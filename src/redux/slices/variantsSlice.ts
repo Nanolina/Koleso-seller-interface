@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
 import { IVariantsState } from '../../modules/product/variantForm';
-import { createVariantsCases } from '../cases/variant';
+import { createVariantsCases, getAllVariantsCases } from '../cases/variant';
 import { variantsInitialState } from '../initialStates';
 
 const variantsSlice = createSlice({
@@ -9,6 +9,7 @@ const variantsSlice = createSlice({
   reducers: {},
   extraReducers: (builder: ActionReducerMapBuilder<IVariantsState>) => {
     createVariantsCases(builder);
+    getAllVariantsCases(builder);
   },
 });
 

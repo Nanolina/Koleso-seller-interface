@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -7,10 +7,11 @@ import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
+import { handleGetAllVariants } from '../../../../../redux/thunks/variants';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
 import { handleSubmitFormVariants } from '../../handlers';
-import { ICreateVariantsData } from '../../types';
+import { IUpdateVariantsData } from '../../types';
 import { validationSchema } from '../../validationSchema';
 import { AddVariants } from '../AddVariants/AddVariants';
 
@@ -20,31 +21,23 @@ export const VariantDetailsForm: React.FC = () => {
   const navigate = useNavigate();
   const { productId } = useParams<{ productId: string }>();
 
-  const savedVariants = JSON.parse(localStorage.getItem('variants') || '[]');
-
-  const [initialValues, setInitialValues] = useState<ICreateVariantsData>({
-    variants: savedVariants,
-  });
-
   // Values from Redux
-  const { loading, error, success } = useSelector(
+  const { variants, loading, error, success } = useSelector(
     (state: IRootState) => state.variants
   );
 
+  useEffect(() => {
+    if (productId) dispatch(handleGetAllVariants(productId));
+  }, [dispatch, productId]);
+
   // Submit data
   const handleSubmit = useCallback(
-    (values: ICreateVariantsData) => {
+    (values: IUpdateVariantsData) => {
       if (!productId) {
         return;
       }
 
-      handleSubmitFormVariants(
-        productId,
-        dispatch,
-        setInitialValues,
-        values,
-        navigate
-      );
+      handleSubmitFormVariants(productId, dispatch, values, navigate);
     },
     [productId, dispatch, navigate]
   );
@@ -53,7 +46,7 @@ export const VariantDetailsForm: React.FC = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{ variants }}
       validationSchema={() => validationSchema(t)}
       onSubmit={handleSubmit}
       enableReinitialize

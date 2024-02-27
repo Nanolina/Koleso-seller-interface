@@ -1,22 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  ICreateVariantsArg,
-  ICreateVariantsData,
+  IUpdateVariantsArg,
+  IVariant,
 } from '../../../modules/product/variantForm';
 import { ProductService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
 
-export const handleCreateVariants = createAsyncThunk<
-  ICreateVariantsData,
-  ICreateVariantsArg
+export const handleUpdateVariants = createAsyncThunk<
+  IVariant[],
+  IUpdateVariantsArg
 >(
-  'variants/create',
-  async (
-    { variants, productId },
-    { rejectWithValue }
-  ): Promise<ICreateVariantsData> => {
+  'variants/update',
+  async ({ variants, productId }, { rejectWithValue }): Promise<IVariant[]> => {
     try {
-      const response: any = await ProductService.createVariants(
+      const response: any = await ProductService.updateVariants(
         { variants },
         productId
       );

@@ -5,6 +5,7 @@ import {
   FormikTouched,
 } from 'formik';
 import { SetStateAction } from '../../../types';
+import { IVariant } from '../variantForm';
 
 export enum GenderType {
   Male,
@@ -27,6 +28,7 @@ export interface ICreateProductData {
 export interface IProduct extends ICreateProductData {
   id: string;
   userId: string;
+  variants: IVariant[];
   createdAt: string;
   updatedAt: string;
 }

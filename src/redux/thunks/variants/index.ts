@@ -1,1 +1,2 @@
-export { handleCreateVariants } from './handleCreateVariants';
+export { handleGetAllVariants } from './handleGetAllVariants';
+export { handleUpdateVariants } from './handleUpdateVariants';
