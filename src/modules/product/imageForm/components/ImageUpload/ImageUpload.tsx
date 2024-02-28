@@ -1,14 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
+import { useSelector } from 'react-redux';
+import { Loader } from '../../../../../components/Loader/Loader';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
+import { IRootState } from '../../../../../redux/rootReducer';
 import { InputUpload } from '../../../../../ui/InputUpload/InputUpload';
 import { ColorType } from '../../../types';
 import {
   createColorsWithImages,
   getExistingUniqueColors,
   removeColor,
-  updateColorsWithImagesLocalStorage,
 } from '../../functions';
 import { IImageUploadProps } from '../../types';
 import { useImageHandler } from '../../useImageHandler';
@@ -20,7 +22,12 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
     const { t } = useTranslation();
     const [color, setColor] = useState<ColorType | string>('');
     const { handleFileSelect } = useImageHandler();
-    const uniqueColors = getExistingUniqueColors();
+
+    const { variants, loading } = useSelector(
+      (state: IRootState) => state.variants
+    );
+
+    const uniqueColors = getExistingUniqueColors(variants);
 
     const handleCreateNewColorsWithImages = useCallback(
       (colorValue: ColorType) => {
@@ -40,7 +47,6 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
         );
         setColor(colorValue);
         setFieldValue('colorsWithImages', newColorsWithImages);
-        updateColorsWithImagesLocalStorage(newColorsWithImages);
       },
       [values.colorsWithImages, setFieldValue]
     );
@@ -49,10 +55,11 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
       (color: ColorType) => {
         const newColorsWithImages = removeColor(values.colorsWithImages, color);
         setFieldValue('colorsWithImages', newColorsWithImages);
-        updateColorsWithImagesLocalStorage(newColorsWithImages);
       },
       [values.colorsWithImages, setFieldValue]
     );
+
+    if (loading) return <Loader />;
 
     return (
       <div className={styles.container}>

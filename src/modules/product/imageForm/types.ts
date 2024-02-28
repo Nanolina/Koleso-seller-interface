@@ -29,3 +29,10 @@ export interface IFileHandlerReturn {
     currentPhotos: string[]
   ) => (event: ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface IColorsWithImagesState {
+  colorsWithImages: IColorsWithImages[];
+  loading: boolean;
+  success: string | null;
+  error: any;
+}

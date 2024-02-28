@@ -1,4 +1,5 @@
 export { catalogStructureInitialState } from './catalogStructureInitialState';
+export { colorsWithImagesInitialState } from './colorsWithImagesInitialState';
 export { menuInitialState } from './menuInitialState';
 export {
   productInitialState,

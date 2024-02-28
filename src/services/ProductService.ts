@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { productServiceAPI } from '../http';
+import { IColorsWithImages } from '../modules/product/imageForm';
 import {
   ICreateProductData,
   IProduct,
@@ -70,5 +71,14 @@ export class ProductService {
     productId: string
   ): Promise<AxiosResponse<IVariant[]>> {
     return productServiceAPI.get<IVariant[]>(`/product/${productId}/variants`);
+  }
+
+  // Images
+  static async getAllColorsWithImages(
+    productId: string
+  ): Promise<AxiosResponse<IColorsWithImages[]>> {
+    return productServiceAPI.get<IColorsWithImages[]>(
+      `/product/${productId}/images`
+    );
   }
 }

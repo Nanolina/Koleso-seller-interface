@@ -1,0 +1,1 @@
+export { handleGetAllColorsWithImages } from './handleGetAllColorsWithImages';

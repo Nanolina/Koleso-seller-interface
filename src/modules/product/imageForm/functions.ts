@@ -61,24 +61,11 @@ export const removeImages = (
   });
 };
 
-// Local storage
-export const updateColorsWithImagesLocalStorage = (
-  newColorsWithImages: any
-) => {
-  const currentData = JSON.parse(localStorage.getItem('product') || '{}');
-  currentData['colorsWithImages'] = newColorsWithImages;
-  localStorage.setItem('product', JSON.stringify(currentData));
-};
-
 // Get unique colors
-export const getExistingUniqueColors = () => {
-  const savedProductVariants: IVariant[] | undefined = JSON.parse(
-    localStorage.getItem('product') || '{}'
-  ).variants;
-
+export const getExistingUniqueColors = (variants: IVariant[]) => {
   const set = new Set<ColorType>();
-  if (savedProductVariants) {
-    savedProductVariants.forEach((variant: IVariant) => set.add(variant.color));
+  if (variants && variants.length) {
+    variants.forEach((variant: IVariant) => set.add(variant.color));
   }
 
   return [...set];

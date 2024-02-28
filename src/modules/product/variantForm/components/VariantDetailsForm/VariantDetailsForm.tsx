@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
+import { NEW } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import {
@@ -28,7 +29,9 @@ export const VariantDetailsForm: React.FC = () => {
   );
 
   useEffect(() => {
-    if (productId) dispatch(handleGetAllVariants(productId));
+    if (productId && productId !== NEW) {
+      dispatch(handleGetAllVariants(productId));
+    }
   }, [dispatch, productId]);
 
   // Submit data
