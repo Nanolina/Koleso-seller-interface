@@ -1,4 +1,4 @@
-import { IProductsState } from "../../modules/product/productForm";
+import { IProductsState } from '../../modules/product/productForm';
 
 export const productInitialState = {
   id: '',
@@ -13,7 +13,7 @@ export const productInitialState = {
   subcategoryId: 0,
   composition: [],
   variants: [],
-  colorsWithImages: [],
+  colorsWithFiles: [],
   userId: '',
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),

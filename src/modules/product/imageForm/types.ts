@@ -1,38 +1,35 @@
 import { FormikProps } from 'formik';
-import { ChangeEvent } from 'react';
 import { ColorType } from '../types';
 
-export interface ICreateImageData {
-  colorsWithImages: IColorsWithImages[];
+export interface IUpdateColorsWithFilesData {
+  colorsWithFiles: IColorsWithFiles[];
 }
 
-export interface IColorsWithImages {
+export interface IColorsWithFiles {
   color: ColorType;
-  images: string[];
+  files: File[];
 }
 
 export interface IImageUploadProps {
-  values: ICreateImageData;
-  setFieldValue: FormikProps<ICreateImageData>['setFieldValue'];
+  values: IUpdateColorsWithFilesData;
+  setFieldValue: FormikProps<IUpdateColorsWithFilesData>['setFieldValue'];
 }
 
 export interface IImagePreviewsProps {
-  colorsWithImages: IColorsWithImages[];
-  setFieldValue: FormikProps<ICreateImageData>['setFieldValue'];
+  colorsWithFiles: IColorsWithFiles[];
+  setFieldValue: FormikProps<IUpdateColorsWithFilesData>['setFieldValue'];
+  files: File[];
   color: ColorType;
-  images: string[];
 }
 
-export interface IFileHandlerReturn {
-  handleFileSelect: (
-    color: string,
-    currentPhotos: string[]
-  ) => (event: ChangeEvent<HTMLInputElement>) => void;
-}
-
-export interface IColorsWithImagesState {
-  colorsWithImages: IColorsWithImages[];
+export interface IColorsWithFilesState {
+  colorsWithFiles: IColorsWithFiles[];
   loading: boolean;
   success: string | null;
   error: any;
+}
+
+export interface IUpdateColorsWithImagesArg {
+  productId: string;
+  filesFormData: FormData;
 }

@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -8,10 +8,14 @@ import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { NEW } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
-import { handleGetAllColorsWithImages } from '../../../../../redux/thunks/colorsWithImages';
+import {
+  handleGetAllColorsWithFiles,
+  handleUpdateColorsWithFiles,
+} from '../../../../../redux/thunks/colorsWithFiles';
 import { handleGetAllVariants } from '../../../../../redux/thunks/variants';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
+import { IColorsWithFiles, IUpdateColorsWithFilesData } from '../../types';
 import { ImageUpload } from '../ImageUpload/ImageUpload';
 
 export const ImageUploadForm: React.FC = () => {
@@ -20,25 +24,49 @@ export const ImageUploadForm: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
 
   // Values from Redux
-  const { colorsWithImages, loading, error, success } = useSelector(
-    (state: IRootState) => state.colorsWithImages
+  const { colorsWithFiles, loading, error, success } = useSelector(
+    (state: IRootState) => state.colorsWithFiles
   );
 
   useEffect(() => {
     if (productId && productId !== NEW) {
-      dispatch(handleGetAllColorsWithImages(productId));
+      dispatch(handleGetAllColorsWithFiles(productId));
       dispatch(handleGetAllVariants(productId));
     }
   }, [dispatch, productId]);
 
   // Submit data
-  const handleSubmit = () => {};
+  const handleSubmit = useCallback(
+    (values: IUpdateColorsWithFilesData) => {
+      if (!productId) {
+        return;
+      }
+
+      const filesFormData = new FormData();
+
+      values.colorsWithFiles.forEach(
+        (filesWith1Color: IColorsWithFiles, index: number) => {
+          filesWith1Color.files.forEach((file: File, fileIndex: number) => {
+            filesFormData.append(`${filesWith1Color.color}`, file);
+          });
+        }
+      );
+
+      dispatch(
+        handleUpdateColorsWithFiles({
+          productId,
+          filesFormData,
+        })
+      );
+    },
+    [productId, dispatch]
+  );
 
   if (loading) return <Loader />;
 
   return (
     <Formik
-      initialValues={{ colorsWithImages }}
+      initialValues={{ colorsWithFiles }}
       onSubmit={handleSubmit}
       enableReinitialize
     >

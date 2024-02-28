@@ -1,5 +1,5 @@
 export { catalogStructureInitialState } from './catalogStructureInitialState';
-export { colorsWithImagesInitialState } from './colorsWithImagesInitialState';
+export { colorsWithFilesInitialState } from './colorsWithFilesInitialState';
 export { menuInitialState } from './menuInitialState';
 export {
   productInitialState,

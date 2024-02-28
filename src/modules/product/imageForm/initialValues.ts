@@ -1,5 +1,5 @@
-import { ICreateImageData } from './types';
+import { IUpdateColorsWithFilesData } from './types';
 
-export const initialValuesImage: ICreateImageData = {
-  colorsWithImages: [],
+export const initialValuesImage: IUpdateColorsWithFilesData = {
+  colorsWithFiles: [],
 };

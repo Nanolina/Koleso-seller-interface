@@ -1,1 +1,0 @@
-export { getAllColorsWithImagesCases } from './getAllColorsWithImagesCases';

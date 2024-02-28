@@ -1,50 +1,46 @@
 import { FormikProps } from 'formik';
 import { ChangeEvent } from 'react';
 import { ColorType } from '../types';
-import { removeImages, updateImages } from './functions';
-import { IColorsWithImages, ICreateImageData } from './types';
+import { removeFiles, updateFiles } from './functions';
+import { IColorsWithFiles, IUpdateColorsWithFilesData } from './types';
 
 export const useImageHandler = () => {
   const handleFileSelect =
     (
-      colorsWithImages: IColorsWithImages[],
-      setFieldValue: FormikProps<ICreateImageData>['setFieldValue'],
-      imagesWith1Color: IColorsWithImages
+      colorsWithFiles: IColorsWithFiles[],
+      setFieldValue: FormikProps<IUpdateColorsWithFilesData>['setFieldValue'],
+      filesWith1Color: IColorsWithFiles
     ) =>
     (event: ChangeEvent<HTMLInputElement>) => {
       const files = event.target.files;
       if (!files || files.length === 0) return;
 
       // Limit the number of selected files based on the existing ones
-      const allowedFilesCount = 5 - imagesWith1Color.images.length;
+      const allowedFilesCount = 5 - filesWith1Color.files.length;
 
-      const newImages = Array.from(files)
-        .slice(0, allowedFilesCount) // Ensure not to exceed 5 images
-        .map((file) => URL.createObjectURL(file));
+      const newFiles = Array.from(files).slice(0, allowedFilesCount);
 
-      const updatedColorsWithImages = updateImages(
-        colorsWithImages,
-        imagesWith1Color.color,
-        [...imagesWith1Color.images, ...newImages]
+      const updatedColorsWithFiles = updateFiles(
+        colorsWithFiles,
+        filesWith1Color.color,
+        [...filesWith1Color.files, ...newFiles]
       );
-      setFieldValue('colorsWithImages', updatedColorsWithImages);
+      setFieldValue('colorsWithFiles', updatedColorsWithFiles);
     };
 
-  const handleRemoveImage = (
-    colorsWithImages: IColorsWithImages[],
-    setFieldValue: FormikProps<ICreateImageData>['setFieldValue'],
+  const handleRemoveFile = (
+    colorsWithFiles: IColorsWithFiles[],
+    setFieldValue: FormikProps<IUpdateColorsWithFilesData>['setFieldValue'],
     color: ColorType,
-    imageToRemove: string
+    indexToRemove: number
   ) => {
-    URL.revokeObjectURL(imageToRemove);
-
-    const updatedColorsWithImages = removeImages(
-      colorsWithImages,
+    const updatedColorsWithFiles = removeFiles(
+      colorsWithFiles,
       color,
-      imageToRemove
+      indexToRemove
     );
-    setFieldValue('colorsWithImages', updatedColorsWithImages);
+    setFieldValue('colorsWithFiles', updatedColorsWithFiles);
   };
 
-  return { handleFileSelect, handleRemoveImage };
+  return { handleFileSelect, handleRemoveFile };
 };

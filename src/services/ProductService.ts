@@ -1,6 +1,9 @@
 import { AxiosResponse } from 'axios';
 import { productServiceAPI } from '../http';
-import { IColorsWithImages } from '../modules/product/imageForm';
+import {
+  IColorsWithFiles,
+  IUpdateColorsWithFilesData,
+} from '../modules/product/imageForm';
 import {
   ICreateProductData,
   IProduct,
@@ -74,10 +77,20 @@ export class ProductService {
   }
 
   // Images
+  static async updateColorsWithImages(
+    productId: string,
+    filesFormData: FormData
+  ): Promise<AxiosResponse<IUpdateColorsWithFilesData>> {
+    return productServiceAPI.post<IUpdateColorsWithFilesData>(
+      `/product/${productId}/images`,
+      filesFormData
+    );
+  }
+
   static async getAllColorsWithImages(
     productId: string
-  ): Promise<AxiosResponse<IColorsWithImages[]>> {
-    return productServiceAPI.get<IColorsWithImages[]>(
+  ): Promise<AxiosResponse<IColorsWithFiles[]>> {
+    return productServiceAPI.get<IColorsWithFiles[]>(
       `/product/${productId}/images`
     );
   }

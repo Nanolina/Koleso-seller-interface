@@ -1,14 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IColorsWithImages } from '../../../modules/product/imageForm';
+import { IColorsWithFiles } from '../../../modules/product/imageForm';
 import { ProductService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
 
-export const handleGetAllColorsWithImages = createAsyncThunk(
-  'colorsWithImages/get-all',
+export const handleGetAllColorsWithFiles = createAsyncThunk(
+  'colorsWithFiles/get-all',
   async (
     productId: string,
     { rejectWithValue }
-  ): Promise<IColorsWithImages[]> => {
+  ): Promise<IColorsWithFiles[]> => {
     try {
       const response = await ProductService.getAllColorsWithImages(productId);
       return response.data;
