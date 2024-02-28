@@ -2,15 +2,17 @@ import { Form, Formik } from 'formik';
 import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
-import { handleGetAllVariants } from '../../../../../redux/thunks/variants';
+import {
+  handleGetAllVariants,
+  handleUpdateVariants,
+} from '../../../../../redux/thunks/variants';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
-import { handleSubmitFormVariants } from '../../handlers';
 import { IUpdateVariantsData } from '../../types';
 import { validationSchema } from '../../validationSchema';
 import { AddVariants } from '../AddVariants/AddVariants';
@@ -18,7 +20,6 @@ import { AddVariants } from '../AddVariants/AddVariants';
 export const VariantDetailsForm: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const { productId } = useParams<{ productId: string }>();
 
   // Values from Redux
@@ -37,9 +38,9 @@ export const VariantDetailsForm: React.FC = () => {
         return;
       }
 
-      handleSubmitFormVariants(productId, dispatch, values, navigate);
+      dispatch(handleUpdateVariants({ productId, variants: values.variants }));
     },
-    [productId, dispatch, navigate]
+    [productId, dispatch]
   );
 
   if (loading) return <Loader />;

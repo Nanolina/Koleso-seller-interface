@@ -37,8 +37,13 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
 
     const handleClearValues = useCallback(() => {
       localStorage.removeItem('product');
-      resetForm({ values: { ...initialValuesProduct } });
-    }, [initialValuesProduct, resetForm]);
+      resetForm({
+        values: {
+          ...initialValuesProduct,
+          ...(hasStore && { storeId: items[0].id }),
+        },
+      });
+    }, [hasStore, initialValuesProduct, items, resetForm]);
 
     useEffect(() => {
       dispatch(handleGetAllStores());

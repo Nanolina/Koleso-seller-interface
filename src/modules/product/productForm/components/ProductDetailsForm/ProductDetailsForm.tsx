@@ -20,8 +20,8 @@ import { ProductFormFields } from '../ProductFormFields/ProductFormFields';
 
 export const ProductDetailsForm: React.FC = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const { productId } = useParams<{ productId: string }>();
 
   const savedProduct = JSON.parse(localStorage.getItem('product') || '{}');
@@ -34,7 +34,7 @@ export const ProductDetailsForm: React.FC = () => {
   });
 
   // Values from Redux
-  const { product, loading, error, success } = useSelector(
+  const { loading, error, success } = useSelector(
     (state: IRootState) => state.products
   );
 
@@ -104,15 +104,7 @@ export const ProductDetailsForm: React.FC = () => {
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {({
-        values,
-        errors,
-        touched,
-        setFieldValue,
-        isValid,
-        dirty,
-        resetForm,
-      }) => (
+      {({ values, errors, touched, setFieldValue, isValid, resetForm }) => (
         <Form className="formFieldsContainer">
           <div className="formSaveButton">
             <Button

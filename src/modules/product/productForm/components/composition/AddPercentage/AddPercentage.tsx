@@ -14,12 +14,7 @@ export const AddPercentage: React.FC<IAddPercentageProps> = React.memo(
       (value: string) => {
         let parsedValue = parseFloat(value);
 
-        // Check that the value is a number
-        if (!isFinite(parsedValue)) {
-          parsedValue = 1; // Default value if a non-number is entered
-        } else if (parsedValue < 1) {
-          parsedValue = 1; // Min value
-        } else if (parsedValue > 100) {
+        if (parsedValue > 100) {
           parsedValue = 100; // Max value
         }
 

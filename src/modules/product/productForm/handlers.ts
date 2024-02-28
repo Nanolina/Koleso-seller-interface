@@ -34,7 +34,7 @@ export const handleSubmitFormProduct = async (
         composition: values.composition || [],
       });
 
-      navigate(`/product/${product.id}/variant`);
+      navigate(`/product/${product.id}/product`);
     }
   }
   //   // Update product
