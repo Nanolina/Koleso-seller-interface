@@ -68,8 +68,8 @@ export interface ICreateProductValuesProps {
 // Catalog
 export interface ICatalogItemType {
   id: number;
+  name: string;
   image?: string;
-  title: string;
 }
 
 export interface ICategoryType extends ICatalogItemType {

@@ -8,12 +8,7 @@ import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetCatalogStructure } from '../../../../../redux/thunks/catalog';
 import { getOptions } from '../../functions';
-import {
-  ICatalogItemType,
-  ICategoryType,
-  ICreateProductValuesProps,
-  IOptions,
-} from '../../types';
+import { ICreateProductValuesProps, IOptions, ISectionType } from '../../types';
 
 /**
  * Component for rendering cascading selects for a catalog.
@@ -29,7 +24,13 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
       (state: IRootState) => state.catalog
     );
 
-    // State for category and subcategory options
+    const [prevSectionId, setPrevSectionId] = useState<number>(
+      values.sectionId
+    );
+    const [prevCategoryId, setPrevCategoryId] = useState<number | undefined>(
+      values.categoryId
+    );
+    const [sections, setSections] = useState<ISectionType[]>([]);
     const [options, setOptions] = useState<IOptions>({
       categoryOptions: [],
       subcategoryOptions: [],
@@ -40,32 +41,75 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
       dispatch(handleGetCatalogStructure());
     }, [dispatch]);
 
-    // Update options whenever catalogStructure or selected IDs change
+    // Sort sections
     useEffect(() => {
-      const categoryOptions: ICategoryType[] = getOptions(
-        catalogStructure,
-        'categories',
-        values.sectionId
+      const sortedSections = [...catalogStructure].sort((a, b) =>
+        t(`catalog.${a.name}`).localeCompare(t(`catalog.${b.name}`), 'ru')
       );
-      const subcategoryOptions: ICatalogItemType[] = getOptions(
-        catalogStructure,
-        'subcategories',
-        values.categoryId
-      );
+      setSections(sortedSections);
+    }, [catalogStructure, t]);
 
-      setOptions({ categoryOptions, subcategoryOptions });
-    }, [catalogStructure, values.sectionId, values.categoryId]);
+    // Update categories only if section is selected
+    useEffect(() => {
+      if (values.sectionId) {
+        const sortedCategoryOptions = getOptions(
+          sections,
+          'categories',
+          values.sectionId
+        )
+          .map((category) => ({
+            ...category,
+            name: t(`catalog.${category.name}`),
+          }))
+          .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+
+        setOptions((prevOptions) => ({
+          ...prevOptions,
+          categoryOptions: sortedCategoryOptions,
+        }));
+      }
+    }, [sections, values.sectionId, t]);
+
+    // Update subcategories only if a category is selected
+    useEffect(() => {
+      if (values.categoryId) {
+        const sortedSubcategoryOptions = getOptions(
+          sections,
+          'subcategories',
+          values.categoryId
+        )
+          .map((subcategory) => ({
+            ...subcategory,
+            name: t(`catalog.${subcategory.name}`),
+          }))
+          .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+
+        setOptions((prevOptions) => ({
+          ...prevOptions,
+          subcategoryOptions: sortedSubcategoryOptions,
+        }));
+      }
+    }, [sections, values.categoryId, t]);
 
     // Reset categoryId и subcategoryId when change sectionId
     useEffect(() => {
-      setFieldValue('categoryId', undefined);
-      setFieldValue('subcategoryId', undefined);
-    }, [values.sectionId, setFieldValue]);
+      if (values.sectionId !== prevSectionId && prevSectionId !== undefined) {
+        setFieldValue('categoryId', undefined);
+        setFieldValue('subcategoryId', undefined);
+      }
+      setPrevSectionId(values.sectionId);
+    }, [values.sectionId, prevSectionId, setFieldValue]);
 
     // Reset subcategoryId when change categoryId
     useEffect(() => {
-      setFieldValue('subcategoryId', undefined);
-    }, [values.categoryId, setFieldValue]);
+      if (
+        values.categoryId !== prevCategoryId &&
+        prevCategoryId !== undefined
+      ) {
+        setFieldValue('subcategoryId', undefined);
+      }
+      setPrevCategoryId(values.categoryId);
+    }, [values.categoryId, prevCategoryId, setFieldValue]);
 
     if (loading) return <Loader />;
 
@@ -75,10 +119,9 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
           id="sectionId"
           name="sectionId"
           label={t('products.form.selectSection')}
-          options={catalogStructure}
+          options={sections}
           value={values.sectionId || 0}
           setFieldValue={setFieldValue}
-          keyInLocalStorage="product"
           firstText={t('products.form.selectSection')}
           translationType="catalog"
           isNumber
@@ -93,9 +136,7 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
             options={options.categoryOptions}
             value={values.categoryId || 0}
             setFieldValue={setFieldValue}
-            keyInLocalStorage="product"
             firstText={t('products.form.selectCategory')}
-            translationType="catalog"
             isNumber
           />
         ) : undefined}
@@ -108,9 +149,7 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
             options={options.subcategoryOptions}
             value={values.subcategoryId || 0}
             setFieldValue={setFieldValue}
-            keyInLocalStorage="product"
             firstText={t('products.form.selectSubcategory')}
-            translationType="catalog"
             isNumber
           />
         ) : undefined}
