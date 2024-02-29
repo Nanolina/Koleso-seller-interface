@@ -143,7 +143,8 @@
         "Turquoise": "Turquoise",
         "Violet": "Violet",
         "White": "White",
-        "Yellow": "Yellow"
+        "Yellow": "Yellow",
+        "Transparent": "Transparent"
       },
       "image": {
         "label": "Images",

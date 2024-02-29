@@ -44,14 +44,11 @@ export const ImageUploadForm: React.FC = () => {
 
       const filesFormData = new FormData();
 
-      values.colorsWithFiles.forEach(
-        (filesWith1Color: IColorsWithFiles, index: number) => {
-          filesWith1Color.files.forEach((file: File, fileIndex: number) => {
-            filesFormData.append(`${filesWith1Color.color}`, file);
-          });
-        }
-      );
-
+      values.colorsWithFiles.forEach((filesWith1Color: IColorsWithFiles) => {
+        filesWith1Color.files.forEach((file: File) => {
+          filesFormData.append(`${filesWith1Color.color}`, file);
+        });
+      });
       dispatch(
         handleUpdateColorsWithFiles({
           productId,

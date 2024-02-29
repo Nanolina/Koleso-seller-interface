@@ -26,4 +26,5 @@ export enum ColorType {
   Violet,
   White,
   Yellow,
+  Transparent,
 }

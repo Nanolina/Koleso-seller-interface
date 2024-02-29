@@ -1,3 +1,4 @@
+import { ColorType } from './modules/product/types';
 import { IStatuses } from './types';
 
 export const NEW = 'new';
@@ -107,35 +108,9 @@ export const SIZES: string[] = [
   '64',
 ];
 
-export const COLORS: string[] = [
-  'Aquamarine',
-  'Beige',
-  'Black',
-  'Blue',
-  'Brown',
-  'Cherry',
-  'Cream',
-  'Emerald',
-  'Fuchsia',
-  'Golden',
-  'Green',
-  'Grey',
-  'Light blue',
-  'Lilac',
-  'Maroon',
-  'Olive',
-  'Orange',
-  'Pink',
-  'Purple',
-  'Raspberry',
-  'Red',
-  'Sandy',
-  'Silver',
-  'Turquoise',
-  'Violet',
-  'White',
-  'Yellow',
-];
+export const COLORS = Object.values(ColorType).filter(
+  (value) => typeof value === 'string'
+) as string[];
 
 export const STATUSES: IStatuses = {
   awaitingProcessing: 'awaiting-processing',
