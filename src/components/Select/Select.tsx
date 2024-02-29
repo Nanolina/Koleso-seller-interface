@@ -37,11 +37,15 @@ export const Select: React.FC<ISelectProps> = React.memo(
         className={isHalfWidth ? styles.halfWidth : styles.select}
       >
         {firstText && <option value="">{firstText}</option>}
-        {options.map((option: any) => (
-          <option key={option.id || option} value={option.id || option}>
-            {getOptionText(option)}
-          </option>
-        ))}
+        {options.map((option: any) => {
+          const value = option.id || option.value || option;
+
+          return (
+            <option key={value} value={value}>
+              {getOptionText(option)}
+            </option>
+          );
+        })}
       </select>
     );
   }

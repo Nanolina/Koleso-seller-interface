@@ -5,7 +5,7 @@ export interface ISelectProps {
   label?: string;
   id?: string;
   name?: string;
-  options: string[];
+  options: any;
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   value?: string;
   translationType?: string;

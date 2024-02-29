@@ -12,7 +12,7 @@ export const AddPercentage: React.FC<IAddPercentageProps> = React.memo(
     // Callback to handle changes in material percentage input
     const handleChangeMaterialPercentage = useCallback(
       (value: string) => {
-        let parsedValue = parseFloat(value);
+        let parsedValue = parseFloat(value) || 0;
 
         if (parsedValue > 100) {
           parsedValue = 100; // Max value

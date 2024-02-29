@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select } from '../../../../../../components/Select/Select';
 import { COMPOSITIONS } from '../../../../../../consts';
@@ -17,6 +17,9 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
 
     const [material, setMaterial] = useState<string>('');
     const [materialPercentage, setMaterialPercentage] = useState<number>(1);
+    const [sortedMaterials, setSortedMaterials] = useState<
+      { name: string; value: string }[]
+    >([]);
 
     const addCompositionToValues = () => {
       const currentComposition = values.composition || [];
@@ -39,18 +42,29 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
       localStorage.setItem('product', JSON.stringify(currentData));
     };
 
+    // Translate and sort materials
+    useEffect(() => {
+      const translatedMaterials = COMPOSITIONS.map((material) => ({
+        name: t(`products.form.composition.${material}`),
+        value: material,
+      }));
+      const sortedTranslatedMaterials = translatedMaterials.sort((a, b) =>
+        a.name.localeCompare(b.name, 'default', { numeric: true })
+      );
+      setSortedMaterials(sortedTranslatedMaterials);
+    }, [t]);
+
     return (
       <div className={styles.container}>
         <Select
           id="material"
           name="material"
-          options={COMPOSITIONS}
+          options={sortedMaterials}
           onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
             setMaterial(event.target.value)
           }
           value={material}
           firstText={t('products.form.composition.select')}
-          translationType="products.form.composition"
           isHalfWidth
         />
         <AddPercentage
