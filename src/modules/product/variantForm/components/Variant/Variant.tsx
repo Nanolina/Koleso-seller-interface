@@ -76,7 +76,7 @@ export const Variant: React.FC<IVariantProps> = React.memo(
               id={`${variant.size}-${variant.id}`}
               name="size"
               options={SIZES}
-              value={variant.size}
+              value={variant.size || ''}
               onChange={handleSizeUpdate}
               firstText={t('products.form.size.select')}
             />
