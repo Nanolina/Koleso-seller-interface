@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import { productServiceAPI } from '../http';
 import {
-  IColorsWithFiles,
-  IUpdateColorsWithFilesData,
+  IColorsWithImagesData,
+  IUpdateColorsWithImagesData,
 } from '../modules/product/imageForm';
 import {
   ICreateProductData,
@@ -80,8 +80,8 @@ export class ProductService {
   static async updateColorsWithImages(
     productId: string,
     filesFormData: FormData
-  ): Promise<AxiosResponse<IUpdateColorsWithFilesData>> {
-    return productServiceAPI.post<IUpdateColorsWithFilesData>(
+  ): Promise<AxiosResponse<IUpdateColorsWithImagesData>> {
+    return productServiceAPI.post<IUpdateColorsWithImagesData>(
       `/product/${productId}/images`,
       filesFormData
     );
@@ -89,8 +89,8 @@ export class ProductService {
 
   static async getAllColorsWithImages(
     productId: string
-  ): Promise<AxiosResponse<IColorsWithFiles[]>> {
-    return productServiceAPI.get<IColorsWithFiles[]>(
+  ): Promise<AxiosResponse<IColorsWithImagesData[]>> {
+    return productServiceAPI.get<IColorsWithImagesData[]>(
       `/product/${productId}/images`
     );
   }

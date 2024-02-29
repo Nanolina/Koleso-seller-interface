@@ -14,6 +14,8 @@ import {
   TableHeader,
   TableRow,
 } from '../../../table';
+import { getValuesForVariants } from '../../functions';
+import { getExistingUniqueColors } from '../../imageForm';
 import { IProduct } from '../../productForm';
 
 export const ProductsTable: React.FC = () => {
@@ -42,16 +44,15 @@ export const ProductsTable: React.FC = () => {
       <Table>
         <TableHeader>
           <HeaderCell></HeaderCell>
-          {/* <HeaderCell>{t('products.table.image')}</HeaderCell>
-          <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell> */}
           <HeaderCell>{t('products.table.name')}</HeaderCell>
           <HeaderCell>{t('products.table.brand')}</HeaderCell>
           <HeaderCell>{t('products.table.model')}</HeaderCell>
-          {/* <HeaderCell>{t('products.table.color')}</HeaderCell>
-          <HeaderCell>{t('products.table.size')}</HeaderCell>
-          <HeaderCell>{t('products.table.priceWithoutDiscount')}</HeaderCell>
+          <HeaderCell>{t('products.table.color')}</HeaderCell>
           <HeaderCell>{t('products.table.finalPrice')}</HeaderCell>
-          <HeaderCell>{t('products.table.quantity')}</HeaderCell> */}
+          <HeaderCell>{t('products.table.quantity')}</HeaderCell>
+          <HeaderCell>{t('products.table.size')}</HeaderCell>
+          <HeaderCell>{`${t('products.table.image')} 1`}</HeaderCell>
+          <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
         </TableHeader>
 
         <tbody>
@@ -62,16 +63,25 @@ export const ProductsTable: React.FC = () => {
                 rowIndex={productIndex}
                 onClick={() => handleProductDetails(product.id)}
               >
-                {/* <TableCell cell={product.image} /> */}
-                {/* <TableCell cell={product.articleKoleso} /> */}
                 <TableCell cell={product.name} />
                 <TableCell cell={product.brand} />
                 <TableCell cell={product.model} />
-                {/* <TableCell cell={t(`products.form.color.${product.color}`)} />
-                <TableCell cell={product.size} />
-                <TableCell cell={product.priceWithoutDiscount} />
-                <TableCell cell={product.finalPrice} />
-                <TableCell cell={product.quantity} /> */}
+                <TableCell
+                  cell={getExistingUniqueColors(product.variants).join(', ')}
+                />
+                <TableCell
+                  cell={getValuesForVariants(product.variants, 'finalPrice')}
+                />
+                <TableCell
+                  cell={getValuesForVariants(product.variants, 'quantity')}
+                />
+                <TableCell
+                  cell={getValuesForVariants(product.variants, 'size')}
+                />
+                <TableCell cell={product.variants[0]?.images[0].url} />
+                <TableCell
+                  cell={getValuesForVariants(product.variants, 'articleKoleso')}
+                />
               </TableRow>
             ))}
         </tbody>

@@ -1,18 +1,27 @@
 import { FormikErrors, FormikProps, FormikTouched } from 'formik';
+import { IImage } from '../../image';
 import { ColorType } from '../types';
 
 export interface IUpdateVariantsData {
   variants: IVariant[];
 }
 
-export interface IVariant {
-  id: string;
+export interface ICreateVariantData {
   color: ColorType;
   quantity: number;
   size?: string;
   priceWithoutDiscount: number;
   finalPrice: number;
   articleSupplier?: string;
+}
+
+export interface IVariant extends ICreateVariantData {
+  id: string;
+  articleKoleso: string;
+  productId: string;
+  images: IImage[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IVariantProps {

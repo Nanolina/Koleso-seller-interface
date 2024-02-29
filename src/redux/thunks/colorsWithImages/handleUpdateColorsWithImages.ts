@@ -1,24 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  IColorsWithFiles,
+  IColorsWithImagesData,
   IUpdateColorsWithImagesArg,
 } from '../../../modules/product/imageForm';
 import { ProductService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
 
-export const handleUpdateColorsWithFiles = createAsyncThunk<
-  IColorsWithFiles[],
+export const handleUpdateColorsWithImages = createAsyncThunk<
+  IColorsWithImagesData[],
   IUpdateColorsWithImagesArg
 >(
-  'colorsWithFiles/update',
+  'colorsWithImages/update',
   async (
-    { productId, filesFormData },
+    { productId, imagesFormData },
     { rejectWithValue }
-  ): Promise<IColorsWithFiles[]> => {
+  ): Promise<IColorsWithImagesData[]> => {
     try {
       const response: any = await ProductService.updateColorsWithImages(
         productId,
-        filesFormData
+        imagesFormData
       );
       return response.data;
     } catch (error: any) {

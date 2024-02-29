@@ -8,7 +8,7 @@ import { IRootState } from '../../../../../redux/rootReducer';
 import { InputUpload } from '../../../../../ui/InputUpload/InputUpload';
 import { ColorType } from '../../../types';
 import {
-  createColorsWithFiles,
+  createColorsWithImages,
   getExistingUniqueColors,
   removeColor,
 } from '../../functions';
@@ -29,34 +29,34 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
 
     const uniqueColors = getExistingUniqueColors(variants);
 
-    const handleCreateNewColorsWithFiles = useCallback(
+    const handleCreateNewColorsWithImages = useCallback(
       (colorValue: ColorType) => {
         if (!colorValue) return;
 
         // There must not be 2 objects with the same color in the array
-        const existingColorIndex = values.colorsWithFiles.findIndex(
-          (filesWith1Color) => filesWith1Color.color === colorValue
+        const existingColorIndex = values.colorsWithImages.findIndex(
+          (imagesWith1Color) => imagesWith1Color.color === colorValue
         );
         if (existingColorIndex !== -1) {
           return;
         }
 
-        const newColorsWithFiles = createColorsWithFiles(
+        const newColorsWithImages = createColorsWithImages(
           colorValue,
-          values.colorsWithFiles
+          values.colorsWithImages
         );
         setColor(colorValue);
-        setFieldValue('colorsWithFiles', newColorsWithFiles);
+        setFieldValue('colorsWithImages', newColorsWithImages);
       },
-      [values.colorsWithFiles, setFieldValue]
+      [values.colorsWithImages, setFieldValue]
     );
 
-    const handleRemoveColorWithFiles = useCallback(
+    const handleRemoveColorWithImages = useCallback(
       (color: ColorType) => {
-        const newColorsWithFiles = removeColor(values.colorsWithFiles, color);
-        setFieldValue('colorsWithFiles', newColorsWithFiles);
+        const newColorsWithImages = removeColor(values.colorsWithImages, color);
+        setFieldValue('colorsWithImages', newColorsWithImages);
       },
-      [values.colorsWithFiles, setFieldValue]
+      [values.colorsWithImages, setFieldValue]
     );
 
     if (loading) return <Loader />;
@@ -69,43 +69,44 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
           label={t('products.form.color.label')}
           options={uniqueColors}
           value={color}
-          onChange={handleCreateNewColorsWithFiles}
+          onChange={handleCreateNewColorsWithImages}
           firstText={t('products.form.image.select')}
           translationType="products.form.color"
           extraText={t('products.form.image.upTo')}
           required
         />
 
-        {values.colorsWithFiles &&
-          values.colorsWithFiles.map((filesWith1Color) => (
+        {values.colorsWithImages &&
+          values.colorsWithImages.map((imagesWith1Color) => (
             <div
-              key={filesWith1Color.color}
-              className={styles.filesWith1ColorContainer}
+              key={imagesWith1Color.color}
+              className={styles.imagesWith1ColorContainer}
             >
               <h3 className={styles.title}>
-                {t(`products.form.color.${filesWith1Color.color}`)}
+                {t(`products.form.color.${imagesWith1Color.color}`)}
               </h3>
               <ImagePreviews
-                colorsWithFiles={values.colorsWithFiles}
+                colorsWithImages={values.colorsWithImages}
                 setFieldValue={setFieldValue}
-                files={filesWith1Color.files}
-                color={filesWith1Color.color}
+                images={imagesWith1Color.images}
+                color={imagesWith1Color.color}
               />
-              {filesWith1Color.files && filesWith1Color.files.length < 5 && (
-                <InputUpload
-                  onChange={handleFileSelect(
-                    values.colorsWithFiles,
-                    setFieldValue,
-                    filesWith1Color
-                  )}
-                  acceptFiles="image/*"
-                  multiple
-                />
-              )}
+              {imagesWith1Color.images &&
+                imagesWith1Color.images.length < 5 && (
+                  <InputUpload
+                    onChange={handleFileSelect(
+                      values.colorsWithImages,
+                      setFieldValue,
+                      imagesWith1Color
+                    )}
+                    acceptFiles="image/*"
+                    multiple
+                  />
+                )}
               <IoCloseOutline
                 color="var(--dark-gray)"
                 onClick={() =>
-                  handleRemoveColorWithFiles(filesWith1Color.color)
+                  handleRemoveColorWithImages(imagesWith1Color.color)
                 }
                 className={styles.iconRemove}
               />

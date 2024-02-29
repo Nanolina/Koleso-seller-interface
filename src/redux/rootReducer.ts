@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { IUserState } from '../modules/auth';
 import { IMenuState } from '../modules/menu';
-import { IColorsWithFilesState } from '../modules/product/imageForm';
+import { IColorsWithImagesState } from '../modules/product/imageForm';
 import {
   ICatalogStructureState,
   IProductsState,
@@ -9,7 +9,7 @@ import {
 import { IVariantsState } from '../modules/product/variantForm';
 import { IStoresState } from '../modules/stores';
 import catalogStructureSlice from './slices/catalogStructureSlice';
-import colorsWithImagesSlice from './slices/colorsWithFilesSlice';
+import colorsWithImagesSlice from './slices/colorsWithImagesSlice';
 import menuSlice from './slices/menuSlice';
 import productsSlice from './slices/productsSlice';
 import storesSlice from './slices/storesSlice';
@@ -21,7 +21,7 @@ export interface IRootState {
   stores: IStoresState;
   products: IProductsState;
   variants: IVariantsState;
-  colorsWithFiles: IColorsWithFilesState;
+  colorsWithImages: IColorsWithImagesState;
   menu: IMenuState;
   catalog: ICatalogStructureState;
 }
@@ -31,7 +31,7 @@ const rootReducer = combineReducers({
   stores: storesSlice,
   products: productsSlice,
   variants: variantsSlice,
-  colorsWithFiles: colorsWithImagesSlice,
+  colorsWithImages: colorsWithImagesSlice,
   menu: menuSlice,
   catalog: catalogStructureSlice,
 });

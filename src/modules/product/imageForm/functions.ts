@@ -1,61 +1,61 @@
 import { ColorType } from '../types';
 import { IVariant } from '../variantForm/types';
-import { IColorsWithFiles } from './types';
+import { IColorsWithImagesData } from './types';
 
 // Update
-export const updateFiles = (
-  colorsWithFiles: IColorsWithFiles[],
+export const updateImages = (
+  colorsWithImages: IColorsWithImagesData[],
   color: ColorType,
-  newFiles: File[]
+  newImages: File[]
 ) => {
-  return colorsWithFiles.map((filesWith1Color) => {
-    if (filesWith1Color.color === color) {
-      // Add new files to existing ones, remove duplicates, and ensure there are no more than 5 files total
-      const updatedFiles = Array.from(
-        new Set([...filesWith1Color.files, ...newFiles])
+  return colorsWithImages.map((imagesWith1Color) => {
+    if (imagesWith1Color.color === color) {
+      // Add new images to existing ones, remove duplicates, and ensure there are no more than 5 images total
+      const updatedImages = Array.from(
+        new Set([...imagesWith1Color.images, ...newImages])
       ).slice(0, 5);
-      return { ...filesWith1Color, files: updatedFiles };
+      return { ...imagesWith1Color, images: updatedImages };
     }
-    return filesWith1Color;
+    return imagesWith1Color;
   });
 };
 
 // Create
-export const createColorsWithFiles = (
+export const createColorsWithImages = (
   color: ColorType,
-  existingColorsWithFiles: IColorsWithFiles[]
+  existingColorsWithImages: IColorsWithImagesData[]
 ) => {
-  const newFilesWith1Color = {
+  const newImagesWith1Color = {
     color,
-    files: [],
+    images: [],
   };
-  return [...existingColorsWithFiles, newFilesWith1Color];
+  return [...existingColorsWithImages, newImagesWith1Color];
 };
 
 // Remove object with color
 export const removeColor = (
-  colorsWithFiles: IColorsWithFiles[],
+  colorsWithImages: IColorsWithImagesData[],
   color: ColorType
 ) => {
-  return colorsWithFiles.filter(
-    (filesWith1Color) => filesWith1Color.color !== color
+  return colorsWithImages.filter(
+    (imagesWith1Color) => imagesWith1Color.color !== color
   );
 };
 
-// Remove a 1 file from the array of files for 1 color
-export const removeFiles = (
-  colorsWithFiles: IColorsWithFiles[],
+// Remove a 1 image from the array of images for 1 color
+export const removeImages = (
+  colorsWithImages: IColorsWithImagesData[],
   color: ColorType,
   indexToRemove: number
-): IColorsWithFiles[] => {
-  return colorsWithFiles.map((filesWith1Color) => {
-    if (filesWith1Color.color === color) {
-      const newFiles = filesWith1Color.files.filter(
+): IColorsWithImagesData[] => {
+  return colorsWithImages.map((imagesWith1Color) => {
+    if (imagesWith1Color.color === color) {
+      const newImages = imagesWith1Color.images.filter(
         (_, index) => index !== indexToRemove
       );
-      return { ...filesWith1Color, files: newFiles };
+      return { ...imagesWith1Color, images: newImages };
     }
-    return filesWith1Color;
+    return imagesWith1Color;
   });
 };
 

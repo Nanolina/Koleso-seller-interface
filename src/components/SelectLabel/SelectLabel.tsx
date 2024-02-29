@@ -24,7 +24,6 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const eventValue = isNumber ? parseFloat(e.target.value) : e.target.value;
 
-      // change setFieldValue as required field
       if (setFieldValue && !keyInLocalStorage) {
         setFieldValue(name, eventValue);
       } else if (keyInLocalStorage && setFieldValue) {

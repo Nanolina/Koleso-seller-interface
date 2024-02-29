@@ -1,29 +1,29 @@
 import { FormikProps } from 'formik';
 import { ColorType } from '../types';
 
-export interface IUpdateColorsWithFilesData {
-  colorsWithFiles: IColorsWithFiles[];
+export interface IUpdateColorsWithImagesData {
+  colorsWithImages: IColorsWithImagesData[];
 }
 
-export interface IColorsWithFiles {
+export interface IColorsWithImagesData {
   color: ColorType;
-  files: File[];
+  images: File[];
 }
 
 export interface IImageUploadProps {
-  values: IUpdateColorsWithFilesData;
-  setFieldValue: FormikProps<IUpdateColorsWithFilesData>['setFieldValue'];
+  values: IUpdateColorsWithImagesData;
+  setFieldValue: FormikProps<IUpdateColorsWithImagesData>['setFieldValue'];
 }
 
 export interface IImagePreviewsProps {
-  colorsWithFiles: IColorsWithFiles[];
-  setFieldValue: FormikProps<IUpdateColorsWithFilesData>['setFieldValue'];
-  files: File[];
+  colorsWithImages: IColorsWithImagesData[];
+  setFieldValue: FormikProps<IUpdateColorsWithImagesData>['setFieldValue'];
+  images: File[];
   color: ColorType;
 }
 
-export interface IColorsWithFilesState {
-  colorsWithFiles: IColorsWithFiles[];
+export interface IColorsWithImagesState {
+  colorsWithImages: IColorsWithImagesData[];
   loading: boolean;
   success: string | null;
   error: any;
@@ -31,5 +31,5 @@ export interface IColorsWithFilesState {
 
 export interface IUpdateColorsWithImagesArg {
   productId: string;
-  filesFormData: FormData;
+  imagesFormData: FormData;
 }

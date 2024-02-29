@@ -13,7 +13,7 @@ export const productInitialState = {
   subcategoryId: 0,
   composition: [],
   variants: [],
-  colorsWithFiles: [],
+  colorsWithImages: [],
   userId: '',
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),

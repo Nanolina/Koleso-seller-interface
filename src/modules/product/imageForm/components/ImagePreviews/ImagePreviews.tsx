@@ -6,19 +6,19 @@ import { useImageHandler } from '../../useImageHandler';
 import styles from './ImagePreviews.module.css';
 
 export const ImagePreviews: React.FC<IImagePreviewsProps> = React.memo(
-  ({ colorsWithFiles, setFieldValue, files, color }) => {
+  ({ colorsWithImages, setFieldValue, images, color }) => {
     // Get data from hooks
-    const { handleRemoveFile } = useImageHandler();
+    const { handleRemoveImage } = useImageHandler();
 
     return (
       <div className={styles.container}>
-        {files &&
-          files.map((file: File, index: number) => (
+        {images &&
+          images.map((image: File, index: number) => (
             <ImagePreview
               key={uuidv4()}
-              image={file}
+              image={image}
               onRemove={() =>
-                handleRemoveFile(colorsWithFiles, setFieldValue, color, index)
+                handleRemoveImage(colorsWithImages, setFieldValue, color, index)
               }
             />
           ))}

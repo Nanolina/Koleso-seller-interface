@@ -9,13 +9,16 @@ import { NEW } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import {
-  handleGetAllColorsWithFiles,
-  handleUpdateColorsWithFiles,
-} from '../../../../../redux/thunks/colorsWithFiles';
+  handleGetAllColorsWithImages,
+  handleUpdateColorsWithImages,
+} from '../../../../../redux/thunks/colorsWithImages';
 import { handleGetAllVariants } from '../../../../../redux/thunks/variants';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
-import { IColorsWithFiles, IUpdateColorsWithFilesData } from '../../types';
+import {
+  IColorsWithImagesData,
+  IUpdateColorsWithImagesData,
+} from '../../types';
 import { ImageUpload } from '../ImageUpload/ImageUpload';
 
 export const ImageUploadForm: React.FC = () => {
@@ -24,35 +27,37 @@ export const ImageUploadForm: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
 
   // Values from Redux
-  const { colorsWithFiles, loading, error, success } = useSelector(
-    (state: IRootState) => state.colorsWithFiles
+  const { colorsWithImages, loading, error, success } = useSelector(
+    (state: IRootState) => state.colorsWithImages
   );
 
   useEffect(() => {
     if (productId && productId !== NEW) {
-      dispatch(handleGetAllColorsWithFiles(productId));
+      dispatch(handleGetAllColorsWithImages(productId));
       dispatch(handleGetAllVariants(productId));
     }
   }, [dispatch, productId]);
 
   // Submit data
   const handleSubmit = useCallback(
-    (values: IUpdateColorsWithFilesData) => {
+    (values: IUpdateColorsWithImagesData) => {
       if (!productId) {
         return;
       }
 
-      const filesFormData = new FormData();
+      const imagesFormData = new FormData();
 
-      values.colorsWithFiles.forEach((filesWith1Color: IColorsWithFiles) => {
-        filesWith1Color.files.forEach((file: File) => {
-          filesFormData.append(`${filesWith1Color.color}`, file);
-        });
-      });
+      values.colorsWithImages.forEach(
+        (imagesWith1Color: IColorsWithImagesData) => {
+          imagesWith1Color.images.forEach((image: File) => {
+            imagesFormData.append(`${imagesWith1Color.color}`, image);
+          });
+        }
+      );
       dispatch(
-        handleUpdateColorsWithFiles({
+        handleUpdateColorsWithImages({
           productId,
-          filesFormData,
+          imagesFormData,
         })
       );
     },
@@ -63,7 +68,7 @@ export const ImageUploadForm: React.FC = () => {
 
   return (
     <Formik
-      initialValues={{ colorsWithFiles }}
+      initialValues={{ colorsWithImages }}
       onSubmit={handleSubmit}
       enableReinitialize
     >
