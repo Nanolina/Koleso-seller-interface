@@ -16,7 +16,7 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
     const { t } = useTranslation();
 
     const [material, setMaterial] = useState<string>('');
-    const [materialPercentage, setMaterialPercentage] = useState<number>(1);
+    const [materialPercentage, setMaterialPercentage] = useState<number>(0);
     const [sortedMaterials, setSortedMaterials] = useState<
       { name: string; value: string }[]
     >([]);
@@ -74,6 +74,7 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
         <Button
           text={t('add')}
           type="button"
+          disabled={!material || !materialPercentage}
           onClick={addCompositionToValues}
         />
       </div>
