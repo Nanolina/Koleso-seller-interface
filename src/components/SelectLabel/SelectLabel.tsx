@@ -22,7 +22,7 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
     required,
   }) => {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const eventValue = isNumber ? parseFloat(e.target.value) : e.target.value;
+      const eventValue = isNumber ? parseFloat(e.target.value) || 0 : e.target.value;
 
       if (setFieldValue && !keyInLocalStorage) {
         setFieldValue(name, eventValue);

@@ -4,6 +4,7 @@ import {
   createProductCases,
   getAllProductsCases,
   getProductByIdCases,
+  updateProductCases,
 } from '../cases/product';
 import { productsInitialState } from '../initialStates';
 
@@ -15,6 +16,7 @@ const productsSlice = createSlice({
     createProductCases(builder);
     getAllProductsCases(builder);
     getProductByIdCases(builder);
+    updateProductCases(builder);
   },
 });
 

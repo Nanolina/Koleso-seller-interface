@@ -33,6 +33,24 @@ export interface IProduct extends ICreateProductData {
   updatedAt: string;
 }
 
+export interface IUpdateProductData {
+  storeId?: string;
+  name?: string;
+  description?: string;
+  brand?: string;
+  model?: string;
+  gender?: GenderType;
+  sectionId?: number;
+  categoryId?: number;
+  subcategoryId?: number;
+  composition?: IComposition[];
+}
+
+export interface IUpdateProductArg {
+  id: string;
+  productValues: IUpdateProductData;
+}
+
 export interface IProductFormFieldsProps {
   values: ICreateProductData;
   setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];

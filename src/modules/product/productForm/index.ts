@@ -5,4 +5,6 @@ export type {
   IProduct,
   IProductsState,
   ISectionType,
+  IUpdateProductArg,
+  IUpdateProductData,
 } from './types';

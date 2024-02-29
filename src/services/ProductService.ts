@@ -8,6 +8,7 @@ import {
   ICreateProductData,
   IProduct,
   ISectionType,
+  IUpdateProductData,
 } from '../modules/product/productForm';
 import { IUpdateVariantsData, IVariant } from '../modules/product/variantForm';
 import { IStore } from '../modules/stores';
@@ -52,6 +53,13 @@ export class ProductService {
 
   static async getProductById(id: string): Promise<AxiosResponse<IProduct>> {
     return productServiceAPI.get<IProduct>(`/product/${id}`);
+  }
+
+  static async updateProduct(
+    id: string,
+    productValues: IUpdateProductData
+  ): Promise<AxiosResponse<IProduct>> {
+    return productServiceAPI.patch<IProduct>(`/product/${id}`, productValues);
   }
 
   // Catalog
