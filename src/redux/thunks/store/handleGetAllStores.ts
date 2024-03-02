@@ -7,10 +7,7 @@ export const handleGetAllStores = createAsyncThunk(
   'store/get-all',
   async (_, { rejectWithValue }): Promise<IStore[]> => {
     try {
-      // Submit a request
       const response = await ProductService.getAllStores();
-
-      // Return data to be saved in store
       return response.data;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);

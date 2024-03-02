@@ -7,10 +7,7 @@ export const handleChangeEmail = createAsyncThunk(
   'user/change-email',
   async (userData: IChangeEmailData, { rejectWithValue }) => {
     try {
-      // Submit a request
       const response = await AuthService.changeEmail(userData);
-
-      // Return data to be saved in store
       return {
         email: response.data.email,
       };

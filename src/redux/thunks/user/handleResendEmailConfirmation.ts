@@ -7,7 +7,6 @@ export const handleResendEmailConfirmation = createAsyncThunk(
   'user/email/resend-confirmation',
   async (userData: IResendEmailConfirmationData, { rejectWithValue }) => {
     try {
-      // Submit a request
       await NotificationService.resendEmailConfirmation(userData);
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);

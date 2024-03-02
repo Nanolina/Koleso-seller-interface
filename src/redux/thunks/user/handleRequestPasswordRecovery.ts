@@ -7,7 +7,6 @@ export const handleRequestPasswordRecovery = createAsyncThunk(
   'user/password/recovery',
   async (userData: IChangeEmailData, { rejectWithValue }) => {
     try {
-      // Submit a request
       await AuthService.requestPasswordRecovery(userData);
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);
