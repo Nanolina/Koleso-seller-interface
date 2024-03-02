@@ -15,7 +15,6 @@ export const getProductByIdCases = (
       state.loading = true;
       state.error = null;
       state.success = null;
-      state.product.variants.loading = true;
     })
     .addCase(
       handleGetProductById.fulfilled,
@@ -34,11 +33,13 @@ export const getProductByIdCases = (
 
         state.product = updatedProductState;
         state.loading = false;
+        state.isProductFound = true;
       }
     )
     .addCase(handleGetProductById.rejected, (state, action) => {
       state.loading = false;
       state.success = null;
       state.error = action.payload || 'Failed to get product by id';
+      state.isProductFound = false;
     });
 };

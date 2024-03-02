@@ -14,7 +14,9 @@ export const ProductPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
   const { handleCloseSideMenu } = useSideMenu();
 
-  const product = useSelector((state: IRootState) => state.products.product);
+  const { product, isProductFound } = useSelector(
+    (state: IRootState) => state.products
+  );
 
   return (
     <>
@@ -24,14 +26,23 @@ export const ProductPage: React.FC = () => {
         redirectToItemsPage={() => navigate('/products')}
         isSmallContainer
       >
-        <Title
-          text={
-            product?.name && productId !== NEW
-              ? product?.name
-              : t('products.createProduct')
-          }
-        />
-        <ProductDetailsTabs />
+        {isProductFound ? (
+          <>
+            <Title
+              text={
+                product?.name && productId !== NEW
+                  ? product?.name
+                  : t('products.createProduct')
+              }
+            />
+
+            <ProductDetailsTabs />
+          </>
+        ) : (
+          <div className="itemNotFound">
+            <Title text={t('products.productDetails.notFound')} />
+          </div>
+        )}
       </Container>
     </>
   );

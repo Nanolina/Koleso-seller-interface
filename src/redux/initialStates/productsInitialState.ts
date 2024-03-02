@@ -30,6 +30,7 @@ export const productInitialState = {
 export const productsInitialState: IProductsState = {
   items: [],
   product: productInitialState,
+  isProductFound: true,
   loading: false,
   success: null,
   error: null,

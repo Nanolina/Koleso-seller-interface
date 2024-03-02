@@ -9,7 +9,10 @@ import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { NEW } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
-import { handleGetProductById } from '../../../../../redux/thunks/product';
+import {
+  handleGetProductById,
+  handleRemoveProduct,
+} from '../../../../../redux/thunks/product';
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
@@ -28,7 +31,6 @@ export const ProductDetailsForm: React.FC = () => {
   const savedProduct = JSON.parse(localStorage.getItem('product') || '{}');
 
   // useState
-  const [isProductFound, setIsProductFound] = useState<boolean>(true);
   const [initialValues, setInitialValues] = useState<ICreateProductData>({
     ...initialValuesProduct,
     ...savedProduct,
@@ -38,6 +40,13 @@ export const ProductDetailsForm: React.FC = () => {
   const { loading, error, success } = useSelector(
     (state: IRootState) => state.products
   );
+
+  const {
+    items: stores,
+    loading: storesLoading,
+    error: storesError,
+    success: storesSuccess,
+  } = useSelector((state: IRootState) => state.stores);
 
   // useEffect
   useEffect(() => {
@@ -68,8 +77,6 @@ export const ProductDetailsForm: React.FC = () => {
             subcategoryId: product.subcategoryId,
             composition: product.composition,
           });
-        } else {
-          setIsProductFound(false);
         }
       }
     };
@@ -90,15 +97,6 @@ export const ProductDetailsForm: React.FC = () => {
     },
     [productId, dispatch, navigate]
   );
-
-  // Early returns
-  if (!isProductFound) {
-    return (
-      <div className="itemNotFound">
-        {t('products.productDetails.notFound')}
-      </div>
-    );
-  }
 
   if (loading) return <Loader />;
 
@@ -129,6 +127,18 @@ export const ProductDetailsForm: React.FC = () => {
             resetForm={resetForm}
             initialValuesProduct={initialValuesProduct}
           />
+
+          {productId && productId !== NEW && (
+            <span
+              className="removeText"
+              onClick={() => {
+                dispatch(handleRemoveProduct(productId));
+                navigate('/products');
+              }}
+            >
+              {t('products.productDetails.removeProduct')}
+            </span>
+          )}
 
           {error && <MessageBox errorMessage={error} />}
           {success && <MessageBox successMessage={success} />}

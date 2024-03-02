@@ -69,6 +69,7 @@ export interface ICreateProductValuesProps {
 export interface IProductsState {
   items: IProduct[];
   product: IProductState;
+  isProductFound: boolean;
   success: string | null;
   loading: boolean;
   error: any;

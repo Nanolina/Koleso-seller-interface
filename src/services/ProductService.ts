@@ -59,6 +59,14 @@ export class ProductService {
     return productServiceAPI.patch<IProduct>(`/product/${id}`, productValues);
   }
 
+  static async removeProduct(id: string): Promise<AxiosResponse<IProduct>> {
+    return productServiceAPI.delete<IProduct>(`/product/${id}`);
+  }
+
+  static async recoverProduct(id: string): Promise<AxiosResponse<IProduct>> {
+    return productServiceAPI.post<IProduct>(`/product/${id}/recover`);
+  }
+
   // Catalog
   static async getCatalogStructure(): Promise<AxiosResponse<ISectionType[]>> {
     return productServiceAPI.get<ISectionType[]>('/catalog');
