@@ -24,7 +24,6 @@ export const getAllColorsWithImagesCases = (
     .addCase(handleGetAllColorsWithImages.rejected, (state, action) => {
       state.loading = false;
       state.success = null;
-      state.error =
-        action.payload || 'Failed to get all images by productId';
+      state.error = action.payload || 'Failed to get all images by productId';
     });
 };

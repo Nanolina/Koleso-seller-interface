@@ -7,7 +7,7 @@ export interface IUpdateColorsWithImagesData {
 
 export interface IColorsWithImagesData {
   color: ColorType;
-  images: File[];
+  images: (File | string)[];
 }
 
 export interface IImageUploadProps {
@@ -18,7 +18,7 @@ export interface IImageUploadProps {
 export interface IImagePreviewsProps {
   colorsWithImages: IColorsWithImagesData[];
   setFieldValue: FormikProps<IUpdateColorsWithImagesData>['setFieldValue'];
-  images: File[];
+  images: (File | string)[];
   color: ColorType;
 }
 

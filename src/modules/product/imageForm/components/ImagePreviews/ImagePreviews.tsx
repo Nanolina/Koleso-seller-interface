@@ -13,7 +13,7 @@ export const ImagePreviews: React.FC<IImagePreviewsProps> = React.memo(
     return (
       <div className={styles.container}>
         {images &&
-          images.map((image: File, index: number) => (
+          images.map((image: File | string, index: number) => (
             <ImagePreview
               key={uuidv4()}
               image={image}

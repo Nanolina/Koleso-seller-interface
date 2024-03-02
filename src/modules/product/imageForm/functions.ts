@@ -6,7 +6,7 @@ import { IColorsWithImagesData } from './types';
 export const updateImages = (
   colorsWithImages: IColorsWithImagesData[],
   color: ColorType,
-  newImages: File[]
+  newImages: (File | string)[]
 ) => {
   return colorsWithImages.map((imagesWith1Color) => {
     if (imagesWith1Color.color === color) {

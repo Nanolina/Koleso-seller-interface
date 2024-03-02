@@ -6,7 +6,7 @@ export interface IUpdateVariantsData {
   variants: IVariant[];
 }
 
-export interface ICreateVariantData {
+interface ICreateVariantData {
   color: ColorType;
   quantity: number;
   size?: string;
@@ -19,6 +19,7 @@ export interface IVariant extends ICreateVariantData {
   id: string;
   articleKoleso: string;
   productId: string;
+  isActive: boolean;
   images: IImage[];
   createdAt: string;
   updatedAt: string;

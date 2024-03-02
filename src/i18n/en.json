@@ -40,7 +40,7 @@
     "productDetails": {
       "notFound": "Product not found",
       "removeProduct": "Delete product",
-      "go": "Please go to the",
+      "go": "Please, go to the",
       "myStores": "My stores tab",
       "addAtLeastStore": "tab and add at least 1 store"
     },

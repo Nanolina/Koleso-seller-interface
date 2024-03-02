@@ -49,7 +49,7 @@ export const ImageUploadForm: React.FC = () => {
 
       values.colorsWithImages.forEach(
         (imagesWith1Color: IColorsWithImagesData) => {
-          imagesWith1Color.images.forEach((image: File) => {
+          imagesWith1Color.images.forEach((image: File | string) => {
             imagesFormData.append(`${imagesWith1Color.color}`, image);
           });
         }

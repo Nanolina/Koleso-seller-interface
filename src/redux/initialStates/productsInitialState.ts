@@ -22,6 +22,7 @@ export const productInitialState = {
   variants: variantsInitialState,
   colorsWithImages: [],
   userId: '',
+  isActive: true,
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
 };

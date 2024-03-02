@@ -1,9 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { productServiceAPI } from '../http';
-import {
-  IColorsWithImagesData,
-  IUpdateColorsWithImagesData,
-} from '../modules/product/imageForm';
+import { IColorsWithImagesData } from '../modules/product/imageForm';
 import {
   ICreateProductData,
   IProduct,
@@ -82,8 +79,8 @@ export class ProductService {
   static async updateColorsWithImages(
     productId: string,
     filesFormData: FormData
-  ): Promise<AxiosResponse<IUpdateColorsWithImagesData>> {
-    return productServiceAPI.post<IUpdateColorsWithImagesData>(
+  ): Promise<AxiosResponse<IColorsWithImagesData>> {
+    return productServiceAPI.post<IColorsWithImagesData>(
       `/product/${productId}/images`,
       filesFormData
     );

@@ -61,7 +61,6 @@ export const ProductsTable: React.FC = () => {
         <tbody>
           {products &&
             products.map((product: IProduct, productIndex: number) => {
-              console.log('product.variants', product.variants);
               return (
                 <TableRow
                   key={`row-${productIndex}`}

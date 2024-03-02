@@ -28,6 +28,7 @@ export interface ICreateProductData {
 export interface IProduct extends ICreateProductData {
   id: string;
   userId: string;
+  isActive: boolean;
   variants: IVariant[];
   createdAt: string;
   updatedAt: string;
@@ -76,6 +77,7 @@ export interface IProductsState {
 export interface IProductState extends ICreateProductData {
   id: string;
   userId: string;
+  isActive: boolean;
   variants: IVariantsState;
   createdAt: string;
   updatedAt: string;
