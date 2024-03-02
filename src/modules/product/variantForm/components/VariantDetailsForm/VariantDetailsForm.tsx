@@ -9,9 +9,9 @@ import { NEW } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import {
-  handleGetAllVariants,
+  handleGetProductById,
   handleUpdateVariants,
-} from '../../../../../redux/thunks/variants';
+} from '../../../../../redux/thunks/product';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
 import { IUpdateVariantsData } from '../../types';
@@ -24,13 +24,16 @@ export const VariantDetailsForm: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
 
   // Values from Redux
-  const { variants, loading, error, success } = useSelector(
-    (state: IRootState) => state.variants
-  );
+  const {
+    items: variants,
+    loading,
+    error,
+    success,
+  } = useSelector((state: IRootState) => state.products.product.variants);
 
   useEffect(() => {
     if (productId && productId !== NEW) {
-      dispatch(handleGetAllVariants(productId));
+      dispatch(handleGetProductById(productId));
     }
   }, [dispatch, productId]);
 

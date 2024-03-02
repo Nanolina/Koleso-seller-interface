@@ -1,5 +1,12 @@
 import { IProductsState } from '../../modules/product/productForm';
 
+const variantsInitialState = {
+  items: [],
+  loading: false,
+  success: null,
+  error: null,
+};
+
 export const productInitialState = {
   id: '',
   storeId: '',
@@ -12,7 +19,7 @@ export const productInitialState = {
   categoryId: 0,
   subcategoryId: 0,
   composition: [],
-  variants: [],
+  variants: variantsInitialState,
   colorsWithImages: [],
   userId: '',
   createdAt: new Date().toISOString(),

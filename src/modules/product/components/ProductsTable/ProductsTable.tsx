@@ -23,9 +23,12 @@ export const ProductsTable: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { items, loading, error, success } = useSelector(
-    (state: IRootState) => state.products
-  );
+  const {
+    items: products,
+    loading,
+    error,
+    success,
+  } = useSelector((state: IRootState) => state.products);
 
   const handleProductDetails = (productId: string) => {
     navigate(`/product/${productId}/product`);
@@ -56,34 +59,40 @@ export const ProductsTable: React.FC = () => {
         </TableHeader>
 
         <tbody>
-          {items &&
-            items.map((product: IProduct, productIndex: number) => (
-              <TableRow
-                key={`row-${productIndex}`}
-                rowIndex={productIndex}
-                onClick={() => handleProductDetails(product.id)}
-              >
-                <TableCell cell={product.name} />
-                <TableCell cell={product.brand} />
-                <TableCell cell={product.model} />
-                <TableCell
-                  cell={getExistingUniqueColors(product.variants).join(', ')}
-                />
-                <TableCell
-                  cell={getValuesForVariants(product.variants, 'finalPrice')}
-                />
-                <TableCell
-                  cell={getValuesForVariants(product.variants, 'quantity')}
-                />
-                <TableCell
-                  cell={getValuesForVariants(product.variants, 'size')}
-                />
-                <TableCell cell={product.variants[0]?.images[0].url} />
-                <TableCell
-                  cell={getValuesForVariants(product.variants, 'articleKoleso')}
-                />
-              </TableRow>
-            ))}
+          {products &&
+            products.map((product: IProduct, productIndex: number) => {
+              console.log('product.variants', product.variants);
+              return (
+                <TableRow
+                  key={`row-${productIndex}`}
+                  rowIndex={productIndex}
+                  onClick={() => handleProductDetails(product.id)}
+                >
+                  <TableCell cell={product.name} />
+                  <TableCell cell={product.brand} />
+                  <TableCell cell={product.model} />
+                  <TableCell
+                    cell={getExistingUniqueColors(product.variants).join(', ')}
+                  />
+                  <TableCell
+                    cell={getValuesForVariants(product.variants, 'finalPrice')}
+                  />
+                  <TableCell
+                    cell={getValuesForVariants(product.variants, 'quantity')}
+                  />
+                  <TableCell
+                    cell={getValuesForVariants(product.variants, 'size')}
+                  />
+                  <TableCell cell={product.variants[0]?.images[0].url} />
+                  <TableCell
+                    cell={getValuesForVariants(
+                      product.variants,
+                      'articleKoleso'
+                    )}
+                  />
+                </TableRow>
+              );
+            })}
         </tbody>
       </Table>
 

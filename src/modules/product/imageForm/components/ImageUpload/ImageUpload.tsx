@@ -27,8 +27,8 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
 
     const { handleFileSelect } = useImageHandler();
 
-    const { variants, loading } = useSelector(
-      (state: IRootState) => state.variants
+    const { items: variants, loading } = useSelector(
+      (state: IRootState) => state.products.product.variants
     );
 
     const handleCreateNewColorsWithImages = useCallback(

@@ -10,7 +10,7 @@ import {
   ISectionType,
   IUpdateProductData,
 } from '../modules/product/productForm';
-import { IUpdateVariantsData, IVariant } from '../modules/product/variantForm';
+import { IUpdateVariantsData } from '../modules/product/variantForm';
 import { IStore } from '../modules/stores';
 
 export class ProductService {
@@ -76,12 +76,6 @@ export class ProductService {
       `/product/${productId}/variants`,
       variants
     );
-  }
-
-  static async getAllVariants(
-    productId: string
-  ): Promise<AxiosResponse<IVariant[]>> {
-    return productServiceAPI.get<IVariant[]>(`/product/${productId}/variants`);
   }
 
   // Images

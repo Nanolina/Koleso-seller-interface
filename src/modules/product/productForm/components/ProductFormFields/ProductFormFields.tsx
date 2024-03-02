@@ -27,7 +27,9 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   }) => {
     const { t } = useTranslation();
 
-    const { items, loading } = useSelector((state: IRootState) => state.stores);
+    const { items: stores, loading } = useSelector(
+      (state: IRootState) => state.stores
+    );
 
     const [hasStore, setHasStore] = useState<boolean>(false);
     const [hasOnlyOneStore, setHasOnlyOneStore] = useState<boolean>(false);
@@ -40,20 +42,20 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
       resetForm({
         values: {
           ...initialValuesProduct,
-          ...(hasStore && { storeId: items[0].id }),
+          ...(hasStore && { storeId: stores[0].id }),
         },
       });
-    }, [hasStore, initialValuesProduct, items, resetForm]);
+    }, [hasStore, initialValuesProduct, stores, resetForm]);
 
     useEffect(() => {
-      items.length ? setHasStore(true) : setHasStore(false);
-      if (items.length === 1) {
+      stores.length ? setHasStore(true) : setHasStore(false);
+      if (stores.length === 1) {
         setHasOnlyOneStore(true);
-        setFieldValue('storeId', items[0].id);
+        setFieldValue('storeId', stores[0].id);
       } else {
         setHasOnlyOneStore(false);
       }
-    }, [items, setFieldValue]);
+    }, [stores, setFieldValue]);
 
     // Translate and sort genders
     useEffect(() => {
@@ -79,7 +81,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
               id="storeId"
               name="storeId"
               label={t('stores.label')}
-              options={items}
+              options={stores}
               value={values.storeId}
               setFieldValue={setFieldValue}
               keyInLocalStorage="product"
@@ -91,7 +93,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
           {hasStore && hasOnlyOneStore && (
             <div className={styles.storeContainer}>
               <Label text={t('stores.label')} id="storeId" />
-              <h3>{items[0].name}</h3>
+              <h3>{stores[0].name}</h3>
             </div>
           )}
 

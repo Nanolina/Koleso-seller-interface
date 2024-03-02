@@ -12,7 +12,7 @@ import {
   handleGetAllColorsWithImages,
   handleUpdateColorsWithImages,
 } from '../../../../../redux/thunks/colorsWithImages';
-import { handleGetAllVariants } from '../../../../../redux/thunks/variants';
+import { handleGetProductById } from '../../../../../redux/thunks/product';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
 import {
@@ -34,7 +34,7 @@ export const ImageUploadForm: React.FC = () => {
   useEffect(() => {
     if (productId && productId !== NEW) {
       dispatch(handleGetAllColorsWithImages(productId));
-      dispatch(handleGetAllVariants(productId));
+      dispatch(handleGetProductById(productId));
     }
   }, [dispatch, productId]);
 

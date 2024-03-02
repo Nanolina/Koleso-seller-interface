@@ -49,7 +49,7 @@ export interface IVariantErrors {
 }
 
 export interface IVariantsState {
-  variants: IVariant[];
+  items: IVariant[];
   loading: boolean;
   success: string | null;
   error: any;

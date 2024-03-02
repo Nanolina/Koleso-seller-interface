@@ -21,9 +21,12 @@ export const StoresTable: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { items, loading, error, success } = useSelector(
-    (state: IRootState) => state.stores
-  );
+  const {
+    items: stores,
+    loading,
+    error,
+    success,
+  } = useSelector((state: IRootState) => state.stores);
 
   const handleStoreDetails = (storeId: string) => {
     navigate(`/store/${storeId}`);
@@ -48,8 +51,8 @@ export const StoresTable: React.FC = () => {
         </TableHeader>
 
         <tbody>
-          {items &&
-            items.map((store: IStore, storeIndex: number) => (
+          {stores &&
+            stores.map((store: IStore, storeIndex: number) => (
               <TableRow
                 key={store.id}
                 rowIndex={storeIndex}

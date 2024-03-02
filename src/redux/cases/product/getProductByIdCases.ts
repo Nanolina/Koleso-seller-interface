@@ -1,5 +1,10 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
-import { IProduct, IProductsState } from '../../../modules/product/productForm';
+import {
+  IProduct,
+  IProductState,
+  IProductsState,
+} from '../../../modules/product/productForm';
+import { IVariantsState } from '../../../modules/product/variantForm';
 import { handleGetProductById } from '../../thunks/product';
 
 export const getProductByIdCases = (
@@ -10,11 +15,24 @@ export const getProductByIdCases = (
       state.loading = true;
       state.error = null;
       state.success = null;
+      state.product.variants.loading = true;
     })
     .addCase(
       handleGetProductById.fulfilled,
       (state, action: PayloadAction<IProduct>) => {
-        state.product = action.payload;
+        const updatedVariantsState: IVariantsState = {
+          items: action.payload.variants,
+          loading: false,
+          success: null,
+          error: null,
+        };
+
+        const updatedProductState: IProductState = {
+          ...action.payload,
+          variants: updatedVariantsState,
+        };
+
+        state.product = updatedProductState;
         state.loading = false;
       }
     )

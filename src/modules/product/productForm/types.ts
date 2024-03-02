@@ -5,7 +5,7 @@ import {
   FormikTouched,
 } from 'formik';
 import { SetStateAction } from '../../../types';
-import { IVariant } from '../variantForm';
+import { IVariant, IVariantsState } from '../variantForm';
 
 export enum GenderType {
   Male,
@@ -65,6 +65,22 @@ export interface ICreateProductValuesProps {
   setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
 }
 
+export interface IProductsState {
+  items: IProduct[];
+  product: IProductState;
+  success: string | null;
+  loading: boolean;
+  error: any;
+}
+
+export interface IProductState extends ICreateProductData {
+  id: string;
+  userId: string;
+  variants: IVariantsState;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // Catalog
 export interface ICatalogItemType {
   id: number;
@@ -110,12 +126,4 @@ export interface ICompositionProps {
 export interface IChangeCompositionPayload {
   material: string;
   materialPercentage: number;
-}
-
-export interface IProductsState {
-  items: IProduct[];
-  product: IProduct;
-  success: string | null;
-  loading: boolean;
-  error: any;
 }

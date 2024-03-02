@@ -1,5 +1,10 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
-import { IProduct, IProductsState } from '../../../modules/product/productForm';
+import {
+  IProduct,
+  IProductState,
+  IProductsState,
+} from '../../../modules/product/productForm';
+import { IVariantsState } from '../../../modules/product/variantForm';
 import { handleUpdateProduct } from '../../thunks/product';
 
 export const updateProductCases = (
@@ -14,7 +19,19 @@ export const updateProductCases = (
     .addCase(
       handleUpdateProduct.fulfilled,
       (state, action: PayloadAction<IProduct>) => {
-        state.product = action.payload;
+        const updatedVariantsState: IVariantsState = {
+          items: action.payload.variants,
+          loading: false,
+          success: null,
+          error: null,
+        };
+
+        const updatedProductState: IProductState = {
+          ...action.payload,
+          variants: updatedVariantsState,
+        };
+
+        state.product = updatedProductState;
         state.success = 'The product has been successfully updated';
         state.loading = false;
       }

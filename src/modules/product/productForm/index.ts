@@ -3,6 +3,7 @@ export type {
   ICatalogStructureState,
   ICreateProductData,
   IProduct,
+  IProductState,
   IProductsState,
   ISectionType,
   IUpdateProductArg,
