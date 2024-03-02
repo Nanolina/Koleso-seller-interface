@@ -23,7 +23,6 @@ export enum ColorType {
   Sandy,
   Silver,
   Turquoise,
-  Violet,
   White,
   Yellow,
   Transparent,
