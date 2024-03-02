@@ -87,7 +87,7 @@ export const handleRemoveFormStore = async (
 
     setInitialValues(initialValuesStore);
 
-    // Clearing preview logo URL to free up resources
+    // Clearing preview image URL to free up resources
     if (previewUrl) {
       URL.revokeObjectURL(previewUrl);
       setPreviewUrl(null);

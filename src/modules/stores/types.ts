@@ -36,8 +36,8 @@ export interface IUpdateStoreArg {
   storeFormData: FormData;
 }
 
-export interface ILogoProps {
-  valuesLogo?: string;
+export interface IImageProps {
+  valuesImage?: string;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
   previewUrl: string | null;
   setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>;

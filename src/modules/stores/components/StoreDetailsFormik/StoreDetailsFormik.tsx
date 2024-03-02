@@ -69,7 +69,7 @@ export const StoreDetailsFormik: React.FC = () => {
     fetchData();
   }, [dispatch, storeId]);
 
-  // Clearing preview logo URL to free up resources
+  // Clearing preview image URL to free up resources
   useEffect(() => {
     return () => {
       if (previewUrl) {

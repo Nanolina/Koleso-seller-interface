@@ -2,14 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { InputUploadLabel } from '../../../../components/InputUploadLabel/InputUploadLabel';
 import { ImagePreview } from '../../../image/ImagePreview/ImagePreview';
-import { ILogoProps } from '../../types';
-import styles from './LogoForStore.module.css';
+import { IImageProps } from '../../types';
+import styles from './ImageForStore.module.css';
 
-export const LogoForStore: React.FC<ILogoProps> = React.memo(
+export const ImageForStore: React.FC<IImageProps> = React.memo(
   ({ setFieldValue, previewUrl, setPreviewUrl }) => {
     const { t } = useTranslation();
 
-    const handleLogoChange = (
+    const handleImageChange = (
       event: React.ChangeEvent<HTMLInputElement>,
       setFieldValue: (
         field: string,
@@ -36,15 +36,15 @@ export const LogoForStore: React.FC<ILogoProps> = React.memo(
     return (
       <>
         <InputUploadLabel
-          label={t('stores.table.logo')}
+          label={t('stores.table.image')}
           id="image"
           name="image"
-          onChange={(event) => handleLogoChange(event, setFieldValue)}
+          onChange={(event) => handleImageChange(event, setFieldValue)}
           acceptFiles="image/jpeg,image/png"
         />
 
         {previewUrl && (
-          <div className={styles.logo}>
+          <div className={styles.image}>
             <ImagePreview
               image={previewUrl}
               onRemove={() => {

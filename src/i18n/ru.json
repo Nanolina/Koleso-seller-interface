@@ -178,7 +178,7 @@
     "table": {
       "name": "Название",
       "description": "Описание",
-      "logo": "Логотип"
+      "image": "Логотип"
     },
     "validation": {
       "nameRequired": "Название магазина обязательно",

@@ -62,7 +62,7 @@ export const StoresTable: React.FC = () => {
           <HeaderCell></HeaderCell>
           <HeaderCell>{t('stores.table.name')}</HeaderCell>
           <HeaderCell>{t('stores.table.description')}</HeaderCell>
-          <HeaderCell>{t('stores.table.logo')}</HeaderCell>
+          <HeaderCell>{t('stores.table.image')}</HeaderCell>
         </TableHeader>
 
         <tbody>

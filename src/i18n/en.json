@@ -178,7 +178,7 @@
     "table": {
       "name": "Name",
       "description": "Description",
-      "logo": "Logo"
+      "image": "Logo"
     },
     "validation": {
       "nameRequired": "The name of the store is required",

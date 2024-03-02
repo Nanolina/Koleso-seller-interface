@@ -5,7 +5,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { TextareaLabel } from '../../../../components/TextareaLabel/TextareaLabel';
 import { IStoreFormFieldsProps } from '../../types';
-import { LogoForStore } from '../LogoForStore/LogoForStore';
+import { ImageForStore } from '../ImageForStore/ImageForStore';
 
 export const StoreFormFields: React.FC<IStoreFormFieldsProps> = React.memo(
   ({
@@ -54,7 +54,7 @@ export const StoreFormFields: React.FC<IStoreFormFieldsProps> = React.memo(
             rows={4}
           />
 
-          <LogoForStore
+          <ImageForStore
             setFieldValue={setFieldValue}
             previewUrl={previewUrl}
             setPreviewUrl={setPreviewUrl}
