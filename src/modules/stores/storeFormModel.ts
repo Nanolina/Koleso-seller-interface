@@ -94,6 +94,6 @@ export const handleRemoveFormStore = async (
     }
 
     // Navigate
-    navigate('/store/new');
+    navigate('/stores');
   }
 };

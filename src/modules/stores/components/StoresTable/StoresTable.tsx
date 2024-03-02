@@ -23,6 +23,7 @@ export const StoresTable: React.FC = () => {
 
   const {
     items: stores,
+    store,
     loading,
     error,
     success,
@@ -34,7 +35,7 @@ export const StoresTable: React.FC = () => {
 
   useEffect(() => {
     dispatch(handleGetAllStores());
-  }, [dispatch]);
+  }, [dispatch, store]);
 
   if (loading) {
     return <Loader />;

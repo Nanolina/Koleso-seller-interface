@@ -10,11 +10,9 @@ import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { TextareaLabel } from '../../../../../components/TextareaLabel/TextareaLabel';
 import { GENDERS } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
-import { Label } from '../../../../../ui/Label/Label';
 import { IProductFormFieldsProps } from '../../types';
 import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
 import { AddComposition } from '../composition/AddComposition/AddComposition';
-import styles from './ProductFormFields.module.css';
 
 export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   ({
@@ -31,31 +29,14 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
       (state: IRootState) => state.stores
     );
 
-    const [hasStore, setHasStore] = useState<boolean>(false);
-    const [hasOnlyOneStore, setHasOnlyOneStore] = useState<boolean>(false);
     const [sortedGenders, setSortedGenders] = useState<
       { name: string; value: string }[]
     >([]);
 
     const handleClearValues = useCallback(() => {
       localStorage.removeItem('product');
-      resetForm({
-        values: {
-          ...initialValuesProduct,
-          ...(hasStore && { storeId: stores[0].id }),
-        },
-      });
-    }, [hasStore, initialValuesProduct, stores, resetForm]);
-
-    useEffect(() => {
-      stores.length ? setHasStore(true) : setHasStore(false);
-      if (stores.length === 1) {
-        setHasOnlyOneStore(true);
-        setFieldValue('storeId', stores[0].id);
-      } else {
-        setHasOnlyOneStore(false);
-      }
-    }, [stores, setFieldValue]);
+      resetForm({ values: initialValuesProduct });
+    }, [initialValuesProduct, resetForm]);
 
     // Translate and sort genders
     useEffect(() => {
@@ -69,6 +50,13 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
       setSortedGenders(sortedTranslatedGenders);
     }, [t]);
 
+    // Check if storeId exists among stores
+    useEffect(() => {
+      if (!stores.some((store) => store.id === values.storeId)) {
+        setFieldValue('storeId', '');
+      }
+    }, [values.storeId, stores, setFieldValue]);
+
     if (loading) return <Loader />;
 
     return (
@@ -76,28 +64,19 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
         <FaTrashAlt className="clearValuesButton" onClick={handleClearValues} />
 
         <>
-          {hasStore && !hasOnlyOneStore && (
-            <SelectLabel
-              id="storeId"
-              name="storeId"
-              label={t('stores.label')}
-              options={stores}
-              value={values.storeId}
-              setFieldValue={setFieldValue}
-              keyInLocalStorage="product"
-              firstText={t('products.form.selectStore')}
-              required
-            />
-          )}
+          <SelectLabel
+            id="storeId"
+            name="storeId"
+            label={t('stores.label')}
+            options={stores}
+            value={values.storeId}
+            setFieldValue={setFieldValue}
+            keyInLocalStorage="product"
+            firstText={t('products.form.selectStore')}
+            required
+          />
 
-          {hasStore && hasOnlyOneStore && (
-            <div className={styles.storeContainer}>
-              <Label text={t('stores.label')} id="storeId" />
-              <h3>{stores[0].name}</h3>
-            </div>
-          )}
-
-          {!hasStore && (
+          {!stores.length && (
             <p>
               {t('products.productDetails.go')}{' '}
               <Link to="/store/new">
@@ -107,7 +86,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
             </p>
           )}
 
-          {hasStore && (
+          {values.storeId && (
             <>
               <InputLabel
                 label={t('products.table.name')}

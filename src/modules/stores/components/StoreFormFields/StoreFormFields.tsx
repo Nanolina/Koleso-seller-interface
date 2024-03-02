@@ -22,7 +22,7 @@ export const StoreFormFields: React.FC<IStoreFormFieldsProps> = React.memo(
 
     const handleClick = useCallback(() => {
       localStorage.removeItem('store');
-      resetForm({ values: { ...initialValuesStore } });
+      resetForm({ values: initialValuesStore });
     }, [initialValuesStore, resetForm]);
 
     return (
