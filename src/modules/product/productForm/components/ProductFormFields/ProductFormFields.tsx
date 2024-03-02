@@ -34,6 +34,9 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
 
     const [hasStore, setHasStore] = useState<boolean>(false);
     const [hasOnlyOneStore, setHasOnlyOneStore] = useState<boolean>(false);
+    const [sortedGenders, setSortedGenders] = useState<
+      { name: string; value: string }[]
+    >([]);
 
     const handleClearValues = useCallback(() => {
       localStorage.removeItem('product');
@@ -58,6 +61,18 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
         setHasOnlyOneStore(false);
       }
     }, [items, setFieldValue]);
+
+    // Translate and sort genders
+    useEffect(() => {
+      const translatedGenders = GENDERS.map((gender) => ({
+        name: t(`products.form.gender.${gender}`),
+        value: gender,
+      }));
+      const sortedTranslatedGenders = translatedGenders.sort((a, b) =>
+        a.name.localeCompare(b.name, 'default', { numeric: true })
+      );
+      setSortedGenders(sortedTranslatedGenders);
+    }, [t]);
 
     if (loading) return <Loader />;
 
@@ -146,12 +161,11 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 id="gender"
                 name="gender"
                 label={t('products.form.gender.label')}
-                options={GENDERS}
+                options={sortedGenders}
                 value={values.gender || undefined}
                 setFieldValue={setFieldValue}
                 keyInLocalStorage="product"
                 firstText={t('products.form.gender.select')}
-                translationType="products.form.gender"
               />
 
               <CatalogStructureSelects

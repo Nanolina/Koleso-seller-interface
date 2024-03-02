@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { COLORS } from '../../../../../consts';
@@ -12,6 +12,9 @@ export const AddVariants: React.FC<IVariantsProps> = React.memo(
     const { t } = useTranslation();
 
     const [color, setColor] = useState<ColorType | string>('');
+    const [sortedColors, setSortedColors] = useState<
+      { name: string; value: string }[]
+    >([]);
 
     const handleCreateNewVariant = (colorValue: ColorType) => {
       if (!colorValue) return;
@@ -20,17 +23,28 @@ export const AddVariants: React.FC<IVariantsProps> = React.memo(
       setFieldValue('variants', newVariants);
     };
 
+    // Translate and sort colors
+    useEffect(() => {
+      const translatedColors = COLORS.map((color) => ({
+        name: t(`products.form.color.${color}`),
+        value: color,
+      }));
+      const sortedTranslatedColors = translatedColors.sort((a, b) =>
+        a.name.localeCompare(b.name, 'default', { numeric: true })
+      );
+      setSortedColors(sortedTranslatedColors);
+    }, [t]);
+
     return (
       <>
         <SelectLabel
           id="color"
           name="color"
           label={t('products.form.color.label')}
-          options={COLORS}
+          options={sortedColors}
           value={color}
           onChange={handleCreateNewVariant}
           firstText={t('products.form.color.select')}
-          translationType="products.form.color"
           required
         />
         <Variants

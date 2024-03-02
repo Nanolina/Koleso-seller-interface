@@ -1,33 +1,9 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { ISelectProps } from '../types';
 import styles from './Select.module.css';
 
 export const Select: React.FC<ISelectProps> = React.memo(
-  ({
-    id,
-    name,
-    options,
-    onChange,
-    value,
-    translationType,
-    firstText,
-    isHalfWidth,
-  }) => {
-    const { t } = useTranslation();
-
-    const getOptionText = (option: any) => {
-      if (translationType && option.name) {
-        return t(`${translationType}.${option.name}`);
-      } else if (!translationType && option.name) {
-        return option.name;
-      } else if (translationType && !option.name) {
-        return t(`${translationType}.${option}`);
-      }
-
-      return option;
-    };
-
+  ({ id, name, options, onChange, value, firstText, isHalfWidth }) => {
     return (
       <select
         id={id}
@@ -42,7 +18,7 @@ export const Select: React.FC<ISelectProps> = React.memo(
 
           return (
             <option key={value} value={value}>
-              {getOptionText(option)}
+              {option.name || option}
             </option>
           );
         })}

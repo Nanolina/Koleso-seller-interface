@@ -43,9 +43,14 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
 
     // Sort sections
     useEffect(() => {
-      const sortedSections = [...catalogStructure].sort((a, b) =>
-        t(`catalog.${a.name}`).localeCompare(t(`catalog.${b.name}`), 'ru')
-      );
+      const sortedSections = [...catalogStructure]
+        .map((section) => ({
+          ...section,
+          name: t(`catalog.${section.name}`),
+        }))
+        .sort((a, b) =>
+          t(`catalog.${a.name}`).localeCompare(t(`catalog.${b.name}`), 'ru')
+        );
       setSections(sortedSections);
     }, [catalogStructure, t]);
 
@@ -123,7 +128,6 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
           value={values.sectionId || 0}
           setFieldValue={setFieldValue}
           firstText={t('products.form.selectSection')}
-          translationType="catalog"
           isNumber
           required
         />

@@ -16,13 +16,14 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
     setFieldValue,
     onChange,
     firstText,
-    translationType,
     extraText,
     isNumber = false,
     required,
   }) => {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const eventValue = isNumber ? parseFloat(e.target.value) || 0 : e.target.value;
+      const eventValue = isNumber
+        ? parseFloat(e.target.value) || 0
+        : e.target.value;
 
       if (setFieldValue && !keyInLocalStorage) {
         setFieldValue(name, eventValue);
@@ -50,7 +51,6 @@ export const SelectLabel: React.FC<ISelectLabelProps> = React.memo(
           options={options}
           value={value}
           onChange={handleChange}
-          translationType={translationType}
           firstText={firstText}
         />
 

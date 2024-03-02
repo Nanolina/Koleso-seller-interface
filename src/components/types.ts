@@ -8,7 +8,6 @@ export interface ISelectProps {
   options: any;
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   value?: string;
-  translationType?: string;
   firstText?: string;
   isHalfWidth?: boolean;
 }
@@ -49,7 +48,6 @@ export interface ISelectLabelProps {
   setFieldValue?: FormikProps<any>['setFieldValue'];
   onChange?: any;
   firstText?: string;
-  translationType?: string;
   extraText?: string;
   isNumber?: boolean;
   required?: boolean;

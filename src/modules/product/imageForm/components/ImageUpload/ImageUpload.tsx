@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
@@ -21,13 +21,15 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
   ({ values, setFieldValue }) => {
     const { t } = useTranslation();
     const [color, setColor] = useState<ColorType | string>('');
+    const [sortedColors, setSortedColors] = useState<
+      { name: string; value: string }[]
+    >([]);
+
     const { handleFileSelect } = useImageHandler();
 
     const { variants, loading } = useSelector(
       (state: IRootState) => state.variants
     );
-
-    const uniqueColors = getExistingUniqueColors(variants);
 
     const handleCreateNewColorsWithImages = useCallback(
       (colorValue: ColorType) => {
@@ -59,6 +61,19 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
       [values.colorsWithImages, setFieldValue]
     );
 
+    // Translate and sort colors
+    useEffect(() => {
+      const uniqueColors = getExistingUniqueColors(variants);
+      const translatedColors = uniqueColors.map((color) => ({
+        name: t(`products.form.color.${color}`),
+        value: color,
+      }));
+      const sortedTranslatedColors = translatedColors.sort((a, b) =>
+        a.name.localeCompare(b.name, 'default', { numeric: true })
+      );
+      setSortedColors(sortedTranslatedColors);
+    }, [t, variants]);
+
     if (loading) return <Loader />;
 
     return (
@@ -67,11 +82,10 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
           id="color"
           name="color"
           label={t('products.form.color.label')}
-          options={uniqueColors}
+          options={sortedColors}
           value={color}
           onChange={handleCreateNewColorsWithImages}
           firstText={t('products.form.image.select')}
-          translationType="products.form.color"
           extraText={t('products.form.image.upTo')}
           required
         />

@@ -61,9 +61,9 @@ export const removeImages = (
 
 // Get unique colors
 export const getExistingUniqueColors = (variants: IVariant[]) => {
-  const set = new Set<ColorType>();
+  const set = new Set<string>();
   if (variants && variants.length) {
-    variants.forEach((variant: IVariant) => set.add(variant.color));
+    variants.forEach((variant: IVariant) => set.add(variant.color.toString()));
   }
 
   return [...set];
