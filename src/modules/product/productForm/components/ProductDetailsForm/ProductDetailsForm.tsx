@@ -41,16 +41,9 @@ export const ProductDetailsForm: React.FC = () => {
     (state: IRootState) => state.products
   );
 
-  const {
-    items: stores,
-    loading: storesLoading,
-    error: storesError,
-    success: storesSuccess,
-  } = useSelector((state: IRootState) => state.stores);
-
   // useEffect
   useEffect(() => {
-    dispatch(handleGetAllStores());
+    dispatch(handleGetAllStores({ filter: 'active' }));
   }, [dispatch]);
 
   useEffect(() => {

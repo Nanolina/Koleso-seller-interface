@@ -13,7 +13,7 @@ import { ICreateStoreData, IStore } from './types';
 export const initialValuesStore: ICreateStoreData = {
   name: '',
   description: '',
-  logo: '',
+  image: '',
 };
 
 export const validationSchemaStore = (t: TFunction<'translation', undefined>) =>
@@ -31,16 +31,16 @@ export const handleSubmitFormStore = async (
   navigate: any
 ) => {
   // Get data from values
-  const { name, description, logo } = values;
+  const { name, description, image } = values;
 
   // Add data to form data
   const storeFormData = new FormData();
   storeFormData.append('name', name);
   if (description) storeFormData.append('description', description);
-  if (logo) {
-    storeFormData.append('logo', logo);
+  if (image) {
+    storeFormData.append('image', image);
   } else {
-    storeFormData.append('isRemoveLogo', 'true');
+    storeFormData.append('isRemoveImage', 'true');
   }
 
   let data: any;
@@ -66,7 +66,7 @@ export const handleSubmitFormStore = async (
     setInitialValues({
       name: values.name,
       description: values.description || '',
-      logo: values.logo,
+      image: values.image,
     });
 
     // Navigate

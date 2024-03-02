@@ -4,6 +4,7 @@ import {
   createStoreCases,
   getAllStoresCases,
   getStoreByIdCases,
+  recoverStoreCases,
   removeStoreCases,
   updateStoreCases,
 } from '../cases/store';
@@ -19,6 +20,7 @@ const storesSlice = createSlice({
     getStoreByIdCases(builder);
     updateStoreCases(builder);
     removeStoreCases(builder);
+    recoverStoreCases(builder);
   },
 });
 

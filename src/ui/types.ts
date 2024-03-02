@@ -78,3 +78,8 @@ export interface ITabProps {
   text: string;
   icon: ReactElement;
 }
+
+export interface IRecoverIconProps {
+  tooltipText?: string;
+  onClick: any;
+}

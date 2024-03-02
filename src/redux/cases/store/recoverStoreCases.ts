@@ -1,28 +1,26 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
 import { IStore, IStoresState } from '../../../modules/stores';
-import { handleGetStoreById } from '../../thunks/store';
+import { handleRecoverStore } from '../../thunks/store';
 
-export const getStoreByIdCases = (
+export const recoverStoreCases = (
   builder: ActionReducerMapBuilder<IStoresState>
 ) => {
   builder
-    .addCase(handleGetStoreById.pending, (state) => {
+    .addCase(handleRecoverStore.pending, (state) => {
       state.loading = true;
       state.error = null;
       state.success = null;
     })
     .addCase(
-      handleGetStoreById.fulfilled,
+      handleRecoverStore.fulfilled,
       (state, action: PayloadAction<IStore>) => {
         state.store = action.payload;
         state.loading = false;
-        state.isStoreFound = true;
       }
     )
-    .addCase(handleGetStoreById.rejected, (state, action) => {
+    .addCase(handleRecoverStore.rejected, (state, action) => {
       state.loading = false;
       state.success = null;
-      state.error = action.payload || 'Failed to get store by id';
-      state.isStoreFound = false;
+      state.error = action.payload || 'Failed to recover store by id';
     });
 };

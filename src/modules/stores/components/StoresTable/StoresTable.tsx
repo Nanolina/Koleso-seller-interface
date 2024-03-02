@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +7,11 @@ import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
-import { handleGetAllStores } from '../../../../redux/thunks/store';
+import {
+  handleGetAllStores,
+  handleRecoverStore,
+} from '../../../../redux/thunks/store';
+import { RecoverIcon } from '../../../../ui/RecoverIcon/RecoverIcon';
 import {
   HeaderCell,
   Table,
@@ -21,21 +26,30 @@ export const StoresTable: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
+  const [showDeleted, setShowDeleted] = useState(false);
+
   const {
     items: stores,
-    store,
     loading,
     error,
     success,
   } = useSelector((state: IRootState) => state.stores);
 
-  const handleStoreDetails = (storeId: string) => {
-    navigate(`/store/${storeId}`);
+  const handleRecoverStoreClick = async (
+    storeId: string,
+    event: React.MouseEvent<SVGSVGElement>
+  ) => {
+    event.stopPropagation();
+    const resultAction = await dispatch(handleRecoverStore(storeId));
+    const result = unwrapResult(resultAction);
+    if (result) navigate(`/store/${storeId}`);
   };
 
   useEffect(() => {
-    dispatch(handleGetAllStores());
-  }, [dispatch, store]);
+    dispatch(
+      handleGetAllStores({ filter: showDeleted ? 'deleted' : 'active' })
+    );
+  }, [dispatch, showDeleted]);
 
   if (loading) {
     return <Loader />;
@@ -43,7 +57,7 @@ export const StoresTable: React.FC = () => {
 
   return (
     <>
-      <Table>
+      <Table showDeleted={showDeleted} setShowDeleted={setShowDeleted}>
         <TableHeader>
           <HeaderCell></HeaderCell>
           <HeaderCell>{t('stores.table.name')}</HeaderCell>
@@ -57,11 +71,23 @@ export const StoresTable: React.FC = () => {
               <TableRow
                 key={store.id}
                 rowIndex={storeIndex}
-                onClick={() => handleStoreDetails(store.id)}
+                onClick={() => navigate(`/store/${store.id}`)}
               >
                 <TableCell cell={store.name} />
                 <TableCell cell={store.description} />
                 <TableCell cell={store.image?.url} />
+                {!store.isActive && (
+                  <TableCell
+                    cell={
+                      <RecoverIcon
+                        tooltipText={t('stores.recover')}
+                        onClick={(event: React.MouseEvent<SVGSVGElement>) =>
+                          handleRecoverStoreClick(store.id, event)
+                        }
+                      />
+                    }
+                  />
+                )}
               </TableRow>
             ))}
         </tbody>

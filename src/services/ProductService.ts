@@ -18,8 +18,9 @@ export class ProductService {
     return productServiceAPI.post<IStore>('/store', storeFormData);
   }
 
-  static async getAllStores(): Promise<AxiosResponse<IStore[]>> {
-    return productServiceAPI.get<IStore[]>('/store');
+  static async getAllStores(filter: any): Promise<AxiosResponse<IStore[]>> {
+    const queryString = new URLSearchParams(filter as any).toString();
+    return productServiceAPI.get<IStore[]>(`/store?${queryString}`);
   }
 
   static async getStoreById(id: string): Promise<AxiosResponse<IStore>> {
@@ -35,6 +36,10 @@ export class ProductService {
 
   static async removeStore(id: string): Promise<AxiosResponse<IStore>> {
     return productServiceAPI.delete<IStore>(`/store/${id}`);
+  }
+
+  static async recoverStore(id: string): Promise<AxiosResponse<IStore>> {
+    return productServiceAPI.post<IStore>(`/store/${id}/recover`);
   }
 
   // Products

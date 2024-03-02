@@ -30,7 +30,6 @@ export const StoreDetailsFormik: React.FC = () => {
   const savedStore = JSON.parse(localStorage.getItem('store') || '{}');
 
   // useState
-  const [isStoreFound, setIsStoreFound] = useState<boolean>(true);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [initialValues, setInitialValues] = useState<ICreateStoreData>({
     ...initialValuesStore,
@@ -55,16 +54,14 @@ export const StoreDetailsFormik: React.FC = () => {
 
         // Set initial values based on the data from DB
         if (store) {
-          const logo = store.image?.url;
+          const image = store.image?.url;
           setInitialValues({
+            image,
             name: store.name,
             description: store.description || '',
-            logo: logo,
           });
 
-          if (logo) setPreviewUrl(logo);
-        } else {
-          setIsStoreFound(false);
+          if (image) setPreviewUrl(image);
         }
       }
     };
@@ -95,13 +92,6 @@ export const StoreDetailsFormik: React.FC = () => {
     },
     [store, storeId, dispatch, navigate]
   );
-
-  // Early returns
-  if (!isStoreFound) {
-    return (
-      <div className="itemNotFound">{t('stores.storeDetails.notFound')}</div>
-    );
-  }
 
   if (loading) return <Loader />;
 

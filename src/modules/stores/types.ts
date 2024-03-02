@@ -9,7 +9,7 @@ import { IImage } from '../image';
 export interface ICreateStoreData {
   name: string;
   description?: string;
-  logo?: string;
+  image?: File | string;
 }
 
 export interface IStore {
@@ -17,12 +17,16 @@ export interface IStore {
   name: string;
   description?: string;
   image?: IImage;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IStoresState {
   items: IStore[];
   store: IStore;
   success: string | null;
+  isStoreFound: boolean;
   loading: boolean;
   error: any;
 }

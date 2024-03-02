@@ -14,7 +14,9 @@ export const StorePage: React.FC = () => {
   const { storeId } = useParams<{ storeId: string }>();
   const { handleCloseSideMenu } = useSideMenu();
 
-  const store = useSelector((state: IRootState) => state.stores.store);
+  const { store, isStoreFound } = useSelector(
+    (state: IRootState) => state.stores
+  );
 
   return (
     <>
@@ -24,12 +26,22 @@ export const StorePage: React.FC = () => {
         redirectToItemsPage={() => navigate('/stores')}
         isSmallContainer
       >
-        <Title
-          text={
-            store?.name && storeId !== NEW ? store?.name : t('stores.addStore')
-          }
-        />
-        <StoreDetailsFormik />
+        {isStoreFound ? (
+          <>
+            <Title
+              text={
+                store?.name && storeId !== NEW
+                  ? store?.name
+                  : t('stores.addStore')
+              }
+            />
+            <StoreDetailsFormik />
+          </>
+        ) : (
+          <div className="itemNotFound">
+            <Title text={t('stores.storeDetails.notFound')} />
+          </div>
+        )}
       </Container>
     </>
   );

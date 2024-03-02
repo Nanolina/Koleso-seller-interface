@@ -20,12 +20,12 @@ export const LogoForStore: React.FC<ILogoProps> = React.memo(
       const { files } = event.target;
       if (files && files.length) {
         const file = files[0];
-        setFieldValue('logo', file);
+        setFieldValue('image', file);
 
         const fileUrl = URL.createObjectURL(file);
         setPreviewUrl(fileUrl);
       } else {
-        setFieldValue('logo', null);
+        setFieldValue('image', null);
         if (previewUrl) {
           URL.revokeObjectURL(previewUrl);
           setPreviewUrl(null);
@@ -37,8 +37,8 @@ export const LogoForStore: React.FC<ILogoProps> = React.memo(
       <>
         <InputUploadLabel
           label={t('stores.table.logo')}
-          id="logo"
-          name="logo"
+          id="image"
+          name="image"
           onChange={(event) => handleLogoChange(event, setFieldValue)}
           acceptFiles="image/jpeg,image/png"
         />
@@ -48,7 +48,7 @@ export const LogoForStore: React.FC<ILogoProps> = React.memo(
             <ImagePreview
               image={previewUrl}
               onRemove={() => {
-                setFieldValue('logo', null);
+                setFieldValue('image', null);
                 URL.revokeObjectURL(previewUrl);
                 setPreviewUrl(null);
               }}

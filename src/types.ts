@@ -13,3 +13,7 @@ export interface IStatuses {
   returned: 'returned';
   pendingPayment: 'pending-payment';
 }
+
+export interface FilterQuery {
+  filter: string;
+}

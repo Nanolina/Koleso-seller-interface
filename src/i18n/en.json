@@ -173,6 +173,8 @@
   "stores": {
     "label": "Store",
     "addStore": "Add store",
+    "recover": "Recover the store",
+    "showDeleted": "Show only deleted",
     "table": {
       "name": "Name",
       "description": "Description",
