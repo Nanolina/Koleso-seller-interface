@@ -30,7 +30,7 @@ export const handleSubmitFormProduct = async (
         description: values.description || '',
         brand: values.brand || '',
         model: values.model || '',
-        gender: values.gender || undefined,
+        gender: values.gender || '',
         sectionId: values.sectionId,
         categoryId: values.categoryId,
         subcategoryId: values.subcategoryId,

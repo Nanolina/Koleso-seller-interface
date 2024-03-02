@@ -18,7 +18,7 @@ export interface ICreateProductData {
   description?: string;
   brand?: string;
   model?: string;
-  gender?: GenderType;
+  gender?: GenderType | '';
   sectionId: number;
   categoryId?: number;
   subcategoryId?: number;
@@ -39,7 +39,7 @@ export interface IUpdateProductData {
   description?: string;
   brand?: string;
   model?: string;
-  gender?: GenderType;
+  gender?: GenderType | '';
   sectionId?: number;
   categoryId?: number;
   subcategoryId?: number;

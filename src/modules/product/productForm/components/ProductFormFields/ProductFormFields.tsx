@@ -2,7 +2,7 @@ import { Field } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaTrashAlt } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { InputLabel } from '../../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../../components/Loader/Loader';
@@ -10,8 +10,6 @@ import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { TextareaLabel } from '../../../../../components/TextareaLabel/TextareaLabel';
 import { GENDERS } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
-import { AppDispatch } from '../../../../../redux/store';
-import { handleGetAllStores } from '../../../../../redux/thunks/store';
 import { Label } from '../../../../../ui/Label/Label';
 import { IProductFormFieldsProps } from '../../types';
 import { CatalogStructureSelects } from '../CatalogStructureSelects/CatalogStructureSelects';
@@ -28,7 +26,6 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
     initialValuesProduct,
   }) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch<AppDispatch>();
 
     const { items, loading } = useSelector((state: IRootState) => state.stores);
 
@@ -47,10 +44,6 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
         },
       });
     }, [hasStore, initialValuesProduct, items, resetForm]);
-
-    useEffect(() => {
-      dispatch(handleGetAllStores());
-    }, [dispatch]);
 
     useEffect(() => {
       items.length ? setHasStore(true) : setHasStore(false);
@@ -162,7 +155,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 name="gender"
                 label={t('products.form.gender.label')}
                 options={sortedGenders}
-                value={values.gender || undefined}
+                value={values.gender || ''}
                 setFieldValue={setFieldValue}
                 keyInLocalStorage="product"
                 firstText={t('products.form.gender.select')}

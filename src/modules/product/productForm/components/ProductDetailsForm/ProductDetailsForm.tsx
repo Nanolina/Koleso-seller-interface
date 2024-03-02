@@ -10,6 +10,7 @@ import { NEW } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetProductById } from '../../../../../redux/thunks/product';
+import { handleGetAllStores } from '../../../../../redux/thunks/store';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
 import { handleSubmitFormProduct } from '../../handlers';
@@ -39,6 +40,10 @@ export const ProductDetailsForm: React.FC = () => {
   );
 
   // useEffect
+  useEffect(() => {
+    dispatch(handleGetAllStores());
+  }, [dispatch]);
+
   useEffect(() => {
     const fetchData = async () => {
       // If the correct productId in the url
