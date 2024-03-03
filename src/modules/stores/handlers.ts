@@ -1,26 +1,13 @@
 import { unwrapResult } from '@reduxjs/toolkit';
-import { TFunction } from 'i18next';
-import * as Yup from 'yup';
 import { NEW } from '../../consts';
+import { AppDispatch } from '../../redux/store';
 import {
   handleCreateStore,
   handleRemoveStore,
   handleUpdateStore,
 } from '../../redux/thunks/store';
-import { AppDispatch } from './../../redux/store';
+import { initialValuesStore } from './initialValues';
 import { ICreateStoreData, IStore } from './types';
-
-export const initialValuesStore: ICreateStoreData = {
-  name: '',
-  description: '',
-  image: '',
-};
-
-export const validationSchemaStore = (t: TFunction<'translation', undefined>) =>
-  Yup.object().shape({
-    name: Yup.string().required(t('stores.validation.nameRequired')),
-    description: Yup.string(),
-  });
 
 export const handleSubmitFormStore = async (
   store: IStore | null,

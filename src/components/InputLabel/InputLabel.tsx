@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input } from '../../ui/Input/Input';
 import { Label } from '../../ui/Label/Label';
-import { ValidationError } from '../../ui/ValidationError/ValidationError';
 import { saveValuesToLocalStorage } from '../../utils';
 import { IInputLabelProps } from '../types';
 import styles from './InputLabel.module.css';

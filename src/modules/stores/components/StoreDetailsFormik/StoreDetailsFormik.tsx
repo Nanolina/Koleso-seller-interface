@@ -11,13 +11,10 @@ import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleGetStoreById } from '../../../../redux/thunks/store';
 import { Button } from '../../../../ui/Button/Button';
-import {
-  handleRemoveFormStore,
-  handleSubmitFormStore,
-  initialValuesStore,
-  validationSchemaStore,
-} from '../../storeFormModel';
+import { handleRemoveFormStore, handleSubmitFormStore } from '../../handlers';
+import { initialValuesStore } from '../../initialValues';
 import { ICreateStoreData, IStore } from '../../types';
+import { validationSchema } from '../../validationSchema';
 import { StoreFormFields } from '../StoreFormFields/StoreFormFields';
 import styles from './StoreDetailsFormik.module.css';
 
@@ -98,7 +95,7 @@ export const StoreDetailsFormik: React.FC = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={() => validationSchemaStore(t)}
+      validationSchema={() => validationSchema(t)}
       onSubmit={handleSubmit}
       enableReinitialize
     >
