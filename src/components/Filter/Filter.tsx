@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { FaFilter } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../../redux/rootReducer';
@@ -19,12 +19,28 @@ export const Filter: React.FC<IFilterProps> = ({ text, checked, onChange }) => {
     dispatch(toggleFilter());
   }, [dispatch]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!(event.target as HTMLElement).closest('#filter-block')) {
+        dispatch(toggleFilter());
+      }
+    };
+
+    if (isFilterOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dispatch, isFilterOpen]);
+
   return (
     <div className={styles.container}>
       <FaFilter size={20} color="var(--main)" onClick={handleToggleFilter} />
 
       {isFilterOpen && (
-        <div className={styles.checkbox}>
+        <div className={styles.checkbox} id="filter-block">
           <CheckboxWithLabel
             label={text}
             checked={checked}
