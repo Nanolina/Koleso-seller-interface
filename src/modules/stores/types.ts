@@ -27,6 +27,7 @@ export interface IStoresState {
   store: IStore;
   success: string | null;
   isStoreFound: boolean;
+  showDeleted: boolean;
   loading: boolean;
   error: any;
 }
@@ -52,8 +53,4 @@ export interface IStoreFormFieldsProps {
   initialValuesStore: ICreateStoreData;
   previewUrl: string | null;
   setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>;
-}
-
-export interface IStoresTableProps {
-  showDeleted: boolean;
 }

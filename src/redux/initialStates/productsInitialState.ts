@@ -31,6 +31,7 @@ export const productsInitialState: IProductsState = {
   items: [],
   product: productInitialState,
   isProductFound: true,
+  showDeleted: false,
   loading: false,
   success: null,
   error: null,

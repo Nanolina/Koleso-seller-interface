@@ -14,7 +14,11 @@ import { productsInitialState } from '../initialStates';
 const productsSlice = createSlice({
   name: 'products',
   initialState: productsInitialState,
-  reducers: {},
+  reducers: {
+    toggleShowDeleted(state) {
+      state.showDeleted = !state.showDeleted;
+    },
+  },
   extraReducers: (builder: ActionReducerMapBuilder<IProductsState>) => {
     createProductCases(builder);
     getAllProductsCases(builder);
@@ -25,5 +29,7 @@ const productsSlice = createSlice({
     recoverProductCases(builder);
   },
 });
+
+export const { toggleShowDeleted } = productsSlice.actions;
 
 export default productsSlice.reducer;

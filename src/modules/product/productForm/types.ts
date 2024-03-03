@@ -72,6 +72,7 @@ export interface IProductsState {
   items: IProduct[];
   product: IProductState;
   isProductFound: boolean;
+  showDeleted: boolean;
   success: string | null;
   loading: boolean;
   error: any;

@@ -20,6 +20,7 @@ export const storesInitialState: IStoresState = {
   items: [],
   store: storeInitialState,
   isStoreFound: true,
+  showDeleted: false,
   loading: false,
   success: null,
   error: null,
