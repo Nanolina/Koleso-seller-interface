@@ -1,4 +1,3 @@
-import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,26 +27,22 @@ export const StoresTable: React.FC<IStoresTable> = ({ showDeleted }) => {
 
   const {
     items: stores,
+    store,
     loading,
     error,
     success,
   } = useSelector((state: IRootState) => state.stores);
 
-  const handleRecoverStoreClick = async (
-    storeId: string,
-    event: React.MouseEvent<SVGSVGElement>
-  ) => {
+  const handleRecoverStoreClick = async (storeId: string, event: any) => {
     event.stopPropagation();
-    const resultAction = await dispatch(handleRecoverStore(storeId));
-    const result = unwrapResult(resultAction);
-    if (result) navigate(`/store/${storeId}`);
+    await dispatch(handleRecoverStore(storeId));
   };
 
   useEffect(() => {
     dispatch(
       handleGetAllStores({ filter: showDeleted ? 'deleted' : 'active' })
     );
-  }, [dispatch, showDeleted]);
+  }, [dispatch, showDeleted, store]);
 
   if (loading) {
     return <Loader />;
@@ -70,7 +65,11 @@ export const StoresTable: React.FC<IStoresTable> = ({ showDeleted }) => {
               <TableRow
                 key={store.id}
                 rowIndex={storeIndex}
-                onClick={() => navigate(`/store/${store.id}`)}
+                onClick={(event: MouseEvent) => {
+                  if (!(event.target as HTMLElement).closest('.recoverIcon')) {
+                    navigate(`/store/${store.id}`);
+                  }
+                }}
               >
                 <TableCell cell={store.name} />
                 <TableCell cell={store.description} />

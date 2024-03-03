@@ -6,6 +6,10 @@
   gap: 10px;
 }
 
+.filter {
+  cursor: pointer;
+}
+
 .checkbox {
   background-color: white;
   padding: 10px;

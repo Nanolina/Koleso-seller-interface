@@ -83,10 +83,14 @@ export const handleRemoveFormStore = async (
   navigate: any
 ) => {
   if (storeId && storeId !== NEW) {
-    dispatch(handleRemoveStore(storeId));
+    const data = await dispatch(handleRemoveStore(storeId));
+    const store: IStore = unwrapResult(data);
+
+    if (!store) {
+      return;
+    }
 
     setInitialValues(initialValuesStore);
-
     // Clearing preview image URL to free up resources
     if (previewUrl) {
       URL.revokeObjectURL(previewUrl);

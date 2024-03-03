@@ -37,7 +37,12 @@ export const Filter: React.FC<IFilterProps> = ({ text, checked, onChange }) => {
 
   return (
     <div className={styles.container}>
-      <FaFilter size={20} color="var(--main)" onClick={handleToggleFilter} />
+      <FaFilter
+        size={20}
+        color="var(--main)"
+        onClick={handleToggleFilter}
+        className={styles.filter}
+      />
 
       {isFilterOpen && (
         <div className={styles.checkbox} id="filter-block">
