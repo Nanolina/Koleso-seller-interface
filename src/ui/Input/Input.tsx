@@ -1,6 +1,8 @@
+import classNames from 'classnames';
 import { Field } from 'formik';
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { ValidationError } from '../ValidationError/ValidationError';
 import { IInputProps } from '../types';
 import styles from './Input.module.css';
 
@@ -14,6 +16,10 @@ export const Input: React.FC<IInputProps> = React.memo(
     value,
     onChange,
     hasError = false,
+    errors,
+    touched,
+    isInputAbsolute = false,
+    isErrorSmall = false,
   }) => {
     // Add eye to input for password
     const [showPassword, setShowPassword] = useState(false);
@@ -21,6 +27,12 @@ export const Input: React.FC<IInputProps> = React.memo(
     const inputType = type === 'password' && showPassword ? 'text' : type;
     const isVisiblePassword = type === 'password' && showPassword;
     const isNotVisiblePassword = type === 'password' && !showPassword;
+
+    const inputClass = classNames({
+      [styles.error]: hasError,
+      [styles.inputAbsolute]: isInputAbsolute,
+      [styles.input]: !isInputAbsolute && !hasError,
+    });
 
     return (
       <div className={styles.inputContainer}>
@@ -33,8 +45,11 @@ export const Input: React.FC<IInputProps> = React.memo(
           type={inputType}
           placeholder={placeholder}
           required={required}
-          className={hasError ? styles.error : styles.input}
+          className={inputClass}
         />
+        {errors[name] && touched[name] && (
+          <ValidationError error={errors[name]} isErrorSmall={isErrorSmall} />
+        )}
         {isNotVisiblePassword && (
           <FaEye
             onClick={togglePasswordVisibility}

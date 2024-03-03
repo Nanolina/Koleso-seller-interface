@@ -37,7 +37,7 @@ export const copyVariant = (variants: IVariant[], variantId: string) => {
   if (!existingVariant) {
     return variants;
   }
-  const newVariant = { ...existingVariant, id: uuidv4() };
+  const newVariant = { ...existingVariant, id: uuidv4(), articleKoleso: '' };
   return [...variants, newVariant];
 };
 

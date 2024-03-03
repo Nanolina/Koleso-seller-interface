@@ -5,7 +5,7 @@ import { COLORS } from '../../../../../consts';
 import { ColorType } from '../../../types';
 import { createNewVariant } from '../../functions';
 import { IVariantsProps } from '../../types';
-import { Variants } from '../Variants/Variants';
+import { VariantsTable } from '../VariantsTable/VariantsTable';
 
 export const AddVariants: React.FC<IVariantsProps> = React.memo(
   ({ values, setFieldValue, errors, touched }) => {
@@ -47,7 +47,7 @@ export const AddVariants: React.FC<IVariantsProps> = React.memo(
           firstText={t('products.form.color.select')}
           required
         />
-        <Variants
+        <VariantsTable
           values={values}
           setFieldValue={setFieldValue}
           errors={errors}

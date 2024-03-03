@@ -8,7 +8,7 @@ import { Title } from '../../../ui/Title/Title';
 export const SettingsEmailPage = () => {
   const { t } = useTranslation();
   const [email, setEmail] = useState<string>('');
-   const { handleCloseSideMenu } = useSideMenu();
+  const { handleCloseSideMenu } = useSideMenu();
 
   return (
     <>
@@ -16,6 +16,8 @@ export const SettingsEmailPage = () => {
       <Container onClick={handleCloseSideMenu}>
         <Title text={t('settings.email')} />
         <Input
+          id="email"
+          name="email"
           type="email"
           value={email}
           onChange={(event: any) => setEmail(event.target.value)}

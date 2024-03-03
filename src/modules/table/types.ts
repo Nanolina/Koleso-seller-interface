@@ -12,3 +12,8 @@ export interface ITableCellProps {
 export interface ITableProps {
   children: any;
 }
+
+export interface IHeaderCellProps {
+  extraText?: string;
+  children?: any;
+}

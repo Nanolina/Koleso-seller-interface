@@ -60,11 +60,11 @@ export const ProductsTable: React.FC = () => {
 
         <tbody>
           {products &&
-            products.map((product: IProduct, productIndex: number) => {
+            products.map((product: IProduct, index: number) => {
               return (
                 <TableRow
-                  key={`row-${productIndex}`}
-                  rowIndex={productIndex}
+                  key={`row-${index}`}
+                  rowIndex={index}
                   onClick={() => handleProductDetails(product.id)}
                 >
                   <TableCell cell={product.name} />

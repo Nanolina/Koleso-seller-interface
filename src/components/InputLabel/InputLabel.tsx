@@ -55,11 +55,10 @@ export const InputLabel: React.FC<IInputLabelProps> = React.memo(
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
+          errors={errors}
+          touched={touched}
         />
         {extraText && <i className={styles.extraText}>{extraText}</i>}
-        {errors[name] && touched[name] && (
-          <ValidationError error={errors[name]} />
-        )}
       </div>
     );
   }

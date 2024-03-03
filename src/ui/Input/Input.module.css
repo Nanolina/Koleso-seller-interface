@@ -1,10 +1,16 @@
-.input, .error {
+.input,
+.inputAbsolute,
+.error {
   border: 2px solid var(--light-gray);
   border-radius: var(--border-radius);
   outline: none;
   height: 30px;
   text-align: center;
   width: 100%;
+}
+
+.inputAbsolute {
+  position: absolute;
 }
 
 .input:focus {
@@ -19,6 +25,11 @@
 .inputContainer {
   position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
 .eyeIcon {

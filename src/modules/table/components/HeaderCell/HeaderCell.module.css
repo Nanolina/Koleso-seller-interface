@@ -2,3 +2,10 @@
   color: white;
   padding: 10px;
 }
+
+.extraText {
+  font-size: 8px;
+  color: var(--gray);
+  font-style: italic;
+  text-align: right;
+}

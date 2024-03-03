@@ -26,14 +26,18 @@ export interface ILabelProps {
 }
 
 export interface IInputProps {
-  id?: string;
-  name?: string;
+  id: string;
+  name: string;
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
   required?: boolean;
   hasError?: boolean;
   value?: string | number;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: any;
+  errors?: any;
+  touched?: any;
+  isInputAbsolute?: boolean;
+  isErrorSmall?: boolean;
 }
 
 export interface ITextareaProps {
@@ -57,6 +61,7 @@ export interface IInputUploadProps {
 
 export interface IValidationErrorProps {
   error: string | undefined;
+  isErrorSmall?: boolean;
 }
 
 export interface IAddItemButtonProps {

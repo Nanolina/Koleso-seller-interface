@@ -11,16 +11,26 @@ import styles from './AddComposition.module.css';
  * Includes a material selection and setup for adding a new composition.
  */
 export const AddComposition: React.FC<ICreateProductValuesProps> = React.memo(
-  ({ values, setFieldValue }) => {
+  ({ values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
 
     return (
       <>
         <div className={styles.container}>
           <Label id="material" text={t('products.form.composition.label')} />
-          <AddMaterial values={values} setFieldValue={setFieldValue} />
+          <AddMaterial
+            values={values}
+            setFieldValue={setFieldValue}
+            errors={errors}
+            touched={touched}
+          />
         </div>
-        <Compositions values={values} setFieldValue={setFieldValue} />
+        <Compositions
+          values={values}
+          setFieldValue={setFieldValue}
+          errors={errors}
+          touched={touched}
+        />
       </>
     );
   }

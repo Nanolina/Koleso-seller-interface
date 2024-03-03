@@ -145,9 +145,16 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
               <CatalogStructureSelects
                 values={values}
                 setFieldValue={setFieldValue}
+                errors={errors}
+                touched={touched}
               />
 
-              <AddComposition values={values} setFieldValue={setFieldValue} />
+              <AddComposition
+                values={values}
+                setFieldValue={setFieldValue}
+                errors={errors}
+                touched={touched}
+              />
             </>
           )}
         </>

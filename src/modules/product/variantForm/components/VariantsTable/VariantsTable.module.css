@@ -1,0 +1,11 @@
+.iconRemove {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.iconCopy {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}

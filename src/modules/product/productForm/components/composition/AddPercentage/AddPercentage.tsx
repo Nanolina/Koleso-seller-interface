@@ -8,7 +8,7 @@ import styles from './AddPercentage.module.css';
  * Allows the user to input a percentage value for a selected material.
  */
 export const AddPercentage: React.FC<IAddPercentageProps> = React.memo(
-  ({ materialPercentage, setMaterialPercentage }) => {
+  ({ materialPercentage, setMaterialPercentage, errors, touched }) => {
     // Callback to handle changes in material percentage input
     const handleChangeMaterialPercentage = useCallback(
       (value: string) => {
@@ -33,6 +33,8 @@ export const AddPercentage: React.FC<IAddPercentageProps> = React.memo(
             handleChangeMaterialPercentage(event.target.value);
           }}
           value={materialPercentage}
+          errors={errors}
+          touched={touched}
         />
         <span className={styles.percentage}>%</span>
       </div>

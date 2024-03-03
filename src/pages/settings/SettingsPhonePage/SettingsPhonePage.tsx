@@ -17,6 +17,8 @@ export const SettingsPhonePage = () => {
       <Container onClick={handleCloseSideMenu}>
         <Title text={t('settings.phone')} />
         <Input
+          id="phone"
+          name="phone"
           value={phone}
           onChange={(event: any) => setPhone(event.target.value)}
           type="tel"

@@ -64,6 +64,8 @@ export interface IProductFormFieldsProps {
 export interface ICreateProductValuesProps {
   values: ICreateProductData;
   setFieldValue: FormikProps<ICreateProductData>['setFieldValue'];
+  errors: FormikErrors<ICreateProductData>;
+  touched: FormikTouched<ICreateProductData>;
 }
 
 export interface IProductsState {
@@ -119,6 +121,8 @@ export interface IComposition {
 export interface IAddPercentageProps {
   materialPercentage: number;
   setMaterialPercentage: SetStateAction<number>;
+  errors: FormikErrors<ICreateProductData>;
+  touched: FormikTouched<ICreateProductData>;
 }
 
 export interface ICompositionProps {

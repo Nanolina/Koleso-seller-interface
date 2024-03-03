@@ -12,7 +12,7 @@ import styles from './AddMaterial.module.css';
  * Allows selecting a material and defining its percentage in a composition.
  */
 export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
-  ({ values, setFieldValue }) => {
+  ({ values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
 
     const [material, setMaterial] = useState<string>('');
@@ -70,6 +70,8 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
         <AddPercentage
           materialPercentage={materialPercentage}
           setMaterialPercentage={setMaterialPercentage}
+          errors={errors}
+          touched={touched}
         />
         <Button
           text={t('add')}
