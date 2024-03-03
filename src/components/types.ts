@@ -88,3 +88,9 @@ export interface IMessageBox {
   errorMessage?: string;
   successMessage?: string;
 }
+
+export interface IFilterProps {
+  text: string;
+  checked: boolean;
+  onChange: () => void;
+}

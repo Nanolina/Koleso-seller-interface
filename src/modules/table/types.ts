@@ -10,7 +10,5 @@ export interface ITableCellProps {
 }
 
 export interface ITableProps {
-  showDeleted?: boolean;
-  setShowDeleted?: any;
   children: any;
 }

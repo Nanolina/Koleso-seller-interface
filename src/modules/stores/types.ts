@@ -53,3 +53,7 @@ export interface IStoreFormFieldsProps {
   previewUrl: string | null;
   setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }
+
+export interface IStoresTable {
+  showDeleted: boolean;
+}

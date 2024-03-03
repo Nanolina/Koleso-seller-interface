@@ -1,5 +1,5 @@
 import { unwrapResult } from '@reduxjs/toolkit';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,14 +19,12 @@ import {
   TableHeader,
   TableRow,
 } from '../../../table';
-import { IStore } from '../../types';
+import { IStore, IStoresTable } from '../../types';
 
-export const StoresTable: React.FC = () => {
+export const StoresTable: React.FC<IStoresTable> = ({ showDeleted }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-
-  const [showDeleted, setShowDeleted] = useState(false);
 
   const {
     items: stores,
@@ -57,12 +55,13 @@ export const StoresTable: React.FC = () => {
 
   return (
     <>
-      <Table showDeleted={showDeleted} setShowDeleted={setShowDeleted}>
+      <Table>
         <TableHeader>
           <HeaderCell></HeaderCell>
           <HeaderCell>{t('stores.table.name')}</HeaderCell>
           <HeaderCell>{t('stores.table.description')}</HeaderCell>
           <HeaderCell>{t('stores.table.image')}</HeaderCell>
+          {showDeleted && <HeaderCell></HeaderCell>}
         </TableHeader>
 
         <tbody>

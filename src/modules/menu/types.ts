@@ -7,4 +7,5 @@ export interface IMenuItem {
 
 export interface IMenuState {
   isMenuOpen: boolean;
+  isFilterOpen: boolean;
 }
