@@ -1,14 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IProduct } from '../../../modules/product/productForm';
 import { ProductService } from '../../../services';
-import { FilterQuery } from '../../../types';
 import { handleAsyncThunkError } from '../../functions';
 
-export const handleGetAllProducts = createAsyncThunk(
-  'product/get-all',
-  async (filter: FilterQuery, { rejectWithValue }): Promise<IProduct[]> => {
+export const handleRecoverProduct = createAsyncThunk(
+  'product/recover',
+  async (id: string, { rejectWithValue }): Promise<IProduct> => {
     try {
-      const response = await ProductService.getAllProducts(filter);
+      const response = await ProductService.recoverProduct(id);
       return response.data;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);

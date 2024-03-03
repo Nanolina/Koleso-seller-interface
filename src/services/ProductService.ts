@@ -9,6 +9,7 @@ import {
 } from '../modules/product/productForm';
 import { IUpdateVariantsData } from '../modules/product/variantForm';
 import { IStore } from '../modules/stores';
+import { FilterQuery } from '../types';
 
 export class ProductService {
   // Stores
@@ -18,7 +19,9 @@ export class ProductService {
     return productServiceAPI.post<IStore>('/store', storeFormData);
   }
 
-  static async getAllStores(filter: any): Promise<AxiosResponse<IStore[]>> {
+  static async getAllStores(
+    filter: FilterQuery
+  ): Promise<AxiosResponse<IStore[]>> {
     const queryString = new URLSearchParams(filter as any).toString();
     return productServiceAPI.get<IStore[]>(`/store?${queryString}`);
   }
@@ -49,8 +52,11 @@ export class ProductService {
     return productServiceAPI.post<IProduct>('/product', productValues);
   }
 
-  static async getAllProducts(): Promise<AxiosResponse<IProduct[]>> {
-    return productServiceAPI.get<IProduct[]>('/product');
+  static async getAllProducts(
+    filter: FilterQuery
+  ): Promise<AxiosResponse<IProduct[]>> {
+    const queryString = new URLSearchParams(filter as any).toString();
+    return productServiceAPI.get<IProduct[]>(`/product?${queryString}`);
   }
 
   static async getProductById(id: string): Promise<AxiosResponse<IProduct>> {

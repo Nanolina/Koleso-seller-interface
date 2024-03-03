@@ -4,6 +4,7 @@ import {
   createProductCases,
   getAllProductsCases,
   getProductByIdCases,
+  recoverProductCases,
   removeProductCases,
   updateProductCases,
   updateVariantsCases,
@@ -21,6 +22,7 @@ const productsSlice = createSlice({
     updateProductCases(builder);
     updateVariantsCases(builder);
     removeProductCases(builder);
+    recoverProductCases(builder);
   },
 });
 

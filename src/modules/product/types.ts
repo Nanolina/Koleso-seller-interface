@@ -27,3 +27,7 @@ export enum ColorType {
   Yellow,
   Transparent,
 }
+
+export interface IProductsTableProps {
+  showDeleted: boolean;
+}

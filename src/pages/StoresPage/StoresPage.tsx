@@ -30,7 +30,7 @@ export const StoresPage: React.FC = () => {
         <Title text={t('menuItems.Stores')} />
         <AddItemButton text={t('stores.addStore')} onClick={handleAddStore} />
         <Filter
-          text={t('stores.showDeleted')}
+          text={t('showDeleted')}
           checked={showDeleted}
           onChange={handleShowDeletedChange}
         />

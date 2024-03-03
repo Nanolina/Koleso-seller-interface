@@ -54,6 +54,6 @@ export interface IStoreFormFieldsProps {
   setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export interface IStoresTable {
+export interface IStoresTableProps {
   showDeleted: boolean;
 }

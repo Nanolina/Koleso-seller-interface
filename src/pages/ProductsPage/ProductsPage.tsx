@@ -1,6 +1,7 @@
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { Filter } from '../../components/Filter/Filter';
 import { SideMenu, useSideMenu } from '../../modules/menu';
 import { ProductsTable } from '../../modules/product';
 import { AddItemButton } from '../../ui/AddItemButton/AddItemButton';
@@ -13,6 +14,12 @@ export const ProductsPage: React.FC = () => {
 
   const { handleCloseSideMenu } = useSideMenu();
 
+  const [showDeleted, setShowDeleted] = useState(false);
+
+  const handleShowDeletedChange = useCallback(() => {
+    setShowDeleted(!showDeleted);
+  }, [showDeleted, setShowDeleted]);
+
   const handleCreateProduct = () => {
     navigate('/product/new/product');
   };
@@ -22,12 +29,16 @@ export const ProductsPage: React.FC = () => {
       <SideMenu />
       <Container onClick={handleCloseSideMenu}>
         <Title text={t('menuItems.Products')} />
-        <SearchBar />
         <AddItemButton
           text={t('products.createProduct')}
           onClick={handleCreateProduct}
         />
-        <ProductsTable />
+        <Filter
+          text={t('showDeleted')}
+          checked={showDeleted}
+          onChange={handleShowDeletedChange}
+        />
+        <ProductsTable showDeleted={showDeleted} />
       </Container>
     </>
   );

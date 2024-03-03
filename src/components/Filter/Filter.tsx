@@ -42,6 +42,7 @@ export const Filter: React.FC<IFilterProps> = ({ text, checked, onChange }) => {
         color="var(--main)"
         onClick={handleToggleFilter}
         className={styles.filter}
+        id="filter-block"
       />
 
       {isFilterOpen && (

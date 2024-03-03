@@ -8,6 +8,7 @@
   "send": "Send",
   "save": "Save",
   "cancel": "Cancel",
+  "showDeleted": "Show only deleted",
   "menuItems": {
     "Settings": "Settings",
     "Stores": "My stores",
@@ -20,6 +21,7 @@
   },
   "products": {
     "createProduct": "Create a product",
+    "recover": "Recover the product",
     "table": {
       "name": "Name",
       "description": "Description",
@@ -174,7 +176,6 @@
     "label": "Store",
     "addStore": "Add store",
     "recover": "Recover the store",
-    "showDeleted": "Show only deleted",
     "table": {
       "name": "Name",
       "description": "Description",
