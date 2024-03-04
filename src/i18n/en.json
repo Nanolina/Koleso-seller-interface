@@ -61,7 +61,9 @@
       "quantityMustBeGreaterThanZero": "The quantity must be greater than zero",
       "quantityInteger": "The quantity must be an integer",
       "quantityRequired": "The quantity is required",
-      "atLeastOneVariant": "The color and quantity of the product is required"
+      "atLeastOneVariant": "The color and quantity of the product is required",
+      "imageNotFormat": "Only jpeg, jpg, png images are accepted",
+      "imageVeryBigSize": "Select an image less than 500KB"
     },
     "form": {
       "selectStore": "Select a store",

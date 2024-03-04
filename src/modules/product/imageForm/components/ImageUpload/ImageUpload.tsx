@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
 import { Loader } from '../../../../../components/Loader/Loader';
+import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { InputUpload } from '../../../../../ui/InputUpload/InputUpload';
@@ -20,6 +21,8 @@ import styles from './ImageUpload.module.css';
 export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
   ({ values, setFieldValue }) => {
     const { t } = useTranslation();
+
+    const [error, setError] = useState<string | null>(null);
     const [color, setColor] = useState<ColorType | string>('');
     const [sortedColors, setSortedColors] = useState<
       { name: string; value: string }[]
@@ -111,7 +114,9 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
                     onChange={handleFileSelect(
                       values.colorsWithImages,
                       setFieldValue,
-                      imagesWith1Color
+                      imagesWith1Color,
+                      setError,
+                      t
                     )}
                     acceptFiles="image/*"
                     multiple
@@ -126,6 +131,8 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
               />
             </div>
           ))}
+
+        {error && <MessageBox errorMessage={error} />}
       </div>
     );
   }

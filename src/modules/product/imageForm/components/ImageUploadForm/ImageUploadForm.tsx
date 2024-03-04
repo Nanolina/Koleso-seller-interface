@@ -14,7 +14,6 @@ import {
 } from '../../../../../redux/thunks/colorsWithImages';
 import { handleGetProductById } from '../../../../../redux/thunks/product';
 import { Button } from '../../../../../ui/Button/Button';
-import { formatErrors } from '../../../../../utils';
 import {
   IColorsWithImagesData,
   IUpdateColorsWithImagesData,
@@ -77,14 +76,13 @@ export const ImageUploadForm: React.FC = () => {
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {({ values, errors, setFieldValue, isValid }) => (
+      {({ values, setFieldValue, isValid }) => (
         <Form className="formFieldsContainer">
           <div className="formSaveButton">
             <Button
               text={t('save')}
               isBold={false}
               disabled={!isValid}
-              tooltipText={errors ? formatErrors(errors) : ''}
               hasShadow
             />
           </div>

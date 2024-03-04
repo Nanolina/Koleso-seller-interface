@@ -61,7 +61,9 @@
       "quantityMustBeGreaterThanZero": "Количество продукта должно быть больше 0",
       "quantityInteger": "Количество продукта должно быть целым числом",
       "quantityRequired": "Количество продукта обязательно",
-      "atLeastOneVariant": "Цвет и количество товара обязательны"
+      "atLeastOneVariant": "Цвет и количество товара обязательны",
+      "imageNotFormat": "Принимаются только изображения в формате jpeg, jpg, png",
+      "imageVeryBigSize": "Выберите изображение размером менее 500 КБ"
     },
     "form": {
       "selectStore": "Выберите магазин",
