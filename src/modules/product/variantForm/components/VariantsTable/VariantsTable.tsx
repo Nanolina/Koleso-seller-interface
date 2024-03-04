@@ -211,7 +211,7 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
                     <TableCell cell={<h3>{''}</h3>} />
                   )}
 
-                  {variant.isActive && (
+                  {!showDeleted && (
                     <TableCell
                       cell={
                         <div>
@@ -230,7 +230,7 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
                     />
                   )}
 
-                  {!variant.isActive && (
+                  {showDeleted && (
                     <TableCell
                       cell={
                         <RecoverIcon
