@@ -16,6 +16,7 @@ import {
 import { handleGetAllStores } from '../../../../../redux/thunks/store';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
+import { RemoveItemModal } from '../../../../modal';
 import { handleSubmitFormProduct } from '../../handlers';
 import { initialValuesProduct } from '../../initialValues';
 import { ICreateProductData, IProduct } from '../../types';
@@ -31,6 +32,7 @@ export const ProductDetailsForm: React.FC = () => {
   const savedProduct = JSON.parse(localStorage.getItem('product') || '{}');
 
   // useState
+  const [modalOpen, setModalOpen] = useState(false);
   const [initialValues, setInitialValues] = useState<ICreateProductData>({
     ...initialValuesProduct,
     ...savedProduct,
@@ -96,6 +98,13 @@ export const ProductDetailsForm: React.FC = () => {
     [productId, dispatch, navigate]
   );
 
+  const handleRemove = () => {
+    if (productId) {
+      dispatch(handleRemoveProduct(productId));
+      navigate('/products');
+    }
+  };
+
   if (loading) return <Loader />;
 
   return (
@@ -127,16 +136,18 @@ export const ProductDetailsForm: React.FC = () => {
           />
 
           {productId && productId !== NEW && (
-            <span
-              className="removeText"
-              onClick={() => {
-                dispatch(handleRemoveProduct(productId));
-                navigate('/products');
-              }}
-            >
+            <span className="removeText" onClick={() => setModalOpen(true)}>
               {t('products.productDetails.removeProduct')}
             </span>
           )}
+
+          <RemoveItemModal
+            text={t('products.productDetails.modal.removeText')}
+            extraText={t('products.productDetails.modal.removeExtraText')}
+            onRemove={handleRemove}
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+          />
 
           {error && <MessageBox errorMessage={error} />}
           {success && <MessageBox successMessage={success} />}

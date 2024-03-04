@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { MdContentCopy } from 'react-icons/md';
@@ -10,6 +10,7 @@ import { AppDispatch } from '../../../../../redux/store';
 import { handleRecoverVariant } from '../../../../../redux/thunks/product';
 import { Input } from '../../../../../ui/Input/Input';
 import { RecoverIcon } from '../../../../../ui/RecoverIcon/RecoverIcon';
+import { RemoveItemModal } from '../../../../modal';
 import {
   HeaderCell,
   Table,
@@ -29,6 +30,9 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
     const { showDeleted } = useSelector(
       (state: IRootState) => state.products.product.variants
     );
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const [variantId, setVariantId] = useState('');
 
     const { handleUpdateVariant, handleRemoveVariant, handleCopyVariant } =
       useVariant(values.variants, setFieldValue);
@@ -217,7 +221,10 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
                         <div>
                           <IoCloseOutline
                             color="var(--dark-gray)"
-                            onClick={() => handleRemoveVariant(variant.id)}
+                            onClick={() => {
+                              setModalOpen(true);
+                              setVariantId(variant.id);
+                            }}
                             className={styles.iconRemove}
                           />
                           <MdContentCopy
@@ -245,6 +252,13 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
                 </TableRow>
               );
             })}
+          <RemoveItemModal
+            text={t('products.form.variants.modal.removeText')}
+            extraText={t('products.form.variants.modal.removeExtraText')}
+            onRemove={() => handleRemoveVariant(variantId)}
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+          />
         </tbody>
       </Table>
     );

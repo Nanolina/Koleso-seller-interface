@@ -44,7 +44,11 @@
       "removeProduct": "Delete product",
       "go": "Please, go to the",
       "myStores": "My stores tab",
-      "addAtLeastStore": "tab and add at least 1 store"
+      "addAtLeastStore": "tab and add at least 1 store",
+      "modal": {
+        "removeText": "Are you sure you want to remove the product?",
+        "removeExtraText": "You will be able to restore the data in the table at any time"
+      }
     },
     "validation": {
       "nameRequired": "The name of the product is required",
@@ -117,7 +121,11 @@
         "colors": "Colors",
         "quantity": "Number of pieces",
         "size": "Size",
-        "recover": "Recover the variant"
+        "recover": "Recover the variant",
+        "modal": {
+          "removeText": "Are you sure you want to remove the variant?",
+          "removeExtraText": "You will be able to restore the data in the table at any time"
+        }
       },
       "color": {
         "label": "Color",
@@ -191,7 +199,11 @@
     },
     "storeDetails": {
       "notFound": "Store not found",
-      "removeStore": "Delete store"
+      "removeStore": "Delete store",
+      "modal": {
+        "removeText": "Are you sure you want to remove the store?",
+        "removeExtraText": "You will be able to restore the data in the table at any time"
+      }
     }
   },
   "orders": {

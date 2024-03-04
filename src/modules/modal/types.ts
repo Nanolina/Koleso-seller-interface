@@ -9,3 +9,9 @@ export interface ISignOutModalProps {
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface IRemoveItemModalProps extends ISignOutModalProps {
+  text: string;
+  extraText: string;
+  onRemove: any;
+}

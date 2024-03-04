@@ -8,7 +8,6 @@ import { handleLogout } from '../../../redux/thunks/user';
 import { Button } from '../../../ui/Button/Button';
 import { Modal } from '../Modal/Modal';
 import { ISignOutModalProps } from '../types';
-import styles from './SignOutModal.module.css';
 
 export const SignOutModal: React.FC<ISignOutModalProps> = ({
   modalOpen,
@@ -33,9 +32,9 @@ export const SignOutModal: React.FC<ISignOutModalProps> = ({
 
   return (
     <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} isBig={false}>
-      <div className={styles.container}>
+      <div className="modalContainer">
         {t('modal.signOutModalContent')}
-        <div className={styles.buttonContainer}>
+        <div className="buttonModalContainer">
           <Button text={t('yes')} onClick={handleSubmit} type="submit" />
         </div>
       </div>

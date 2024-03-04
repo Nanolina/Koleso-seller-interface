@@ -11,6 +11,7 @@ import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleGetStoreById } from '../../../../redux/thunks/store';
 import { Button } from '../../../../ui/Button/Button';
+import { RemoveItemModal } from '../../../modal';
 import { handleRemoveFormStore, handleSubmitFormStore } from '../../handlers';
 import { initialValuesStore } from '../../initialValues';
 import { ICreateStoreData, IStore } from '../../types';
@@ -27,6 +28,7 @@ export const StoreDetailsFormik: React.FC = () => {
   const savedStore = JSON.parse(localStorage.getItem('store') || '{}');
 
   // useState
+  const [modalOpen, setModalOpen] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [initialValues, setInitialValues] = useState<ICreateStoreData>({
     ...initialValuesStore,
@@ -124,23 +126,28 @@ export const StoreDetailsFormik: React.FC = () => {
             <Button text={t('save')} type="submit" disabled={!isValid} />
 
             {storeId && storeId !== NEW && store && (
-              <span
-                className="removeText"
-                onClick={() =>
-                  handleRemoveFormStore(
-                    storeId,
-                    dispatch,
-                    previewUrl,
-                    setPreviewUrl,
-                    setInitialValues,
-                    navigate
-                  )
-                }
-              >
+              <span className="removeText" onClick={() => setModalOpen(true)}>
                 {t('stores.storeDetails.removeStore')}
               </span>
             )}
           </div>
+
+          <RemoveItemModal
+            text={t('stores.storeDetails.modal.removeText')}
+            extraText={t('stores.storeDetails.modal.removeExtraText')}
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+            onRemove={() =>
+              handleRemoveFormStore(
+                storeId,
+                dispatch,
+                previewUrl,
+                setPreviewUrl,
+                setInitialValues,
+                navigate
+              )
+            }
+          />
 
           {error && <MessageBox errorMessage={error} />}
           {success && <MessageBox successMessage={success} />}
