@@ -42,12 +42,12 @@ export const ProductsTable: React.FC = () => {
 
   const handleRecoverProductClick = async (productId: string, event: any) => {
     event.stopPropagation();
-    await dispatch(handleRecoverProduct(productId));
+    dispatch(handleRecoverProduct(productId));
   };
 
   useEffect(() => {
     dispatch(
-      handleGetAllProducts({ filter: showDeleted ? 'deleted' : 'active' })
+      handleGetAllProducts({ type: showDeleted ? 'deleted' : 'active' })
     );
   }, [dispatch, showDeleted, product]);
 

@@ -40,9 +40,7 @@ export const StoresTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(
-      handleGetAllStores({ filter: showDeleted ? 'deleted' : 'active' })
-    );
+    dispatch(handleGetAllStores({ type: showDeleted ? 'deleted' : 'active' }));
   }, [dispatch, showDeleted, store]);
 
   if (loading) {

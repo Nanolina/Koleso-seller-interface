@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Filter } from '../../../../../components/Filter/Filter';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { COLORS } from '../../../../../consts';
 import { ColorType } from '../../../types';
@@ -8,7 +9,7 @@ import { IVariantsProps } from '../../types';
 import { VariantsTable } from '../VariantsTable/VariantsTable';
 
 export const AddVariants: React.FC<IVariantsProps> = React.memo(
-  ({ values, setFieldValue, errors, touched }) => {
+  ({ values, setFieldValue, errors, touched, showDeleted, setShowDeleted }) => {
     const { t } = useTranslation();
 
     const [color, setColor] = useState<ColorType | string>('');
@@ -37,6 +38,13 @@ export const AddVariants: React.FC<IVariantsProps> = React.memo(
 
     return (
       <>
+        <Filter
+          text={t('showDeleted')}
+          checked={showDeleted}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setShowDeleted(event.target.checked)
+          }
+        />
         <SelectLabel
           id="color"
           name="color"
@@ -52,6 +60,8 @@ export const AddVariants: React.FC<IVariantsProps> = React.memo(
           setFieldValue={setFieldValue}
           errors={errors}
           touched={touched}
+          showDeleted={showDeleted}
+          setShowDeleted={setShowDeleted}
         />
       </>
     );

@@ -43,7 +43,7 @@ export const ProductDetailsForm: React.FC = () => {
 
   // useEffect
   useEffect(() => {
-    dispatch(handleGetAllStores({ filter: 'active' }));
+    dispatch(handleGetAllStores({ type: 'active' }));
   }, [dispatch]);
 
   useEffect(() => {
@@ -51,7 +51,12 @@ export const ProductDetailsForm: React.FC = () => {
       // If the correct productId in the url
       if (productId && productId !== NEW) {
         // Get data of product from DB
-        const data = await dispatch(handleGetProductById(productId));
+        const data = await dispatch(
+          handleGetProductById({
+            id: productId,
+            filterVariants: { type: 'active' },
+          })
+        );
 
         // Retrieve data from a completed promise
         const product: IProduct = unwrapResult(data);

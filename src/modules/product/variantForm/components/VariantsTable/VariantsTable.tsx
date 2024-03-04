@@ -2,9 +2,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { MdContentCopy } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
 import { Select } from '../../../../../components/Select/Select';
 import { SIZES } from '../../../../../consts';
+import { AppDispatch } from '../../../../../redux/store';
+import { handleRecoverVariant } from '../../../../../redux/thunks/product';
 import { Input } from '../../../../../ui/Input/Input';
+import { RecoverIcon } from '../../../../../ui/RecoverIcon/RecoverIcon';
 import {
   HeaderCell,
   Table,
@@ -17,8 +21,9 @@ import useVariant from '../../useVariant';
 import styles from './VariantsTable.module.css';
 
 export const VariantsTable: React.FC<IVariantsProps> = React.memo(
-  ({ values, setFieldValue, errors, touched }) => {
+  ({ values, setFieldValue, errors, touched, showDeleted, setShowDeleted }) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch<AppDispatch>();
 
     const { handleUpdateVariant, handleRemoveVariant, handleCopyVariant } =
       useVariant(values.variants, setFieldValue);
@@ -82,6 +87,7 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
             {t('products.table.articleSupplier')}
           </HeaderCell>
           <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
+          {showDeleted && <HeaderCell></HeaderCell>}
         </TableHeader>
 
         <tbody>
@@ -200,22 +206,37 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
                     <TableCell cell={<h3>{''}</h3>} />
                   )}
 
-                  <TableCell
-                    cell={
-                      <div>
-                        <IoCloseOutline
-                          color="var(--dark-gray)"
-                          onClick={() => handleRemoveVariant(variant.id)}
-                          className={styles.iconRemove}
+                  {variant.isActive && (
+                    <TableCell
+                      cell={
+                        <div>
+                          <IoCloseOutline
+                            color="var(--dark-gray)"
+                            onClick={() => handleRemoveVariant(variant.id)}
+                            className={styles.iconRemove}
+                          />
+                          <MdContentCopy
+                            color="var(--dark-gray)"
+                            onClick={() => handleCopyVariant(variant.id)}
+                            className={styles.iconCopy}
+                          />
+                        </div>
+                      }
+                    />
+                  )}
+
+                  {!variant.isActive && (
+                    <TableCell
+                      cell={
+                        <RecoverIcon
+                          tooltipText={t('products.form.variants.recover')}
+                          onClick={() =>
+                            dispatch(handleRecoverVariant(variant.id))
+                          }
                         />
-                        <MdContentCopy
-                          color="var(--dark-gray)"
-                          onClick={() => handleCopyVariant(variant.id)}
-                          className={styles.iconCopy}
-                        />
-                      </div>
-                    }
-                  />
+                      }
+                    />
+                  )}
                 </TableRow>
               );
             })}

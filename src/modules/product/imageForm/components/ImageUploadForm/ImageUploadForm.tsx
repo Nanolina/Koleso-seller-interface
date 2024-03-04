@@ -34,7 +34,12 @@ export const ImageUploadForm: React.FC = () => {
   useEffect(() => {
     if (productId && productId !== NEW) {
       dispatch(handleGetAllColorsWithImages(productId));
-      dispatch(handleGetProductById(productId));
+      dispatch(
+        handleGetProductById({
+          id: productId,
+          filterVariants: { type: 'active' },
+        })
+      );
     }
   }, [dispatch, productId]);
 

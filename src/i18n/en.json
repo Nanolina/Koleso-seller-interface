@@ -114,7 +114,8 @@
         "label": "Variants",
         "colors": "Colors",
         "quantity": "Number of pieces",
-        "size": "Size"
+        "size": "Size",
+        "recover": "Recover the variant"
       },
       "color": {
         "label": "Color",

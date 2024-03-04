@@ -4,7 +4,7 @@ import {
   FormikProps,
   FormikTouched,
 } from 'formik';
-import { SetStateAction } from '../../../types';
+import { IFilterQuery, SetStateAction } from '../../../types';
 import { IVariant, IVariantsState } from '../variantForm';
 
 export enum GenderType {
@@ -45,6 +45,11 @@ export interface IUpdateProductData {
   categoryId?: number;
   subcategoryId?: number;
   composition?: IComposition[];
+}
+
+export interface IGetProductByIdArg {
+  id: string;
+  filterVariants: IFilterQuery;
 }
 
 export interface IUpdateProductArg {

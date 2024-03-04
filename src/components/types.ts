@@ -92,5 +92,5 @@ export interface IMessageBox {
 export interface IFilterProps {
   text: string;
   checked: boolean;
-  onChange: () => void;
+  onChange: any
 }

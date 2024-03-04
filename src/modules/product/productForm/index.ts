@@ -8,4 +8,5 @@ export type {
   ISectionType,
   IUpdateProductArg,
   IUpdateProductData,
+  IGetProductByIdArg,
 } from './types';

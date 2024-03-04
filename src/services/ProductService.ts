@@ -7,9 +7,9 @@ import {
   ISectionType,
   IUpdateProductData,
 } from '../modules/product/productForm';
-import { IUpdateVariantsData } from '../modules/product/variantForm';
+import { IUpdateVariantsData, IVariant } from '../modules/product/variantForm';
 import { IStore } from '../modules/stores';
-import { FilterQuery } from '../types';
+import { IFilterQuery } from '../types';
 
 export class ProductService {
   // Stores
@@ -20,9 +20,9 @@ export class ProductService {
   }
 
   static async getAllStores(
-    filter: FilterQuery
+    filter: IFilterQuery
   ): Promise<AxiosResponse<IStore[]>> {
-    const queryString = new URLSearchParams(filter as any).toString();
+    const queryString = `filter=${encodeURIComponent(JSON.stringify(filter))}`;
     return productServiceAPI.get<IStore[]>(`/store?${queryString}`);
   }
 
@@ -53,14 +53,20 @@ export class ProductService {
   }
 
   static async getAllProducts(
-    filter: FilterQuery
+    filter: IFilterQuery
   ): Promise<AxiosResponse<IProduct[]>> {
-    const queryString = new URLSearchParams(filter as any).toString();
+    const queryString = `filter=${encodeURIComponent(JSON.stringify(filter))}`;
     return productServiceAPI.get<IProduct[]>(`/product?${queryString}`);
   }
 
-  static async getProductById(id: string): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.get<IProduct>(`/product/${id}`);
+  static async getProductById(
+    id: string,
+    filterVariants: IFilterQuery
+  ): Promise<AxiosResponse<IProduct>> {
+    const queryString = `filterVariants=${encodeURIComponent(
+      JSON.stringify(filterVariants)
+    )}`;
+    return productServiceAPI.get<IProduct>(`/product/${id}?${queryString}`);
   }
 
   static async updateProduct(
@@ -92,6 +98,10 @@ export class ProductService {
       `/product/${productId}/variants`,
       variants
     );
+  }
+
+  static async recoverVariant(id: string): Promise<AxiosResponse<IVariant[]>> {
+    return productServiceAPI.post<IVariant[]>(`/variant/${id}/recover`);
   }
 
   // Images
