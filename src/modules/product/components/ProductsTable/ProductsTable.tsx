@@ -18,7 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from '../../../table';
-import { getValuesForVariants } from '../../functions';
+import { getFirstAvailableImage, getValuesForVariants } from '../../functions';
 import { getExistingUniqueColors } from '../../imageForm';
 import { IProduct } from '../../productForm';
 
@@ -67,7 +67,7 @@ export const ProductsTable: React.FC = () => {
           <HeaderCell>{t('products.table.finalPrice')}</HeaderCell>
           <HeaderCell>{t('products.table.quantity')}</HeaderCell>
           <HeaderCell>{t('products.table.size')}</HeaderCell>
-          <HeaderCell>{`${t('products.table.image')} 1`}</HeaderCell>
+          <HeaderCell>{t('products.table.image')}</HeaderCell>
           <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
           {showDeleted && <HeaderCell></HeaderCell>}
         </TableHeader>
@@ -102,7 +102,7 @@ export const ProductsTable: React.FC = () => {
                   <TableCell
                     cell={getValuesForVariants(product.variants, 'size')}
                   />
-                  <TableCell cell={product.variants[0]?.images[0]?.url} />
+                  <TableCell cell={getFirstAvailableImage(product.variants)} />
                   <TableCell
                     cell={getValuesForVariants(
                       product.variants,

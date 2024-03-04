@@ -13,3 +13,13 @@ export const getValuesForVariants = (
   });
   return arr.join(', ');
 };
+
+export const getFirstAvailableImage = (variants: IVariant[]) => {
+  for (const variant of variants) {
+    if (variant.images && variant.images.length > 0) {
+      // Return the URL of the first image, if it exists
+      return variant.images[0].url;
+    }
+  }
+  return null;
+};
