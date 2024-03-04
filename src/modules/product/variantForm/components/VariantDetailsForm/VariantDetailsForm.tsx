@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -23,11 +23,10 @@ export const VariantDetailsForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { productId } = useParams<{ productId: string }>();
 
-  const [showDeleted, setShowDeleted] = useState<boolean>(false);
-
   // Values from Redux
   const {
     items: variants,
+    showDeleted,
     loading,
     error,
     success,
@@ -84,8 +83,6 @@ export const VariantDetailsForm: React.FC = () => {
             setFieldValue={setFieldValue}
             errors={errors}
             touched={touched}
-            showDeleted={showDeleted}
-            setShowDeleted={setShowDeleted}
           />
 
           {error && <MessageBox errorMessage={error} />}

@@ -1,5 +1,4 @@
 import { FormikErrors, FormikProps, FormikTouched } from 'formik';
-import { SetStateAction } from '../../../types';
 import { IImage } from '../../image';
 import { ColorType } from '../types';
 
@@ -39,8 +38,6 @@ export interface IVariantsProps {
   setFieldValue: FormikProps<IUpdateVariantsData>['setFieldValue'];
   errors: FormikErrors<any>;
   touched: FormikTouched<any>;
-  showDeleted: boolean;
-  setShowDeleted: SetStateAction<boolean>;
 }
 
 export interface IVariantErrors {
@@ -54,6 +51,7 @@ export interface IVariantErrors {
 
 export interface IVariantsState {
   items: IVariant[];
+  showDeleted: boolean;
   loading: boolean;
   success: string | null;
   error: any;

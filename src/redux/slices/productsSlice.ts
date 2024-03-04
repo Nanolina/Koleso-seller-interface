@@ -19,6 +19,9 @@ const productsSlice = createSlice({
     toggleShowDeleted(state) {
       state.showDeleted = !state.showDeleted;
     },
+    toggleShowDeletedVariants(state) {
+      state.product.variants.showDeleted = !state.product.variants.showDeleted;
+    },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IProductsState>) => {
     createProductCases(builder);
@@ -32,6 +35,7 @@ const productsSlice = createSlice({
   },
 });
 
-export const { toggleShowDeleted } = productsSlice.actions;
+export const { toggleShowDeleted, toggleShowDeletedVariants } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;

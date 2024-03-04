@@ -2,9 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { MdContentCopy } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Select } from '../../../../../components/Select/Select';
 import { SIZES } from '../../../../../consts';
+import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleRecoverVariant } from '../../../../../redux/thunks/product';
 import { Input } from '../../../../../ui/Input/Input';
@@ -21,9 +22,13 @@ import useVariant from '../../useVariant';
 import styles from './VariantsTable.module.css';
 
 export const VariantsTable: React.FC<IVariantsProps> = React.memo(
-  ({ values, setFieldValue, errors, touched, showDeleted, setShowDeleted }) => {
+  ({ values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
+
+    const { showDeleted } = useSelector(
+      (state: IRootState) => state.products.product.variants
+    );
 
     const { handleUpdateVariant, handleRemoveVariant, handleCopyVariant } =
       useVariant(values.variants, setFieldValue);

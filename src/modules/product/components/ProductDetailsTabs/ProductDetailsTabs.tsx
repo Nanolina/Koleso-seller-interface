@@ -4,7 +4,7 @@ import { IoColorFilterSharp } from 'react-icons/io5';
 import { useNavigate, useParams } from 'react-router-dom';
 import { NEW } from '../../../../consts';
 import { Tab } from '../../../../ui/Tab/Tab';
-import { ImageUploadForm } from '../../imageForm/components/ImageUploadForm/ImageUploadForm';
+import { ImageUploadForm } from '../../imageForm';
 import { ProductDetailsForm } from '../../productForm';
 import { VariantDetailsForm } from '../../variantForm';
 import styles from './ProductDetailsTabs.module.css';
