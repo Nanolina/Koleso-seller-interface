@@ -23,8 +23,16 @@ export const StoreDetailsFormik: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+
+  // Params
   const { storeId } = useParams<{ storeId: string }>();
 
+  // Values from Redux
+  const { store, loading, error, success } = useSelector(
+    (state: IRootState) => state.stores
+  );
+
+  // Local storage
   const savedStore = JSON.parse(localStorage.getItem('store') || '{}');
 
   // useState
@@ -35,38 +43,22 @@ export const StoreDetailsFormik: React.FC = () => {
     ...savedStore,
   });
 
-  // Values from Redux
-  const { store, loading, error, success } = useSelector(
-    (state: IRootState) => state.stores
-  );
+  // Get store by id
+  const fetchData = useCallback(async () => {
+    if (storeId && storeId !== NEW) {
+      const data = await dispatch(handleGetStoreById(storeId));
+      const resultStore: IStore = unwrapResult(data);
+      if (resultStore) {
+        setInitialValues((prev) => ({ ...prev, ...resultStore }));
+        if (resultStore.image?.url) setPreviewUrl(resultStore.image.url);
+      }
+    }
+  }, [storeId, dispatch]);
 
   // useEffect
   useEffect(() => {
-    const fetchData = async () => {
-      // If the correct storeId in the url
-      if (storeId && storeId !== NEW) {
-        // Get data of store from DB
-        const data = await dispatch(handleGetStoreById(storeId));
-
-        // Retrieve data from a completed promise
-        const store: IStore = unwrapResult(data);
-
-        // Set initial values based on the data from DB
-        if (store) {
-          const image = store.image?.url;
-          setInitialValues({
-            image,
-            name: store.name,
-            description: store.description || '',
-          });
-
-          if (image) setPreviewUrl(image);
-        }
-      }
-    };
-
     fetchData();
-  }, [dispatch, storeId]);
+  }, [fetchData]);
 
   // Clearing preview image URL to free up resources
   useEffect(() => {
@@ -78,10 +70,9 @@ export const StoreDetailsFormik: React.FC = () => {
   }, [previewUrl]);
 
   // Submit data
-  const handleSubmit = useCallback(
+  const onSubmit = useCallback(
     (values: ICreateStoreData) => {
       handleSubmitFormStore(
-        store,
         storeId,
         dispatch,
         setInitialValues,
@@ -89,7 +80,7 @@ export const StoreDetailsFormik: React.FC = () => {
         navigate
       );
     },
-    [store, storeId, dispatch, navigate]
+    [storeId, dispatch, navigate]
   );
 
   if (loading) return <Loader />;
@@ -98,18 +89,10 @@ export const StoreDetailsFormik: React.FC = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={() => validationSchema(t)}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
       enableReinitialize
     >
-      {({
-        values,
-        errors,
-        touched,
-        setFieldValue,
-        isValid,
-        dirty,
-        resetForm,
-      }) => (
+      {({ values, errors, touched, setFieldValue, isValid, resetForm }) => (
         <Form className={styles.container}>
           <StoreFormFields
             values={values}

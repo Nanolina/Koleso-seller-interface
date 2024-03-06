@@ -9,19 +9,10 @@ export const ImageForStore: React.FC<IImageProps> = React.memo(
   ({ setFieldValue, previewUrl, setPreviewUrl }) => {
     const { t } = useTranslation();
 
-    const handleImageChange = (
-      event: React.ChangeEvent<HTMLInputElement>,
-      setFieldValue: (
-        field: string,
-        value: any,
-        shouldValidate?: boolean
-      ) => void
-    ) => {
-      const { files } = event.target;
-      if (files && files.length) {
-        const file = files[0];
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (file) {
         setFieldValue('image', file);
-
         const fileUrl = URL.createObjectURL(file);
         setPreviewUrl(fileUrl);
       } else {
@@ -39,7 +30,7 @@ export const ImageForStore: React.FC<IImageProps> = React.memo(
           label={t('stores.table.image')}
           id="image"
           name="image"
-          onChange={(event) => handleImageChange(event, setFieldValue)}
+          onChange={handleImageChange}
           acceptFiles="image/jpeg,image/png"
         />
 

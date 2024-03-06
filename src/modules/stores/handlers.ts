@@ -10,54 +10,36 @@ import { initialValuesStore } from './initialValues';
 import { ICreateStoreData, IStore } from './types';
 
 export const handleSubmitFormStore = async (
-  store: IStore | null,
   storeId: string | undefined,
   dispatch: AppDispatch,
   setInitialValues: React.Dispatch<React.SetStateAction<ICreateStoreData>>,
   values: ICreateStoreData,
   navigate: any
 ) => {
-  // Get data from values
-  const { name, description, image } = values;
-
-  // Add data to form data
-  const storeFormData = new FormData();
-  storeFormData.append('name', name);
-  if (description) storeFormData.append('description', description);
+  const formData = new FormData();
+  formData.append('name', values.name);
+  formData.append('description', values.description || '');
+  const image = values.image;
   if (image) {
-    storeFormData.append('image', image);
+    formData.append('image', image);
   } else {
-    storeFormData.append('isRemoveImage', 'true');
+    formData.append('isRemoveImage', 'true');
   }
 
-  let data: any;
-  // Create store
-  if (storeId === NEW) {
-    data = await dispatch(handleCreateStore(storeFormData));
-
-    // Update store
-  } else if (store && storeId) {
-    data = await dispatch(
-      handleUpdateStore({
-        id: storeId,
-        storeFormData,
-      })
-    );
+  if (!storeId) {
+    return;
   }
 
-  // Get data from DB
-  const storeFromDB: IStore = unwrapResult(data);
+  let action: any =
+    storeId === NEW
+      ? handleCreateStore(formData)
+      : handleUpdateStore({ id: storeId, storeFormData: formData });
+  let result = await dispatch(action);
+  const storeFromDB = unwrapResult(result);
 
-  // Set initial values
   if (storeFromDB) {
-    setInitialValues({
-      name: values.name,
-      description: values.description || '',
-      image: values.image,
-    });
-
-    // Navigate
-    navigate(-1);
+    setInitialValues(values);
+    navigate(storeId === NEW ? '/stores' : -1);
   }
 };
 
@@ -78,6 +60,7 @@ export const handleRemoveFormStore = async (
     }
 
     setInitialValues(initialValuesStore);
+
     // Clearing preview image URL to free up resources
     if (previewUrl) {
       URL.revokeObjectURL(previewUrl);
