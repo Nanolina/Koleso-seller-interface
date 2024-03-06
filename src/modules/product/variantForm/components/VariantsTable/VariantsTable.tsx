@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { MdContentCopy } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
+import { Loader } from '../../../../../components/Loader/Loader';
 import { Select } from '../../../../../components/Select/Select';
 import { SIZES } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
@@ -27,7 +28,7 @@ export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
 
-    const { showDeleted } = useSelector(
+    const { showDeleted, loading } = useSelector(
       (state: IRootState) => state.products.product.variants
     );
 
@@ -77,6 +78,8 @@ export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
     ) => {
       handleUpdateVariant(variant.id, 'articleSupplier', articleValue);
     };
+
+    if (loading) return <Loader />;
 
     return (
       <Table>

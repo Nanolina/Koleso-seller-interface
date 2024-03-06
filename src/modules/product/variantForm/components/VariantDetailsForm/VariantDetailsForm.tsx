@@ -3,7 +3,6 @@ import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { NEW } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
@@ -27,7 +26,6 @@ export const VariantDetailsForm: React.FC = () => {
   const {
     items: variants,
     showDeleted,
-    loading,
     error,
     success,
   } = useSelector((state: IRootState) => state.products.product.variants);
@@ -57,8 +55,6 @@ export const VariantDetailsForm: React.FC = () => {
     [productId, dispatch]
   );
 
-  if (loading) return <Loader />;
-
   return (
     <Formik
       initialValues={{ variants }}
@@ -72,7 +68,7 @@ export const VariantDetailsForm: React.FC = () => {
             <Button
               text={t('save')}
               isBold={false}
-              disabled={!isValid}
+              disabled={!isValid || showDeleted}
               tooltipText={errors ? formatErrors(errors) : ''}
               hasShadow
             />
