@@ -1,4 +1,8 @@
-import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
+import {
+  ActionReducerMapBuilder,
+  createSlice,
+  PayloadAction,
+} from '@reduxjs/toolkit';
 import { IProductsState } from '../../modules/product/productForm';
 import {
   createProductCases,
@@ -22,6 +26,9 @@ const productsSlice = createSlice({
     toggleShowDeletedVariants(state) {
       state.product.variants.showDeleted = !state.product.variants.showDeleted;
     },
+    setVariantId(state, action: PayloadAction<string>) {
+      state.product.variants.variantId = action.payload;
+    },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IProductsState>) => {
     createProductCases(builder);
@@ -35,7 +42,7 @@ const productsSlice = createSlice({
   },
 });
 
-export const { toggleShowDeleted, toggleShowDeletedVariants } =
+export const { toggleShowDeleted, toggleShowDeletedVariants, setVariantId } =
   productsSlice.actions;
 
 export default productsSlice.reducer;

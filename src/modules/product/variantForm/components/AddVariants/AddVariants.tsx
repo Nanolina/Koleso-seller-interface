@@ -7,24 +7,28 @@ import { COLORS } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { toggleShowDeletedVariants } from '../../../../../redux/slices/productsSlice';
 import { AppDispatch } from '../../../../../redux/store';
+import { RemoveItemModal } from '../../../../modal';
 import { ColorType } from '../../../types';
 import { createNewVariant } from '../../functions';
-import { IVariantsProps } from '../../types';
+import { IAddVariantsProps } from '../../types';
+import useVariant from '../../useVariant';
 import { VariantsTable } from '../VariantsTable/VariantsTable';
 
-export const AddVariants: React.FC<IVariantsProps> = React.memo(
+export const AddVariants: React.FC<IAddVariantsProps> = React.memo(
   ({ values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
 
+    const [modalOpen, setModalOpen] = useState(false);
     const [color, setColor] = useState<ColorType | string>('');
     const [sortedColors, setSortedColors] = useState<
       { name: string; value: string }[]
     >([]);
 
-    const { showDeleted } = useSelector(
+    const { showDeleted, variantId } = useSelector(
       (state: IRootState) => state.products.product.variants
     );
+    const { handleRemoveVariant } = useVariant(values.variants, setFieldValue);
 
     const handleCreateNewVariant = (colorValue: ColorType) => {
       if (!colorValue) return;
@@ -67,6 +71,18 @@ export const AddVariants: React.FC<IVariantsProps> = React.memo(
           setFieldValue={setFieldValue}
           errors={errors}
           touched={touched}
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+        />
+        <RemoveItemModal
+          text={t('products.form.variants.modal.removeText')}
+          extraText={t('products.form.variants.modal.removeExtraText')}
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          onRemove={() => {
+            handleRemoveVariant(variantId);
+            setModalOpen(false);
+          }}
         />
       </>
     );

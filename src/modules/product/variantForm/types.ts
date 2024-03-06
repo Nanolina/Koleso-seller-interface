@@ -1,4 +1,5 @@
 import { FormikErrors, FormikProps, FormikTouched } from 'formik';
+import { SetStateAction } from '../../../types';
 import { IImage } from '../../image';
 import { ColorType } from '../types';
 
@@ -33,11 +34,16 @@ export interface IVariantProps {
   touched: FormikTouched<IUpdateVariantsData>;
 }
 
-export interface IVariantsProps {
+export interface IAddVariantsProps {
   values: IUpdateVariantsData;
   setFieldValue: FormikProps<IUpdateVariantsData>['setFieldValue'];
   errors: FormikErrors<any>;
   touched: FormikTouched<any>;
+}
+
+export interface IVariantsTableProps extends IAddVariantsProps {
+  modalOpen: boolean;
+  setModalOpen: SetStateAction<boolean>;
 }
 
 export interface IVariantErrors {
@@ -51,6 +57,7 @@ export interface IVariantErrors {
 
 export interface IVariantsState {
   items: IVariant[];
+  variantId: string;
   showDeleted: boolean;
   loading: boolean;
   success: string | null;

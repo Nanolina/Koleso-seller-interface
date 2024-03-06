@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoCloseOutline } from 'react-icons/io5';
 import { MdContentCopy } from 'react-icons/md';
@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Select } from '../../../../../components/Select/Select';
 import { SIZES } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
+import { setVariantId } from '../../../../../redux/slices/productsSlice';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleRecoverVariant } from '../../../../../redux/thunks/product';
 import { Input } from '../../../../../ui/Input/Input';
 import { RecoverIcon } from '../../../../../ui/RecoverIcon/RecoverIcon';
-import { RemoveItemModal } from '../../../../modal';
 import {
   HeaderCell,
   Table,
@@ -18,12 +18,12 @@ import {
   TableHeader,
   TableRow,
 } from '../../../../table';
-import { IVariant, IVariantErrors, IVariantsProps } from '../../types';
+import { IVariant, IVariantErrors, IVariantsTableProps } from '../../types';
 import useVariant from '../../useVariant';
 import styles from './VariantsTable.module.css';
 
-export const VariantsTable: React.FC<IVariantsProps> = React.memo(
-  ({ values, setFieldValue, errors, touched }) => {
+export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
+  ({ values, setFieldValue, errors, touched, modalOpen, setModalOpen }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
 
@@ -31,11 +31,10 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
       (state: IRootState) => state.products.product.variants
     );
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const [variantId, setVariantId] = useState('');
-
-    const { handleUpdateVariant, handleRemoveVariant, handleCopyVariant } =
-      useVariant(values.variants, setFieldValue);
+    const { handleUpdateVariant, handleCopyVariant } = useVariant(
+      values.variants,
+      setFieldValue
+    );
 
     // Quantity
     const handleQuantityUpdate = (quantityValue: string, variant: IVariant) => {
@@ -223,7 +222,7 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
                             color="var(--dark-gray)"
                             onClick={() => {
                               setModalOpen(true);
-                              setVariantId(variant.id);
+                              dispatch(setVariantId(variant.id));
                             }}
                             className={styles.iconRemove}
                           />
@@ -252,13 +251,6 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
                 </TableRow>
               );
             })}
-          <RemoveItemModal
-            text={t('products.form.variants.modal.removeText')}
-            extraText={t('products.form.variants.modal.removeExtraText')}
-            onRemove={() => handleRemoveVariant(variantId)}
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-          />
         </tbody>
       </Table>
     );

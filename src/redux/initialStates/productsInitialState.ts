@@ -2,6 +2,7 @@ import { IProductsState } from '../../modules/product/productForm';
 
 const variantsInitialState = {
   items: [],
+  variantId: '',
   showDeleted: false,
   loading: false,
   success: null,

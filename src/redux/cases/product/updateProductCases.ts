@@ -21,6 +21,7 @@ export const updateProductCases = (
       (state, action: PayloadAction<IProduct>) => {
         const updatedVariantsState: IVariantsState = {
           items: action.payload.variants,
+          variantId: state.product.variants.variantId,
           showDeleted: state.product.variants.showDeleted,
           loading: false,
           success: null,
