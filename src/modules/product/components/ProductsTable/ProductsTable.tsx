@@ -88,7 +88,6 @@ export const ProductsTable: React.FC = () => {
                 }
               }}
             >
-              {loading && <Loader />}
               <TableCell cell={product.name} />
               <TableCell cell={product.brand} />
               <TableCell cell={product.model} />
@@ -127,6 +126,7 @@ export const ProductsTable: React.FC = () => {
 
       {error && <MessageBox errorMessage={error} />}
       {success && <MessageBox successMessage={success} />}
+      {loading && <Loader />}
     </>
   );
 };

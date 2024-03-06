@@ -80,181 +80,188 @@ export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
     };
 
     return (
-      <Table>
-        <TableHeader>
-          <HeaderCell></HeaderCell>
-          <HeaderCell>{t('products.table.color')}</HeaderCell>
-          <HeaderCell>{t('products.form.variants.quantity')}</HeaderCell>
-          <HeaderCell>{t('products.form.variants.size')}</HeaderCell>
-          <HeaderCell extraText={t('products.form.price.oldPriceExtra')}>
-            {t('products.table.priceWithoutDiscount')}
-          </HeaderCell>
-          <HeaderCell extraText={t('products.form.price.priceExtra')}>
-            {t('products.table.finalPrice')}
-          </HeaderCell>
-          <HeaderCell extraText={t('products.form.extraTextArticleSupplier')}>
-            {t('products.table.articleSupplier')}
-          </HeaderCell>
-          <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
-          {showDeleted && <HeaderCell></HeaderCell>}
-        </TableHeader>
+      <>
+        <Table>
+          <TableHeader>
+            <HeaderCell></HeaderCell>
+            <HeaderCell>{t('products.table.color')}</HeaderCell>
+            <HeaderCell>{t('products.form.variants.quantity')}</HeaderCell>
+            <HeaderCell>{t('products.form.variants.size')}</HeaderCell>
+            <HeaderCell extraText={t('products.form.price.oldPriceExtra')}>
+              {t('products.table.priceWithoutDiscount')}
+            </HeaderCell>
+            <HeaderCell extraText={t('products.form.price.priceExtra')}>
+              {t('products.table.finalPrice')}
+            </HeaderCell>
+            <HeaderCell extraText={t('products.form.extraTextArticleSupplier')}>
+              {t('products.table.articleSupplier')}
+            </HeaderCell>
+            <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
+            {showDeleted && <HeaderCell></HeaderCell>}
+          </TableHeader>
 
-        <tbody>
-          {values.variants &&
-            values.variants.map((variant: IVariant, index: number) => {
-              const variantErrors: IVariantErrors | undefined = Array.isArray(
-                errors.variants
-              )
-                ? (errors.variants[index] as IVariantErrors)
-                : undefined;
+          <tbody>
+            {values.variants &&
+              values.variants.map((variant: IVariant, index: number) => {
+                const variantErrors: IVariantErrors | undefined = Array.isArray(
+                  errors.variants
+                )
+                  ? (errors.variants[index] as IVariantErrors)
+                  : undefined;
 
-              return (
-                <TableRow key={`row-${index}`} rowIndex={index}>
-                  {loading && <Loader />}
-                  <TableCell
-                    cell={<h3>{t(`products.form.color.${variant.color}`)}</h3>}
-                  />
-                  <TableCell
-                    cell={
-                      <Input
-                        id={`${variant.quantity}-${variant.id}`}
-                        name="quantity"
-                        type="number"
-                        value={variant.quantity}
-                        onChange={(
-                          event: React.ChangeEvent<HTMLInputElement>
-                        ) => handleQuantityUpdate(event.target.value, variant)}
-                        errors={variantErrors || errors}
-                        touched={touched}
-                        required
-                        isInputAbsolute
-                        isErrorSmall
-                      />
-                    }
-                  />
-                  <TableCell
-                    cell={
-                      <Select
-                        id={`${variant.size}-${variant.id}`}
-                        name="size"
-                        options={SIZES}
-                        value={variant.size || ''}
-                        onChange={(
-                          event: React.ChangeEvent<HTMLSelectElement>
-                        ) => handleSizeUpdate(event.target.value, variant)}
-                        firstText={t('products.form.size.select')}
-                      />
-                    }
-                  />
-                  <TableCell
-                    cell={
-                      <Input
-                        id={`${variant.priceWithoutDiscount}-${variant.id}`}
-                        name="priceWithoutDiscount"
-                        type="number"
-                        value={variant.priceWithoutDiscount}
-                        onChange={(
-                          event: React.ChangeEvent<HTMLInputElement>
-                        ) =>
-                          handlePriceWithoutDiscountUpdate(
-                            event.target.value,
-                            variant
-                          )
-                        }
-                        errors={variantErrors || errors}
-                        touched={touched}
-                        required
-                        isInputAbsolute
-                        isErrorSmall
-                      />
-                    }
-                  />
-                  <TableCell
-                    cell={
-                      <Input
-                        id={`${variant.finalPrice}-${variant.id}`}
-                        name="finalPrice"
-                        type="number"
-                        value={variant.finalPrice}
-                        onChange={(
-                          event: React.ChangeEvent<HTMLInputElement>
-                        ) =>
-                          handleFinalPriceUpdate(event.target.value, variant)
-                        }
-                        errors={variantErrors || errors}
-                        touched={touched}
-                        required
-                        isInputAbsolute
-                        isErrorSmall
-                      />
-                    }
-                  />
-                  <TableCell
-                    cell={
-                      <Input
-                        id="articleSupplier"
-                        name="articleSupplier"
-                        value={variant.articleSupplier}
-                        onChange={(
-                          event: React.ChangeEvent<HTMLInputElement>
-                        ) =>
-                          handleArticleSupplierUpdate(
-                            event.target.value,
-                            variant
-                          )
-                        }
-                        errors={variantErrors || errors}
-                        touched={touched}
-                        isInputAbsolute
-                        isErrorSmall
-                      />
-                    }
-                  />
-                  {variant.articleKoleso ? (
-                    <TableCell cell={<h3>{variant.articleKoleso}</h3>} />
-                  ) : (
-                    <TableCell cell={<h3>{''}</h3>} />
-                  )}
-
-                  {!showDeleted && (
+                return (
+                  <TableRow key={`row-${index}`} rowIndex={index}>
                     <TableCell
                       cell={
-                        <div>
-                          <IoCloseOutline
-                            color="var(--dark-gray)"
-                            onClick={() => {
-                              setModalOpen(true);
-                              dispatch(setVariantId(variant.id));
-                            }}
-                            className={styles.iconRemove}
-                          />
-                          <MdContentCopy
-                            color="var(--dark-gray)"
-                            onClick={() => handleCopyVariant(variant.id)}
-                            className={styles.iconCopy}
-                          />
-                        </div>
+                        <h3>{t(`products.form.color.${variant.color}`)}</h3>
                       }
                     />
-                  )}
-
-                  {showDeleted && (
                     <TableCell
                       cell={
-                        <RecoverIcon
-                          tooltipText={t('products.form.variants.recover')}
-                          onClick={() =>
-                            dispatch(handleRecoverVariant(variant.id))
+                        <Input
+                          id={`${variant.quantity}-${variant.id}`}
+                          name="quantity"
+                          type="number"
+                          value={variant.quantity}
+                          onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                          ) =>
+                            handleQuantityUpdate(event.target.value, variant)
                           }
+                          errors={variantErrors || errors}
+                          touched={touched}
+                          required
+                          isInputAbsolute
+                          isErrorSmall
                         />
                       }
                     />
-                  )}
-                </TableRow>
-              );
-            })}
-        </tbody>
-      </Table>
+                    <TableCell
+                      cell={
+                        <Select
+                          id={`${variant.size}-${variant.id}`}
+                          name="size"
+                          options={SIZES}
+                          value={variant.size || ''}
+                          onChange={(
+                            event: React.ChangeEvent<HTMLSelectElement>
+                          ) => handleSizeUpdate(event.target.value, variant)}
+                          firstText={t('products.form.size.select')}
+                        />
+                      }
+                    />
+                    <TableCell
+                      cell={
+                        <Input
+                          id={`${variant.priceWithoutDiscount}-${variant.id}`}
+                          name="priceWithoutDiscount"
+                          type="number"
+                          value={variant.priceWithoutDiscount}
+                          onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                          ) =>
+                            handlePriceWithoutDiscountUpdate(
+                              event.target.value,
+                              variant
+                            )
+                          }
+                          errors={variantErrors || errors}
+                          touched={touched}
+                          required
+                          isInputAbsolute
+                          isErrorSmall
+                        />
+                      }
+                    />
+                    <TableCell
+                      cell={
+                        <Input
+                          id={`${variant.finalPrice}-${variant.id}`}
+                          name="finalPrice"
+                          type="number"
+                          value={variant.finalPrice}
+                          onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                          ) =>
+                            handleFinalPriceUpdate(event.target.value, variant)
+                          }
+                          errors={variantErrors || errors}
+                          touched={touched}
+                          required
+                          isInputAbsolute
+                          isErrorSmall
+                        />
+                      }
+                    />
+                    <TableCell
+                      cell={
+                        <Input
+                          id="articleSupplier"
+                          name="articleSupplier"
+                          value={variant.articleSupplier}
+                          onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                          ) =>
+                            handleArticleSupplierUpdate(
+                              event.target.value,
+                              variant
+                            )
+                          }
+                          errors={variantErrors || errors}
+                          touched={touched}
+                          isInputAbsolute
+                          isErrorSmall
+                        />
+                      }
+                    />
+                    {variant.articleKoleso ? (
+                      <TableCell cell={<h3>{variant.articleKoleso}</h3>} />
+                    ) : (
+                      <TableCell cell={<h3>{''}</h3>} />
+                    )}
+
+                    {!showDeleted && (
+                      <TableCell
+                        cell={
+                          <div>
+                            <IoCloseOutline
+                              color="var(--dark-gray)"
+                              onClick={() => {
+                                setModalOpen(true);
+                                dispatch(setVariantId(variant.id));
+                              }}
+                              className={styles.iconRemove}
+                            />
+                            <MdContentCopy
+                              color="var(--dark-gray)"
+                              onClick={() => handleCopyVariant(variant.id)}
+                              className={styles.iconCopy}
+                            />
+                          </div>
+                        }
+                      />
+                    )}
+
+                    {showDeleted && (
+                      <TableCell
+                        cell={
+                          <RecoverIcon
+                            tooltipText={t('products.form.variants.recover')}
+                            onClick={() =>
+                              dispatch(handleRecoverVariant(variant.id))
+                            }
+                          />
+                        }
+                      />
+                    )}
+                  </TableRow>
+                );
+              })}
+          </tbody>
+        </Table>
+
+        {loading && <Loader />}
+      </>
     );
   }
 );

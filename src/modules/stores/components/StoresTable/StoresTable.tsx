@@ -34,7 +34,7 @@ export const StoresTable: React.FC = () => {
     success,
   } = useSelector((state: IRootState) => state.stores);
 
-  const handleRecoverStoreClick = async (storeId: string, event: any) => {
+  const recoverStore = async (storeId: string, event: any) => {
     event.stopPropagation();
     await dispatch(handleRecoverStore(storeId));
   };
@@ -47,11 +47,17 @@ export const StoresTable: React.FC = () => {
     <>
       <Table>
         <TableHeader>
-          <HeaderCell></HeaderCell>
-          <HeaderCell>{t('stores.table.name')}</HeaderCell>
-          <HeaderCell>{t('stores.table.description')}</HeaderCell>
-          <HeaderCell>{t('stores.table.image')}</HeaderCell>
-          {showDeleted && <HeaderCell></HeaderCell>}
+          {[
+            '',
+            'name',
+            'description',
+            'image',
+            ...(showDeleted ? [''] : []),
+          ].map((header, index) => (
+            <HeaderCell key={index}>
+              {header ? t(`stores.table.${header}`) : null}
+            </HeaderCell>
+          ))}
         </TableHeader>
 
         <tbody>
@@ -66,7 +72,6 @@ export const StoresTable: React.FC = () => {
                   }
                 }}
               >
-                {loading && <Loader />}
                 <TableCell cell={store.name} />
                 <TableCell cell={store.description} />
                 <TableCell cell={store.image?.url} />
@@ -76,7 +81,7 @@ export const StoresTable: React.FC = () => {
                       <RecoverIcon
                         tooltipText={t('stores.recover')}
                         onClick={(event: React.MouseEvent<SVGSVGElement>) =>
-                          handleRecoverStoreClick(store.id, event)
+                          recoverStore(store.id, event)
                         }
                       />
                     }
@@ -89,6 +94,7 @@ export const StoresTable: React.FC = () => {
 
       {error && <MessageBox errorMessage={error} />}
       {success && <MessageBox successMessage={success} />}
+      {loading && <Loader />}
     </>
   );
 };
