@@ -44,15 +44,27 @@ export const removeColor = (
 
 // Remove a 1 image from the array of images for 1 color
 export const removeImages = (
+  imageUrlToRemove: string,
+  indexToRemove: number,
   colorsWithImages: IColorsWithImagesData[],
-  color: ColorType,
-  indexToRemove: number
+  color: ColorType
 ): IColorsWithImagesData[] => {
   return colorsWithImages.map((imagesWith1Color) => {
     if (imagesWith1Color.color === color) {
-      const newImages = imagesWith1Color.images.filter(
-        (_, index) => index !== indexToRemove
-      );
+      const newImages = imagesWith1Color.images.filter((image, index) => {
+        const isRemoving = index === indexToRemove;
+        if (isRemoving) {
+          // Проверяем, является ли изображение объектом File
+          if (typeof image !== 'string') {
+            // Это объект File, отзываем его URL
+            URL.revokeObjectURL(imageUrlToRemove);
+          } else if (image === imageUrlToRemove) {
+            // Это строка URL, отзываем ее
+            URL.revokeObjectURL(imageUrlToRemove);
+          }
+        }
+        return !isRemoving;
+      });
       return { ...imagesWith1Color, images: newImages };
     }
     return imagesWith1Color;

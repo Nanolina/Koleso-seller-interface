@@ -57,15 +57,17 @@ export const useImageHandler = () => {
     };
 
   const handleRemoveImage = (
+    imageUrlToRemove: string,
+    indexToRemove: number,
     colorsWithImages: IColorsWithImagesData[],
     setFieldValue: FormikProps<IUpdateColorsWithImagesData>['setFieldValue'],
-    color: ColorType,
-    indexToRemove: number
+    color: ColorType
   ) => {
     const updatedColorsWithImages = removeImages(
+      imageUrlToRemove,
+      indexToRemove,
       colorsWithImages,
-      color,
-      indexToRemove
+      color
     );
     setFieldValue('colorsWithImages', updatedColorsWithImages);
   };

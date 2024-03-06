@@ -1,5 +1,5 @@
 export interface IPhotoPreviewProps {
-  image: string | File;
+  image: string;
   onRemove: () => void;
 }
 

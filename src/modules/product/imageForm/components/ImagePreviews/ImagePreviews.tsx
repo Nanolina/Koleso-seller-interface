@@ -1,5 +1,4 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { ImagePreview } from '../../../../image/ImagePreview/ImagePreview';
 import { IImagePreviewsProps } from '../../types';
 import { useImageHandler } from '../../useImageHandler';
@@ -13,15 +12,26 @@ export const ImagePreviews: React.FC<IImagePreviewsProps> = React.memo(
     return (
       <div className={styles.container}>
         {images &&
-          images.map((image: File | string, index: number) => (
-            <ImagePreview
-              key={uuidv4()}
-              image={image}
-              onRemove={() =>
-                handleRemoveImage(colorsWithImages, setFieldValue, color, index)
-              }
-            />
-          ))}
+          images.map((image: File | string, index: number) => {
+            const imageUrl =
+              image instanceof File ? URL.createObjectURL(image) : image;
+
+            return (
+              <ImagePreview
+                key={`image-${index}`}
+                image={imageUrl}
+                onRemove={() =>
+                  handleRemoveImage(
+                    imageUrl,
+                    index,
+                    colorsWithImages,
+                    setFieldValue,
+                    color
+                  )
+                }
+              />
+            );
+          })}
       </div>
     );
   }
