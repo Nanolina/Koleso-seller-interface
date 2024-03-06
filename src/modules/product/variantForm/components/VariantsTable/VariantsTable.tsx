@@ -99,8 +99,6 @@ export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
           {showDeleted && <HeaderCell></HeaderCell>}
         </TableHeader>
 
-        {loading && <Loader />}
-
         <tbody>
           {values.variants &&
             values.variants.map((variant: IVariant, index: number) => {
@@ -112,6 +110,7 @@ export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
 
               return (
                 <TableRow key={`row-${index}`} rowIndex={index}>
+                  {loading && <Loader />}
                   <TableCell
                     cell={<h3>{t(`products.form.color.${variant.color}`)}</h3>}
                   />

@@ -54,8 +54,6 @@ export const StoresTable: React.FC = () => {
           {showDeleted && <HeaderCell></HeaderCell>}
         </TableHeader>
 
-        {loading && <Loader />}
-
         <tbody>
           {stores &&
             stores.map((store: IStore, storeIndex: number) => (
@@ -68,6 +66,7 @@ export const StoresTable: React.FC = () => {
                   }
                 }}
               >
+                {loading && <Loader />}
                 <TableCell cell={store.name} />
                 <TableCell cell={store.description} />
                 <TableCell cell={store.image?.url} />

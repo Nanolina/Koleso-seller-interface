@@ -77,8 +77,6 @@ export const ProductsTable: React.FC = () => {
           ))}
         </TableHeader>
 
-        {loading && <Loader />}
-
         <tbody>
           {products?.map((product: IProduct, index: number) => (
             <TableRow
@@ -90,6 +88,7 @@ export const ProductsTable: React.FC = () => {
                 }
               }}
             >
+              {loading && <Loader />}
               <TableCell cell={product.name} />
               <TableCell cell={product.brand} />
               <TableCell cell={product.model} />
