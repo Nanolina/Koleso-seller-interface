@@ -43,10 +43,6 @@ export const StoresTable: React.FC = () => {
     dispatch(handleGetAllStores({ type: showDeleted ? 'deleted' : 'active' }));
   }, [dispatch, showDeleted, store]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
   return (
     <>
       <Table>
@@ -57,6 +53,8 @@ export const StoresTable: React.FC = () => {
           <HeaderCell>{t('stores.table.image')}</HeaderCell>
           {showDeleted && <HeaderCell></HeaderCell>}
         </TableHeader>
+
+        {loading && <Loader />}
 
         <tbody>
           {stores &&

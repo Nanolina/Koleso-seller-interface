@@ -79,8 +79,6 @@ export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
       handleUpdateVariant(variant.id, 'articleSupplier', articleValue);
     };
 
-    if (loading) return <Loader />;
-
     return (
       <Table>
         <TableHeader>
@@ -100,6 +98,8 @@ export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
           <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
           {showDeleted && <HeaderCell></HeaderCell>}
         </TableHeader>
+
+        {loading && <Loader />}
 
         <tbody>
           {values.variants &&

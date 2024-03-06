@@ -16,44 +16,62 @@ export const ProductDetailsTabs: React.FC = () => {
   const isProductExist = productId !== NEW;
   const activeTab = tab || 'product';
 
+  const tabs = [
+    {
+      name: 'product',
+      label: t('products.tabs.product'),
+      icon: <BsBox />,
+      condition: true,
+    },
+    {
+      name: 'variant',
+      label: t('products.form.variants.label'),
+      icon: <IoColorFilterSharp />,
+      condition: isProductExist,
+    },
+    {
+      name: 'image',
+      label: t('products.form.image.label'),
+      icon: <BsImages />,
+      condition: isProductExist,
+    },
+  ];
+
   const changeTab = (newTab: string) => {
     navigate(`/product/${productId}/${newTab}`);
+  };
+
+  const renderForm = () => {
+    switch (activeTab) {
+      case 'product':
+        return <ProductDetailsForm />;
+      case 'variant':
+        return <VariantDetailsForm />;
+      case 'image':
+        return <ImageUploadForm />;
+      default:
+        return null;
+    }
   };
 
   return (
     <>
       <div className={styles.container}>
-        <Tab
-          activeTab={activeTab}
-          setActiveTab={() => changeTab('product')}
-          tabName="product"
-          text={t('products.tabs.product')}
-          icon={<BsBox />}
-        />
-
-        {isProductExist && (
-          <Tab
-            activeTab={activeTab}
-            setActiveTab={() => changeTab('variant')}
-            tabName="variant"
-            text={t('products.form.variants.label')}
-            icon={<IoColorFilterSharp />}
-          />
-        )}
-
-        {isProductExist && (
-          <Tab
-            activeTab={activeTab}
-            setActiveTab={() => changeTab('image')}
-            tabName="image"
-            text={t('products.form.image.label')}
-            icon={<BsImages />}
-          />
+        {tabs.map(
+          (tab) =>
+            tab.condition && (
+              <Tab
+                key={tab.name}
+                activeTab={activeTab}
+                setActiveTab={() => changeTab(tab.name)}
+                tabName={tab.name}
+                text={tab.label}
+                icon={tab.icon}
+              />
+            )
         )}
       </div>
-      {activeTab === 'product' && <ProductDetailsForm />}
-      {activeTab === 'variant' && <VariantDetailsForm />}
-      {activeTab === 'image' && <ImageUploadForm />}
+      {renderForm()}
     </>
   );
 };

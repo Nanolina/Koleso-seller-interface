@@ -36,11 +36,14 @@ export const ProductsTable: React.FC = () => {
     success,
   } = useSelector((state: IRootState) => state.products);
 
-  const handleProductDetails = (productId: string) => {
+  const navigateToProductDetails = (productId: string) => {
     navigate(`/product/${productId}/product`);
   };
 
-  const handleRecoverProductClick = async (productId: string, event: any) => {
+  const recoverProduct = (
+    productId: string,
+    event: React.MouseEvent<SVGSVGElement>
+  ) => {
     event.stopPropagation();
     dispatch(handleRecoverProduct(productId));
   };
@@ -51,79 +54,75 @@ export const ProductsTable: React.FC = () => {
     );
   }, [dispatch, showDeleted, product]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
   return (
     <>
       <Table>
         <TableHeader>
-          <HeaderCell></HeaderCell>
-          <HeaderCell>{t('products.table.name')}</HeaderCell>
-          <HeaderCell>{t('products.table.brand')}</HeaderCell>
-          <HeaderCell>{t('products.table.model')}</HeaderCell>
-          <HeaderCell>{t('products.table.color')}</HeaderCell>
-          <HeaderCell>{t('products.table.finalPrice')}</HeaderCell>
-          <HeaderCell>{t('products.table.quantity')}</HeaderCell>
-          <HeaderCell>{t('products.table.size')}</HeaderCell>
-          <HeaderCell>{t('products.table.image')}</HeaderCell>
-          <HeaderCell>{t('products.table.articleKoleso')}</HeaderCell>
-          {showDeleted && <HeaderCell></HeaderCell>}
+          {[
+            '',
+            'name',
+            'brand',
+            'model',
+            'color',
+            'finalPrice',
+            'quantity',
+            'size',
+            'image',
+            'articleKoleso',
+            ...(showDeleted ? [''] : []),
+          ].map((header, index) => (
+            <HeaderCell key={index}>
+              {header ? t(`products.table.${header}`) : null}
+            </HeaderCell>
+          ))}
         </TableHeader>
 
+        {loading && <Loader />}
+
         <tbody>
-          {products &&
-            products.map((product: IProduct, index: number) => {
-              return (
-                <TableRow
-                  key={`row-${index}`}
-                  rowIndex={index}
-                  onClick={(event: MouseEvent) => {
-                    if (
-                      !(event.target as HTMLElement).closest('.recoverIcon')
-                    ) {
-                      handleProductDetails(product.id);
-                    }
-                  }}
-                >
-                  <TableCell cell={product.name} />
-                  <TableCell cell={product.brand} />
-                  <TableCell cell={product.model} />
-                  <TableCell
-                    cell={getExistingUniqueColors(product.variants).join(', ')}
-                  />
-                  <TableCell
-                    cell={getValuesForVariants(product.variants, 'finalPrice')}
-                  />
-                  <TableCell
-                    cell={getValuesForVariants(product.variants, 'quantity')}
-                  />
-                  <TableCell
-                    cell={getValuesForVariants(product.variants, 'size')}
-                  />
-                  <TableCell cell={getFirstAvailableImage(product.variants)} />
-                  <TableCell
-                    cell={getValuesForVariants(
-                      product.variants,
-                      'articleKoleso'
-                    )}
-                  />
-                  {!product.isActive && (
-                    <TableCell
-                      cell={
-                        <RecoverIcon
-                          tooltipText={t('products.recover')}
-                          onClick={(event: React.MouseEvent<SVGSVGElement>) =>
-                            handleRecoverProductClick(product.id, event)
-                          }
-                        />
+          {products?.map((product: IProduct, index: number) => (
+            <TableRow
+              key={product.id}
+              rowIndex={index}
+              onClick={(event: MouseEvent) => {
+                if (!(event.target as HTMLElement).closest('.recoverIcon')) {
+                  navigateToProductDetails(product.id);
+                }
+              }}
+            >
+              <TableCell cell={product.name} />
+              <TableCell cell={product.brand} />
+              <TableCell cell={product.model} />
+              <TableCell
+                cell={getExistingUniqueColors(product.variants).join(', ')}
+              />
+              <TableCell
+                cell={getValuesForVariants(product.variants, 'finalPrice')}
+              />
+              <TableCell
+                cell={getValuesForVariants(product.variants, 'quantity')}
+              />
+              <TableCell
+                cell={getValuesForVariants(product.variants, 'size')}
+              />
+              <TableCell cell={getFirstAvailableImage(product.variants)} />
+              <TableCell
+                cell={getValuesForVariants(product.variants, 'articleKoleso')}
+              />
+              {!product.isActive && (
+                <TableCell
+                  cell={
+                    <RecoverIcon
+                      tooltipText={t('products.recover')}
+                      onClick={(event: React.MouseEvent<SVGSVGElement>) =>
+                        recoverProduct(product.id, event)
                       }
                     />
-                  )}
-                </TableRow>
-              );
-            })}
+                  }
+                />
+              )}
+            </TableRow>
+          ))}
         </tbody>
       </Table>
 

@@ -25,7 +25,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   }) => {
     const { t } = useTranslation();
 
-    const { items: stores, loading } = useSelector(
+    const { items: stores, loading: loadingStores } = useSelector(
       (state: IRootState) => state.stores
     );
 
@@ -57,7 +57,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
       }
     }, [values.storeId, stores, setFieldValue]);
 
-    if (loading) return <Loader />;
+    if (loadingStores) return <Loader />;
 
     return (
       <>
