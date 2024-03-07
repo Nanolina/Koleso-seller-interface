@@ -30,7 +30,7 @@ export const ProductsPage: React.FC = () => {
       <Container onClick={handleCloseSideMenu}>
         <Title text={t('menuItems.Products')} />
         <AddItemButton
-          text={t('products.createProduct')}
+          text={t('products.product.create')}
           onClick={handleCreateProduct}
         />
         <Filter

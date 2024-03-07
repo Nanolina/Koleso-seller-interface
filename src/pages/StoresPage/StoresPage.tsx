@@ -29,7 +29,10 @@ export const StoresPage: React.FC = () => {
       <SideMenu />
       <Container onClick={handleCloseSideMenu}>
         <Title text={t('menuItems.Stores')} />
-        <AddItemButton text={t('stores.addStore')} onClick={handleAddStore} />
+        <AddItemButton
+          text={t('stores.create')}
+          onClick={handleAddStore}
+        />
         <Filter
           text={t('showDeleted')}
           checked={showDeleted}

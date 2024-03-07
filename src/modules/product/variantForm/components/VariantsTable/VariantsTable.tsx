@@ -17,22 +17,22 @@ export const VariantsTable: React.FC<IVariantsProps> = React.memo(
 
     const headerCells = [
       '',
-      'products.table.color',
-      'products.form.variants.quantity',
+      'products.product.table.color',
+      'products.variants.quantity',
       {
-        key: 'products.table.priceWithoutDiscount',
-        extra: 'products.form.price.oldPriceExtra',
+        key: 'products.product.table.priceWithoutDiscount',
+        extra: 'products.variants.price.oldPriceExtra',
       },
       {
-        key: 'products.table.finalPrice',
-        extra: 'products.form.price.priceExtra',
+        key: 'products.product.table.finalPrice',
+        extra: 'products.variants.price.finalPriceExtra',
       },
       {
-        key: 'products.table.articleSupplier',
-        extra: 'products.form.extraTextArticleSupplier',
+        key: 'products.product.table.articleSupplier',
+        extra: 'products.variants.extraTextArticleSupplier',
       },
-      'products.form.variants.size',
-      'products.table.articleKoleso',
+      'products.variants.size.label',
+      'products.product.table.articleKoleso',
     ];
 
     return (

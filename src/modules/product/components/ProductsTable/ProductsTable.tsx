@@ -72,7 +72,7 @@ export const ProductsTable: React.FC = () => {
             ...(showDeleted ? [''] : []),
           ].map((header, index) => (
             <HeaderCell key={index}>
-              {header ? t(`products.table.${header}`) : null}
+              {header ? t(`products.product.table.${header}`) : null}
             </HeaderCell>
           ))}
         </TableHeader>
@@ -111,7 +111,7 @@ export const ProductsTable: React.FC = () => {
                 <TableCell
                   cell={
                     <RecoverIcon
-                      tooltipText={t('products.recover')}
+                      tooltipText={t('products.product.recover')}
                       onClick={(event: React.MouseEvent<SVGSVGElement>) =>
                         recoverProduct(product.id, event)
                       }

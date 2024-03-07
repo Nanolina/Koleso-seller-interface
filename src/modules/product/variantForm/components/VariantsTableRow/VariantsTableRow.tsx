@@ -63,7 +63,7 @@ export const VariantsTableRow: React.FC<IVariantsTableRowProps> = React.memo(
     return (
       <TableRow key={`row-${index}`} rowIndex={index}>
         <TableCell
-          cell={<h3>{t(`products.form.color.${variant.color}`)}</h3>}
+          cell={<h3>{t(`products.variants.color.${variant.color}`)}</h3>}
         />
         {inputs.map(({ name, type, parser }) => (
           <TableCell
@@ -90,7 +90,7 @@ export const VariantsTableRow: React.FC<IVariantsTableRowProps> = React.memo(
               options={SIZES}
               value={variant.size || ''}
               onChange={(e) => handleFieldUpdate('size')(e.target.value)}
-              firstText={t('products.form.size.select')}
+              firstText={t('products.variants.size.select')}
             />
           }
         />

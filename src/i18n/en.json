@@ -7,7 +7,6 @@
   "yes": "Yes",
   "send": "Send",
   "save": "Save",
-  "cancel": "Cancel",
   "showDeleted": "Show only deleted",
   "menuItems": {
     "Settings": "Settings",
@@ -20,62 +19,19 @@
     "Notifications": "Notifications"
   },
   "products": {
-    "createProduct": "Create a product",
-    "recover": "Recover the product",
-    "table": {
-      "name": "Name",
-      "description": "Description",
-      "brand": "Brand",
-      "model": "Model",
-      "articleSupplier": "Supplier's article",
-      "articleKoleso": "Article Koleso",
-      "image": "Image",
-      "color": "Color",
-      "size": "Size",
-      "priceWithoutDiscount": "Price without discount",
-      "finalPrice": "Final price",
-      "quantity": "Quantity"
-    },
-    "tabs": {
-      "product": "Product"
-    },
-    "productDetails": {
+    "product": {
+      "label": "Product",
+      "create": "Create a product",
+      "recover": "Recover the product",
       "notFound": "Product not found",
-      "removeProduct": "Delete product",
+      "remove": "Delete product",
       "go": "Please, go to the",
       "myStores": "My stores tab",
       "addAtLeastStore": "tab and add at least 1 store",
-      "modal": {
-        "removeText": "Are you sure you want to remove the product?",
-        "removeExtraText": "You will be able to restore the data in the table at any time"
-      }
-    },
-    "validation": {
-      "nameRequired": "The name of the product is required",
-      "storeIdRequired": "The store is required",
-      "priceWithoutDiscountRequired": "The price without discount is required",
-      "priceWithoutDiscountNotNumber": "The price without discount can only include numbers",
-      "priceWithoutDiscountMustBeGreaterThanZero": "The price without discount must be greater than 0",
-      "finalPriceRequired": "The final price is required",
-      "finalPriceNotNumber": "The final price can only include numbers",
-      "finalPriceMustBeGreaterThanZero": "The final price must be greater than 0",
-      "sectionIdRequired": "The section of the catalog is required",
-      "colorType": "Invalid color type",
-      "colorRequired": "The color is required",
-      "quantityMustBeGreaterThanZero": "The quantity must be greater than zero",
-      "quantityInteger": "The quantity must be an integer",
-      "quantityRequired": "The quantity is required",
-      "atLeastOneVariant": "The color and quantity of the product is required",
-      "imageNotFormat": "Only jpeg, jpg, png images are accepted",
-      "imageVeryBigSize": "Select an image less than 500KB"
-    },
-    "form": {
       "selectStore": "Select a store",
       "selectSection": "Select a section",
       "selectCategory": "Select a category",
       "selectSubcategory": "Select a subcategory",
-      "extraTextArticleKoleso": "This article refers to the product search application",
-      "extraTextArticleSupplier": "This article only applies to your store and is needed to find the item in your warehouse",
       "gender": {
         "label": "Gender",
         "select": "Select a gender",
@@ -112,20 +68,38 @@
         "Microfiber": "Microfiber",
         "Jersey": "Jersey"
       },
+      "modal": {
+        "removeText": "Are you sure you want to remove the product?",
+        "removeExtraText": "You will be able to restore the data in the table at any time"
+      },
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "brand": "Brand",
+        "model": "Model",
+        "articleSupplier": "Supplier's article",
+        "articleKoleso": "Article Koleso",
+        "image": "Image",
+        "color": "Color",
+        "size": "Size",
+        "priceWithoutDiscount": "Price without discount",
+        "finalPrice": "Final price",
+        "quantity": "Quantity"
+      },
+      "validation": {
+        "nameRequired": "The name of the product is required",
+        "storeIdRequired": "The store is required",
+        "sectionIdRequired": "The section of the catalog is required"
+      }
+    },
+    "variants": {
+      "label": "Variants",
+      "quantity": "Number of pieces",
+      "recover": "Recover the variant",
+      "extraTextArticleSupplier": "This article only applies to your store and is needed to find the item in your warehouse",
       "size": {
         "label": "Size",
         "select": "Select a size"
-      },
-      "variants": {
-        "label": "Variants",
-        "colors": "Colors",
-        "quantity": "Number of pieces",
-        "size": "Size",
-        "recover": "Recover the variant",
-        "modal": {
-          "removeText": "Are you sure you want to remove the variant?",
-          "removeExtraText": "You will be able to restore the data in the table at any time"
-        }
       },
       "color": {
         "label": "Color",
@@ -158,14 +132,32 @@
         "Yellow": "Yellow",
         "Transparent": "Transparent"
       },
-      "image": {
-        "label": "Images",
-        "select": "Choose the color of the product for the images",
-        "upTo": "No more than 5 images per 1 color"
-      },
       "price": {
         "oldPriceExtra": "Will be shown crossed out",
-        "priceExtra": "Basic price (with discount)"
+        "finalPriceExtra": "Basic price (with discount)"
+      },
+      "validation": {
+        "priceWithoutDiscountRequired": "The price without discount is required",
+        "priceWithoutDiscountNotNumber": "The price without discount can only include numbers",
+        "priceWithoutDiscountMustBeGreaterThanZero": "The price without discount must be greater than 0",
+        "finalPriceRequired": "The final price is required",
+        "finalPriceNotNumber": "The final price can only include numbers",
+        "finalPriceMustBeGreaterThanZero": "The final price must be greater than 0",
+        "colorType": "Invalid color type",
+        "colorRequired": "The color is required",
+        "quantityMustBeGreaterThanZero": "The quantity must be greater than zero",
+        "quantityInteger": "The quantity must be an integer",
+        "quantityRequired": "The quantity is required",
+        "atLeastOneVariant": "The color and quantity of the product is required"
+      }
+    },
+    "image": {
+      "label": "Images",
+      "select": "Choose the color of the product for the images",
+      "upTo": "No more than 5 images per 1 color",
+      "validation": {
+        "imageNotFormat": "Only jpeg, jpg, png images are accepted",
+        "imageVeryBigSize": "Select an image less than 500KB"
       }
     }
   },
@@ -185,8 +177,14 @@
   },
   "stores": {
     "label": "Store",
-    "addStore": "Add store",
+    "create": "Create store",
     "recover": "Recover the store",
+    "notFound": "Store not found",
+    "remove": "Delete store",
+    "modal": {
+      "removeText": "Are you sure you want to remove the store?",
+      "removeExtraText": "You will be able to restore the data in the table at any time"
+    },
     "table": {
       "name": "Name",
       "description": "Description",
@@ -196,14 +194,6 @@
       "nameRequired": "The name of the store is required",
       "formatLogo": "The image format should be either jpeg or png",
       "sizeLogo": "The image size should not exceed 500 KB"
-    },
-    "storeDetails": {
-      "notFound": "Store not found",
-      "removeStore": "Delete store",
-      "modal": {
-        "removeText": "Are you sure you want to remove the store?",
-        "removeExtraText": "You will be able to restore the data in the table at any time"
-      }
     }
   },
   "orders": {
@@ -285,6 +275,12 @@
     "repeatPassword": "Repeat password",
     "haveAccount": "Already have an account",
     "notAccount": "Don't have an account yet",
+    "forgetPassword": "Forgot password",
+    "setNewPassword": "Set new password",
+    "timer": {
+      "wait": "Please wait",
+      "seconds": "seconds before next sending"
+    },
     "validation": {
       "phoneRequired": "Phone is required",
       "invalidEmail": "Invalid email address",
@@ -308,12 +304,6 @@
         "changeEmail": "Click here to change email address",
         "resendEmail": "Click here to try resending the email"
       }
-    },
-    "forgetPassword": "Forgot password",
-    "setNewPassword": "Set new password",
-    "timer": {
-      "wait": "Please wait",
-      "seconds": "seconds before next sending"
     }
   },
   "catalog": {

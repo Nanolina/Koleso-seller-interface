@@ -7,7 +7,6 @@
   "yes": "Да",
   "send": "Отправить",
   "save": "Сохранить",
-  "cancel": "Отменить",
   "showDeleted": "Показать только удаленные",
   "menuItems": {
     "Settings": "Настройки",
@@ -20,62 +19,19 @@
     "Notifications": "Уведомления"
   },
   "products": {
-    "createProduct": "Создать товар",
-    "recover": "Восстановить продукт",
-    "table": {
-      "name": "Название",
-      "description": "Описание",
-      "brand": "Бренд",
-      "model": "Модель",
-      "articleSupplier": "Артикул поставщика",
-      "articleKoleso": "Артикул Koleso",
-      "image": "Изображение",
-      "color": "Цвет",
-      "size": "Размер",
-      "priceWithoutDiscount": "Цена без скидки",
-      "finalPrice": "Конечная цена",
-      "quantity": "Количество"
-    },
-    "tabs": {
-      "product": "Товар"
-    },
-    "productDetails": {
+    "product": {
+      "label": "Товар",
+      "create": "Создать товар",
+      "recover": "Восстановить продукт",
       "notFound": "Продукт не найден",
-      "removeProduct": "Удалить продукт",
+      "remove": "Удалить продукт",
       "go": "Пожалуйста, перейдите во вкладку",
       "myStores": "Мои магазины",
       "addAtLeastStore": "и добавьте хотя бы 1 магазин",
-      "modal": {
-        "removeText": "Вы уверены, что хотите удалить продукт?",
-        "removeExtraText": "Вы сможете восстановить данные в таблице в любой момент"
-      }
-    },
-    "validation": {
-      "nameRequired": "Название продукта обязательно",
-      "storeIdRequired": "Выбор магазина обязателен",
-      "priceWithoutDiscountRequired": "Цена без скидки обязательна",
-      "priceWithoutDiscountNotNumber": "Цена без скидки должна включать только цифры",
-      "priceWithoutDiscountMustBeGreaterThanZero": "Цена без скидки должна быть больше 0",
-      "finalPriceRequired": "Конечная цена бязательна",
-      "finalPriceNotNumber": "Конечная цена должна включать только цифры",
-      "finalPriceMustBeGreaterThanZero": "Конечная цена должна быть больше 0",
-      "sectionIdRequired": "Раздел каталога обязателен",
-      "colorType": "Невалидный тип для цвета",
-      "colorRequired": "Цвет продукта обязателен",
-      "quantityMustBeGreaterThanZero": "Количество продукта должно быть больше 0",
-      "quantityInteger": "Количество продукта должно быть целым числом",
-      "quantityRequired": "Количество продукта обязательно",
-      "atLeastOneVariant": "Цвет и количество товара обязательны",
-      "imageNotFormat": "Принимаются только изображения в формате jpeg, jpg, png",
-      "imageVeryBigSize": "Выберите изображение размером менее 500 КБ"
-    },
-    "form": {
       "selectStore": "Выберите магазин",
       "selectSection": "Выберите раздел",
       "selectCategory": "Выберите категорию",
       "selectSubcategory": "Выберите подкатегорию",
-      "extraTextArticleKoleso": "Этот артикул относится к приложению для поиска товара",
-      "extraTextArticleSupplier": "Этот артикул относится только к вашему магазину и нужен для поиска товара на вашем складе",
       "gender": {
         "label": "Пол",
         "select": "Выберите пол",
@@ -112,20 +68,38 @@
         "Microfiber": "Микрофибра",
         "Jersey": "Джерси"
       },
+      "modal": {
+        "removeText": "Вы уверены, что хотите удалить продукт?",
+        "removeExtraText": "Вы сможете восстановить данные в таблице в любой момент"
+      },
+      "table": {
+        "name": "Название",
+        "description": "Описание",
+        "brand": "Бренд",
+        "model": "Модель",
+        "articleSupplier": "Артикул поставщика",
+        "articleKoleso": "Артикул Koleso",
+        "image": "Изображение",
+        "color": "Цвет",
+        "size": "Размер",
+        "priceWithoutDiscount": "Цена без скидки",
+        "finalPrice": "Конечная цена",
+        "quantity": "Количество"
+      },
+      "validation": {
+        "nameRequired": "Название продукта обязательно",
+        "storeIdRequired": "Выбор магазина обязателен",
+        "sectionIdRequired": "Раздел каталога обязателен"
+      }
+    },
+    "variants": {
+      "label": "Варианты",
+      "quantity": "Количество штук",
+      "recover": "Восстановить вариант",
+      "extraTextArticleSupplier": "Этот артикул относится только к вашему магазину и нужен для поиска товара на вашем складе",
       "size": {
         "label": "Размер",
         "select": "Выберите размер"
-      },
-      "variants": {
-        "label": "Варианты",
-        "colors": "Цвета",
-        "quantity": "Количество штук",
-        "size": "Размер",
-        "recover": "Восстановить вариант",
-        "modal": {
-          "removeText": "Вы уверены, что хотите удалить вариант?",
-          "removeExtraText": "Вы сможете восстановить данные в таблице в любой момент"
-        }
       },
       "color": {
         "label": "Цвет",
@@ -158,14 +132,32 @@
         "Yellow": "Желтый",
         "Transparent": "Прозрачный"
       },
-      "image": {
-        "label": "Изображения",
-        "select": "Выберите цвет товара для изображений",
-        "upTo": "Не более 5 изображений на 1 цвет"
-      },
       "price": {
         "oldPriceExtra": "Будет показываться зачеркнутой",
-        "priceExtra": "Основная цена (со скидкой)"
+        "finalPriceExtra": "Основная цена (со скидкой)"
+      },
+      "validation": {
+        "priceWithoutDiscountRequired": "Цена без скидки обязательна",
+        "priceWithoutDiscountNotNumber": "Цена без скидки должна включать только цифры",
+        "priceWithoutDiscountMustBeGreaterThanZero": "Цена без скидки должна быть больше 0",
+        "finalPriceRequired": "Конечная цена бязательна",
+        "finalPriceNotNumber": "Конечная цена должна включать только цифры",
+        "finalPriceMustBeGreaterThanZero": "Конечная цена должна быть больше 0",
+        "colorType": "Невалидный тип для цвета",
+        "colorRequired": "Цвет продукта обязателен",
+        "quantityMustBeGreaterThanZero": "Количество продукта должно быть больше 0",
+        "quantityInteger": "Количество продукта должно быть целым числом",
+        "quantityRequired": "Количество продукта обязательно",
+        "atLeastOneVariant": "Цвет и количество товара обязательны"
+      }
+    },
+    "image": {
+      "label": "Изображения",
+      "select": "Выберите цвет товара для изображений",
+      "upTo": "Не более 5 изображений на 1 цвет",
+      "validation": {
+        "imageNotFormat": "Принимаются только изображения в формате jpeg, jpg, png",
+        "imageVeryBigSize": "Выберите изображение размером менее 500 КБ"
       }
     }
   },
@@ -185,8 +177,14 @@
   },
   "stores": {
     "label": "Магазин",
-    "addStore": "Добавить магазин",
+    "create": "Создать магазин",
     "recover": "Восстановить магазин",
+    "notFound": "Магазин не найден",
+    "remove": "Удалить магазин",
+    "modal": {
+      "removeText": "Вы уверены, что хотите удалить магазин?",
+      "removeExtraText": "Вы сможете восстановить данные в таблице в любой момент"
+    },
     "table": {
       "name": "Название",
       "description": "Описание",
@@ -196,14 +194,6 @@
       "nameRequired": "Название магазина обязательно",
       "formatLogo": "Формат изображения должен быть jpeg или png",
       "sizeLogo": "Размер изображения не должен превышать 500 КБ"
-    },
-    "storeDetails": {
-      "notFound": "Магазин не найден",
-      "removeStore": "Удалить магазин",
-      "modal": {
-        "removeText": "Вы уверены, что хотите удалить магазин?",
-        "removeExtraText": "Вы сможете восстановить данные в таблице в любой момент"
-      }
     }
   },
   "orders": {
@@ -280,12 +270,17 @@
     "login": "Войти",
     "signup": "Зарегистрироваться",
     "password": "Пароль",
-    "haveAccount": "У меня уже есть аккаунт",
-    "notAccount": "У меня еще нет учетной записи",
     "email": "Электронная почта",
     "phone": "Номер телефона",
-    "username": "Логин",
     "repeatPassword": "Повторите пароль",
+    "haveAccount": "У меня уже есть аккаунт",
+    "notAccount": "У меня еще нет учетной записи",
+    "forgetPassword": "Забыли пароль",
+    "setNewPassword": "Установить новый пароль",
+    "timer": {
+      "wait": "Пожалуйста, подождите,",
+      "seconds": "секунд перед следующей отправкой"
+    },
     "validation": {
       "phoneRequired": "Телефон обязателен",
       "invalidEmail": "Неверный адрес электронной почты",
@@ -309,12 +304,6 @@
         "changeEmail": "Нажмите сюда, чтобы изменить адрес электронной почты",
         "resendEmail": "Нажмите сюда, чтобы отправить письмо еще раз на этот адрес электронной почты"
       }
-    },
-    "forgetPassword": "Забыли пароль",
-    "setNewPassword": "Установить новый пароль",
-    "timer": {
-      "wait": "Пожалуйста, подождите,",
-      "seconds": "секунд перед следующей отправкой"
     }
   },
   "catalog": {

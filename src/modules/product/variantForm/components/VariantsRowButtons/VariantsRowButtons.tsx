@@ -50,7 +50,7 @@ export const VariantsRowButtons: React.FC<IVariantsRowButtonsProps> =
           <TableCell
             cell={
               <RecoverIcon
-                tooltipText={t('products.form.variants.recover')}
+                tooltipText={t('products.variants.recover')}
                 onClick={() => dispatch(handleRecoverVariant(variant.id))}
               />
             }

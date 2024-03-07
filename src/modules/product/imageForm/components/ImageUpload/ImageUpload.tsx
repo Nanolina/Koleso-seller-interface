@@ -73,7 +73,7 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
       const uniqueColors = getExistingUniqueColors(variants);
       const sortedTranslatedColors = sortTranslatedEntities(
         uniqueColors,
-        'products.form.color',
+        'products.variants.color',
         t
       );
 
@@ -87,12 +87,12 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
         <SelectLabel
           id="color"
           name="color"
-          label={t('products.form.color.label')}
+          label={t('products.variants.color.label')}
           options={sortedColors}
           value={color}
           onChange={handleCreateNewColorsWithImages}
-          firstText={t('products.form.image.select')}
-          extraText={t('products.form.image.upTo')}
+          firstText={t('products.image.select')}
+          extraText={t('products.image.upTo')}
           required
         />
 
@@ -102,7 +102,7 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
             className={styles.imagesWith1ColorContainer}
           >
             <h3 className={styles.title}>
-              {t(`products.form.color.${imagesWith1Color.color}`)}
+              {t(`products.variants.color.${imagesWith1Color.color}`)}
             </h3>
             <ImagePreviews
               colorsWithImages={values.colorsWithImages}

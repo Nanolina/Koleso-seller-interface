@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Filter } from '../../../../../components/Filter/Filter';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
+import { COLORS } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { toggleShowDeletedVariants } from '../../../../../redux/slices/productsSlice';
 import { AppDispatch } from '../../../../../redux/store';
+import { sortTranslatedEntities } from '../../../functions';
 import { ColorType } from '../../../types';
-import { createNewVariant, sortTranslatedColors } from '../../functions';
+import { createNewVariant } from '../../functions';
 import { IVariantsProps } from '../../types';
 import { VariantsTable } from '../VariantsTable/VariantsTable';
 
@@ -40,7 +42,11 @@ export const AddVariants: React.FC<IVariantsProps> = React.memo(
 
     // Translate and sort colors
     useEffect(() => {
-      const sortColors = sortTranslatedColors(t);
+      const sortColors = sortTranslatedEntities(
+        COLORS,
+        'products.variants.color',
+        t
+      );
       setSortedColors(sortColors);
     }, [t]);
 
@@ -54,11 +60,11 @@ export const AddVariants: React.FC<IVariantsProps> = React.memo(
         <SelectLabel
           id="color"
           name="color"
-          label={t('products.form.color.label')}
+          label={t('products.variants.color.label')}
           options={sortedColors}
           value={color}
           onChange={handleCreateNewVariant}
-          firstText={t('products.form.color.select')}
+          firstText={t('products.variants.color.select')}
           required
         />
         <VariantsTable

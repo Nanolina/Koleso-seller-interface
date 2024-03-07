@@ -32,7 +32,7 @@ export const useImageHandler = () => {
         if (!correctImageFormats) {
           setError('');
           setTimeout(
-            () => setError(t('products.validation.imageNotFormat')),
+            () => setError(t('products.image.validation.imageNotFormat')),
             0
           );
           return;
@@ -41,7 +41,7 @@ export const useImageHandler = () => {
         if (image.size >= 512000) {
           setError('');
           setTimeout(
-            () => setError(t('products.validation.imageVeryBigSize')),
+            () => setError(t('products.image.validation.imageVeryBigSize')),
             0
           );
           return;

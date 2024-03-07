@@ -32,14 +32,14 @@ export const StorePage: React.FC = () => {
               text={
                 store?.name && storeId !== NEW
                   ? store?.name
-                  : t('stores.addStore')
+                  : t('stores.create')
               }
             />
             <StoreDetailsFormik />
           </>
         ) : (
           <div className="itemNotFound">
-            <Title text={t('stores.storeDetails.notFound')} />
+            <Title text={t('stores.notFound')} />
           </div>
         )}
       </Container>

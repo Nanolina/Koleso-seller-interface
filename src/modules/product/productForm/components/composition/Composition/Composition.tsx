@@ -17,7 +17,7 @@ export const Composition: React.FC<ICompositionProps> = React.memo(
         <BoxWithCloseButton
           onClick={() => handleRemoveCompositionElem(material.title)}
         >
-          {t(`products.form.composition.${material.title}`)} -{' '}
+          {t(`products.product.composition.${material.title}`)} -{' '}
           {material.percentage} %
         </BoxWithCloseButton>
       </div>

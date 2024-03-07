@@ -32,7 +32,7 @@ export const ProductPage: React.FC = () => {
               text={
                 product?.name && productId !== NEW
                   ? product?.name
-                  : t('products.createProduct')
+                  : t('products.product.create')
               }
             />
 
@@ -40,7 +40,7 @@ export const ProductPage: React.FC = () => {
           </>
         ) : (
           <div className="itemNotFound">
-            <Title text={t('products.productDetails.notFound')} />
+            <Title text={t('products.product.notFound')} />
           </div>
         )}
       </Container>

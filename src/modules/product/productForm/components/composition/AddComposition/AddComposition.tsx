@@ -17,7 +17,7 @@ export const AddComposition: React.FC<ICreateProductValuesProps> = React.memo(
     return (
       <>
         <div className={styles.container}>
-          <Label id="material" text={t('products.form.composition.label')} />
+          <Label id="material" text={t('products.product.composition.label')} />
           <AddMaterial
             values={values}
             setFieldValue={setFieldValue}

@@ -44,7 +44,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
     // Translate and sort genders
     useEffect(() => {
       const translatedGenders = GENDERS.map((gender) => ({
-        name: t(`products.form.gender.${gender}`),
+        name: t(`products.product.gender.${gender}`),
         value: gender,
       }));
       const sortedTranslatedGenders = translatedGenders.sort((a, b) =>
@@ -75,24 +75,22 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
             value={values.storeId}
             setFieldValue={setFieldValue}
             keyInLocalStorage="product"
-            firstText={t('products.form.selectStore')}
+            firstText={t('products.product.selectStore')}
             required
           />
 
           {!stores.length && (
             <p>
-              {t('products.productDetails.go')}{' '}
-              <Link to="/store/new">
-                {t('products.productDetails.myStores')}
-              </Link>{' '}
-              {t('products.productDetails.addAtLeastStore')}
+              {t('products.product.go')}{' '}
+              <Link to="/store/new">{t('products.product.myStores')}</Link>{' '}
+              {t('products.product.addAtLeastStore')}
             </p>
           )}
 
           {values.storeId && (
             <>
               <InputLabel
-                label={t('products.table.name')}
+                label={t('products.product.table.name')}
                 id="name"
                 name="name"
                 keyInLocalStorage="product"
@@ -104,7 +102,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
               />
               <Field
                 as={TextareaLabel}
-                label={t('products.table.description')}
+                label={t('products.product.table.description')}
                 id="description"
                 name="description"
                 keyInLocalStorage="product"
@@ -115,7 +113,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 rows={8}
               />
               <InputLabel
-                label={t('products.table.brand')}
+                label={t('products.product.table.brand')}
                 id="brand"
                 name="brand"
                 keyInLocalStorage="product"
@@ -125,7 +123,7 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
                 touched={touched}
               />
               <InputLabel
-                label={t('products.table.model')}
+                label={t('products.product.table.model')}
                 id="model"
                 name="model"
                 keyInLocalStorage="product"
@@ -137,12 +135,12 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
               <SelectLabel
                 id="gender"
                 name="gender"
-                label={t('products.form.gender.label')}
+                label={t('products.product.gender.label')}
                 options={sortedGenders}
                 value={values.gender || ''}
                 setFieldValue={setFieldValue}
                 keyInLocalStorage="product"
-                firstText={t('products.form.gender.select')}
+                firstText={t('products.product.gender.select')}
               />
 
               <CatalogStructureSelects

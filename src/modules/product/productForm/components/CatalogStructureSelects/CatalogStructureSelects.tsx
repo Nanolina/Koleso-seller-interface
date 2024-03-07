@@ -111,11 +111,11 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
         <SelectLabel
           id="sectionId"
           name="sectionId"
-          label={t('products.form.selectSection')}
+          label={t('products.product.selectSection')}
           options={sections}
           value={values.sectionId || 0}
           setFieldValue={setFieldValue}
-          firstText={t('products.form.selectSection')}
+          firstText={t('products.product.selectSection')}
           isNumber
           required
         />
@@ -124,11 +124,11 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
           <SelectLabel
             id="categoryId"
             name="categoryId"
-            label={t('products.form.selectCategory')}
+            label={t('products.product.selectCategory')}
             options={options.categoryOptions}
             value={values.categoryId || 0}
             setFieldValue={setFieldValue}
-            firstText={t('products.form.selectCategory')}
+            firstText={t('products.product.selectCategory')}
             isNumber
           />
         ) : undefined}
@@ -137,11 +137,11 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
           <SelectLabel
             id="subcategoryId"
             name="subcategoryId"
-            label={t('products.form.selectSubcategory')}
+            label={t('products.product.selectSubcategory')}
             options={options.subcategoryOptions}
             value={values.subcategoryId || 0}
             setFieldValue={setFieldValue}
-            firstText={t('products.form.selectSubcategory')}
+            firstText={t('products.product.selectSubcategory')}
             isNumber
           />
         ) : undefined}

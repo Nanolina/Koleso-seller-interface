@@ -127,13 +127,13 @@ export const ProductDetailsFormik: React.FC = () => {
 
           {productId && productId !== NEW && (
             <span className="removeText" onClick={() => setModalOpen(true)}>
-              {t('products.productDetails.removeProduct')}
+              {t('products.product.remove')}
             </span>
           )}
 
           <RemoveItemModal
-            text={t('products.productDetails.modal.removeText')}
-            extraText={t('products.productDetails.modal.removeExtraText')}
+            text={t('products.product.modal.removeText')}
+            extraText={t('products.product.modal.removeExtraText')}
             onRemove={onRemove}
             modalOpen={modalOpen}
             setModalOpen={setModalOpen}

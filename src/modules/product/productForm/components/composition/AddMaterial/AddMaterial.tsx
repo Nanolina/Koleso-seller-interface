@@ -28,7 +28,7 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
     useEffect(() => {
       const sortedTranslatedMaterials = sortTranslatedEntities(
         COMPOSITIONS,
-        'products.form.composition',
+        'products.product.composition',
         t
       );
       setSortedMaterials(sortedTranslatedMaterials);
@@ -44,7 +44,7 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
             setMaterial(event.target.value)
           }
           value={material}
-          firstText={t('products.form.composition.select')}
+          firstText={t('products.product.composition.select')}
           isHalfWidth
         />
         <AddPercentage

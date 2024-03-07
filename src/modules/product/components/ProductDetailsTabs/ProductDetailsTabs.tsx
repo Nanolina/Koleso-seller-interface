@@ -19,19 +19,19 @@ export const ProductDetailsTabs: React.FC = () => {
   const tabs = [
     {
       name: 'product',
-      label: t('products.tabs.product'),
+      label: t('products.product.label'),
       icon: <BsBox />,
       condition: true,
     },
     {
       name: 'variant',
-      label: t('products.form.variants.label'),
+      label: t('products.variants.label'),
       icon: <IoColorFilterSharp />,
       condition: isProductExist,
     },
     {
       name: 'image',
-      label: t('products.form.image.label'),
+      label: t('products.image.label'),
       icon: <BsImages />,
       condition: isProductExist,
     },
