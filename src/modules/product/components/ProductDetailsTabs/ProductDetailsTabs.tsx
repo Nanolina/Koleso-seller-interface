@@ -4,7 +4,7 @@ import { IoColorFilterSharp } from 'react-icons/io5';
 import { useNavigate, useParams } from 'react-router-dom';
 import { NEW } from '../../../../consts';
 import { Tab } from '../../../../ui/Tab/Tab';
-import { ImageUploadForm } from '../../imageForm';
+import { ImageUploadFormik } from '../../imageForm';
 import { ProductDetailsFormik } from '../../productForm';
 import { VariantDetailsFormik } from '../../variantForm';
 import styles from './ProductDetailsTabs.module.css';
@@ -48,7 +48,7 @@ export const ProductDetailsTabs: React.FC = () => {
       case 'variant':
         return <VariantDetailsFormik />;
       case 'image':
-        return <ImageUploadForm />;
+        return <ImageUploadFormik />;
       default:
         return null;
     }

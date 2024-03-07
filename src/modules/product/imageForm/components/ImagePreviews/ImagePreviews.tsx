@@ -6,7 +6,6 @@ import styles from './ImagePreviews.module.css';
 
 export const ImagePreviews: React.FC<IImagePreviewsProps> = React.memo(
   ({ colorsWithImages, setFieldValue, images, color }) => {
-    // Get data from hooks
     const { handleRemoveImage } = useImageHandler();
 
     return (

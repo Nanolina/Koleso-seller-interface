@@ -7,6 +7,7 @@ import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
 import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { InputUpload } from '../../../../../ui/InputUpload/InputUpload';
+import { sortTranslatedEntities } from '../../../functions';
 import { ColorType } from '../../../types';
 import {
   createColorsWithImages,
@@ -22,17 +23,20 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
   ({ values, setFieldValue }) => {
     const { t } = useTranslation();
 
+    // useState
     const [error, setError] = useState<string | null>(null);
     const [color, setColor] = useState<ColorType | string>('');
     const [sortedColors, setSortedColors] = useState<
       { name: string; value: string }[]
     >([]);
 
-    const { handleFileSelect } = useImageHandler();
-
+    // Redux
     const { items: variants, loading } = useSelector(
       (state: IRootState) => state.products.product.variants
     );
+
+    // Handlers
+    const { handleFileSelect } = useImageHandler();
 
     const handleCreateNewColorsWithImages = useCallback(
       (colorValue: ColorType) => {
@@ -67,13 +71,12 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
     // Translate and sort colors
     useEffect(() => {
       const uniqueColors = getExistingUniqueColors(variants);
-      const translatedColors = uniqueColors.map((color) => ({
-        name: t(`products.form.color.${color}`),
-        value: color,
-      }));
-      const sortedTranslatedColors = translatedColors.sort((a, b) =>
-        a.name.localeCompare(b.name, 'default', { numeric: true })
+      const sortedTranslatedColors = sortTranslatedEntities(
+        uniqueColors,
+        'products.form.color',
+        t
       );
+
       setSortedColors(sortedTranslatedColors);
     }, [t, variants]);
 
@@ -93,44 +96,42 @@ export const ImageUpload: React.FC<IImageUploadProps> = React.memo(
           required
         />
 
-        {values.colorsWithImages &&
-          values.colorsWithImages.map((imagesWith1Color) => (
-            <div
-              key={imagesWith1Color.color}
-              className={styles.imagesWith1ColorContainer}
-            >
-              <h3 className={styles.title}>
-                {t(`products.form.color.${imagesWith1Color.color}`)}
-              </h3>
-              <ImagePreviews
-                colorsWithImages={values.colorsWithImages}
-                setFieldValue={setFieldValue}
-                images={imagesWith1Color.images}
-                color={imagesWith1Color.color}
-              />
-              {imagesWith1Color.images &&
-                imagesWith1Color.images.length < 5 && (
-                  <InputUpload
-                    onChange={handleFileSelect(
-                      values.colorsWithImages,
-                      setFieldValue,
-                      imagesWith1Color,
-                      setError,
-                      t
-                    )}
-                    acceptFiles="image/*"
-                    multiple
-                  />
+        {values.colorsWithImages.map((imagesWith1Color) => (
+          <div
+            key={imagesWith1Color.color}
+            className={styles.imagesWith1ColorContainer}
+          >
+            <h3 className={styles.title}>
+              {t(`products.form.color.${imagesWith1Color.color}`)}
+            </h3>
+            <ImagePreviews
+              colorsWithImages={values.colorsWithImages}
+              setFieldValue={setFieldValue}
+              images={imagesWith1Color.images}
+              color={imagesWith1Color.color}
+            />
+            {imagesWith1Color.images && imagesWith1Color.images.length < 5 && (
+              <InputUpload
+                onChange={handleFileSelect(
+                  values.colorsWithImages,
+                  setFieldValue,
+                  imagesWith1Color,
+                  setError,
+                  t
                 )}
-              <IoCloseOutline
-                color="var(--dark-gray)"
-                onClick={() =>
-                  handleRemoveColorWithImages(imagesWith1Color.color)
-                }
-                className={styles.iconRemove}
+                acceptFiles="image/*"
+                multiple
               />
-            </div>
-          ))}
+            )}
+            <IoCloseOutline
+              color="var(--dark-gray)"
+              onClick={() =>
+                handleRemoveColorWithImages(imagesWith1Color.color)
+              }
+              className={styles.iconRemove}
+            />
+          </div>
+        ))}
 
         {error && <MessageBox errorMessage={error} />}
       </div>

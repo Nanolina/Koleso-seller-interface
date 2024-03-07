@@ -20,16 +20,19 @@ import {
 } from '../../types';
 import { ImageUpload } from '../ImageUpload/ImageUpload';
 
-export const ImageUploadForm: React.FC = () => {
+export const ImageUploadFormik: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
+
+  // Params
   const { productId } = useParams<{ productId: string }>();
 
-  // Values from Redux
+  // Redux
   const { colorsWithImages, loading, error, success } = useSelector(
     (state: IRootState) => state.colorsWithImages
   );
 
+  // Get images
   useEffect(() => {
     if (productId && productId !== NEW) {
       dispatch(handleGetAllColorsWithImages(productId));
@@ -43,7 +46,7 @@ export const ImageUploadForm: React.FC = () => {
   }, [dispatch, productId]);
 
   // Submit data
-  const handleSubmit = useCallback(
+  const onSubmit = useCallback(
     (values: IUpdateColorsWithImagesData) => {
       if (!productId) {
         return;
@@ -58,6 +61,7 @@ export const ImageUploadForm: React.FC = () => {
           });
         }
       );
+
       dispatch(
         handleUpdateColorsWithImages({
           productId,
@@ -73,7 +77,7 @@ export const ImageUploadForm: React.FC = () => {
   return (
     <Formik
       initialValues={{ colorsWithImages }}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
       enableReinitialize
     >
       {({ values, setFieldValue, isValid }) => (

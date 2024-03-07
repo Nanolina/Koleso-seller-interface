@@ -51,7 +51,7 @@ export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
           </TableHeader>
 
           <tbody>
-            {values.variants?.map((variant: IVariant, index: number) => {
+            {values.variants.map((variant: IVariant, index: number) => {
               const variantErrors: IVariantErrors | undefined = Array.isArray(
                 errors.variants
               )

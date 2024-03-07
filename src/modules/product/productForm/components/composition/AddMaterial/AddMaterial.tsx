@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Select } from '../../../../../../components/Select/Select';
 import { COMPOSITIONS } from '../../../../../../consts';
 import { Button } from '../../../../../../ui/Button/Button';
-import { sortTranslatedEntities } from '../../../functions';
+import { sortTranslatedEntities } from '../../../../functions';
 import { addCompositionToValues } from '../../../handlers';
 import { ICreateProductValuesProps } from '../../../types';
 import { AddPercentage } from '../AddPercentage/AddPercentage';
@@ -26,12 +26,12 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
 
     // Translate and sort materials
     useEffect(() => {
-      const translatedSortedMaterials = sortTranslatedEntities(
+      const sortedTranslatedMaterials = sortTranslatedEntities(
         COMPOSITIONS,
         'products.form.composition',
         t
       );
-      setSortedMaterials(translatedSortedMaterials);
+      setSortedMaterials(sortedTranslatedMaterials);
     }, [t]);
 
     return (

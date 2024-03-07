@@ -1,3 +1,4 @@
+import { TFunction } from 'i18next';
 import { IVariant } from './variantForm';
 
 export const getValuesForVariants = (
@@ -22,4 +23,17 @@ export const getFirstAvailableImage = (variants: IVariant[]) => {
     }
   }
   return null;
+};
+
+export const sortTranslatedEntities = (
+  entities: any,
+  translationPath: string,
+  t: TFunction<'translation', undefined>
+) => {
+  return entities
+    .map((entity: any) => ({
+      name: t(`${translationPath}.${entity}`),
+      value: entity,
+    }))
+    .sort((a: any, b: any) => a.name.localeCompare(b.name));
 };

@@ -78,7 +78,7 @@ export const ProductsTable: React.FC = () => {
         </TableHeader>
 
         <tbody>
-          {products?.map((product: IProduct, index: number) => (
+          {products.map((product: IProduct, index: number) => (
             <TableRow
               key={product.id}
               rowIndex={index}
