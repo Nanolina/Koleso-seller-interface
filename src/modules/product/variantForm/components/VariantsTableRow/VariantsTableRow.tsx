@@ -12,18 +12,17 @@ export const VariantsTableRow: React.FC<IVariantsTableRowProps> = React.memo(
   ({
     variant,
     index,
-    variants,
+    values,
     setFieldValue,
     variantErrors,
     errors,
     touched,
-    setModalOpen,
   }) => {
     const { t } = useTranslation();
 
     // Handlers
     const { handleUpdateVariant, handleCopyVariant } = useVariant(
-      variants,
+      values.variants,
       setFieldValue
     );
 
@@ -103,8 +102,9 @@ export const VariantsTableRow: React.FC<IVariantsTableRowProps> = React.memo(
 
         <VariantsRowButtons
           variant={variant}
-          setModalOpen={setModalOpen}
+          values={values}
           handleCopyVariant={handleCopyVariant}
+          setFieldValue={setFieldValue}
         />
       </TableRow>
     );

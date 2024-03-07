@@ -1,6 +1,5 @@
 import { FormikErrors, FormikProps, FormikTouched } from 'formik';
 import { ChangeEventHandler } from 'react';
-import { SetStateAction } from '../../../types';
 import { IImage } from '../../image';
 import { ColorType } from '../types';
 
@@ -28,30 +27,20 @@ export interface IVariant extends ICreateVariantData {
   [key: string]: any;
 }
 
-export interface IAddVariantsProps {
+export interface IVariantsProps {
   values: IUpdateVariantsData;
   setFieldValue: FormikProps<IUpdateVariantsData>['setFieldValue'];
   errors: FormikErrors<any>;
   touched: FormikTouched<any>;
 }
 
-export interface IVariantProps extends IAddVariantsProps {
+export interface IVariantProps extends IVariantsProps {
   variant: IVariant;
 }
 
-export interface IVariantsTableProps extends IAddVariantsProps {
-  setModalOpen: SetStateAction<boolean>;
-}
-
-export interface IVariantsTableRowProps {
-  variant: IVariant;
+export interface IVariantsTableRowProps extends IVariantProps {
   index: number;
-  variants: IVariant[];
-  setFieldValue: (field: string, value: any) => void;
   variantErrors?: IVariantErrors;
-  errors: FormikErrors<any>;
-  touched: FormikTouched<any>;
-  setModalOpen: (isOpen: boolean) => void;
 }
 
 export interface IVariantInputProps {
@@ -65,8 +54,9 @@ export interface IVariantInputProps {
 
 export interface IVariantsRowButtonsProps {
   variant: IVariant;
-  setModalOpen: (isOpen: boolean) => void;
   handleCopyVariant: (variantId: string) => void;
+  values: IUpdateVariantsData;
+  setFieldValue: (field: string, value: any) => void;
 }
 
 export interface IVariantErrors {
@@ -80,7 +70,6 @@ export interface IVariantErrors {
 
 export interface IVariantsState {
   items: IVariant[];
-  variantId: string;
   showDeleted: boolean;
   loading: boolean;
   success: string | null;

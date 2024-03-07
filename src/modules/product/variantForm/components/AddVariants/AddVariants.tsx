@@ -6,32 +6,28 @@ import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { toggleShowDeletedVariants } from '../../../../../redux/slices/productsSlice';
 import { AppDispatch } from '../../../../../redux/store';
-import { RemoveItemModal } from '../../../../modal';
 import { ColorType } from '../../../types';
 import { createNewVariant, sortTranslatedColors } from '../../functions';
-import { IAddVariantsProps } from '../../types';
-import useVariant from '../../useVariant';
+import { IVariantsProps } from '../../types';
 import { VariantsTable } from '../VariantsTable/VariantsTable';
 
-export const AddVariants: React.FC<IAddVariantsProps> = React.memo(
+export const AddVariants: React.FC<IVariantsProps> = React.memo(
   ({ values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
 
     // useState
-    const [modalOpen, setModalOpen] = useState(false);
     const [color, setColor] = useState<ColorType | string>('');
     const [sortedColors, setSortedColors] = useState<
       { name: string; value: string }[]
     >([]);
 
     // Redux
-    const { showDeleted, variantId } = useSelector(
+    const { showDeleted } = useSelector(
       (state: IRootState) => state.products.product.variants
     );
 
     // Handlers
-    const { handleRemoveVariant } = useVariant(values.variants, setFieldValue);
     const handleCreateNewVariant = useCallback(
       (colorValue: ColorType) => {
         if (!colorValue) return;
@@ -70,17 +66,6 @@ export const AddVariants: React.FC<IAddVariantsProps> = React.memo(
           setFieldValue={setFieldValue}
           errors={errors}
           touched={touched}
-          setModalOpen={setModalOpen}
-        />
-        <RemoveItemModal
-          text={t('products.form.variants.modal.removeText')}
-          extraText={t('products.form.variants.modal.removeExtraText')}
-          modalOpen={modalOpen}
-          setModalOpen={setModalOpen}
-          onRemove={() => {
-            handleRemoveVariant(variantId);
-            setModalOpen(false);
-          }}
         />
       </>
     );

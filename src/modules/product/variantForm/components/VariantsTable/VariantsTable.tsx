@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import { Loader } from '../../../../../components/Loader/Loader';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { HeaderCell, Table, TableHeader } from '../../../../table';
-import { IVariant, IVariantErrors, IVariantsTableProps } from '../../types';
+import { IVariant, IVariantErrors, IVariantsProps } from '../../types';
 import { VariantsTableRow } from '../VariantsTableRow/VariantsTableRow';
 
-export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
-  ({ values, setFieldValue, errors, touched, setModalOpen }) => {
+export const VariantsTable: React.FC<IVariantsProps> = React.memo(
+  ({ values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
 
     const { showDeleted, loading } = useSelector(
@@ -63,12 +63,11 @@ export const VariantsTable: React.FC<IVariantsTableProps> = React.memo(
                   key={variant.id}
                   variant={variant}
                   index={index}
-                  variants={values.variants}
+                  values={values}
                   setFieldValue={setFieldValue}
                   variantErrors={variantErrors}
                   errors={errors}
                   touched={touched}
-                  setModalOpen={setModalOpen}
                 />
               );
             })}
