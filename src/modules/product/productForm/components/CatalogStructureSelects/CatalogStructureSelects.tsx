@@ -7,7 +7,7 @@ import { SelectLabel } from '../../../../../components/SelectLabel/SelectLabel';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
 import { handleGetCatalogStructure } from '../../../../../redux/thunks/catalog';
-import { getOptions } from '../../functions';
+import { getOptions, sortTranslatedSections } from '../../functions';
 import { ICreateProductValuesProps, IOptions, ISectionType } from '../../types';
 
 /**
@@ -20,10 +20,12 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
 
+    // Redux
     const { catalogStructure, loading, error } = useSelector(
       (state: IRootState) => state.catalog
     );
 
+    // useState
     const [prevSectionId, setPrevSectionId] = useState<number>(
       values.sectionId
     );
@@ -36,41 +38,30 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
       subcategoryOptions: [],
     });
 
-    // Get catalog structure from DB
+    // useEffect
     useEffect(() => {
       dispatch(handleGetCatalogStructure());
     }, [dispatch]);
 
     // Sort sections
     useEffect(() => {
-      const sortedSections = [...catalogStructure]
-        .map((section) => ({
-          ...section,
-          name: t(`catalog.${section.name}`),
-        }))
-        .sort((a, b) =>
-          t(`catalog.${a.name}`).localeCompare(t(`catalog.${b.name}`), 'ru')
-        );
+      const sortedSections = sortTranslatedSections(catalogStructure, t);
       setSections(sortedSections);
     }, [catalogStructure, t]);
 
     // Update categories only if section is selected
     useEffect(() => {
       if (values.sectionId) {
-        const sortedCategoryOptions = getOptions(
+        const categoryOptions = getOptions(
           sections,
           'categories',
+          t,
           values.sectionId
-        )
-          .map((category) => ({
-            ...category,
-            name: t(`catalog.${category.name}`),
-          }))
-          .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+        );
 
         setOptions((prevOptions) => ({
           ...prevOptions,
-          categoryOptions: sortedCategoryOptions,
+          categoryOptions,
         }));
       }
     }, [sections, values.sectionId, t]);
@@ -78,20 +69,16 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
     // Update subcategories only if a category is selected
     useEffect(() => {
       if (values.categoryId) {
-        const sortedSubcategoryOptions = getOptions(
+        const subcategoryOptions = getOptions(
           sections,
           'subcategories',
+          t,
           values.categoryId
-        )
-          .map((subcategory) => ({
-            ...subcategory,
-            name: t(`catalog.${subcategory.name}`),
-          }))
-          .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+        );
 
         setOptions((prevOptions) => ({
           ...prevOptions,
-          subcategoryOptions: sortedSubcategoryOptions,
+          subcategoryOptions,
         }));
       }
     }, [sections, values.categoryId, t]);
@@ -113,6 +100,7 @@ export const CatalogStructureSelects: React.FC<ICreateProductValuesProps> =
       ) {
         setFieldValue('subcategoryId', undefined);
       }
+
       setPrevCategoryId(values.categoryId);
     }, [values.categoryId, prevCategoryId, setFieldValue]);
 

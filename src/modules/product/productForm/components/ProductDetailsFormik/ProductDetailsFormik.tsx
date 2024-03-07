@@ -18,17 +18,28 @@ import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
 import { RemoveItemModal } from '../../../../modal';
 import { handleSubmitFormProduct } from '../../handlers';
-import { initialValuesProduct } from '../../initialValues';
+import {
+  initialValuesProduct,
+  mapProductToInitialValues,
+} from '../../initialValues';
 import { ICreateProductData, IProduct } from '../../types';
 import { validationSchema } from '../../validationSchema';
 import { ProductFormFields } from '../ProductFormFields/ProductFormFields';
 
-export const ProductDetailsForm: React.FC = () => {
+export const ProductDetailsFormik: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+
+  // Params
   const { productId } = useParams<{ productId: string }>();
 
+  // Redux
+  const { loading, error, success } = useSelector(
+    (state: IRootState) => state.products
+  );
+
+  // Local storage
   const savedProduct = JSON.parse(localStorage.getItem('product') || '{}');
 
   // useState
@@ -38,54 +49,23 @@ export const ProductDetailsForm: React.FC = () => {
     ...savedProduct,
   });
 
-  // Values from Redux
-  const { loading, error, success } = useSelector(
-    (state: IRootState) => state.products
-  );
-
-  // useEffect
-  useEffect(() => {
-    dispatch(handleGetAllStores({ type: 'active' }));
-  }, [dispatch]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      // If the correct productId in the url
-      if (productId && productId !== NEW) {
-        // Get data of product from DB
-        const data = await dispatch(
-          handleGetProductById({
-            id: productId,
-            filterVariants: { type: 'active' },
-          })
-        );
-
-        // Retrieve data from a completed promise
-        const product: IProduct = unwrapResult(data);
-
-        // Set initial values based on the data from DB
-        if (product) {
-          setInitialValues({
-            storeId: product.storeId,
-            name: product.name,
-            description: product.description,
-            brand: product.brand,
-            model: product.model,
-            gender: product.gender,
-            sectionId: product.sectionId,
-            categoryId: product.categoryId,
-            subcategoryId: product.subcategoryId,
-            composition: product.composition,
-          });
-        }
-      }
-    };
-
-    fetchData();
-  }, [dispatch, productId]);
+  // Get product by id
+  const fetchData = useCallback(async () => {
+    if (productId && productId !== NEW) {
+      const data = await dispatch(
+        handleGetProductById({
+          id: productId,
+          filterVariants: { type: 'active' },
+        })
+      );
+      const resultProduct: IProduct = unwrapResult(data);
+      if (resultProduct)
+        setInitialValues(mapProductToInitialValues(resultProduct));
+    }
+  }, [productId, dispatch]);
 
   // Submit data
-  const handleSubmit = useCallback(
+  const onSubmit = useCallback(
     (values: ICreateProductData) => {
       handleSubmitFormProduct(
         productId,
@@ -98,12 +78,22 @@ export const ProductDetailsForm: React.FC = () => {
     [productId, dispatch, navigate]
   );
 
-  const handleRemove = () => {
+  // Remove product
+  const onRemove = useCallback(() => {
     if (productId) {
       dispatch(handleRemoveProduct(productId));
       navigate('/products');
     }
-  };
+  }, [productId, dispatch, navigate]);
+
+  // useEffect
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  useEffect(() => {
+    dispatch(handleGetAllStores({ type: 'active' }));
+  }, [dispatch]);
 
   if (loading) return <Loader />;
 
@@ -111,7 +101,7 @@ export const ProductDetailsForm: React.FC = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={() => validationSchema(t)}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
       enableReinitialize
     >
       {({ values, errors, touched, setFieldValue, isValid, resetForm }) => (
@@ -144,7 +134,7 @@ export const ProductDetailsForm: React.FC = () => {
           <RemoveItemModal
             text={t('products.productDetails.modal.removeText')}
             extraText={t('products.productDetails.modal.removeExtraText')}
-            onRemove={handleRemove}
+            onRemove={onRemove}
             modalOpen={modalOpen}
             setModalOpen={setModalOpen}
           />

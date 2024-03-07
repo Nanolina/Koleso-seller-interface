@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Select } from '../../../../../../components/Select/Select';
 import { COMPOSITIONS } from '../../../../../../consts';
 import { Button } from '../../../../../../ui/Button/Button';
+import { sortTranslatedEntities } from '../../../functions';
+import { addCompositionToValues } from '../../../handlers';
 import { ICreateProductValuesProps } from '../../../types';
 import { AddPercentage } from '../AddPercentage/AddPercentage';
 import styles from './AddMaterial.module.css';
@@ -15,43 +17,21 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
   ({ values, setFieldValue, errors, touched }) => {
     const { t } = useTranslation();
 
+    // useState
     const [material, setMaterial] = useState<string>('');
     const [materialPercentage, setMaterialPercentage] = useState<number>(0);
     const [sortedMaterials, setSortedMaterials] = useState<
       { name: string; value: string }[]
     >([]);
 
-    const addCompositionToValues = () => {
-      const currentComposition = values.composition || [];
-
-      if (currentComposition.some((comp) => comp.title === material)) {
-        return;
-      }
-
-      const newComposition = [
-        ...currentComposition,
-        { title: material, percentage: materialPercentage },
-      ];
-
-      // Update the composition in Formik
-      setFieldValue('composition', newComposition);
-
-      // Update the composition in localStorage
-      const currentData = JSON.parse(localStorage.getItem('product') || '{}');
-      currentData['composition'] = newComposition;
-      localStorage.setItem('product', JSON.stringify(currentData));
-    };
-
     // Translate and sort materials
     useEffect(() => {
-      const translatedMaterials = COMPOSITIONS.map((material) => ({
-        name: t(`products.form.composition.${material}`),
-        value: material,
-      }));
-      const sortedTranslatedMaterials = translatedMaterials.sort((a, b) =>
-        a.name.localeCompare(b.name, 'default', { numeric: true })
+      const translatedSortedMaterials = sortTranslatedEntities(
+        COMPOSITIONS,
+        'products.form.composition',
+        t
       );
-      setSortedMaterials(sortedTranslatedMaterials);
+      setSortedMaterials(translatedSortedMaterials);
     }, [t]);
 
     return (
@@ -77,7 +57,14 @@ export const AddMaterial: React.FC<ICreateProductValuesProps> = React.memo(
           text={t('add')}
           type="button"
           disabled={!material || !materialPercentage}
-          onClick={addCompositionToValues}
+          onClick={() =>
+            addCompositionToValues(
+              material,
+              materialPercentage,
+              values,
+              setFieldValue
+            )
+          }
         />
       </div>
     );

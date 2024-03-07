@@ -1,5 +1,6 @@
 /* eslint-disable eqeqeq */
 
+import { TFunction } from 'i18next';
 import { ICategoryType, ISectionType } from './types';
 
 /**
@@ -12,11 +13,14 @@ import { ICategoryType, ISectionType } from './types';
 export const getOptions = (
   data: ISectionType[],
   type: 'categories' | 'subcategories',
+  t: TFunction<'translation', undefined>,
   selectedId?: number
 ) => {
+  let options = [];
+
   if (type === 'categories') {
-    // Find the section by ID and return its categories, or an empty array if not found
-    return data.find((item) => item.id == selectedId)?.categories || [];
+    // Find the section by ID and put to arr its categories, or an empty array if not found
+    options = data.find((item) => item.id == selectedId)?.categories || [];
   } else {
     // Assume the type is 'subcategories'
     // Flatten the categories array to search for the selected category across all sections
@@ -24,7 +28,52 @@ export const getOptions = (
       .flatMap((section) => section.categories || [])
       .find((category) => category.id == selectedId) as ICategoryType; // Explicitly cast to ICategoryType
 
-    // Return the subcategories of the found category, or an empty array if not found
-    return category?.subcategories || [];
+    // Put to arr subcategories of the found category, or an empty array if not found
+    options = category?.subcategories || [];
   }
+
+  return sortTranslatedCatalogItems(options, t);
+};
+
+// Translate functions
+// Categories and subcategories
+const sortTranslatedCatalogItems = (
+  entities: any,
+  t: TFunction<'translation', undefined>
+) => {
+  return entities
+    .map((entity: any) => ({
+      ...entity,
+      name: t(`catalog.${entity.name}`),
+    }))
+    .sort((a: any, b: any) => a.name.localeCompare(b.name));
+};
+
+// Sections
+export const sortTranslatedSections = (
+  sections: ISectionType[],
+  t: TFunction<'translation', undefined>
+) => {
+  return sections
+    .map((section) => ({
+      ...section,
+      name: t(`catalog.${section.name}`),
+    }))
+    .sort((a, b) =>
+      t(`catalog.${a.name}`).localeCompare(t(`catalog.${b.name}`))
+    );
+};
+
+// Materials
+export const sortTranslatedEntities = (
+  entities: any,
+  translationPath: string,
+  t: TFunction<'translation', undefined>
+) => {
+  return entities
+    .map((entity: any) => ({
+      name: t(`${translationPath}.${entity}`),
+      value: entity,
+    }))
+    .sort((a: any, b: any) => a.name.localeCompare(b.name));
 };

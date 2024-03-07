@@ -1,4 +1,5 @@
 import { unwrapResult } from '@reduxjs/toolkit';
+import { FormikProps } from 'formik';
 import { NEW } from '../../../consts';
 import { AppDispatch } from '../../../redux/store';
 import {
@@ -65,4 +66,30 @@ export const handleSubmitFormProduct = async (
       });
     }
   }
+};
+
+export const addCompositionToValues = (
+  material: string,
+  materialPercentage: number,
+  values: ICreateProductData,
+  setFieldValue: FormikProps<ICreateProductData>['setFieldValue']
+) => {
+  const currentComposition = values.composition || [];
+
+  if (currentComposition.some((comp) => comp.title === material)) {
+    return;
+  }
+
+  const newComposition = [
+    ...currentComposition,
+    { title: material, percentage: materialPercentage },
+  ];
+
+  // Update the composition in Formik
+  setFieldValue('composition', newComposition);
+
+  // Update the composition in localStorage
+  const currentData = JSON.parse(localStorage.getItem('product') || '{}');
+  currentData['composition'] = newComposition;
+  localStorage.setItem('product', JSON.stringify(currentData));
 };

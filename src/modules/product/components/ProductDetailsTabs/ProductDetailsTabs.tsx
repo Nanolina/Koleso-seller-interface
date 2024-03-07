@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { NEW } from '../../../../consts';
 import { Tab } from '../../../../ui/Tab/Tab';
 import { ImageUploadForm } from '../../imageForm';
-import { ProductDetailsForm } from '../../productForm';
+import { ProductDetailsFormik } from '../../productForm';
 import { VariantDetailsForm } from '../../variantForm';
 import styles from './ProductDetailsTabs.module.css';
 
@@ -44,7 +44,7 @@ export const ProductDetailsTabs: React.FC = () => {
   const renderForm = () => {
     switch (activeTab) {
       case 'product':
-        return <ProductDetailsForm />;
+        return <ProductDetailsFormik />;
       case 'variant':
         return <VariantDetailsForm />;
       case 'image':

@@ -25,14 +25,17 @@ export const ProductFormFields: React.FC<IProductFormFieldsProps> = React.memo(
   }) => {
     const { t } = useTranslation();
 
+    // Redux
     const { items: stores, loading: loadingStores } = useSelector(
       (state: IRootState) => state.stores
     );
 
+    // useState
     const [sortedGenders, setSortedGenders] = useState<
       { name: string; value: string }[]
     >([]);
 
+    // Clear form
     const handleClearValues = useCallback(() => {
       localStorage.removeItem('product');
       resetForm({ values: initialValuesProduct });

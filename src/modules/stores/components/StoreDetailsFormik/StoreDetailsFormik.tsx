@@ -27,7 +27,7 @@ export const StoreDetailsFormik: React.FC = () => {
   // Params
   const { storeId } = useParams<{ storeId: string }>();
 
-  // Values from Redux
+  // Redux
   const { store, loading, error, success } = useSelector(
     (state: IRootState) => state.stores
   );
