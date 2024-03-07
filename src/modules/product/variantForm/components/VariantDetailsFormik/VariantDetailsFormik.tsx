@@ -17,12 +17,14 @@ import { IUpdateVariantsData } from '../../types';
 import { validationSchema } from '../../validationSchema';
 import { AddVariants } from '../AddVariants/AddVariants';
 
-export const VariantDetailsForm: React.FC = () => {
+export const VariantDetailsFormik: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
+
+  // Params
   const { productId } = useParams<{ productId: string }>();
 
-  // Values from Redux
+  // Redux
   const {
     items: variants,
     showDeleted,
@@ -30,6 +32,7 @@ export const VariantDetailsForm: React.FC = () => {
     success,
   } = useSelector((state: IRootState) => state.products.product.variants);
 
+  // Get variants for product
   useEffect(() => {
     if (productId && productId !== NEW) {
       dispatch(
@@ -44,7 +47,7 @@ export const VariantDetailsForm: React.FC = () => {
   }, [dispatch, productId, showDeleted]);
 
   // Submit data
-  const handleSubmit = useCallback(
+  const onSubmit = useCallback(
     (values: IUpdateVariantsData) => {
       if (!productId) {
         return;
@@ -59,7 +62,7 @@ export const VariantDetailsForm: React.FC = () => {
     <Formik
       initialValues={{ variants }}
       validationSchema={() => validationSchema(t)}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
       enableReinitialize
     >
       {({ values, errors, touched, setFieldValue, isValid }) => (

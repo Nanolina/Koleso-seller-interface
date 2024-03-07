@@ -6,7 +6,7 @@ import { NEW } from '../../../../consts';
 import { Tab } from '../../../../ui/Tab/Tab';
 import { ImageUploadForm } from '../../imageForm';
 import { ProductDetailsFormik } from '../../productForm';
-import { VariantDetailsForm } from '../../variantForm';
+import { VariantDetailsFormik } from '../../variantForm';
 import styles from './ProductDetailsTabs.module.css';
 
 export const ProductDetailsTabs: React.FC = () => {
@@ -46,7 +46,7 @@ export const ProductDetailsTabs: React.FC = () => {
       case 'product':
         return <ProductDetailsFormik />;
       case 'variant':
-        return <VariantDetailsForm />;
+        return <VariantDetailsFormik />;
       case 'image':
         return <ImageUploadForm />;
       default:

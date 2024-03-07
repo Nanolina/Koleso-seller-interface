@@ -1,4 +1,4 @@
-export { VariantDetailsForm } from './components/VariantDetailsForm/VariantDetailsForm';
+export { VariantDetailsFormik } from './components/VariantDetailsFormik/VariantDetailsFormik';
 export type {
   IUpdateVariantsArg,
   IUpdateVariantsData,

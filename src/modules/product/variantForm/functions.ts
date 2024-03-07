@@ -1,4 +1,6 @@
+import { TFunction } from 'i18next';
 import { v4 as uuidv4 } from 'uuid';
+import { COLORS } from '../../../consts';
 import { ColorType } from '../types';
 import { IVariant } from './types';
 
@@ -44,4 +46,14 @@ export const copyVariant = (variants: IVariant[], variantId: string) => {
 // Remove
 export const removeVariant = (variants: IVariant[], variantId: string) => {
   return variants.filter((variant) => variant.id !== variantId);
+};
+
+// Sort translated colors
+export const sortTranslatedColors = (
+  t: TFunction<'translation', undefined>
+): { name: string; value: string }[] => {
+  return COLORS.map((color) => ({
+    name: t(`products.form.color.${color}`),
+    value: color,
+  })).sort((a, b) => a.name.localeCompare(b.name));
 };
