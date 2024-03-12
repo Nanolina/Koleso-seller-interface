@@ -42,9 +42,9 @@ export class AuthService {
     return authServiceAPI.post('/logout');
   }
 
-  static async changeEmail({
-    email,
-  }: IChangeEmailData): Promise<AxiosResponse<IEmailResponse>> {
+  static async changeEmail(
+    email: string
+  ): Promise<AxiosResponse<IEmailResponse>> {
     return authServiceAPI.patch<IEmailResponse>('/change-email', {
       email,
     });

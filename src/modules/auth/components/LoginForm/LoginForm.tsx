@@ -10,7 +10,9 @@ import { AppDispatch } from '../../../../redux/store';
 import { handleLogin } from '../../../../redux/thunks/user';
 import { ILoginData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
+import { Email } from '../../../../ui/Email/Email';
 import styles from './LoginForm.module.css';
+import { initialValues } from './initialValues';
 
 export const LoginForm: React.FC = () => {
   const { t } = useTranslation();
@@ -19,13 +21,7 @@ export const LoginForm: React.FC = () => {
 
   const { loading, error } = useSelector((state: IRootState) => state.user);
 
-  // Initial values
-  const initialValues = {
-    email: '',
-    password: '',
-  };
-
-  const handleSubmit = async (values: ILoginData) => {
+  const onSubmit = async (values: ILoginData) => {
     const { email, password } = values;
 
     const userData: ILoginData = {
@@ -41,19 +37,14 @@ export const LoginForm: React.FC = () => {
   }
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ values, setFieldValue, errors, touched }) => (
         <Form className="authContainer">
-          <InputLabel
-            name="email"
-            inputType="email"
-            label={t('auth.email')}
-            id="email"
+          <Email
             value={values.email}
             setFieldValue={setFieldValue}
             errors={errors}
             touched={touched}
-            required
           />
 
           <InputLabel

@@ -1,13 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthService } from '../../../services';
-import { IChangeEmailData } from '../../../services/types/request';
 import { handleAsyncThunkError } from '../../functions';
 
 export const handleChangeEmail = createAsyncThunk(
   'user/change-email',
-  async (userData: IChangeEmailData, { rejectWithValue }) => {
+  async (email: string, { rejectWithValue }) => {
     try {
-      const response = await AuthService.changeEmail(userData);
+      const response = await AuthService.changeEmail(email);
       return {
         email: response.data.email,
       };

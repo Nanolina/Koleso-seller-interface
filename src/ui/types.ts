@@ -1,3 +1,4 @@
+import { FormikErrors, FormikProps, FormikTouched } from 'formik';
 import { HTMLInputTypeAttribute, ReactElement } from 'react';
 import { SetStateAction } from './../types';
 
@@ -87,4 +88,11 @@ export interface ITabProps {
 export interface IRecoverIconProps {
   tooltipText?: string;
   onClick: any;
+}
+
+export interface IEmailProps {
+  value: string;
+  setFieldValue: FormikProps<any>['setFieldValue'];
+  errors: FormikErrors<any>;
+  touched: FormikTouched<any>;
 }

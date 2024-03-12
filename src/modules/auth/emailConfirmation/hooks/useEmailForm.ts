@@ -36,7 +36,7 @@ export const useEmailForm = () => {
 
   // Change email
   const handleSubmitChangeEmail = async (values: IChangeEmailData) => {
-    dispatch(handleChangeEmail({ email: values.email }));
+    dispatch(handleChangeEmail(values.email));
   };
 
   // Resend email confirmation
