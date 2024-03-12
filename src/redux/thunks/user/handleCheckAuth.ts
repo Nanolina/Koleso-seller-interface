@@ -24,6 +24,7 @@ export const handleCheckAuth = createAsyncThunk(
       return {
         id: user.id,
         email: user.email,
+        phone: user.phone,
         activationLinkId: user.activationLinkId,
         isActive: user.isActive,
         isVerifiedEmail: user.isVerifiedEmail,

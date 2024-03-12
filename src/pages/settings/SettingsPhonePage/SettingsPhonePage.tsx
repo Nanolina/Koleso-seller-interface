@@ -1,28 +1,66 @@
-import { useState } from 'react';
+import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { MessageBox } from '../../../components/MessageBox/MessageBox';
+import { Phone } from '../../../components/Phone/Phone';
 import { SideMenu, useSideMenu } from '../../../modules/menu';
+import { IRootState } from '../../../redux/rootReducer';
+import { AppDispatch } from '../../../redux/store';
+import { handleChangePhone } from '../../../redux/thunks/user';
+import { Button } from '../../../ui/Button/Button';
 import { Container } from '../../../ui/Container/Container';
-import { Input } from '../../../ui/Input/Input';
 import { Title } from '../../../ui/Title/Title';
+import { formatErrors } from '../../../utils';
+import { validationSchema } from './validationSchema';
 
 export const SettingsPhonePage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const { handleCloseSideMenu } = useSideMenu();
 
-  const [phone, setPhone] = useState<string>('');
+  const { phone, error, success } = useSelector(
+    (state: IRootState) => state.user
+  );
 
   return (
     <>
       <SideMenu />
-      <Container onClick={handleCloseSideMenu}>
+      <Container
+        onClick={handleCloseSideMenu}
+        redirectToItemsPage={() => navigate('/settings')}
+        isSmallContainer
+      >
         <Title text={t('settings.phone')} />
-        <Input
-          id="phone"
-          name="phone"
-          value={phone}
-          onChange={(event: any) => setPhone(event.target.value)}
-          type="tel"
-        />
+        <Formik
+          initialValues={{ phone }}
+          validationSchema={() => validationSchema(t)}
+          onSubmit={(values) => dispatch(handleChangePhone(values.phone))}
+          enableReinitialize
+        >
+          {({ values, errors, dirty, setFieldValue, isValid }) => (
+            <Form className="formFieldsContainer">
+              <Phone
+                valuesPhone={values.phone}
+                errors={errors.phone}
+                setFieldValue={setFieldValue}
+              />
+
+              <div className="buttonSaveItemContainer">
+                <Button
+                  text={t('save')}
+                  type="submit"
+                  disabled={!isValid || !dirty}
+                  tooltipText={formatErrors(errors)}
+                />
+              </div>
+
+              {error && <MessageBox errorMessage={error} />}
+              {success && <MessageBox successMessage={success} />}
+            </Form>
+          )}
+        </Formik>
       </Container>
     </>
   );

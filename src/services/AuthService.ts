@@ -6,7 +6,7 @@ import {
   ISetNewPasswordDataForService,
   ISignupData,
 } from './types/request';
-import { AuthResponse, IEmailResponse } from './types/response';
+import { AuthResponse, IEmailResponse, IPhoneResponse } from './types/response';
 
 export class AuthService {
   static async login({
@@ -42,6 +42,14 @@ export class AuthService {
   }: IChangeEmailData): Promise<AxiosResponse<IEmailResponse>> {
     return authServiceAPI.patch<IEmailResponse>('/change-email', {
       email,
+    });
+  }
+
+  static async changePhone(
+    phone: string
+  ): Promise<AxiosResponse<IPhoneResponse>> {
+    return authServiceAPI.patch<IPhoneResponse>('/change-phone', {
+      phone,
     });
   }
 

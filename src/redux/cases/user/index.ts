@@ -1,4 +1,5 @@
 export { changeEmailCases } from './changeEmailCases';
+export { changePhoneCases } from './changePhoneCases';
 export { checkAuthCases } from './checkAuthCases';
 export { loginCases } from './loginCases';
 export { logoutCases } from './logoutCases';

@@ -1,4 +1,5 @@
 export { handleChangeEmail } from './handleChangeEmail';
+export { handleChangePhone } from './handleChangePhone';
 export { handleCheckAuth } from './handleCheckAuth';
 export { handleLogin } from './handleLogin';
 export { handleLogout } from './handleLogout';

@@ -1,6 +1,5 @@
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,13 +8,12 @@ import YupPassword from 'yup-password';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
+import { Phone } from '../../../../components/Phone/Phone';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleSignup } from '../../../../redux/thunks/user';
 import { ISignupData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
-import { Label } from '../../../../ui/Label/Label';
-import { ValidationError } from '../../../../ui/ValidationError/ValidationError';
 import styles from './SignupForm.module.css';
 
 YupPassword(Yup);
@@ -81,26 +79,11 @@ export const SignupForm: React.FC = () => {
       >
         {({ values, errors, touched, setFieldValue, isValid, dirty }) => (
           <Form className="authContainer">
-            <div className={styles.phoneContainer}>
-              <Label text={`${t('auth.phone')}*`} id="phone" />
-              <PhoneInput
-                country={'cy'}
-                value={values.phone}
-                onChange={(value) => setFieldValue('phone', value)}
-                inputStyle={{
-                  backgroundColor: 'var(--light-gray)',
-                  borderColor: errors.phone ? 'red' : 'var(--light-gray)',
-                }}
-                dropdownStyle={{
-                  backgroundColor: 'var(--light-gray)',
-                  borderColor: 'var(--light-gray)',
-                }}
-                buttonStyle={{
-                  borderColor: errors.phone ? 'red' : 'var(--light-gray)',
-                }}
-              />
-            </div>
-            {errors.phone ? <ValidationError error={errors.phone} /> : null}
+            <Phone
+              valuesPhone={values.phone}
+              errors={errors.phone}
+              setFieldValue={setFieldValue}
+            />
 
             <InputLabel
               name="email"

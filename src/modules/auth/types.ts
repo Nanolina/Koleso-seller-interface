@@ -3,6 +3,7 @@ import { ObjectSchema } from 'yup';
 export interface IUserState {
   id: string;
   email: string;
+  phone: string;
   activationLinkId: string;
   isActive: boolean;
   isVerifiedEmail: boolean;
@@ -15,6 +16,7 @@ export interface IUserState {
 export interface IAuthPayload {
   id: string;
   email: string;
+  phone: string;
   activationLinkId: string;
   isActive: boolean;
   isVerifiedEmail: boolean;

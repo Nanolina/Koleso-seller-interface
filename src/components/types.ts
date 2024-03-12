@@ -92,5 +92,11 @@ export interface IMessageBox {
 export interface IFilterProps {
   text: string;
   checked: boolean;
-  onChange: any
+  onChange: any;
+}
+
+export interface IPhoneProps {
+  valuesPhone: string;
+  errors: string | undefined;
+  setFieldValue: FormikProps<any>['setFieldValue'];
 }

@@ -8,3 +8,7 @@ export interface AuthResponse {
 export interface IEmailResponse {
   email: string;
 }
+
+export interface IPhoneResponse {
+  phone: string;
+}

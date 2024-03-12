@@ -3,3 +3,7 @@ export interface ISettingProps {
   extra?: string;
   redirectPage: string;
 }
+
+export interface IPhonePayload {
+  phone: string;
+}
