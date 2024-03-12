@@ -14,7 +14,6 @@ export const setNewPasswordCases = (
       handleSetNewPassword.fulfilled,
       (state, action: PayloadAction<ISetNewPasswordPayload>) => {
         state.isActive = action.payload.isActive;
-        state.isAuth = true;
         state.loading = false;
         state.success = 'The new password was successfully saved';
       }

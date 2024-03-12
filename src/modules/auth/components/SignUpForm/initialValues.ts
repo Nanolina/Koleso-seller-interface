@@ -3,4 +3,5 @@ export const initialValues = {
   email: '',
   password: '',
   repeatedPassword: '',
+  role: '',
 };

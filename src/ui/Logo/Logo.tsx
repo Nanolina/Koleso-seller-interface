@@ -3,7 +3,7 @@ import { IRootState } from '../../redux/rootReducer';
 import styles from './Logo.module.css';
 
 export const Logo = ({ onClick }: any) => {
-  const { isAuth, isVerifiedEmail, isActive } = useSelector(
+  const { isVerifiedEmail, isActive } = useSelector(
     (state: IRootState) => state.user
   );
 
@@ -11,7 +11,7 @@ export const Logo = ({ onClick }: any) => {
     <button
       onClick={onClick}
       className={
-        isAuth && isVerifiedEmail && isActive
+        isVerifiedEmail && isActive
           ? styles.clickableButton
           : styles.notClickableButton
       }

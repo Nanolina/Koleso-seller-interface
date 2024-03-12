@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { InputLabel } from '../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
+import { ROLE } from '../../../../consts';
 import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleSignup } from '../../../../redux/thunks/user';
@@ -32,6 +33,7 @@ export const SignupForm: React.FC = () => {
       phone,
       password,
       repeatedPassword,
+      role: ROLE,
     };
 
     dispatch(handleSignup(userData));

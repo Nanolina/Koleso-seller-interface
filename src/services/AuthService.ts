@@ -24,18 +24,10 @@ export class AuthService {
     });
   }
 
-  static async signup({
-    email,
-    phone,
-    password,
-    repeatedPassword,
-  }: ISignupData): Promise<AxiosResponse<AuthResponse>> {
-    return authServiceAPI.post<AuthResponse>('/signup', {
-      email,
-      phone,
-      password,
-      repeatedPassword,
-    });
+  static async signup(
+    userData: ISignupData
+  ): Promise<AxiosResponse<AuthResponse>> {
+    return authServiceAPI.post<AuthResponse>('/signup', userData);
   }
 
   static async logout(): Promise<void> {

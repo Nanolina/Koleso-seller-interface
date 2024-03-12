@@ -37,7 +37,7 @@ const App: React.FC = () => {
 
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const { isAuth, isVerifiedEmail, isActive } = useSelector(
+  const { isVerifiedEmail, isActive, isSeller } = useSelector(
     (state: IRootState) => state.user
   );
 
@@ -63,29 +63,67 @@ const App: React.FC = () => {
       <I18nextProvider i18n={i18n}>
         <div className="app">
           <Routes>
-            {isAuth && !isVerifiedEmail && (
+            {isSeller ? (
               <>
-                <Route
-                  path="/email-confirmation"
-                  element={<EmailConfirmationPage />}
-                />
-                <Route
-                  path="*"
-                  element={<Navigate to="/email-confirmation" replace />}
-                />
+                {!isVerifiedEmail && (
+                  <>
+                    <Route
+                      path="/email-confirmation"
+                      element={<EmailConfirmationPage />}
+                    />
+                    <Route
+                      path="*"
+                      element={<Navigate to="/email-confirmation" replace />}
+                    />
+                  </>
+                )}
+                {isVerifiedEmail && isActive && (
+                  <>
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route
+                      path="/product/:productId/:tab"
+                      element={<ProductPage />}
+                    />
+                    <Route path="/stores" element={<StoresPage />} />
+                    <Route path="/store/:storeId" element={<StorePage />} />
+                    <Route
+                      path="/add-documents"
+                      element={<AddDocumentsPage />}
+                    />
+                    <Route path="/orders" element={<OrdersPage />} />
+                    <Route path="/order/:orderNumber" element={<OrderPage />} />
+                    <Route
+                      path="/notifications"
+                      element={<NotificationsPage />}
+                    />
+                    <Route path="/settings" element={<SettingsPage />} />
+                    <Route
+                      path="/settings/language"
+                      element={<SettingsLanguagePage />}
+                    />
+                    <Route
+                      path="/settings/phone"
+                      element={<SettingsPhonePage />}
+                    />
+                    <Route
+                      path="/settings/email"
+                      element={<SettingsEmailPage />}
+                    />
+                    <Route
+                      path="/settings/password"
+                      element={<SettingsPasswordPage />}
+                    />
+                    <Route
+                      path="*"
+                      element={<Navigate to="/products" replace />}
+                    />
+                  </>
+                )}
               </>
-            )}
-
-            {!isAuth && !isVerifiedEmail && (
+            ) : (
               <>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
-                <Route path="*" element={<Navigate to="/login" replace />} />
-              </>
-            )}
-
-            {!isAuth && (
-              <>
                 <Route
                   path="/password/recovery"
                   element={<RequestPasswordRecoveryPage />}
@@ -94,34 +132,7 @@ const App: React.FC = () => {
                   path="/password/set/:userId"
                   element={<SetNewPasswordPage />}
                 />
-              </>
-            )}
-
-            {isAuth && isVerifiedEmail && isActive && (
-              <>
-                <Route path="/products" element={<ProductsPage />} />
-                <Route
-                  path="/product/:productId/:tab"
-                  element={<ProductPage />}
-                ></Route>
-                <Route path="/stores" element={<StoresPage />} />
-                <Route path="/store/:storeId" element={<StorePage />} />
-                <Route path="/add-documents" element={<AddDocumentsPage />} />
-                <Route path="/orders" element={<OrdersPage />} />
-                <Route path="/order/:orderNumber" element={<OrderPage />} />
-                <Route path="/notifications" element={<NotificationsPage />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route
-                  path="/settings/language"
-                  element={<SettingsLanguagePage />}
-                />
-                <Route path="/settings/phone" element={<SettingsPhonePage />} />
-                <Route path="/settings/email" element={<SettingsEmailPage />} />
-                <Route
-                  path="/settings/password"
-                  element={<SettingsPasswordPage />}
-                />
-                <Route path="*" element={<Navigate to="/products" replace />} />
+                <Route path="*" element={<Navigate to="/login" replace />} />
               </>
             )}
           </Routes>

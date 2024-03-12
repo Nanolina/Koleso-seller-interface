@@ -3,7 +3,7 @@ import { IStatuses } from './types';
 
 export const NEW = 'new';
 export const GENDERS: string[] = ['Male', 'Female'];
-
+export const ROLE: string = 'Seller';
 export const COMPOSITIONS: string[] = [
   'Cotton',
   'Polyester',

@@ -7,7 +7,7 @@ export interface IUserState {
   activationLinkId: string;
   isActive: boolean;
   isVerifiedEmail: boolean;
-  isAuth: boolean;
+  isSeller: boolean;
   success: string;
   loading: boolean;
   error: any;
@@ -20,6 +20,7 @@ export interface IAuthPayload {
   activationLinkId: string;
   isActive: boolean;
   isVerifiedEmail: boolean;
+  roles: string[];
 }
 
 export interface ISetNewPasswordPayload {

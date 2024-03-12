@@ -3,6 +3,7 @@ export interface ISignupData {
   phone: string;
   password: string;
   repeatedPassword: string;
+  role: string;
 }
 
 export interface ILoginData {
