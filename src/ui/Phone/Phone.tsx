@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import PhoneInput from 'react-phone-input-2';
-import { Label } from '../../ui/Label/Label';
-import { ValidationError } from '../../ui/ValidationError/ValidationError';
-import { IPhoneProps } from '../types';
+import { IPhoneProps } from '../../components/types';
+import { Label } from '../Label/Label';
+import { ValidationError } from '../ValidationError/ValidationError';
 import styles from './Phone.module.css';
 import { containerStyle, getStyles } from './getStyles';
 
