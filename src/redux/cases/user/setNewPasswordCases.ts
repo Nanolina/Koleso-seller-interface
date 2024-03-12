@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
-import { IAuthPayload, IUserState } from '../../../modules/auth';
+import { ISetNewPasswordPayload, IUserState } from '../../../modules/auth';
 import { handleSetNewPassword } from '../../thunks/user';
 
 export const setNewPasswordCases = (
@@ -12,12 +12,8 @@ export const setNewPasswordCases = (
     })
     .addCase(
       handleSetNewPassword.fulfilled,
-      (state, action: PayloadAction<IAuthPayload>) => {
-        state.id = action.payload.id;
-        state.email = action.payload.email;
-        state.activationLinkId = action.payload.activationLinkId;
+      (state, action: PayloadAction<ISetNewPasswordPayload>) => {
         state.isActive = action.payload.isActive;
-        state.isVerifiedEmail = action.payload.isVerifiedEmail;
         state.isAuth = true;
         state.loading = false;
         state.success = 'The new password was successfully saved';

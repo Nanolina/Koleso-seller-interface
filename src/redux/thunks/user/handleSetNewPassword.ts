@@ -18,11 +18,7 @@ export const handleSetNewPassword = createAsyncThunk(
 
       // Return data to be saved in store
       return {
-        id: user.id,
-        email: user.email,
-        activationLinkId: user.activationLinkId,
         isActive: user.isActive,
-        isVerifiedEmail: user.isVerifiedEmail,
       };
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);

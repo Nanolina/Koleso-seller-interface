@@ -22,6 +22,10 @@ export interface IAuthPayload {
   isVerifiedEmail: boolean;
 }
 
+export interface ISetNewPasswordPayload {
+  isActive: boolean;
+}
+
 export interface IEmailPayload {
   email: string;
 }

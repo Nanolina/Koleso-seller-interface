@@ -6,7 +6,12 @@ import {
   ISetNewPasswordDataForService,
   ISignupData,
 } from './types/request';
-import { AuthResponse, IEmailResponse, IPhoneResponse } from './types/response';
+import {
+  AuthResponse,
+  IEmailResponse,
+  IPhoneResponse,
+  ISetNewPasswordResponse,
+} from './types/response';
 
 export class AuthService {
   static async login({
@@ -66,10 +71,15 @@ export class AuthService {
     userId,
     password,
     repeatedPassword,
-  }: ISetNewPasswordDataForService): Promise<AxiosResponse<AuthResponse>> {
-    return authServiceAPI.post<AuthResponse>(`/password/set/${userId}`, {
-      password,
-      repeatedPassword,
-    });
+  }: ISetNewPasswordDataForService): Promise<
+    AxiosResponse<ISetNewPasswordResponse>
+  > {
+    return authServiceAPI.post<ISetNewPasswordResponse>(
+      `/password/set/${userId}`,
+      {
+        password,
+        repeatedPassword,
+      }
+    );
   }
 }
