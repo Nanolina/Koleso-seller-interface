@@ -251,7 +251,6 @@
     "phone": "Phone",
     "email": "Email",
     "language": "Language",
-    "noOptions": "No options available",
     "signOutOfAccount": "Log out of account",
     "password": {
       "changePassword": "Change password",

@@ -30,14 +30,14 @@ import { SettingsPasswordPage } from './pages/settings/SettingsPasswordPage/Sett
 import { SettingsPhonePage } from './pages/settings/SettingsPhonePage/SettingsPhonePage';
 import { IRootState } from './redux/rootReducer';
 import { AppDispatch } from './redux/store';
-import { handleCheckAuth } from './redux/thunks/user';
+import { handleCheckAuth, handleGetUserById } from './redux/thunks/user';
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const { isVerifiedEmail, isActive, isSeller } = useSelector(
+  const { isVerifiedEmail, isActive, isSeller, language } = useSelector(
     (state: IRootState) => state.user
   );
 
@@ -51,8 +51,12 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    i18n.changeLanguage('Russian');
-  }, []);
+    dispatch(handleGetUserById());
+  }, [dispatch]);
+
+  useEffect(() => {
+    i18n.changeLanguage(language.toString());
+  }, [language]);
 
   if (!isInitialized) {
     return <Loader />;

@@ -4,3 +4,4 @@ export type {
   IPhoneResponse,
   ISetNewPasswordResponse,
 } from './AuthResponse';
+export type { ILanguageResponse } from './UserResponse';

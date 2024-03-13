@@ -1,4 +1,5 @@
 import { IUserState } from '../../modules/auth';
+import { LanguageType } from '../../types';
 
 export const userInitialState: IUserState = {
   id: '',
@@ -8,6 +9,7 @@ export const userInitialState: IUserState = {
   isVerifiedEmail: false,
   isActive: false,
   isSeller: false,
+  language: LanguageType.English,
   success: '',
   loading: false,
   error: null,

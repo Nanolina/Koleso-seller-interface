@@ -1,4 +1,5 @@
 import { ObjectSchema } from 'yup';
+import { LanguageType } from '../../types';
 
 export interface IUserState {
   id: string;
@@ -8,6 +9,7 @@ export interface IUserState {
   isActive: boolean;
   isVerifiedEmail: boolean;
   isSeller: boolean;
+  language: LanguageType;
   success: string;
   loading: boolean;
   error: any;

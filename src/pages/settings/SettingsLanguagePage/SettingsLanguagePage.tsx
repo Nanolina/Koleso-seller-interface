@@ -1,25 +1,25 @@
 import { useTranslation } from 'react-i18next';
-import { CheckboxContainer } from '../../../components/CheckboxContainer/CheckboxContainer';
-import { LANGUAGE } from '../../../consts';
+import { useNavigate } from 'react-router-dom';
 import { SideMenu, useSideMenu } from '../../../modules/menu';
+import { LanguageCheckboxContainer } from '../../../modules/settings';
 import { Container } from '../../../ui/Container/Container';
 import { Title } from '../../../ui/Title/Title';
 
 export const SettingsLanguagePage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { handleCloseSideMenu } = useSideMenu();
-
-  const options = [
-    { name: 'English', label: t('English') },
-    { name: 'Russian', label: t('Russian') },
-  ];
 
   return (
     <>
       <SideMenu />
-      <Container onClick={handleCloseSideMenu}>
+      <Container
+        onClick={handleCloseSideMenu}
+        redirectToItemsPage={() => navigate('/settings')}
+        isSmallContainer
+      >
         <Title text={t('settings.language')} />
-        <CheckboxContainer options={options} type={LANGUAGE} />
+        <LanguageCheckboxContainer />
       </Container>
     </>
   );

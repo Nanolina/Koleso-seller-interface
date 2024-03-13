@@ -251,7 +251,6 @@
     "phone": "Номер телефона",
     "email": "Электронная почта",
     "language": "Язык",
-    "noOptions": "Нет доступных вариантов",
     "signOutOfAccount": "Выйти из учетной записи",
     "password": {
       "changePassword": "Изменить пароль",

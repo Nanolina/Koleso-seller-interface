@@ -17,3 +17,8 @@ export interface IStatuses {
 export interface IFilterQuery {
   type: string;
 }
+
+export enum LanguageType {
+  English,
+  Russian,
+}

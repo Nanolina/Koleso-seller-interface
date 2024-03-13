@@ -2,8 +2,10 @@ import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
 import { IUserState } from '../../modules/auth';
 import {
   changeEmailCases,
+  changeLanguageCases,
   changePhoneCases,
   checkAuthCases,
+  getUserByIdCases,
   loginCases,
   logoutCases,
   requestPasswordRecoveryCases,
@@ -27,6 +29,8 @@ const userSlice = createSlice({
     resendEmailConfirmationCases(builder);
     requestPasswordRecoveryCases(builder);
     setNewPasswordCases(builder);
+    getUserByIdCases(builder);
+    changeLanguageCases(builder);
   },
 });
 
