@@ -13,3 +13,9 @@ export interface IPhonePayload {
 export interface ILanguagePayload {
   language: LanguageType;
 }
+
+export interface IChangePasswordData {
+  currentPassword: string;
+  newPassword: string;
+  repeatedPassword: string;
+}

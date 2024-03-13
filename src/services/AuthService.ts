@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { authServiceAPI } from '../http';
+import { IChangePasswordData } from '../modules/settings';
 import {
   IChangeEmailData,
   ILoginData,
@@ -48,6 +49,12 @@ export class AuthService {
     return authServiceAPI.patch<IPhoneResponse>('/change-phone', {
       phone,
     });
+  }
+
+  static async changePassword(
+    passwordValues: IChangePasswordData
+  ): Promise<boolean> {
+    return authServiceAPI.patch('/change-password', passwordValues);
   }
 
   // To check email in the DB and send a link "reset password" to email

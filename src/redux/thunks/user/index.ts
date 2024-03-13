@@ -1,5 +1,6 @@
 export { handleChangeEmail } from './handleChangeEmail';
 export { handleChangeLanguage } from './handleChangeLanguage';
+export { handleChangePassword } from './handleChangePassword';
 export { handleChangePhone } from './handleChangePhone';
 export { handleCheckAuth } from './handleCheckAuth';
 export { handleGetUserById } from './handleGetUserById';

@@ -1,4 +1,8 @@
-export { ChangePassword } from './components/ChangePassword/ChangePassword';
+export { ChangePasswordForm } from './components/ChangePasswordForm/ChangePasswordForm';
 export { LanguageCheckboxContainer } from './components/LanguageCheckboxContainer/LanguageCheckboxContainer';
 export { Settings } from './components/Settings/Settings';
-export type { ILanguagePayload, IPhonePayload } from './types';
+export type {
+  IChangePasswordData,
+  ILanguagePayload,
+  IPhonePayload,
+} from './types';

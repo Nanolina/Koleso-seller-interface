@@ -1,5 +1,6 @@
 export { changeEmailCases } from './changeEmailCases';
 export { changeLanguageCases } from './changeLanguageCases';
+export { changePasswordCases } from './changePasswordCases';
 export { changePhoneCases } from './changePhoneCases';
 export { checkAuthCases } from './checkAuthCases';
 export { getUserByIdCases } from './getUserByIdCases';

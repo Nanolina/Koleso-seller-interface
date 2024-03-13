@@ -3,6 +3,7 @@ import { IUserState } from '../../modules/auth';
 import {
   changeEmailCases,
   changeLanguageCases,
+  changePasswordCases,
   changePhoneCases,
   checkAuthCases,
   getUserByIdCases,
@@ -31,6 +32,7 @@ const userSlice = createSlice({
     setNewPasswordCases(builder);
     getUserByIdCases(builder);
     changeLanguageCases(builder);
+    changePasswordCases(builder);
   },
 });
 
