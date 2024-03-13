@@ -1,4 +1,4 @@
-export { ProductDetailsFormik } from './components/ProductDetailsFormik/ProductDetailsFormik';
+export { ProductDetailsForm } from './components/ProductDetailsForm/ProductDetailsForm';
 export type {
   ICatalogStructureState,
   ICreateProductData,

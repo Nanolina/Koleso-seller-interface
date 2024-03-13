@@ -2,6 +2,7 @@ import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Loader } from '../../../components/Loader/Loader';
 import { MessageBox } from '../../../components/MessageBox/MessageBox';
 import { SideMenu, useSideMenu } from '../../../modules/menu';
 import { IRootState } from '../../../redux/rootReducer';
@@ -14,15 +15,17 @@ import { Title } from '../../../ui/Title/Title';
 import { formatErrors } from '../../../utils';
 import { validationSchema } from './validationSchema';
 
-export const SettingsEmailPage = () => {
+export const SettingsEmailFormPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { handleCloseSideMenu } = useSideMenu();
 
-  const { email, error, success } = useSelector(
+  const { email, loading, error, success } = useSelector(
     (state: IRootState) => state.user
   );
+
+  if (loading) return <Loader />;
 
   return (
     <>

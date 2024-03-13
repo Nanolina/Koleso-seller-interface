@@ -14,7 +14,7 @@ import { Title } from '../../../ui/Title/Title';
 import { formatErrors } from '../../../utils';
 import { validationSchema } from './validationSchema';
 
-export const SettingsPhonePage = () => {
+export const SettingsPhoneFormPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();

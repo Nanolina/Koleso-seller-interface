@@ -17,7 +17,7 @@ import { IUpdateVariantsData } from '../../types';
 import { validationSchema } from '../../validationSchema';
 import { AddVariants } from '../AddVariants/AddVariants';
 
-export const VariantDetailsFormik: React.FC = () => {
+export const VariantDetailsForm: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
 

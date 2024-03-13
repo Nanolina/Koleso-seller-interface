@@ -14,6 +14,7 @@ import { ISignupData } from '../../../../services/types/request';
 import { Button } from '../../../../ui/Button/Button';
 import { Email } from '../../../../ui/Email/Email';
 import { Phone } from '../../../../ui/Phone/Phone';
+import { formatErrors } from '../../../../utils';
 import styles from './SignupForm.module.css';
 import { initialValues } from './initialValues';
 import { validationSchema } from './validationSchema';
@@ -94,6 +95,7 @@ export const SignupForm: React.FC = () => {
                 text={t('auth.signup')}
                 type="submit"
                 disabled={!isValid || !dirty}
+                tooltipText={formatErrors(errors)}
               />
             </div>
             {error && <MessageBox errorMessage={error} />}

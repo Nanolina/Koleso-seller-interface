@@ -26,7 +26,7 @@ import { ICreateProductData, IProduct } from '../../types';
 import { validationSchema } from '../../validationSchema';
 import { ProductFormFields } from '../ProductFormFields/ProductFormFields';
 
-export const ProductDetailsFormik: React.FC = () => {
+export const ProductDetailsForm: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();

@@ -20,7 +20,7 @@ import {
 } from '../../types';
 import { ImageUpload } from '../ImageUpload/ImageUpload';
 
-export const ImageUploadFormik: React.FC = () => {
+export const ImageUploadForm: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
 

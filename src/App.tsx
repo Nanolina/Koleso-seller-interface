@@ -23,11 +23,11 @@ import { SetNewPasswordPage } from './pages/SetNewPasswordPage/SetNewPasswordPag
 import { SignupPage } from './pages/SignupPage/SignupPage';
 import { StorePage } from './pages/StorePage/StorePage';
 import { StoresPage } from './pages/StoresPage/StoresPage';
-import { SettingsEmailPage } from './pages/settings/SettingsEmailPage/SettingsEmailPage';
+import { SettingsEmailFormPage } from './pages/settings/SettingsEmailFormPage/SettingsEmailFormPage';
 import { SettingsLanguagePage } from './pages/settings/SettingsLanguagePage/SettingsLanguagePage';
 import { SettingsPage } from './pages/settings/SettingsPage/SettingsPage';
 import { SettingsPasswordPage } from './pages/settings/SettingsPasswordPage/SettingsPasswordPage';
-import { SettingsPhonePage } from './pages/settings/SettingsPhonePage/SettingsPhonePage';
+import { SettingsPhoneFormPage } from './pages/settings/SettingsPhoneFormPage/SettingsPhoneFormPage';
 import { IRootState } from './redux/rootReducer';
 import { AppDispatch } from './redux/store';
 import { handleCheckAuth, handleGetUserById } from './redux/thunks/user';
@@ -107,11 +107,11 @@ const App: React.FC = () => {
                     />
                     <Route
                       path="/settings/phone"
-                      element={<SettingsPhonePage />}
+                      element={<SettingsPhoneFormPage />}
                     />
                     <Route
                       path="/settings/email"
-                      element={<SettingsEmailPage />}
+                      element={<SettingsEmailFormPage />}
                     />
                     <Route
                       path="/settings/password"

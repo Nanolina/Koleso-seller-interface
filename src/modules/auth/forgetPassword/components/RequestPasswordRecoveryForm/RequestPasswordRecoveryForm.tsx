@@ -12,6 +12,7 @@ import { IChangeEmailData } from '../../../../../services/types/request';
 import { Button } from '../../../../../ui/Button/Button';
 import { TimerText } from '../../../ui/Timer/Timer';
 import styles from './RequestPasswordRecoveryForm.module.css';
+import { initialValues } from './initialValues';
 
 export const RequestPasswordRecoveryForm: React.FC = () => {
   const { t } = useTranslation();
@@ -23,11 +24,6 @@ export const RequestPasswordRecoveryForm: React.FC = () => {
   const { loading, error, success } = useSelector(
     (state: IRootState) => state.user
   );
-
-  // Initial values
-  const initialValues = {
-    email: '',
-  };
 
   useEffect(() => {
     let interval: number | undefined;
@@ -47,7 +43,7 @@ export const RequestPasswordRecoveryForm: React.FC = () => {
     };
   }, [isButtonDisabled]);
 
-  const handleSubmit = async (values: IChangeEmailData) => {
+  const onSubmit = async (values: IChangeEmailData) => {
     setIsButtonDisabled(true);
     setTimer(120); // 2 min = 120 sec
 
@@ -60,12 +56,10 @@ export const RequestPasswordRecoveryForm: React.FC = () => {
     setTimeout(() => setIsButtonDisabled(false), 120000); // 120000 milliseconds = 2 min
   };
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ errors, touched }) => (
         <Form className="authContainer">
           <InputLabel

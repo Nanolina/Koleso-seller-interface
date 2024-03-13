@@ -1,4 +1,4 @@
-export { ImageUploadFormik } from './components/ImageUploadFormik/ImageUploadFormik';
+export { ImageUploadForm } from './components/ImageUploadForm/ImageUploadForm';
 export { getExistingUniqueColors } from './functions';
 export type {
   IColorsWithImagesData,

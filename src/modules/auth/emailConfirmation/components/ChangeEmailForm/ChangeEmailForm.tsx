@@ -3,6 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { InputLabel } from '../../../../../components/InputLabel/InputLabel';
 import { Button } from '../../../../../ui/Button/Button';
+import { formatErrors } from '../../../../../utils';
 import { IChangeEmailFormProps } from '../../../types';
 
 export const ChangeEmailForm: React.FC<IChangeEmailFormProps> = React.memo(
@@ -30,6 +31,7 @@ export const ChangeEmailForm: React.FC<IChangeEmailFormProps> = React.memo(
               text={t('auth.changeEmail.label')}
               type="submit"
               disabled={!isValid || !dirty}
+              tooltipText={formatErrors(errors)}
             />
           </Form>
         )}
