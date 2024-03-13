@@ -22,9 +22,7 @@ export const SignOutModal: React.FC<ISignOutModalProps> = ({
     dispatch(handleLogout());
   };
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
 
   if (error) {
     return <MessageBox errorMessage={error} />;

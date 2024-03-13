@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -37,22 +37,25 @@ const App: React.FC = () => {
 
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const { isVerifiedEmail, isActive, isSeller, language } = useSelector(
+  const { id, isVerifiedEmail, isActive, isSeller, language } = useSelector(
     (state: IRootState) => state.user
   );
 
+  const token = useMemo(() => localStorage.getItem('token'), []);
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
     if (token) {
       dispatch(handleCheckAuth()).then(() => setIsInitialized(true));
     } else {
       setIsInitialized(true);
     }
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   useEffect(() => {
-    dispatch(handleGetUserById());
-  }, [dispatch]);
+    if (token && id) {
+      dispatch(handleGetUserById());
+    }
+  }, [dispatch, id, token]);
 
   useEffect(() => {
     i18n.changeLanguage(language.toString());

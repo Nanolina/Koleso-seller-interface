@@ -19,6 +19,6 @@ export interface IFilterQuery {
 }
 
 export enum LanguageType {
-  English,
-  Russian,
+  English = 'English',
+  Russian = 'Russian',
 }
