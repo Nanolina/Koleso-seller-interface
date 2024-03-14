@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
 import { IUserState } from '../../../modules/auth';
-import { ILanguagePayload } from '../../../modules/settings';
+import { IUserPayload } from '../../../modules/settings';
 import { handleGetUserById } from '../../thunks/user';
 
 export const getUserByIdCases = (
@@ -13,8 +13,9 @@ export const getUserByIdCases = (
     })
     .addCase(
       handleGetUserById.fulfilled,
-      (state, action: PayloadAction<ILanguagePayload>) => {
+      (state, action: PayloadAction<IUserPayload>) => {
         state.language = action.payload.language;
+        state.organizationId = action.payload.organizationId;
         state.loading = false;
       }
     )

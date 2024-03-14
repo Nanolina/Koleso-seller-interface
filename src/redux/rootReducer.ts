@@ -6,16 +6,19 @@ import {
   ICatalogStructureState,
   IProductsState,
 } from '../modules/product/productForm';
+import { IOrganizationState } from '../modules/settings/organization';
 import { IStoresState } from '../modules/stores';
 import catalogStructureSlice from './slices/catalogStructureSlice';
 import colorsWithImagesSlice from './slices/colorsWithImagesSlice';
 import menuSlice from './slices/menuSlice';
+import organizationSlice from './slices/organizationSlice';
 import productsSlice from './slices/productsSlice';
 import storesSlice from './slices/storesSlice';
 import userSlice from './slices/userSlice';
 
 export interface IRootState {
   user: IUserState;
+  organization: IOrganizationState;
   stores: IStoresState;
   products: IProductsState;
   colorsWithImages: IColorsWithImagesState;
@@ -25,6 +28,7 @@ export interface IRootState {
 
 const rootReducer = combineReducers({
   user: userSlice,
+  organization: organizationSlice,
   stores: storesSlice,
   products: productsSlice,
   colorsWithImages: colorsWithImagesSlice,

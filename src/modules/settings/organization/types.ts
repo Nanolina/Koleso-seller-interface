@@ -10,25 +10,19 @@ export enum DocumentType {
   CertificateTaxResidency = 'CertificateTaxResidency',
 }
 
-interface IDocument {
-  id: string;
-  type: DocumentType;
-  url: string;
-  publicId: string;
-  organizationId: string;
+interface IDocuments {
+  Passport: File | string;
+  CertificateOfRegistration: File | string;
+  CertificateOfDirectorsAndSecretary: File | string;
+  CertificateOfRegisteredOffice: File | string;
+  CertificateOfShareholders: File | string;
+  CertificateTaxResidency: File | string;
 }
 
 export interface ICreateOrganizationData {
   name: string;
   TIN: string;
-  documents: {
-    Passport: File | string;
-    CertificateOfRegistration: File | string;
-    CertificateOfDirectorsAndSecretary: File | string;
-    CertificateOfRegisteredOffice: File | string;
-    CertificateOfShareholders: File | string;
-    CertificateTaxResidency: File | string;
-  };
+  documents: IDocuments;
 }
 
 export interface IOrganization extends ICreateOrganizationData {
@@ -42,4 +36,16 @@ export interface IDocumentUploadProps {
   setFieldValue: FormikProps<any>['setFieldValue'];
   preview: string | null;
   setPreview: SetStateAction<string | null>;
+}
+
+export interface IOrganizationState {
+  organization: ICreateOrganizationData;
+  success: string | null;
+  loading: boolean;
+  error: any;
+}
+
+export interface IUpdateOrganizationArg {
+  id: string;
+  organizationFormData: FormData;
 }

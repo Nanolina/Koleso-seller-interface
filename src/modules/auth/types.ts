@@ -10,6 +10,7 @@ export interface IUserState {
   isVerifiedEmail: boolean;
   isSeller: boolean;
   language: LanguageType;
+  organizationId: string;
   success: string;
   loading: boolean;
   error: any;

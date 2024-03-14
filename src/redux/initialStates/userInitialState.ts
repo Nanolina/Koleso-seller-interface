@@ -10,6 +10,7 @@ export const userInitialState: IUserState = {
   isActive: false,
   isSeller: false,
   language: LanguageType.English,
+  organizationId: '',
   success: '',
   loading: false,
   error: null,

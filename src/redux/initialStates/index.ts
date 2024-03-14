@@ -1,3 +1,4 @@
+export { organizationInitialState } from './organizationInitialState';
 export { catalogStructureInitialState } from './catalogStructureInitialState';
 export { colorsWithImagesInitialState } from './colorsWithImagesInitialState';
 export { menuInitialState } from './menuInitialState';

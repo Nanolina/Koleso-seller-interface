@@ -5,4 +5,5 @@ export type {
   IChangePasswordData,
   ILanguagePayload,
   IPhonePayload,
+  IUserPayload,
 } from './types';

@@ -10,6 +10,11 @@ export interface IPhonePayload {
   phone: string;
 }
 
+export interface IUserPayload {
+  language: LanguageType;
+  organizationId: string;
+}
+
 export interface ILanguagePayload {
   language: LanguageType;
 }
