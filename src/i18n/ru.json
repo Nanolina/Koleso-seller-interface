@@ -12,7 +12,6 @@
     "Settings": "Настройки",
     "Stores": "Мои магазины",
     "Products": "Товары",
-    "Documents": "Документы",
     "Finances": "Финансы",
     "Tasks": "Задания",
     "Orders": "Заказы",
@@ -161,20 +160,6 @@
       }
     }
   },
-  "documents": {
-    "companyRegistrationNumber": "Регистрационный номер компании",
-    "taxNumber": "Налоговый номер",
-    "registrationCertificate": "Сертификат регистрации",
-    "certificateDirectorsAndSecretary": "Свидетельство о директорах и секретаре",
-    "certificateRegisteredOffice": "Свидетельство о зарегистрированном офисе",
-    "account": {
-      "label": "Данные счета",
-      "SWIFT": "SWIFT код",
-      "holderName": "Имя владельца счета",
-      "bankName": "Название банка",
-      "accountNumber": "Номер счета"
-    }
-  },
   "stores": {
     "label": "Магазин",
     "create": "Создать магазин",
@@ -252,6 +237,25 @@
     "email": "Электронная почта",
     "language": "Язык",
     "signOutOfAccount": "Выйти из учетной записи",
+    "organization": {
+      "label": "Данные организации",
+      "create": "Создать организацию",
+      "name": "Наименование организации",
+      "TIN": "Идентификационный номер налогоплательщика (ИНН)",
+      "documents": {
+        "Passport": "Фото главной страницы паспорта",
+        "CertificateOfRegistration": "Свидетельство о регистрации компании",
+        "CertificateOfDirectorsAndSecretary": "Сертификат директоров и секретарей",
+        "CertificateOfRegisteredOffice": "Свидетельство о зарегистрированном офисе",
+        "CertificateOfShareholders": "Сертификат акционеров",
+        "CertificateTaxResidency": "Сертификат налогового резидентства",
+        "validation": {
+          "nameRequired": "Название обязательно",
+          "veryBigSize": "Выберите файл меньше, чем 500KB для {{type}}",
+          "notFormat": "Файлы только формата jpeg, jpg, png, pdf, doc, docx принимаются для {{type}}"
+        }
+      }
+    },
     "password": {
       "changePassword": "Изменить пароль",
       "currentPassword": "Текущий пароль",

@@ -10,7 +10,6 @@ import {
 import './App.css';
 import { Loader } from './components/Loader/Loader';
 import i18n from './i18n/i18n';
-import { AddDocumentsPage } from './pages/AddDocumentsPage/AddDocumentsPage';
 import { EmailConfirmationPage } from './pages/EmailConfirmationPage/EmailConfirmationPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
 import { NotificationsPage } from './pages/NotificationsPage/NotificationsPage';
@@ -25,6 +24,7 @@ import { StorePage } from './pages/StorePage/StorePage';
 import { StoresPage } from './pages/StoresPage/StoresPage';
 import { SettingsEmailFormPage } from './pages/settings/SettingsEmailFormPage/SettingsEmailFormPage';
 import { SettingsLanguagePage } from './pages/settings/SettingsLanguagePage/SettingsLanguagePage';
+import { SettingsOrganizationPage } from './pages/settings/SettingsOrganizationPage/SettingsOrganizationPage';
 import { SettingsPage } from './pages/settings/SettingsPage/SettingsPage';
 import { SettingsPasswordPage } from './pages/settings/SettingsPasswordPage/SettingsPasswordPage';
 import { SettingsPhoneFormPage } from './pages/settings/SettingsPhoneFormPage/SettingsPhoneFormPage';
@@ -93,10 +93,6 @@ const App: React.FC = () => {
                     />
                     <Route path="/stores" element={<StoresPage />} />
                     <Route path="/store/:storeId" element={<StorePage />} />
-                    <Route
-                      path="/add-documents"
-                      element={<AddDocumentsPage />}
-                    />
                     <Route path="/orders" element={<OrdersPage />} />
                     <Route path="/order/:orderNumber" element={<OrderPage />} />
                     <Route
@@ -119,6 +115,10 @@ const App: React.FC = () => {
                     <Route
                       path="/settings/password"
                       element={<SettingsPasswordPage />}
+                    />
+                    <Route
+                      path="/settings/organization"
+                      element={<SettingsOrganizationPage />}
                     />
                     <Route
                       path="*"

@@ -1,7 +1,6 @@
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsBoxes } from 'react-icons/bs';
 import { IoIosSettings } from 'react-icons/io';
-import { IoDocumentTextOutline } from 'react-icons/io5';
 import { LiaStoreAltSolid } from 'react-icons/lia';
 import { MdNotificationsNone } from 'react-icons/md';
 
@@ -26,12 +25,6 @@ export const menuItems = [
     title: 'Products',
     icon: <BsBoxes size={iconSize} color={color} />,
     redirectPage: '/products',
-  },
-  {
-    id: '501d827c-ba6f-4d20-b95e-c406dd6cc1c3',
-    title: 'Documents',
-    icon: <IoDocumentTextOutline size={iconSize} color={color} />,
-    redirectPage: '/add-documents',
   },
   // {
   //   id: '021e7181-bdd5-4c65-ad58-59c90e9815b4',

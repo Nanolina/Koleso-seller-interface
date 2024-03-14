@@ -18,6 +18,10 @@ export const Settings: React.FC = () => {
         title={t('settings.password.changePassword')}
         redirectPage="password"
       />
+      <Setting
+        title={t('settings.organization.label')}
+        redirectPage="organization"
+      />
 
       <span className="removeText" onClick={() => setModalOpen(true)}>
         {t('settings.signOutOfAccount')}

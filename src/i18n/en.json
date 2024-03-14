@@ -12,7 +12,6 @@
     "Settings": "Settings",
     "Stores": "My stores",
     "Products": "Products",
-    "Documents": "Documents",
     "Finances": "Finances",
     "Tasks": "Tasks",
     "Orders": "Orders",
@@ -161,20 +160,6 @@
       }
     }
   },
-  "documents": {
-    "companyRegistrationNumber": "Company registration number",
-    "taxNumber": "Tax number",
-    "registrationCertificate": "Certificate of Registration",
-    "certificateDirectorsAndSecretary": "Certificate of directors and secretary",
-    "certificateRegisteredOffice": "Certificate of registered office",
-    "account": {
-      "label": "Account data",
-      "SWIFT": "SWIFT code",
-      "holderName": "Name of account holder",
-      "bankName": "Name of the bank",
-      "accountNumber": "Account number"
-    }
-  },
   "stores": {
     "label": "Store",
     "create": "Create store",
@@ -252,6 +237,25 @@
     "email": "Email",
     "language": "Language",
     "signOutOfAccount": "Log out of account",
+    "organization": {
+      "label": "Data of organization",
+      "create": "Create organization",
+      "name": "Name of organization",
+      "TIN": "Tax Identification Number (TIN)",
+      "documents": {
+        "Passport": "Photo of the main page of the passport",
+        "CertificateOfRegistration": "Company Registration Certificate",
+        "CertificateOfDirectorsAndSecretary": "Certificate of Directors and Secretaries",
+        "CertificateOfRegisteredOffice": "Certificate of Registered Office",
+        "CertificateOfShareholders": "Certificate of Shareholders",
+        "CertificateTaxResidency": "Tax Residence Certificate",
+        "validation": {
+          "nameRequired": "Name is required",
+          "veryBigSize": "Select a file less than 500KB for {{type}}",
+          "notFormat": "Only jpeg, jpg, png, pdf, doc, docx files are accepted for {{type}}"
+        }
+      }
+    },
     "password": {
       "changePassword": "Change password",
       "currentPassword": "Current password",

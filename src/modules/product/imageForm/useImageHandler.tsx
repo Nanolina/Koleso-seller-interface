@@ -38,7 +38,7 @@ export const useImageHandler = () => {
           return;
         }
 
-        if (image.size >= 512000) {
+        if (image.size >= 512000) { // 500 MB
           setError('');
           setTimeout(
             () => setError(t('products.image.validation.imageVeryBigSize')),
