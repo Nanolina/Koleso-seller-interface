@@ -7,9 +7,7 @@ export const handleChangeEmail = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const response = await AuthService.changeEmail(email);
-      return {
-        email: response.data.email,
-      };
+      return response.data;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);
     }

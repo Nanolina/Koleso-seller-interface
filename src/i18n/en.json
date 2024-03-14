@@ -294,7 +294,7 @@
     },
     "changeEmail": {
       "label": "Change email",
-      "header": "Please follow the link in the email from Koleso to complete the account creation.",
+      "header": "Please follow the link in the email from Koleso to confirm the email",
       "caseNotReceive": "If you did not receive our email, please try the following",
       "check": "Make sure you have entered the correct e-mail address",
       "spam": "Check to see if the email has gone to your spam folder or recycle garbage can. The mail service may mistakenly accept some as spam.",
