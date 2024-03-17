@@ -11,7 +11,10 @@ const fileValidationSchema = (
       t('settings.organization.documents.validation.veryBigSize', {
         type,
       }),
-      (value: any) => value == null || (value && value.size <= 512000) // 500 MB
+      (value: any) =>
+        value == null ||
+        typeof value === 'string' ||
+        (value && value.size <= 512000) // 500 MB
     )
     .test(
       'fileFormat',
@@ -20,6 +23,7 @@ const fileValidationSchema = (
       }),
       (value: any) =>
         value == null ||
+        typeof value === 'string' ||
         (value &&
           [
             'image/jpeg',

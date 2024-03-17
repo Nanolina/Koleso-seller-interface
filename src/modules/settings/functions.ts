@@ -9,3 +9,12 @@ export const createLanguageOptions = (
     label: t(key),
   }));
 };
+
+export const isURL = (string: string) => {
+  try {
+    new URL(string);
+    return true;
+  } catch (_) {
+    return false;
+  }
+};
