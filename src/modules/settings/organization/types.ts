@@ -1,5 +1,4 @@
 import { FormikProps } from 'formik';
-import { SetStateAction } from '../../../types';
 
 export enum DocumentType {
   Passport = 'Passport',
@@ -10,13 +9,13 @@ export enum DocumentType {
   CertificateTaxResidency = 'CertificateTaxResidency',
 }
 
-interface IDocuments {
-  Passport: File | string;
-  CertificateOfRegistration: File | string;
-  CertificateOfDirectorsAndSecretary: File | string;
-  CertificateOfRegisteredOffice: File | string;
-  CertificateOfShareholders: File | string;
-  CertificateTaxResidency: File | string;
+export interface IDocuments {
+  Passport: string | null;
+  CertificateOfRegistration: string | null;
+  CertificateOfDirectorsAndSecretary: string | null;
+  CertificateOfRegisteredOffice: string | null;
+  CertificateOfShareholders: string | null;
+  CertificateTaxResidency: string | null;
 }
 
 export interface ICreateOrganizationData {
@@ -35,7 +34,7 @@ export interface IDocumentUploadProps {
   label: string;
   setFieldValue: FormikProps<any>['setFieldValue'];
   preview: string | null;
-  setPreview: SetStateAction<string | null>;
+  setPreview: (value: string | null) => void;
 }
 
 export interface IOrganizationState {

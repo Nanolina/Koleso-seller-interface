@@ -117,7 +117,7 @@ const App: React.FC = () => {
                       element={<SettingsPasswordPage />}
                     />
                     <Route
-                      path="/settings/organization"
+                      path="/settings/organization/:organizationId"
                       element={<SettingsOrganizationPage />}
                     />
                     <Route

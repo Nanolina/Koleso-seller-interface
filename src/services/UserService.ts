@@ -16,10 +16,16 @@ export class UserService {
     });
   }
 
+  // Organization
+  static async getOrganizationById(
+    id: string
+  ): Promise<AxiosResponse<IOrganization>> {
+    return userServiceAPI.get<IOrganization>(`/organization/${id}`);
+  }
+
   static async createOrganization(
     organizationFormData: FormData
   ): Promise<AxiosResponse<IOrganization>> {
-    console.log('organizationFormData', organizationFormData);
     return userServiceAPI.post<IOrganization>(
       `/organization`,
       organizationFormData
@@ -30,7 +36,6 @@ export class UserService {
     id: string,
     organizationFormData: FormData
   ): Promise<AxiosResponse<IOrganization>> {
-    console.log('organizationFormData', organizationFormData);
     return userServiceAPI.patch<IOrganization>(
       `/organization/${id}`,
       organizationFormData

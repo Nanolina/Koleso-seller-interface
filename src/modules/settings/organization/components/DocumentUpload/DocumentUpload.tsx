@@ -36,7 +36,7 @@ export const DocumentUpload: React.FC<IDocumentUploadProps> = React.memo(
 
         {preview && (
           <div className={styles.preview}>
-            {preview}
+            <div className={styles.textPreview}>{preview}</div>
             <IoCloseOutline color="var(--dark-gray)" onClick={onRemove} />
           </div>
         )}

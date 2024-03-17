@@ -2,6 +2,7 @@ import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
 import { IOrganizationState } from '../../modules/settings/organization';
 import {
   createOrganizationCases,
+  getOrganizationByIdCases,
   updateOrganizationCases,
 } from '../cases/organization';
 import { organizationInitialState } from '../initialStates';
@@ -13,6 +14,7 @@ const organizationSlice = createSlice({
   extraReducers: (builder: ActionReducerMapBuilder<IOrganizationState>) => {
     updateOrganizationCases(builder);
     createOrganizationCases(builder);
+    getOrganizationByIdCases(builder);
   },
 });
 

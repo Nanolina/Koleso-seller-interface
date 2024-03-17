@@ -3,6 +3,10 @@
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
+}
+
+.textPreview {
+  word-break: break-all;
   color: var(--main);
   font-weight: 500;
 }

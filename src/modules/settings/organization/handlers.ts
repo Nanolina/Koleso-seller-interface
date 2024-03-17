@@ -1,3 +1,5 @@
+import { unwrapResult } from '@reduxjs/toolkit';
+import { NEW } from '../../../consts';
 import { AppDispatch } from '../../../redux/store';
 import {
   handleCreateOrganization,
@@ -6,9 +8,10 @@ import {
 import { DocumentType, ICreateOrganizationData, IOrganization } from './types';
 
 export const handleSubmitForm = async (
+  organizationId: string | undefined,
   values: ICreateOrganizationData,
-  organization: IOrganization,
-  dispatch: AppDispatch
+  dispatch: AppDispatch,
+  navigate: any
 ) => {
   const { name, TIN, documents } = values;
   const organizationFormData = new FormData();
@@ -25,18 +28,21 @@ export const handleSubmitForm = async (
   ];
   documentKeys.forEach((key) => {
     if (documents[key]) {
-      organizationFormData.append(key, documents[key]);
+      organizationFormData.append(key, documents[key] as File | string);
     }
   });
 
-  if (organization.id) {
+  if (organizationId && organizationId !== NEW) {
     await dispatch(
       handleUpdateOrganization({
-        id: organization.id,
+        id: organizationId,
         organizationFormData,
       })
     );
   } else {
-    await dispatch(handleCreateOrganization(organizationFormData));
+    const data = await dispatch(handleCreateOrganization(organizationFormData));
+    const resultOrganization: IOrganization = unwrapResult(data);
+    if (resultOrganization)
+      navigate(`/settings/organization/${resultOrganization.id}`);
   }
 };
