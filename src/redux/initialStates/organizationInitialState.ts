@@ -10,6 +10,8 @@ const documentsInitialState = {
 };
 
 const organizationDataInitialState = {
+  id: '',
+  founderId: '',
   name: '',
   TIN: '',
   documents: documentsInitialState,

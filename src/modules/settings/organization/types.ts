@@ -39,7 +39,7 @@ export interface IDocumentUploadProps {
 }
 
 export interface IOrganizationState {
-  organization: ICreateOrganizationData;
+  organization: IOrganization;
   success: string | null;
   loading: boolean;
   error: any;

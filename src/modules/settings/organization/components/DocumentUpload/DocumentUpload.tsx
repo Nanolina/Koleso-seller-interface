@@ -7,7 +7,7 @@ import styles from './DocumentUpload.module.css';
 export const DocumentUpload: React.FC<IDocumentUploadProps> = React.memo(
   ({ name, label, setFieldValue, preview, setPreview }) => {
     const onRemove = useCallback(() => {
-      setFieldValue(name, null);
+      setFieldValue(`documents.${name}`, '');
       setPreview(null);
     }, [name, setFieldValue, setPreview]);
 
