@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../../../../redux/rootReducer';
@@ -12,15 +12,18 @@ export const SideMenu: React.FC = () => {
   const dispatch = useDispatch();
   const isMenuOpen = useSelector((state: IRootState) => state.menu.isMenuOpen);
 
+  const { organizationId } = useSelector((state: IRootState) => state.user);
+
   const handleToggleMenu = useCallback(() => {
     dispatch(toggleMenu());
   }, [dispatch]);
 
-  const renderedMenuItems = useMemo(() => {
-    return menuItems.map((item) => (
-      <MenuItem key={item.id} item={item} onClick={handleToggleMenu} />
-    ));
-  }, [handleToggleMenu]);
+  const renderedMenuItems = organizationId ? (
+    menuItems.map((item) => <MenuItem key={item.id} item={item} />)
+  ) : (
+    // Show only settings
+    <MenuItem key={menuItems[0].id} item={menuItems[0]} />
+  );
 
   return (
     <>

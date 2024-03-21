@@ -1,17 +1,14 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NEW } from '../../../../consts';
 import { IRootState } from '../../../../redux/rootReducer';
-import { AppDispatch } from '../../../../redux/store';
-import { handleGetOrganizationById } from '../../../../redux/thunks/organization';
 import { SignOutModal } from '../../../modal';
 import { Setting } from '../Setting/Setting';
 import styles from './Settings.module.css';
 
 export const Settings: React.FC = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch<AppDispatch>();
 
   const { id: userId, organizationId } = useSelector(
     (state: IRootState) => state.user
@@ -22,6 +19,7 @@ export const Settings: React.FC = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
 
+  // Get data for render
   const notFounderOrganization = useMemo(
     () => founderId !== userId && founderId !== '',
     [founderId, userId]
@@ -54,12 +52,6 @@ export const Settings: React.FC = () => {
     ],
     [t, organizationId, notFounderOrganization, titleOrganization]
   );
-
-  useEffect(() => {
-    if (organizationId && organizationId !== NEW) {
-      dispatch(handleGetOrganizationById(organizationId));
-    }
-  }, [dispatch, organizationId]);
 
   return (
     <div className={styles.container}>

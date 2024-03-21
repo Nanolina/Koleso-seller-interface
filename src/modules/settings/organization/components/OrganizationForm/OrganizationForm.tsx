@@ -6,10 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { InputLabel } from '../../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../../components/MessageBox/MessageBox';
-import { NEW } from '../../../../../consts';
 import { IRootState } from '../../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../../redux/store';
-import { handleGetOrganizationById } from '../../../../../redux/thunks/organization';
 import { Button } from '../../../../../ui/Button/Button';
 import { formatErrors } from '../../../../../utils';
 import { handleSubmitForm } from '../../handlers';
@@ -44,12 +42,6 @@ export const OrganizationForm: React.FC = () => {
   );
 
   // useEffect
-  useEffect(() => {
-    if (organizationId && organizationId !== NEW) {
-      dispatch(handleGetOrganizationById(organizationId));
-    }
-  }, [dispatch, organizationId]);
-
   useEffect(() => {
     if (organization && organization.documents) {
       setPreviews(organization.documents);

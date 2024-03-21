@@ -30,6 +30,7 @@ import { SettingsPasswordPage } from './pages/settings/SettingsPasswordPage/Sett
 import { SettingsPhoneFormPage } from './pages/settings/SettingsPhoneFormPage/SettingsPhoneFormPage';
 import { IRootState } from './redux/rootReducer';
 import { AppDispatch } from './redux/store';
+import { handleGetOrganizationById } from './redux/thunks/organization';
 import { handleCheckAuth, handleGetUserById } from './redux/thunks/user';
 
 const App: React.FC = () => {
@@ -55,6 +56,12 @@ const App: React.FC = () => {
       dispatch(handleGetUserById());
     }
   }, [dispatch, id, token]);
+
+  useEffect(() => {
+    if (token && id && organizationId) {
+      dispatch(handleGetOrganizationById(organizationId));
+    }
+  }, [dispatch, id, organizationId, token]);
 
   useEffect(() => {
     i18n.changeLanguage(language.toString());
@@ -89,15 +96,26 @@ const App: React.FC = () => {
                       <>
                         <Route path="/settings" element={<SettingsPage />} />
                         <Route
-                          path="/settings/organization"
-                          element={<SettingsOrganizationPage />}
+                          path="/settings/language"
+                          element={<SettingsLanguagePage />}
                         />
                         <Route
-                          path="*"
-                          element={
-                            <Navigate to="/settings/organization" replace />
-                          }
+                          path="/settings/phone"
+                          element={<SettingsPhoneFormPage />}
                         />
+                        <Route
+                          path="/settings/email"
+                          element={<SettingsEmailFormPage />}
+                        />
+                        <Route
+                          path="/settings/password"
+                          element={<SettingsPasswordPage />}
+                        />
+                        <Route
+                          path="/settings/organization/:organizationId"
+                          element={<SettingsOrganizationPage />}
+                        />
+                        <Route path="*" element={<SettingsPage />} />
                       </>
                     ) : (
                       <>
@@ -138,10 +156,7 @@ const App: React.FC = () => {
                           path="/settings/organization/:organizationId"
                           element={<SettingsOrganizationPage />}
                         />
-                        <Route
-                          path="*"
-                          element={<Navigate to="/products" replace />}
-                        />
+                        <Route path="*" element={<ProductsPage />} />
                       </>
                     )}
                   </>

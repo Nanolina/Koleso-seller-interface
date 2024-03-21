@@ -31,6 +31,7 @@ export const StoreDetailsFormik: React.FC = () => {
   const { store, loading, error, success } = useSelector(
     (state: IRootState) => state.stores
   );
+  const { organizationId } = useSelector((state: IRootState) => state.user);
 
   // Local storage
   const savedStore = JSON.parse(localStorage.getItem('store') || '{}');
@@ -77,10 +78,11 @@ export const StoreDetailsFormik: React.FC = () => {
         dispatch,
         setInitialValues,
         values,
+        organizationId,
         navigate
       );
     },
-    [storeId, dispatch, navigate]
+    [storeId, dispatch, organizationId, navigate]
   );
 
   if (loading) return <Loader />;

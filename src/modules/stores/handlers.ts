@@ -14,9 +14,11 @@ export const handleSubmitFormStore = async (
   dispatch: AppDispatch,
   setInitialValues: React.Dispatch<React.SetStateAction<ICreateStoreData>>,
   values: ICreateStoreData,
+  organizationId: string,
   navigate: any
 ) => {
   const formData = new FormData();
+  formData.append('organizationId', organizationId);
   formData.append('name', values.name);
   formData.append('description', values.description || '');
   const image = values.image;

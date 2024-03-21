@@ -8,8 +8,7 @@ import styles from './MenuItem.module.css';
 
 export const MenuItem: React.FC<{
   item: IMenuItem;
-  onClick: (id: string) => void;
-}> = React.memo(({ item, onClick }) => {
+}> = React.memo(({ item }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 

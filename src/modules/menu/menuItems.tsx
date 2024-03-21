@@ -1,8 +1,6 @@
-import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsBoxes } from 'react-icons/bs';
 import { IoIosSettings } from 'react-icons/io';
 import { LiaStoreAltSolid } from 'react-icons/lia';
-import { MdNotificationsNone } from 'react-icons/md';
 
 const iconSize = 20;
 const color = 'black';
@@ -38,16 +36,16 @@ export const menuItems = [
   //   icon: <LiaTasksSolid size={iconSize} color={color} />,
   //   redirectPage: '',
   // },
-  {
-    id: '14fd2979-0dff-4cd1-a3fb-9f23c6a10254',
-    title: 'Orders',
-    icon: <AiOutlineShoppingCart size={iconSize} color={color} />,
-    redirectPage: '/orders',
-  },
-  {
-    id: '861d9ee7-182c-4bd5-a017-bbefa3ff6c4b',
-    title: 'Notifications',
-    icon: <MdNotificationsNone size={iconSize} color={color} />,
-    redirectPage: '/notifications',
-  },
+  // {
+  //   id: '14fd2979-0dff-4cd1-a3fb-9f23c6a10254',
+  //   title: 'Orders',
+  //   icon: <AiOutlineShoppingCart size={iconSize} color={color} />,
+  //   redirectPage: '/orders',
+  // },
+  // {
+  //   id: '861d9ee7-182c-4bd5-a017-bbefa3ff6c4b',
+  //   title: 'Notifications',
+  //   icon: <MdNotificationsNone size={iconSize} color={color} />,
+  //   redirectPage: '/notifications',
+  // },
 ];
