@@ -10,7 +10,10 @@ export const updateImages = (
 ) => {
   return colorsWithImages.map((imagesWith1Color) => {
     if (imagesWith1Color.color === color) {
-      // Add new images to existing ones, remove duplicates, and ensure there are no more than 5 images total
+      /**
+       *  Add new images to existing ones, remove duplicates,
+       * and ensure there are no more than 5 images total
+       **/
       const updatedImages = Array.from(
         new Set([...imagesWith1Color.images, ...newImages])
       ).slice(0, 5);
@@ -54,12 +57,12 @@ export const removeImages = (
       const newImages = imagesWith1Color.images.filter((image, index) => {
         const isRemoving = index === indexToRemove;
         if (isRemoving) {
-          // Проверяем, является ли изображение объектом File
+          // Check if the image is a File object
           if (typeof image !== 'string') {
-            // Это объект File, отзываем его URL
+            // This is a File object, revoke its URL
             URL.revokeObjectURL(imageUrlToRemove);
           } else if (image === imageUrlToRemove) {
-            // Это строка URL, отзываем ее
+            // This is the URL string, revoke it
             URL.revokeObjectURL(imageUrlToRemove);
           }
         }

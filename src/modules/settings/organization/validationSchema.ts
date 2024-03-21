@@ -24,14 +24,7 @@ const fileValidationSchema = (
       (value: any) =>
         value == null ||
         typeof value === 'string' ||
-        (value &&
-          [
-            'image/jpeg',
-            'image/png',
-            'application/pdf',
-            'application/msword',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          ].includes(value.type))
+        (value && ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type))
     );
 
 export const validationSchema = (t: TFunction<'translation', undefined>) =>

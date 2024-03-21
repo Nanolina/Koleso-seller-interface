@@ -31,7 +31,7 @@ export const ImageForStore: React.FC<IImageProps> = React.memo(
           id="image"
           name="image"
           onChange={handleImageChange}
-          acceptFiles="image/jpeg,image/png"
+          acceptFiles="image/*"
         />
 
         {previewUrl && (

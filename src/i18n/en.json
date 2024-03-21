@@ -238,7 +238,7 @@
     "language": "Language",
     "signOutOfAccount": "Log out of account",
     "organization": {
-      "label": "Data of organization",
+      "label": "Organization",
       "create": "Create organization",
       "name": "Name of organization",
       "TIN": "Tax Identification Number (TIN)",
@@ -252,7 +252,7 @@
         "validation": {
           "nameRequired": "Name is required",
           "veryBigSize": "Select a file less than 500KB for {{type}}",
-          "notFormat": "Only jpeg, jpg, png, pdf, doc, docx files are accepted for {{type}}"
+          "notFormat": "Only jpeg, jpg, png files are accepted for {{type}}"
         }
       }
     },

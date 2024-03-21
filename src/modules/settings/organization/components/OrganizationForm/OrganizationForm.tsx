@@ -82,7 +82,7 @@ export const OrganizationForm: React.FC = () => {
             label={t('settings.organization.TIN')}
             id="TIN"
             name="TIN"
-            value={values.TIN}
+            value={values.TIN || ''}
             setFieldValue={setFieldValue}
             errors={errors}
             touched={touched}

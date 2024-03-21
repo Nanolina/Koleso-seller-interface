@@ -5,7 +5,7 @@ import { ISettingProps } from '../../types';
 import styles from './Setting.module.css';
 
 export const Setting: React.FC<ISettingProps> = React.memo(
-  ({ title, extra, redirectPage }) => {
+  ({ title, extra, redirectPage, isNoRedirect = false }) => {
     const navigate = useNavigate();
 
     const handleRedirect = (page: string) => {
@@ -15,7 +15,7 @@ export const Setting: React.FC<ISettingProps> = React.memo(
     return (
       <div
         className={styles.container}
-        onClick={() => handleRedirect(redirectPage)}
+        onClick={() => (isNoRedirect ? {} : handleRedirect(redirectPage))}
       >
         <div className={styles.title}>{title}</div>
 

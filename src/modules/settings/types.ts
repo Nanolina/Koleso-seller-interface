@@ -4,6 +4,7 @@ export interface ISettingProps {
   title: string;
   extra?: string;
   redirectPage: string;
+  isNoRedirect?: boolean;
 }
 
 export interface IPhonePayload {
