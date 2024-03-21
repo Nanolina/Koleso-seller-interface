@@ -20,10 +20,15 @@ export class ProductService {
   }
 
   static async getAllStores(
-    filter: IFilterQuery
+    filter: IFilterQuery,
+    organizationId: string,
   ): Promise<AxiosResponse<IStore[]>> {
     const queryString = `filter=${encodeURIComponent(JSON.stringify(filter))}`;
-    return productServiceAPI.get<IStore[]>(`/store?${queryString}`);
+    return productServiceAPI.get<IStore[]>(`/store?${queryString}`, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
   static async getStoreById(id: string): Promise<AxiosResponse<IStore>> {

@@ -39,6 +39,10 @@ export const ProductDetailsForm: React.FC = () => {
     (state: IRootState) => state.products
   );
 
+  const organizationId = useSelector(
+    (state: IRootState) => state.user.organizationId
+  );
+
   // Local storage
   const savedProduct = JSON.parse(localStorage.getItem('product') || '{}');
 
@@ -92,8 +96,10 @@ export const ProductDetailsForm: React.FC = () => {
   }, [fetchData]);
 
   useEffect(() => {
-    dispatch(handleGetAllStores({ type: 'active' }));
-  }, [dispatch]);
+    dispatch(
+      handleGetAllStores({ filter: { type: 'active' }, organizationId })
+    );
+  }, [dispatch, organizationId]);
 
   if (loading) return <Loader />;
 

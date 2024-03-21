@@ -33,6 +33,9 @@ export const StoresTable: React.FC = () => {
     error,
     success,
   } = useSelector((state: IRootState) => state.stores);
+  const organizationId = useSelector(
+    (state: IRootState) => state.user.organizationId
+  );
 
   const recoverStore = async (storeId: string, event: any) => {
     event.stopPropagation();
@@ -40,8 +43,13 @@ export const StoresTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(handleGetAllStores({ type: showDeleted ? 'deleted' : 'active' }));
-  }, [dispatch, showDeleted, store]);
+    dispatch(
+      handleGetAllStores({
+        filter: { type: showDeleted ? 'deleted' : 'active' },
+        organizationId,
+      })
+    );
+  }, [dispatch, organizationId, showDeleted, store]);
 
   return (
     <>

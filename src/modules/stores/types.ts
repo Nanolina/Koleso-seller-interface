@@ -4,6 +4,7 @@ import {
   FormikProps,
   FormikTouched,
 } from 'formik';
+import { IFilterQuery } from '../../types';
 import { IImage } from '../image';
 
 export interface ICreateStoreData {
@@ -35,6 +36,11 @@ export interface IStoresState {
 export interface IUpdateStoreArg {
   id: string;
   storeFormData: FormData;
+}
+
+export interface IGetAllStoresArg {
+  filter: IFilterQuery;
+  organizationId: string;
 }
 
 export interface IImageProps {
