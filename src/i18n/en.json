@@ -242,6 +242,7 @@
       "create": "Create organization",
       "name": "Name of organization",
       "TIN": "Tax Identification Number (TIN)",
+      "notFounder": "You are not the owner of this organization, so you cannot change its data",
       "documents": {
         "Passport": "Photo of the main page of the passport",
         "CertificateOfRegistration": "Company Registration Certificate",

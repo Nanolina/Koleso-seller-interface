@@ -37,9 +37,8 @@ const App: React.FC = () => {
 
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const { id, isVerifiedEmail, isActive, isSeller, language } = useSelector(
-    (state: IRootState) => state.user
-  );
+  const { id, isVerifiedEmail, isActive, isSeller, language, organizationId } =
+    useSelector((state: IRootState) => state.user);
 
   const token = useMemo(() => localStorage.getItem('token'), []);
 
@@ -86,44 +85,65 @@ const App: React.FC = () => {
                 )}
                 {isVerifiedEmail && isActive && (
                   <>
-                    <Route path="/products" element={<ProductsPage />} />
-                    <Route
-                      path="/product/:productId/:tab"
-                      element={<ProductPage />}
-                    />
-                    <Route path="/stores" element={<StoresPage />} />
-                    <Route path="/store/:storeId" element={<StorePage />} />
-                    <Route path="/orders" element={<OrdersPage />} />
-                    <Route path="/order/:orderNumber" element={<OrderPage />} />
-                    <Route
-                      path="/notifications"
-                      element={<NotificationsPage />}
-                    />
-                    <Route path="/settings" element={<SettingsPage />} />
-                    <Route
-                      path="/settings/language"
-                      element={<SettingsLanguagePage />}
-                    />
-                    <Route
-                      path="/settings/phone"
-                      element={<SettingsPhoneFormPage />}
-                    />
-                    <Route
-                      path="/settings/email"
-                      element={<SettingsEmailFormPage />}
-                    />
-                    <Route
-                      path="/settings/password"
-                      element={<SettingsPasswordPage />}
-                    />
-                    <Route
-                      path="/settings/organization/:organizationId"
-                      element={<SettingsOrganizationPage />}
-                    />
-                    <Route
-                      path="*"
-                      element={<Navigate to="/products" replace />}
-                    />
+                    {!organizationId ? (
+                      <>
+                        <Route path="/settings" element={<SettingsPage />} />
+                        <Route
+                          path="/settings/organization"
+                          element={<SettingsOrganizationPage />}
+                        />
+                        <Route
+                          path="*"
+                          element={
+                            <Navigate to="/settings/organization" replace />
+                          }
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <Route path="/products" element={<ProductsPage />} />
+                        <Route
+                          path="/product/:productId/:tab"
+                          element={<ProductPage />}
+                        />
+                        <Route path="/stores" element={<StoresPage />} />
+                        <Route path="/store/:storeId" element={<StorePage />} />
+                        <Route path="/orders" element={<OrdersPage />} />
+                        <Route
+                          path="/order/:orderNumber"
+                          element={<OrderPage />}
+                        />
+                        <Route
+                          path="/notifications"
+                          element={<NotificationsPage />}
+                        />
+                        <Route path="/settings" element={<SettingsPage />} />
+                        <Route
+                          path="/settings/language"
+                          element={<SettingsLanguagePage />}
+                        />
+                        <Route
+                          path="/settings/phone"
+                          element={<SettingsPhoneFormPage />}
+                        />
+                        <Route
+                          path="/settings/email"
+                          element={<SettingsEmailFormPage />}
+                        />
+                        <Route
+                          path="/settings/password"
+                          element={<SettingsPasswordPage />}
+                        />
+                        <Route
+                          path="/settings/organization/:organizationId"
+                          element={<SettingsOrganizationPage />}
+                        />
+                        <Route
+                          path="*"
+                          element={<Navigate to="/products" replace />}
+                        />
+                      </>
+                    )}
                   </>
                 )}
               </>

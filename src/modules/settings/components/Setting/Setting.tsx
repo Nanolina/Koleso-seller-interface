@@ -17,16 +17,12 @@ export const Setting: React.FC<ISettingProps> = React.memo(
         className={styles.container}
         onClick={() => (isNoRedirect ? {} : handleRedirect(redirectPage))}
       >
-        <div className={styles.title}>{title}</div>
+        <div>
+          <div className={styles.title}>{title}</div>
+          {extra && <div className={styles.extraText}>{extra}</div>}
+        </div>
 
-        {extra ? (
-          <div className={styles.extraContainer}>
-            <div className={styles.extraText}>{extra}</div>
-            <FaChevronRight size={20} color="var(--gray)" />
-          </div>
-        ) : (
-          <FaChevronRight size={20} color="var(--gray)" />
-        )}
+        {!isNoRedirect && <FaChevronRight size={20} color="var(--gray)" />}
       </div>
     );
   }

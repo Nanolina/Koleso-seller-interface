@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { NEW } from '../../../../consts';
@@ -22,6 +22,39 @@ export const Settings: React.FC = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
 
+  const notFounderOrganization = useMemo(
+    () => founderId !== userId && founderId !== '',
+    [founderId, userId]
+  );
+  const titleOrganization = useMemo(
+    () =>
+      organizationName
+        ? `${t('settings.organization.label')}: ${organizationName}`
+        : t('settings.organization.create'),
+    [organizationName, t]
+  );
+  const settingsList = useMemo(
+    () => [
+      { titleKey: 'settings.phone', redirectPage: 'phone' },
+      { titleKey: 'settings.email', redirectPage: 'email' },
+      { titleKey: 'settings.language', redirectPage: 'language' },
+      {
+        titleKey: 'settings.password.changePassword',
+        redirectPage: 'password',
+      },
+      {
+        titleKey: '',
+        redirectPage: `organization/${organizationId || NEW}`,
+        isNoRedirect: notFounderOrganization,
+        extra: notFounderOrganization
+          ? t('settings.organization.notFounder')
+          : '',
+        customTitle: titleOrganization,
+      },
+    ],
+    [t, organizationId, notFounderOrganization, titleOrganization]
+  );
+
   useEffect(() => {
     if (organizationId && organizationId !== NEW) {
       dispatch(handleGetOrganizationById(organizationId));
@@ -30,22 +63,15 @@ export const Settings: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <Setting title={t('settings.phone')} redirectPage="phone" />
-      <Setting title={t('settings.email')} redirectPage="email" />
-      <Setting title={t('settings.language')} redirectPage="language" />
-      <Setting
-        title={t('settings.password.changePassword')}
-        redirectPage="password"
-      />
-      <Setting
-        title={
-          organizationName
-            ? `${t('settings.organization.label')}: ${organizationName}`
-            : t('settings.organization.create')
-        }
-        redirectPage={`organization/${organizationId || NEW}`}
-        isNoRedirect={founderId !== userId && founderId !== ''}
-      />
+      {settingsList.map((setting) => (
+        <Setting
+          key={setting.titleKey || 'organization'}
+          title={setting.customTitle || t(setting.titleKey)}
+          redirectPage={setting.redirectPage}
+          isNoRedirect={setting.isNoRedirect}
+          extra={setting.extra}
+        />
+      ))}
 
       <span className="removeText" onClick={() => setModalOpen(true)}>
         {t('settings.signOutOfAccount')}

@@ -15,12 +15,8 @@
   font-size: 20px;
 }
 
-.extraContainer {
-  display: flex;
-  gap: 20px;
-}
-
 .extraText {
-  font-size: 18px;
+  font-size: 12px;
   font-style: italic;
+  color: var(--dark-gray)
 }
