@@ -47,14 +47,16 @@ export const StoreDetailsFormik: React.FC = () => {
   // Get store by id
   const fetchData = useCallback(async () => {
     if (storeId && storeId !== NEW) {
-      const data = await dispatch(handleGetStoreById(storeId));
+      const data = await dispatch(
+        handleGetStoreById({ organizationId, id: storeId })
+      );
       const resultStore: IStore = unwrapResult(data);
       if (resultStore) {
         setInitialValues((prev) => ({ ...prev, ...resultStore }));
         if (resultStore.image?.url) setPreviewUrl(resultStore.image.url);
       }
     }
-  }, [storeId, dispatch]);
+  }, [storeId, dispatch, organizationId]);
 
   // useEffect
   useEffect(() => {
@@ -125,6 +127,7 @@ export const StoreDetailsFormik: React.FC = () => {
             onRemove={() =>
               handleRemoveFormStore(
                 storeId,
+                organizationId,
                 dispatch,
                 previewUrl,
                 setPreviewUrl,

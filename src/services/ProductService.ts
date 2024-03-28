@@ -14,14 +14,19 @@ import { IFilterQuery } from '../types';
 export class ProductService {
   // Stores
   static async createStore(
-    storeFormData: FormData
+    storeFormData: FormData,
+    organizationId: string
   ): Promise<AxiosResponse<IStore>> {
-    return productServiceAPI.post<IStore>('/store', storeFormData);
+    return productServiceAPI.post<IStore>('/store', storeFormData, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
   static async getAllStores(
     filter: IFilterQuery,
-    organizationId: string,
+    organizationId: string
   ): Promise<AxiosResponse<IStore[]>> {
     const queryString = `filter=${encodeURIComponent(JSON.stringify(filter))}`;
     return productServiceAPI.get<IStore[]>(`/store?${queryString}`, {
@@ -31,23 +36,49 @@ export class ProductService {
     });
   }
 
-  static async getStoreById(id: string): Promise<AxiosResponse<IStore>> {
-    return productServiceAPI.get<IStore>(`/store/${id}`);
+  static async getStoreById(
+    id: string,
+    organizationId: string
+  ): Promise<AxiosResponse<IStore>> {
+    return productServiceAPI.get<IStore>(`/store/${id}`, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
   static async updateStore(
     id: string,
-    storeFormData: FormData
+    storeFormData: FormData,
+    organizationId: string
   ): Promise<AxiosResponse<IStore>> {
-    return productServiceAPI.patch<IStore>(`/store/${id}`, storeFormData);
+    return productServiceAPI.patch<IStore>(`/store/${id}`, storeFormData, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
-  static async removeStore(id: string): Promise<AxiosResponse<IStore>> {
-    return productServiceAPI.delete<IStore>(`/store/${id}`);
+  static async removeStore(
+    id: string,
+    organizationId: string
+  ): Promise<AxiosResponse<IStore>> {
+    return productServiceAPI.delete<IStore>(`/store/${id}`, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
-  static async recoverStore(id: string): Promise<AxiosResponse<IStore>> {
-    return productServiceAPI.post<IStore>(`/store/${id}/recover`);
+  static async recoverStore(
+    id: string,
+    organizationId: string
+  ): Promise<AxiosResponse<IStore>> {
+    return productServiceAPI.post<IStore>(`/store/${id}/recover`, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
   // Products

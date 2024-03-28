@@ -36,10 +36,21 @@ export interface IStoresState {
 export interface IUpdateStoreArg {
   id: string;
   storeFormData: FormData;
+  organizationId: string;
 }
 
 export interface IGetAllStoresArg {
   filter: IFilterQuery;
+  organizationId: string;
+}
+
+export interface ICreateStoresArg {
+  storeFormData: FormData;
+  organizationId: string;
+}
+
+export interface IGetStoreByIdArg {
+  id: string;
   organizationId: string;
 }
 

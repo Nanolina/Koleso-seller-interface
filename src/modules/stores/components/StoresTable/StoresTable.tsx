@@ -39,7 +39,7 @@ export const StoresTable: React.FC = () => {
 
   const recoverStore = async (storeId: string, event: any) => {
     event.stopPropagation();
-    await dispatch(handleRecoverStore(storeId));
+    await dispatch(handleRecoverStore({ organizationId, id: storeId }));
   };
 
   useEffect(() => {

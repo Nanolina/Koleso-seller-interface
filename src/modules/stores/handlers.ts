@@ -34,8 +34,12 @@ export const handleSubmitFormStore = async (
 
   let action: any =
     storeId === NEW
-      ? handleCreateStore(formData)
-      : handleUpdateStore({ id: storeId, storeFormData: formData });
+      ? handleCreateStore({ organizationId, storeFormData: formData })
+      : handleUpdateStore({
+          organizationId,
+          id: storeId,
+          storeFormData: formData,
+        });
   let result = await dispatch(action);
   const storeFromDB = unwrapResult(result);
 
@@ -47,6 +51,7 @@ export const handleSubmitFormStore = async (
 
 export const handleRemoveFormStore = async (
   storeId: string | undefined,
+  organizationId: string,
   dispatch: AppDispatch,
   previewUrl: string | null,
   setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>,
@@ -54,7 +59,9 @@ export const handleRemoveFormStore = async (
   navigate: any
 ) => {
   if (storeId && storeId !== NEW) {
-    const data = await dispatch(handleRemoveStore(storeId));
+    const data = await dispatch(
+      handleRemoveStore({ organizationId, id: storeId })
+    );
     const store: IStore = unwrapResult(data);
 
     if (!store) {

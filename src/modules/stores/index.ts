@@ -2,7 +2,9 @@ export { StoreDetailsFormik } from './components/StoreDetailsFormik/StoreDetails
 export { StoresTable } from './components/StoresTable/StoresTable';
 export type {
   ICreateStoreData,
+  ICreateStoresArg,
   IGetAllStoresArg,
+  IGetStoreByIdArg,
   IStore,
   IStoresState,
   IUpdateStoreArg,

@@ -5,9 +5,16 @@ import { handleAsyncThunkError } from '../../functions';
 
 export const handleUpdateStore = createAsyncThunk<IStore, IUpdateStoreArg>(
   'store/update',
-  async ({ id, storeFormData }, { rejectWithValue }): Promise<IStore> => {
+  async (
+    { id, storeFormData, organizationId },
+    { rejectWithValue }
+  ): Promise<IStore> => {
     try {
-      const response = await ProductService.updateStore(id, storeFormData);
+      const response = await ProductService.updateStore(
+        id,
+        storeFormData,
+        organizationId
+      );
       return response.data;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);
