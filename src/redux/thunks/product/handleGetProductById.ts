@@ -11,9 +11,16 @@ export const handleGetProductById = createAsyncThunk<
   IGetProductByIdArg
 >(
   'product/get-by-id',
-  async ({ id, filterVariants }, { rejectWithValue }): Promise<IProduct> => {
+  async (
+    { id, filterVariants, organizationId },
+    { rejectWithValue }
+  ): Promise<IProduct> => {
     try {
-      const response = await ProductService.getProductById(id, filterVariants);
+      const response = await ProductService.getProductById(
+        id,
+        filterVariants,
+        organizationId
+      );
       return response.data;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);

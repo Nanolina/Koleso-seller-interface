@@ -83,41 +83,75 @@ export class ProductService {
 
   // Products
   static async createProduct(
-    productValues: ICreateProductData
+    productValues: ICreateProductData,
+    organizationId: string
   ): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.post<IProduct>('/product', productValues);
+    return productServiceAPI.post<IProduct>('/product', productValues, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
   static async getAllProducts(
-    filter: IFilterQuery
+    filter: IFilterQuery,
+    organizationId: string
   ): Promise<AxiosResponse<IProduct[]>> {
     const queryString = `filter=${encodeURIComponent(JSON.stringify(filter))}`;
-    return productServiceAPI.get<IProduct[]>(`/product?${queryString}`);
+    return productServiceAPI.get<IProduct[]>(`/product?${queryString}`, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
   static async getProductById(
     id: string,
-    filterVariants: IFilterQuery
+    filterVariants: IFilterQuery,
+    organizationId: string
   ): Promise<AxiosResponse<IProduct>> {
     const queryString = `filterVariants=${encodeURIComponent(
       JSON.stringify(filterVariants)
     )}`;
-    return productServiceAPI.get<IProduct>(`/product/${id}?${queryString}`);
+    return productServiceAPI.get<IProduct>(`/product/${id}?${queryString}`, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
   static async updateProduct(
     id: string,
-    productValues: IUpdateProductData
+    productValues: IUpdateProductData,
+    organizationId: string
   ): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.patch<IProduct>(`/product/${id}`, productValues);
+    return productServiceAPI.patch<IProduct>(`/product/${id}`, productValues, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
-  static async removeProduct(id: string): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.delete<IProduct>(`/product/${id}`);
+  static async removeProduct(
+    id: string,
+    organizationId: string
+  ): Promise<AxiosResponse<IProduct>> {
+    return productServiceAPI.delete<IProduct>(`/product/${id}`, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
-  static async recoverProduct(id: string): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.post<IProduct>(`/product/${id}/recover`);
+  static async recoverProduct(
+    id: string,
+    organizationId: string
+  ): Promise<AxiosResponse<IProduct>> {
+    return productServiceAPI.post<IProduct>(`/product/${id}/recover`, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
   // Catalog
@@ -128,34 +162,59 @@ export class ProductService {
   // Variants
   static async updateVariants(
     variants: IUpdateVariantsData,
-    productId: string
+    productId: string,
+    organizationId: string
   ): Promise<AxiosResponse<IUpdateVariantsData>> {
     return productServiceAPI.post<IUpdateVariantsData>(
       `/product/${productId}/variants`,
-      variants
+      variants,
+      {
+        headers: {
+          'Organization-Id': organizationId,
+        },
+      }
     );
   }
 
-  static async recoverVariant(id: string): Promise<AxiosResponse<IVariant[]>> {
-    return productServiceAPI.post<IVariant[]>(`/variant/${id}/recover`);
+  static async recoverVariant(
+    id: string,
+    organizationId: string
+  ): Promise<AxiosResponse<IVariant[]>> {
+    return productServiceAPI.post<IVariant[]>(`/variant/${id}/recover`, {
+      headers: {
+        'Organization-Id': organizationId,
+      },
+    });
   }
 
   // Images
   static async updateColorsWithImages(
     productId: string,
-    filesFormData: FormData
+    filesFormData: FormData,
+    organizationId: string
   ): Promise<AxiosResponse<IColorsWithImagesData>> {
     return productServiceAPI.post<IColorsWithImagesData>(
       `/product/${productId}/images`,
-      filesFormData
+      filesFormData,
+      {
+        headers: {
+          'Organization-Id': organizationId,
+        },
+      }
     );
   }
 
   static async getAllColorsWithImages(
-    productId: string
+    productId: string,
+    organizationId: string
   ): Promise<AxiosResponse<IColorsWithImagesData[]>> {
     return productServiceAPI.get<IColorsWithImagesData[]>(
-      `/product/${productId}/images`
+      `/product/${productId}/images`,
+      {
+        headers: {
+          'Organization-Id': organizationId,
+        },
+      }
     );
   }
 }

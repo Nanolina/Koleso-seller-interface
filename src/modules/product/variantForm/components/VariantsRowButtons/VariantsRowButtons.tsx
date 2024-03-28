@@ -17,8 +17,11 @@ export const VariantsRowButtons: React.FC<IVariantsRowButtonsProps> =
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
 
-    const { showDeleted } = useSelector(
-      (state: IRootState) => state.products.product.variants
+    const showDeleted = useSelector(
+      (state: IRootState) => state.products.product.variants.showDeleted
+    );
+    const organizationId = useSelector(
+      (state: IRootState) => state.user.organizationId
     );
 
     const { handleRemoveVariant } = useVariant(values.variants, setFieldValue);
@@ -51,7 +54,11 @@ export const VariantsRowButtons: React.FC<IVariantsRowButtonsProps> =
             cell={
               <RecoverIcon
                 tooltipText={t('products.variants.recover')}
-                onClick={() => dispatch(handleRecoverVariant(variant.id))}
+                onClick={() =>
+                  dispatch(
+                    handleRecoverVariant({ organizationId, id: variant.id })
+                  )
+                }
               />
             }
           />

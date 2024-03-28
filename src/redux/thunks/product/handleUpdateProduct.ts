@@ -9,11 +9,15 @@ export const handleUpdateProduct = createAsyncThunk<
   IUpdateProductArg
 >(
   'product/update',
-  async ({ id, productValues }, { rejectWithValue }): Promise<IProduct> => {
+  async (
+    { organizationId, id, productValues },
+    { rejectWithValue }
+  ): Promise<IProduct> => {
     try {
       const response: any = await ProductService.updateProduct(
         id,
-        productValues
+        productValues,
+        organizationId
       );
       return response.data;
     } catch (error: any) {

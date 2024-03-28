@@ -1,19 +1,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  ICreateProductData,
+  ICreateProductArg,
   IProduct,
 } from '../../../modules/product/productForm';
 import { ProductService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
 
-export const handleCreateProduct = createAsyncThunk(
+export const handleCreateProduct = createAsyncThunk<
+  IProduct,
+  ICreateProductArg
+>(
   'product/create',
   async (
-    productValues: ICreateProductData,
+    { productValues, organizationId },
     { rejectWithValue }
   ): Promise<IProduct> => {
     try {
-      const response: any = await ProductService.createProduct(productValues);
+      const response: any = await ProductService.createProduct(
+        productValues,
+        organizationId
+      );
       return response.data;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);

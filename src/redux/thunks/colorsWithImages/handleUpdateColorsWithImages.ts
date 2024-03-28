@@ -12,13 +12,14 @@ export const handleUpdateColorsWithImages = createAsyncThunk<
 >(
   'colorsWithImages/update',
   async (
-    { productId, imagesFormData },
+    { productId, imagesFormData, organizationId },
     { rejectWithValue }
   ): Promise<IColorsWithImagesData[]> => {
     try {
       const response: any = await ProductService.updateColorsWithImages(
         productId,
-        imagesFormData
+        imagesFormData,
+        organizationId
       );
       return response.data;
     } catch (error: any) {

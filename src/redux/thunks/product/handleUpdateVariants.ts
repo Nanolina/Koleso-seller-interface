@@ -11,11 +11,15 @@ export const handleUpdateVariants = createAsyncThunk<
   IUpdateVariantsArg
 >(
   'variants/update',
-  async ({ variants, productId }, { rejectWithValue }): Promise<IVariant[]> => {
+  async (
+    { variants, organizationId, productId },
+    { rejectWithValue }
+  ): Promise<IVariant[]> => {
     try {
       const response: any = await ProductService.updateVariants(
         { variants },
-        productId
+        productId,
+        organizationId
       );
       return response.data;
     } catch (error: any) {

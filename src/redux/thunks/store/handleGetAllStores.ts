@@ -6,7 +6,7 @@ import { handleAsyncThunkError } from '../../functions';
 export const handleGetAllStores = createAsyncThunk<IStore[], IGetAllStoresArg>(
   'store/get-all',
   async (
-    { filter, organizationId },
+    { organizationId, filter },
     { rejectWithValue }
   ): Promise<IStore[]> => {
     try {

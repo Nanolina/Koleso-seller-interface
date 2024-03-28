@@ -28,6 +28,9 @@ export const ImageUploadForm: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
 
   // Redux
+  const organizationId = useSelector(
+    (state: IRootState) => state.user.organizationId
+  );
   const { colorsWithImages, loading, error, success } = useSelector(
     (state: IRootState) => state.colorsWithImages
   );
@@ -35,15 +38,16 @@ export const ImageUploadForm: React.FC = () => {
   // Get images
   useEffect(() => {
     if (productId && productId !== NEW) {
-      dispatch(handleGetAllColorsWithImages(productId));
+      dispatch(handleGetAllColorsWithImages({ productId, organizationId }));
       dispatch(
         handleGetProductById({
           id: productId,
           filterVariants: { type: 'active' },
+          organizationId,
         })
       );
     }
-  }, [dispatch, productId]);
+  }, [dispatch, organizationId, productId]);
 
   // Submit data
   const onSubmit = useCallback(
@@ -66,10 +70,11 @@ export const ImageUploadForm: React.FC = () => {
         handleUpdateColorsWithImages({
           productId,
           imagesFormData,
+          organizationId,
         })
       );
     },
-    [productId, dispatch]
+    [productId, dispatch, organizationId]
   );
 
   if (loading) return <Loader />;

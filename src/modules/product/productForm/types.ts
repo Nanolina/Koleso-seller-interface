@@ -47,14 +47,29 @@ export interface IUpdateProductData {
   composition?: IComposition[];
 }
 
-export interface IGetProductByIdArg {
+export interface IProductArg {
   id: string;
+  organizationId: string;
+}
+
+export interface IGetProductByIdArg extends IProductArg {
   filterVariants: IFilterQuery;
+}
+
+export interface IGetAllProductsArg {
+  filter: IFilterQuery;
+  organizationId: string;
 }
 
 export interface IUpdateProductArg {
   id: string;
   productValues: IUpdateProductData;
+  organizationId: string;
+}
+
+export interface ICreateProductArg {
+  productValues: ICreateProductData;
+  organizationId: string;
 }
 
 export interface IProductFormFieldsProps {

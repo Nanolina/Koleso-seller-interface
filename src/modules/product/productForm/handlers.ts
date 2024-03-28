@@ -10,6 +10,7 @@ import { ICreateProductData, IProduct } from './types';
 
 export const handleSubmitFormProduct = async (
   productId: string | undefined,
+  organizationId: string,
   dispatch: AppDispatch,
   setInitialValues: React.Dispatch<React.SetStateAction<ICreateProductData>>,
   values: ICreateProductData,
@@ -18,7 +19,9 @@ export const handleSubmitFormProduct = async (
   let data: any;
   // Create product
   if (productId === NEW) {
-    data = await dispatch(handleCreateProduct(values));
+    data = await dispatch(
+      handleCreateProduct({ organizationId, productValues: values })
+    );
 
     // Get data from DB
     const product: IProduct = unwrapResult(data);
@@ -44,7 +47,11 @@ export const handleSubmitFormProduct = async (
     // Update product
   } else if (productId) {
     data = await dispatch(
-      handleUpdateProduct({ id: productId, productValues: values })
+      handleUpdateProduct({
+        organizationId,
+        id: productId,
+        productValues: values,
+      })
     );
 
     // Get data from DB

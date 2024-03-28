@@ -25,6 +25,9 @@ export const VariantDetailsForm: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
 
   // Redux
+  const organizationId = useSelector(
+    (state: IRootState) => state.user.organizationId
+  );
   const {
     items: variants,
     showDeleted,
@@ -37,6 +40,7 @@ export const VariantDetailsForm: React.FC = () => {
     if (productId && productId !== NEW) {
       dispatch(
         handleGetProductById({
+          organizationId,
           id: productId,
           filterVariants: {
             type: showDeleted ? 'deleted' : 'active',
@@ -44,7 +48,7 @@ export const VariantDetailsForm: React.FC = () => {
         })
       );
     }
-  }, [dispatch, productId, showDeleted]);
+  }, [dispatch, organizationId, productId, showDeleted]);
 
   // Submit data
   const onSubmit = useCallback(
@@ -53,9 +57,15 @@ export const VariantDetailsForm: React.FC = () => {
         return;
       }
 
-      dispatch(handleUpdateVariants({ productId, variants: values.variants }));
+      dispatch(
+        handleUpdateVariants({
+          productId,
+          organizationId,
+          variants: values.variants,
+        })
+      );
     },
-    [productId, dispatch]
+    [productId, dispatch, organizationId]
   );
 
   return (

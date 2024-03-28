@@ -60,35 +60,37 @@ export const ProductDetailsForm: React.FC = () => {
         handleGetProductById({
           id: productId,
           filterVariants: { type: 'active' },
+          organizationId,
         })
       );
       const resultProduct: IProduct = unwrapResult(data);
       if (resultProduct)
         setInitialValues(mapProductToInitialValues(resultProduct));
     }
-  }, [productId, dispatch]);
+  }, [productId, dispatch, organizationId]);
 
   // Submit data
   const onSubmit = useCallback(
     (values: ICreateProductData) => {
       handleSubmitFormProduct(
         productId,
+        organizationId,
         dispatch,
         setInitialValues,
         values,
         navigate
       );
     },
-    [productId, dispatch, navigate]
+    [productId, dispatch, navigate, organizationId]
   );
 
   // Remove product
   const onRemove = useCallback(() => {
     if (productId) {
-      dispatch(handleRemoveProduct(productId));
+      dispatch(handleRemoveProduct({ organizationId, id: productId }));
       navigate('/products');
     }
-  }, [productId, dispatch, navigate]);
+  }, [productId, dispatch, navigate, organizationId]);
 
   // useEffect
   useEffect(() => {
@@ -97,7 +99,7 @@ export const ProductDetailsForm: React.FC = () => {
 
   useEffect(() => {
     dispatch(
-      handleGetAllStores({ filter: { type: 'active' }, organizationId })
+      handleGetAllStores({ organizationId, filter: { type: 'active' } })
     );
   }, [dispatch, organizationId]);
 

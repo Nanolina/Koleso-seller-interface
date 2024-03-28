@@ -32,4 +32,5 @@ export interface IColorsWithImagesState {
 export interface IUpdateColorsWithImagesArg {
   productId: string;
   imagesFormData: FormData;
+  organizationId: string;
 }

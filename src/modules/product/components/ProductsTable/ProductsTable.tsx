@@ -27,6 +27,10 @@ export const ProductsTable: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
+  const organizationId = useSelector(
+    (state: IRootState) => state.user.organizationId
+  );
+
   const {
     items: products,
     product,
@@ -42,17 +46,21 @@ export const ProductsTable: React.FC = () => {
 
   const recoverProduct = (
     productId: string,
+    organizationId: string,
     event: React.MouseEvent<SVGSVGElement>
   ) => {
     event.stopPropagation();
-    dispatch(handleRecoverProduct(productId));
+    dispatch(handleRecoverProduct({ id: productId, organizationId }));
   };
 
   useEffect(() => {
     dispatch(
-      handleGetAllProducts({ type: showDeleted ? 'deleted' : 'active' })
+      handleGetAllProducts({
+        filter: { type: showDeleted ? 'deleted' : 'active' },
+        organizationId,
+      })
     );
-  }, [dispatch, showDeleted, product]);
+  }, [dispatch, showDeleted, product, organizationId]);
 
   return (
     <>
@@ -113,7 +121,7 @@ export const ProductsTable: React.FC = () => {
                     <RecoverIcon
                       tooltipText={t('products.product.recover')}
                       onClick={(event: React.MouseEvent<SVGSVGElement>) =>
-                        recoverProduct(product.id, event)
+                        recoverProduct(product.id, organizationId, event)
                       }
                     />
                   }

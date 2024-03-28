@@ -79,4 +79,10 @@ export interface IVariantsState {
 export interface IUpdateVariantsArg {
   productId: string;
   variants: IVariant[];
+  organizationId: string;
+}
+
+export interface IGetAllColorsWithImagesArg {
+  productId: string;
+  organizationId: string;
 }
