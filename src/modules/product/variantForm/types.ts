@@ -48,6 +48,7 @@ export interface IVariantInputProps {
   name: string;
   type: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  required: boolean;
   errors: any;
   touched: FormikTouched<any>;
 }

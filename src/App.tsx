@@ -40,6 +40,7 @@ const App: React.FC = () => {
 
   const { id, isVerifiedEmail, isActive, isSeller, language, organizationId } =
     useSelector((state: IRootState) => state.user);
+  const organization = useSelector((state: IRootState) => state.organization);
 
   const token = useMemo(() => localStorage.getItem('token'), []);
 
@@ -55,7 +56,7 @@ const App: React.FC = () => {
     if (token && id) {
       dispatch(handleGetUserById());
     }
-  }, [dispatch, id, token]);
+  }, [dispatch, id, token, organization]);
 
   useEffect(() => {
     if (token && id && organizationId) {
