@@ -74,11 +74,15 @@ export class ProductService {
     id: string,
     organizationId: string
   ): Promise<AxiosResponse<IStore>> {
-    return productServiceAPI.post<IStore>(`/store/${id}/recover`, {
-      headers: {
-        'Organization-Id': organizationId,
-      },
-    });
+    return productServiceAPI.post<IStore>(
+      `/store/${id}/recover`,
+      {},
+      {
+        headers: {
+          'Organization-Id': organizationId,
+        },
+      }
+    );
   }
 
   // Products
@@ -147,11 +151,15 @@ export class ProductService {
     id: string,
     organizationId: string
   ): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.post<IProduct>(`/product/${id}/recover`, {
-      headers: {
-        'Organization-Id': organizationId,
-      },
-    });
+    return productServiceAPI.post<IProduct>(
+      `/product/${id}/recover`,
+      {},
+      {
+        headers: {
+          'Organization-Id': organizationId,
+        },
+      }
+    );
   }
 
   // Catalog
@@ -180,11 +188,15 @@ export class ProductService {
     id: string,
     organizationId: string
   ): Promise<AxiosResponse<IVariant[]>> {
-    return productServiceAPI.post<IVariant[]>(`/variant/${id}/recover`, {
-      headers: {
-        'Organization-Id': organizationId,
-      },
-    });
+    return productServiceAPI.post<IVariant[]>(
+      `/variant/${id}/recover`,
+      {},
+      {
+        headers: {
+          'Organization-Id': organizationId,
+        },
+      }
+    );
   }
 
   // Images
