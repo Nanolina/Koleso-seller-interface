@@ -22,3 +22,8 @@ export enum LanguageType {
   English = 'English',
   Russian = 'Russian',
 }
+
+export enum RoleType {
+  Seller = 'Seller',
+  Customer = 'Customer',
+}

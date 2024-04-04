@@ -18,7 +18,7 @@ export const loginCases = (builder: ActionReducerMapBuilder<IUserState>) => {
         state.activationLinkId = action.payload.activationLinkId;
         state.isActive = action.payload.isActive;
         state.isVerifiedEmail = action.payload.isVerifiedEmail;
-        state.isSeller = action.payload.roles.includes(ROLE);
+        state.isSeller = action.payload.role === ROLE;
         state.loading = false;
       }
     )

@@ -1,5 +1,5 @@
 import { ObjectSchema } from 'yup';
-import { LanguageType } from '../../types';
+import { LanguageType, RoleType } from '../../types';
 
 export interface IUserState {
   id: string;
@@ -23,7 +23,7 @@ export interface IAuthPayload {
   activationLinkId: string;
   isActive: boolean;
   isVerifiedEmail: boolean;
-  roles: string[];
+  role: RoleType;
 }
 
 export interface ISetNewPasswordPayload {
