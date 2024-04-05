@@ -1,4 +1,4 @@
-import { ISetNewPasswordPayload, IUserState } from '../../../modules/auth';
+import { IAuthPayload, IUserState } from '../../../modules/auth';
 
 export interface AuthResponse {
   token: string;
@@ -7,7 +7,7 @@ export interface AuthResponse {
 
 export interface ISetNewPasswordResponse {
   token: string;
-  user: ISetNewPasswordPayload;
+  user: IAuthPayload;
 }
 
 export interface IEmailResponse {

@@ -9,7 +9,6 @@ export type {
   IEmailPayload,
   IResendEmailButtonProps,
   ISetNewPasswordFormProps,
-  ISetNewPasswordPayload,
   ITimerTextProps,
   IUserState,
 } from './types';

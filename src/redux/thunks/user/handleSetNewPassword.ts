@@ -17,9 +17,7 @@ export const handleSetNewPassword = createAsyncThunk(
       localStorage.setItem('token', token);
 
       // Return data to be saved in store
-      return {
-        isActive: user.isActive,
-      };
+      return user;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);
     }

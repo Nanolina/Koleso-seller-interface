@@ -16,24 +16,29 @@ export const ChangeEmailForm: React.FC<IChangeEmailFormProps> = React.memo(
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        {({ errors, touched, isValid, dirty }) => (
-          <Form className="authContainer">
-            <InputLabel
-              name="email"
-              inputType="email"
-              label={t('auth.email')}
-              id="email"
-              errors={errors}
-              touched={touched}
-              required
-            />
-            <Button
-              text={t('auth.changeEmail.label')}
-              type="submit"
-              disabled={!isValid || !dirty}
-              tooltipText={formatErrors(errors)}
-            />
-          </Form>
+        {({ values, setFieldValue, errors, touched, isValid }) => (
+          <>
+            {console.log('errors', errors)}
+            <Form className="authContainer">
+              <InputLabel
+                name="email"
+                inputType="email"
+                label={t('auth.email')}
+                id="email"
+                value={values.email}
+                setFieldValue={setFieldValue}
+                errors={errors}
+                touched={touched}
+                required
+              />
+              <Button
+                text={t('auth.changeEmail.label')}
+                type="submit"
+                disabled={!isValid}
+                tooltipText={formatErrors(errors)}
+              />
+            </Form>
+          </>
         )}
       </Formik>
     );

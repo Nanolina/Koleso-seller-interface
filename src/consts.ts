@@ -1,9 +1,9 @@
 import { ColorType } from './modules/product/types';
-import { IStatuses } from './types';
+import { IStatuses, RoleType } from './types';
 
 export const NEW = 'new';
 export const GENDERS: string[] = ['Male', 'Female'];
-export const ROLE: string = 'Seller';
+export const ROLE = RoleType.Seller;
 export const COMPOSITIONS: string[] = [
   'Cotton',
   'Polyester',

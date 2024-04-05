@@ -26,10 +26,6 @@ export interface IAuthPayload {
   role: RoleType;
 }
 
-export interface ISetNewPasswordPayload {
-  isActive: boolean;
-}
-
 export interface IEmailPayload {
   email: string;
 }

@@ -60,13 +60,15 @@ export const RequestPasswordRecoveryForm: React.FC = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ errors, touched }) => (
+      {({ values, setFieldValue, errors, touched }) => (
         <Form className="authContainer">
           <InputLabel
             name="email"
             inputType="email"
             label={t('auth.email')}
             id="email"
+            value={values.email}
+            setFieldValue={setFieldValue}
             errors={errors}
             touched={touched}
             required

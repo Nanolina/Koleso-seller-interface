@@ -3,6 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import 'react-phone-input-2/lib/style.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { ISetNewPasswordFormProps } from '../../..';
 import { InputLabel } from '../../../../../components/InputLabel/InputLabel';
 import { Loader } from '../../../../../components/Loader/Loader';
@@ -23,6 +24,7 @@ import { validationSchema } from './validationSchema';
 export const SetNewPasswordForm: React.FC<ISetNewPasswordFormProps> =
   React.memo(({ userId }) => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
 
     const { loading, error } = useSelector((state: IRootState) => state.user);
@@ -36,6 +38,7 @@ export const SetNewPasswordForm: React.FC<ISetNewPasswordFormProps> =
       };
 
       dispatch(handleSetNewPassword(userData));
+      navigate('/settings');
     };
 
     if (loading) return <Loader />;
@@ -47,13 +50,15 @@ export const SetNewPasswordForm: React.FC<ISetNewPasswordFormProps> =
           validationSchema={() => validationSchema(t)}
           onSubmit={onSubmit}
         >
-          {({ errors, touched, isValid, dirty }) => (
+          {({ values, setFieldValue, errors, touched, isValid, dirty }) => (
             <Form className="authContainer">
               <InputLabel
                 label={t('auth.password')}
                 id="password"
                 name="password"
                 inputType="password"
+                value={values.password}
+                setFieldValue={setFieldValue}
                 errors={errors}
                 touched={touched}
                 required
@@ -64,6 +69,8 @@ export const SetNewPasswordForm: React.FC<ISetNewPasswordFormProps> =
                 id="repeatedPassword"
                 name="repeatedPassword"
                 inputType="password"
+                value={values.repeatedPassword}
+                setFieldValue={setFieldValue}
                 errors={errors}
                 touched={touched}
                 required
