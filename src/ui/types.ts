@@ -17,6 +17,7 @@ export interface IButtonProps {
   isBold?: boolean;
   hasShadow?: boolean;
   tooltipText?: string;
+  isLink?: boolean;
   children?: any;
 }
 

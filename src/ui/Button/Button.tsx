@@ -15,18 +15,32 @@ export const Button: React.FC<IButtonProps> = React.memo(
     isBold = true,
     hasShadow = false,
     tooltipText,
+    isLink = false,
     children,
   }) => {
-    const buttonStyle = {
-      backgroundColor: disabled ? 'var(--light-gray)' : backgroundColor,
-      border: border ? `1px solid var(--main)` : 'none',
-      boxShadow: hasShadow ? '2px 2px 5px rgba(0, 0, 0, 0.5)' : 'none',
-    };
+    const buttonStyle = isLink
+      ? {
+          backgroundColor: 'transparent',
+          border: 'none',
+          boxShadow: 'none',
+          cursor: disabled ? 'default' : 'pointer',
+        }
+      : {
+          backgroundColor: disabled ? 'var(--light-gray)' : backgroundColor,
+          border: border ? `1px solid var(--main)` : 'none',
+          boxShadow: hasShadow ? '2px 2px 5px rgba(0, 0, 0, 0.5)' : 'none',
+        };
 
-    const textStyle = {
-      color: disabled ? 'var(--dark-gray)' : textColor,
-      fontWeight: isBold ? 'bold' : 'normal',
-    };
+    const textStyle = isLink
+      ? {
+          color: disabled ? 'var(--dark-gray)' : 'var(--dark-blue)',
+          fontWeight: 'normal',
+          textDecoration: disabled ? 'none' : 'underline',
+        }
+      : {
+          color: disabled ? 'var(--dark-gray)' : textColor,
+          fontWeight: isBold ? 'bold' : 'normal',
+        };
 
     return (
       <button

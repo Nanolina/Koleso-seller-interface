@@ -1,3 +1,6 @@
 .text {
   font-size: 14px;
+  color: var(--dark-gray);
+  border-top: 1px solid var(--dark-gray);
+  padding-top: 10px;
 }

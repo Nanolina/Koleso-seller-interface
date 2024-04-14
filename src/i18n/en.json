@@ -287,7 +287,8 @@
         "sent": "We sent you a 6-digit code to",
         "copy": "Copy it into the box below",
         "resend": "Resend code to {{email}}",
-        "change": "Change email"
+        "change": "Change email",
+        "notFoundCodeType": "The code type is not set, please try again"
       }
     },
     "timer": {

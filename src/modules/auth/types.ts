@@ -49,3 +49,7 @@ export interface ITimerTextProps {
 export interface IVerifyCodePayload {
   isVerifiedEmail: boolean;
 }
+
+export type ValuesCode = {
+  code: string[];
+}
