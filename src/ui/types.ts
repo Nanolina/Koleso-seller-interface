@@ -39,6 +39,7 @@ export interface IInputProps {
   touched?: any;
   isInputAbsolute?: boolean;
   isErrorSmall?: boolean;
+  maxLength?: number;
 }
 
 export interface ITextareaProps {

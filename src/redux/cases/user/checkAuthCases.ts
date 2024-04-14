@@ -17,7 +17,6 @@ export const checkAuthCases = (
         state.id = action.payload.id;
         state.email = action.payload.email;
         state.phone = action.payload.phone;
-        state.activationLinkId = action.payload.activationLinkId;
         state.isActive = action.payload.isActive;
         state.isVerifiedEmail = action.payload.isVerifiedEmail;
         state.isSeller = action.payload.role === ROLE;

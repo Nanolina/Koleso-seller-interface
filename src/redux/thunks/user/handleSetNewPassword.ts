@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthService } from '../../../services';
-import { ISetNewPasswordDataForService } from '../../../services/types/request';
+import { ISetNewPasswordData } from '../../../services/types/request';
 import { handleAsyncThunkError } from '../../functions';
 
 export const handleSetNewPassword = createAsyncThunk(
   'user/password/set',
-  async (userData: ISetNewPasswordDataForService, { rejectWithValue }) => {
+  async (userData: ISetNewPasswordData, { rejectWithValue }) => {
     try {
       // Submit a request
       const response: any = await AuthService.setNewPassword(userData);

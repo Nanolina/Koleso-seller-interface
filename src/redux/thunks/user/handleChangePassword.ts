@@ -4,7 +4,7 @@ import { AuthService } from '../../../services';
 import { handleAsyncThunkError } from '../../functions';
 
 export const handleChangePassword = createAsyncThunk(
-  'user/change-password',
+  'user/password/change',
   async (passwordValues: IChangePasswordData, { rejectWithValue }) => {
     try {
       await AuthService.changePassword(passwordValues);

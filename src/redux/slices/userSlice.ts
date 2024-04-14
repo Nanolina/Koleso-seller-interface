@@ -10,9 +10,10 @@ import {
   loginCases,
   logoutCases,
   requestPasswordRecoveryCases,
-  resendEmailConfirmationCases,
+  resendCodeCases,
   setNewPasswordCases,
   signupCases,
+  verifyCodeCases,
 } from '../cases/user';
 import { userInitialState } from '../initialStates';
 
@@ -27,12 +28,13 @@ const userSlice = createSlice({
     checkAuthCases(builder);
     changeEmailCases(builder);
     changePhoneCases(builder);
-    resendEmailConfirmationCases(builder);
     requestPasswordRecoveryCases(builder);
     setNewPasswordCases(builder);
     getUserByIdCases(builder);
     changeLanguageCases(builder);
     changePasswordCases(builder);
+    verifyCodeCases(builder);
+    resendCodeCases(builder);
   },
 });
 

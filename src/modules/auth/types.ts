@@ -5,7 +5,6 @@ export interface IUserState {
   id: string;
   email: string;
   phone: string;
-  activationLinkId: string;
   isActive: boolean;
   isVerifiedEmail: boolean;
   isSeller: boolean;
@@ -20,7 +19,6 @@ export interface IAuthPayload {
   id: string;
   email: string;
   phone: string;
-  activationLinkId: string;
   isActive: boolean;
   isVerifiedEmail: boolean;
   role: RoleType;
@@ -38,10 +36,6 @@ export interface IChangeEmailFormProps {
   onSubmit: OnSubmitType;
 }
 
-export interface ISetNewPasswordFormProps {
-  userId: string;
-}
-
 export interface IResendEmailButtonProps {
   isButtonDisabled: boolean;
   timer: number;
@@ -50,4 +44,8 @@ export interface IResendEmailButtonProps {
 
 export interface ITimerTextProps {
   timer: number;
+}
+
+export interface IVerifyCodePayload {
+  isVerifiedEmail: boolean;
 }

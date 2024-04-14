@@ -1,4 +1,4 @@
-import { RoleType } from '../../../types';
+import { CodeType, RoleType } from '../../../types';
 
 export interface ISignupData {
   email: string;
@@ -22,8 +22,7 @@ export interface ISetNewPasswordData {
   repeatedPassword: string;
 }
 
-export interface ISetNewPasswordDataForService {
-  userId: string;
-  password: string;
-  repeatedPassword: string;
+export interface IVerifyCodeData {
+  code: number;
+  codeType: CodeType;
 }

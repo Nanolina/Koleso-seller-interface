@@ -27,3 +27,9 @@ export enum RoleType {
   Seller = 'Seller',
   Customer = 'Customer',
 }
+
+export enum CodeType {
+  EMAIL_CONFIRMATION = 'EMAIL_CONFIRMATION',
+  PHONE_CONFIRMATION = 'PHONE_CONFIRMATION',
+  PASSWORD_RESET = 'PASSWORD_RESET',
+}

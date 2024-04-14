@@ -5,7 +5,6 @@ export const userInitialState: IUserState = {
   id: '',
   email: '',
   phone: '',
-  activationLinkId: '',
   isVerifiedEmail: false,
   isActive: false,
   isSeller: false,

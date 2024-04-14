@@ -6,7 +6,7 @@ import { handleAsyncThunkError } from '../../functions';
 const API_URL = process.env.REACT_APP_AUTH_SERVICE_URL;
 
 export const handleCheckAuth = createAsyncThunk(
-  'user/check-auth',
+  'user/auth/check',
   async (_, { rejectWithValue }) => {
     try {
       // Submit a request

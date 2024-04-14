@@ -11,7 +11,6 @@ export interface ISetNewPasswordResponse {
 }
 
 export interface IEmailResponse {
-  activationLinkId: string;
   email: string;
   isVerifiedEmail: boolean;
 }

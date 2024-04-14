@@ -1,3 +1,4 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import 'react-phone-input-2/lib/style.css';
@@ -11,6 +12,7 @@ import { IRootState } from '../../../../redux/rootReducer';
 import { AppDispatch } from '../../../../redux/store';
 import { handleSignup } from '../../../../redux/thunks/user';
 import { ISignupData } from '../../../../services/types/request';
+import { CodeType } from '../../../../types';
 import { Button } from '../../../../ui/Button/Button';
 import { Email } from '../../../../ui/Email/Email';
 import { Phone } from '../../../../ui/Phone/Phone';
@@ -37,7 +39,11 @@ export const SignupForm: React.FC = () => {
       role: ROLE,
     };
 
-    dispatch(handleSignup(userData));
+    const data = await dispatch(handleSignup(userData));
+    const user = unwrapResult(data);
+    if (user) {
+      navigate(`/code/${CodeType.EMAIL_CONFIRMATION}`);
+    }
   };
 
   if (loading) {

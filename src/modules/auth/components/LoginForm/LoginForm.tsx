@@ -60,7 +60,7 @@ export const LoginForm: React.FC = () => {
           />
           <div className={styles.loginButtonsContainer}>
             <Link to="/password/recovery">{`${t(
-              'auth.forgetPassword'
+              'auth.forgotPassword'
             )}?`}</Link>
             <Button text={t('auth.login')} type="submit" />
           </div>

@@ -15,7 +15,6 @@ export const changeEmailCases = (
       handleChangeEmail.fulfilled,
       (state, action: PayloadAction<IEmailResponse>) => {
         state.email = action.payload.email;
-        state.activationLinkId = action.payload.activationLinkId;
         state.isVerifiedEmail = action.payload.isVerifiedEmail;
         state.loading = false;
         state.success = `The email has been changed to ${action.payload.email}`;

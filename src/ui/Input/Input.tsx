@@ -20,6 +20,7 @@ export const Input: React.FC<IInputProps> = React.memo(
     touched,
     isInputAbsolute = false,
     isErrorSmall = false,
+    maxLength,
   }) => {
     // Add eye to input for password
     const [showPassword, setShowPassword] = useState(false);
@@ -46,6 +47,7 @@ export const Input: React.FC<IInputProps> = React.memo(
           placeholder={placeholder}
           required={required}
           className={inputClass}
+          maxLength={maxLength}
         />
         {errors[name] && touched[name] && (
           <ValidationError error={errors[name]} isErrorSmall={isErrorSmall} />

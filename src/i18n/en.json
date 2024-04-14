@@ -270,7 +270,6 @@
   "auth": {
     "authorization": "Authorization",
     "registration": "Registration",
-    "emailConfirmation": "Email confirmation",
     "login": "Log in",
     "signup": "Sign up",
     "password": "Password",
@@ -279,11 +278,21 @@
     "repeatPassword": "Repeat password",
     "haveAccount": "Already have an account",
     "notAccount": "Don't have an account yet",
-    "forgetPassword": "Forgot password",
+    "forgotPassword": "Forgot password",
     "setNewPassword": "Set new password",
+    "code": {
+      "email": {
+        "confirm": "Confirm email",
+        "passwordReset": "Password reset",
+        "sent": "We sent you a 6-digit code to",
+        "copy": "Copy it into the box below",
+        "resend": "Resend code to {{email}}",
+        "change": "Change email"
+      }
+    },
     "timer": {
-      "wait": "Please wait",
-      "seconds": "seconds before next sending"
+      "wait": "The code can be resent only after",
+      "seconds": "seconds"
     },
     "validation": {
       "phoneRequired": "Phone is required",

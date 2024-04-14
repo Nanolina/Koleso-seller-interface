@@ -7,6 +7,7 @@ export { getUserByIdCases } from './getUserByIdCases';
 export { loginCases } from './loginCases';
 export { logoutCases } from './logoutCases';
 export { requestPasswordRecoveryCases } from './requestPasswordRecoveryCases';
-export { resendEmailConfirmationCases } from './resendEmailConfirmationCases';
+export { resendCodeCases } from './resendCodeCases';
 export { setNewPasswordCases } from './setNewPasswordCases';
 export { signupCases } from './signupCases';
+export { verifyCodeCases } from './verifyCodeCases';

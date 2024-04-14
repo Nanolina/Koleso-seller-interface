@@ -10,7 +10,7 @@ export const RequestPasswordRecoveryPage: React.FC = () => {
   return (
     <Container>
       <Logo />
-      <Title text={`${t('auth.forgetPassword')}?`} />
+      <Title text={`${t('auth.forgotPassword')}?`} />
       <RequestPasswordRecoveryForm />
     </Container>
   );
