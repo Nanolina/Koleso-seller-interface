@@ -1,11 +1,11 @@
 import { AxiosResponse } from 'axios';
 import { authServiceAPI } from '../http';
-import { IVerifyCodePayload } from '../modules/auth';
+import { IEmailPayload } from '../modules/auth';
 import { IChangePasswordData } from '../modules/settings';
-import { CodeType } from '../types';
 import {
   IChangeEmailData,
   ILoginData,
+  IResendCodeData,
   ISetNewPasswordData,
   ISignupData,
   IVerifyCodeData,
@@ -38,11 +38,11 @@ export class AuthService {
     return authServiceAPI.post('/logout');
   }
 
-  // To check email in the DB and send a link "reset password" to email
+  // To check email in the DB and send a code to email
   static async requestPasswordRecovery({
     email,
-  }: IChangeEmailData): Promise<AxiosResponse<AuthResponse>> {
-    return authServiceAPI.post<AuthResponse>('/passwords/recovery', {
+  }: IChangeEmailData): Promise<AxiosResponse<IEmailPayload>> {
+    return authServiceAPI.post<IEmailPayload>('/passwords/recovery', {
       email,
     });
   }
@@ -60,15 +60,21 @@ export class AuthService {
   static async verifyCode({
     code,
     codeType,
-  }: IVerifyCodeData): Promise<AxiosResponse<IVerifyCodePayload>> {
-    return authServiceAPI.post<IVerifyCodePayload>(
-      `/codes/${codeType}/verify`,
-      { code }
-    );
+    email,
+  }: IVerifyCodeData): Promise<AxiosResponse<AuthResponse>> {
+    return authServiceAPI.post<AuthResponse>(`/codes/${codeType}/verify`, {
+      code,
+      email,
+    });
   }
 
-  static async resendCode(codeType: CodeType): Promise<AxiosResponse<void>> {
-    return authServiceAPI.get<void>(`/codes/${codeType}/resend`);
+  static async resendCode({
+    codeType,
+    email,
+  }: IResendCodeData): Promise<AxiosResponse<IEmailPayload>> {
+    return authServiceAPI.post<IEmailPayload>(`/codes/${codeType}/resend`, {
+      email,
+    });
   }
 
   static async changeEmail(

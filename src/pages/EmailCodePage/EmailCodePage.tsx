@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { MessageBox } from '../../components/MessageBox/MessageBox';
 import { EmailCodeForm } from '../../modules/auth';
 import { SignOutModal } from '../../modules/modal';
 import { CodeType } from '../../types';
@@ -12,7 +11,7 @@ import styles from './EmailCodePage.module.css';
 
 export const EmailCodePage: React.FC = () => {
   const { t } = useTranslation();
-  const { codeType } = useParams<{ codeType: CodeType }>();
+  let { codeType } = useParams<{ codeType: CodeType }>();
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -23,12 +22,9 @@ export const EmailCodePage: React.FC = () => {
       break;
     case CodeType.EMAIL_CONFIRMATION:
     default:
+      codeType = CodeType.EMAIL_CONFIRMATION;
       titleText = t('auth.code.email.confirm');
       break;
-  }
-
-  if (!codeType) {
-    return <MessageBox errorMessage={t('auth.code.email.notFoundCodeType')} />;
   }
 
   return (

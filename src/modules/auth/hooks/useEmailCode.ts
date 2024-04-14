@@ -1,6 +1,8 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { IRootState } from '../../../redux/rootReducer';
 import { useAppDispatch } from '../../../redux/store';
 import { handleResendCode, handleVerifyCode } from '../../../redux/thunks/user';
 import { IVerifyCodeData } from '../../../services/types/request';
@@ -13,6 +15,9 @@ export const useEmailCode = (codeType: CodeType) => {
 
   const [timer, setTimer] = useState(30);
   const [isButtonResendDisabled, setIsButtonResendDisabled] = useState(true);
+
+  const { email } = useSelector((state: IRootState) => state.user);
+
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Start or restart the timer
@@ -25,34 +30,42 @@ export const useEmailCode = (codeType: CodeType) => {
 
   // Handle the resend code action
   const resendCode = useCallback(() => {
-    dispatch(handleResendCode(codeType));
+    dispatch(handleResendCode({ codeType, email }));
     if (intervalRef.current) clearInterval(intervalRef.current);
     startTimer(); // Resetting the timer to 30 seconds
-  }, [codeType, dispatch, startTimer]);
+  }, [codeType, dispatch, email, startTimer]);
 
   // Handle the form submission
   const onSubmitCode = useCallback(
     async (values: ValuesCode) => {
+      // Prepare data to send
       const codeData: IVerifyCodeData = {
+        email,
         codeType,
         code: parseInt(values.code.join('')),
       };
 
-      let data;
+      // Get correct pages
+      let navigateTo;
       switch (codeType) {
-        case CodeType.EMAIL_CONFIRMATION:
-          data = await dispatch(handleVerifyCode(codeData));
-          const { isVerifiedEmail } = unwrapResult(data);
-          if (isVerifiedEmail) navigate('/settings');
-          break;
         case CodeType.PASSWORD_RESET:
-          data = await dispatch(handleVerifyCode(codeData));
-          const isCodeVerified = unwrapResult(data);
-          if (isCodeVerified) navigate('/password/set');
+          navigateTo = '/password/set';
           break;
+        case CodeType.EMAIL_CONFIRMATION:
+          navigateTo = '/settings';
+          break;
+        default:
+          navigateTo = '';
+      }
+
+      // Verify code
+      const data = await dispatch(handleVerifyCode(codeData));
+      const user = unwrapResult(data);
+      if (user) {
+        navigate(navigateTo);
       }
     },
-    [codeType, dispatch, navigate]
+    [codeType, dispatch, email, navigate]
   );
 
   useEffect(() => {

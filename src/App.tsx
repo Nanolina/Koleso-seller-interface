@@ -77,9 +77,9 @@ const App: React.FC = () => {
       <I18nextProvider i18n={i18n}>
         <div className="app">
           <Routes>
+            <Route path="/code/:codeType" element={<EmailCodePage />} />
             {isSeller ? (
               <>
-                <Route path="/code/:codeType" element={<EmailCodePage />} />
                 <Route path="/password/set" element={<SetNewPasswordPage />} />
                 {!isVerifiedEmail && (
                   <>

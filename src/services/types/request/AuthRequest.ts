@@ -25,4 +25,10 @@ export interface ISetNewPasswordData {
 export interface IVerifyCodeData {
   code: number;
   codeType: CodeType;
+  email: string;
+}
+
+export interface IResendCodeData {
+  codeType: CodeType;
+  email: string;
 }

@@ -9,15 +9,7 @@ export const handleRequestPasswordRecovery = createAsyncThunk(
     try {
       // Submit a request
       const response = await AuthService.requestPasswordRecovery(userData);
-
-      // Get data from response
-      const { token, user } = response.data;
-
-      // Set access token to the local storage
-      localStorage.setItem('token', token);
-
-      // Return data to be saved in store
-      return user;
+      return response.data;
     } catch (error: any) {
       return handleAsyncThunkError(error, rejectWithValue);
     }

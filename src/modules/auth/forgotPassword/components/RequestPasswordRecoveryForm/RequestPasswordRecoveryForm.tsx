@@ -30,8 +30,8 @@ export const RequestPasswordRecoveryForm: React.FC = () => {
     };
 
     const data = await dispatch(handleRequestPasswordRecovery(userData));
-    const user = unwrapResult(data);
-    if (user) {
+    const { email } = unwrapResult(data);
+    if (email) {
       navigate(`/code/${CodeType.PASSWORD_RESET}`);
     }
   };

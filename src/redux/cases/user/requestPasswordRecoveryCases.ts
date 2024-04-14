@@ -1,6 +1,5 @@
 import { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
-import { ROLE } from '../../../consts';
-import { IAuthPayload, IUserState } from '../../../modules/auth';
+import { IEmailPayload, IUserState } from '../../../modules/auth';
 import { handleRequestPasswordRecovery } from '../../thunks/user';
 
 export const requestPasswordRecoveryCases = (
@@ -13,13 +12,8 @@ export const requestPasswordRecoveryCases = (
     })
     .addCase(
       handleRequestPasswordRecovery.fulfilled,
-      (state, action: PayloadAction<IAuthPayload>) => {
-        state.id = action.payload.id;
+      (state, action: PayloadAction<IEmailPayload>) => {
         state.email = action.payload.email;
-        state.phone = action.payload.phone;
-        state.isActive = action.payload.isActive;
-        state.isVerifiedEmail = action.payload.isVerifiedEmail;
-        state.isSeller = action.payload.role === ROLE;
         state.loading = false;
         state.success = 'The code to reset password was sent to email';
       }
