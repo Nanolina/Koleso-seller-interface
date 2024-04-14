@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import VerificationInput from 'react-verification-input';
 import { Loader } from '../../../../components/Loader/Loader';
 import { MessageBox } from '../../../../components/MessageBox/MessageBox';
 import { IRootState } from '../../../../redux/rootReducer';
@@ -15,7 +16,8 @@ import {
 import { IVerifyCodeData } from '../../../../services/types/request';
 import { CodeType } from '../../../../types';
 import { Button } from '../../../../ui/Button/Button';
-import { Input } from '../../../../ui/Input/Input';
+import { TimerText } from '../../ui/Timer/Timer';
+import styles from './EmailCodeForm.module.css';
 import { initialValues } from './initialValues';
 
 export const EmailCodeForm: React.FC<{
@@ -91,52 +93,46 @@ export const EmailCodeForm: React.FC<{
       {({ values, setFieldValue, errors, touched, handleSubmit }) => (
         <Form className="authContainer">
           <div>
-            <div>
-              <p>{t('auth.code.email.sent')}</p>
-              <p>{email}</p>
-              <p>{t('auth.code.email.copy')}</p>
-            </div>
-            <div>
-              <Input
-                id="code"
-                name="code"
-                value={values.code.join('')}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  const code = event.target.value;
-                  setFieldValue('code', code.split(''));
-                  if (code.length === 6) {
-                    handleSubmit();
-                  }
-                }}
-                maxLength={6}
-                required
-                errors={errors}
-                touched={touched}
-              />
-
-              {timer > 0 ? (
-                <p>{timer}</p>
-              ) : (
-                <Button
-                  onClick={resendCode}
-                  text={t('auth.code.email.resend', { email })}
-                  disabled={isButtonResendDisabled}
-                />
-              )}
-              {error && (
-                <MessageBox
-                  errorMessage={error}
-                  // clearMessage={() => dispatch(clearMessages())}
-                />
-              )}
-              {success && (
-                <MessageBox
-                  successMessage={success}
-                  // clearMessage={() => dispatch(clearMessages())}
-                />
-              )}
-            </div>
+            <p>{t('auth.code.email.sent')}</p>
+            <p>{email}</p>
+            <p>{t('auth.code.email.copy')}</p>
           </div>
+
+          <VerificationInput
+            classNames={{
+              container: styles.inputContainer,
+              character: styles.character,
+            }}
+            value={values.code.join('')}
+            onChange={(code) => {
+              setFieldValue('code', code.split(''));
+              if (code.length === 6) {
+                handleSubmit();
+              }
+            }}
+          />
+
+          {timer > 0 ? (
+            <TimerText timer={timer} />
+          ) : (
+            <Button
+              onClick={resendCode}
+              text={t('auth.code.email.resend', { email })}
+              disabled={isButtonResendDisabled}
+            />
+          )}
+          {error && (
+            <MessageBox
+              errorMessage={error}
+              // clearMessage={() => dispatch(clearMessages())}
+            />
+          )}
+          {success && (
+            <MessageBox
+              successMessage={success}
+              // clearMessage={() => dispatch(clearMessages())}
+            />
+          )}
         </Form>
       )}
     </Formik>

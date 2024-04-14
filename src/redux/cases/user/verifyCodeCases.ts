@@ -13,7 +13,9 @@ export const verifyCodeCases = (
     .addCase(
       handleVerifyCode.fulfilled,
       (state, action: PayloadAction<IVerifyCodePayload>) => {
-        state.isVerifiedEmail = action.payload.isVerifiedEmail;
+        if (action.payload.isVerifiedEmail) {
+          state.isVerifiedEmail = action.payload.isVerifiedEmail;
+        }
         state.loading = false;
       }
     )

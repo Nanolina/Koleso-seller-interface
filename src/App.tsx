@@ -9,7 +9,6 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import { Loader } from './components/Loader/Loader';
-import { MessageBox } from './components/MessageBox/MessageBox';
 import i18n from './i18n/i18n';
 import { EmailCodePage } from './pages/EmailCodePage/EmailCodePage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
@@ -80,6 +79,8 @@ const App: React.FC = () => {
           <Routes>
             {isSeller ? (
               <>
+                <Route path="/code/:codeType" element={<EmailCodePage />} />
+                <Route path="/password/set" element={<SetNewPasswordPage />} />
                 {!isVerifiedEmail && (
                   <>
                     <Route path="/code/:codeType" element={<EmailCodePage />} />
@@ -169,9 +170,7 @@ const App: React.FC = () => {
                   path="/password/recovery"
                   element={<RequestPasswordRecoveryPage />}
                 />
-                <Route path="/password/set" element={<SetNewPasswordPage />} />
                 <Route path="*" element={<Navigate to="/login" replace />} />
-                <MessageBox errorMessage="Your email is bound to a different interface" />
               </>
             )}
           </Routes>

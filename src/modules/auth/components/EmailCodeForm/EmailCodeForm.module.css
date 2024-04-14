@@ -1,0 +1,18 @@
+.character {
+  border: none;
+  font-size: 20px;
+  border-radius: var(--border-radius);
+  color: #272729;
+  background-color: var(--light-gray);
+  box-shadow: 0 2px 0 #e4e2f5;
+}
+
+@media (max-width: 768px) {
+  .character {
+    font-size: 16px;
+  }
+
+  .inputContainer {
+    max-width: 100%;
+  }
+}
