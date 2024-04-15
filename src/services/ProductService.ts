@@ -90,7 +90,7 @@ export class ProductService {
     productValues: ICreateProductData,
     organizationId: string
   ): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.post<IProduct>('/product', productValues, {
+    return productServiceAPI.post<IProduct>('/seller/product', productValues, {
       headers: {
         'Organization-Id': organizationId,
       },
@@ -102,7 +102,7 @@ export class ProductService {
     organizationId: string
   ): Promise<AxiosResponse<IProduct[]>> {
     const queryString = `filter=${encodeURIComponent(JSON.stringify(filter))}`;
-    return productServiceAPI.get<IProduct[]>(`/product?${queryString}`, {
+    return productServiceAPI.get<IProduct[]>(`/seller/product?${queryString}`, {
       headers: {
         'Organization-Id': organizationId,
       },
@@ -117,11 +117,14 @@ export class ProductService {
     const queryString = `filterVariants=${encodeURIComponent(
       JSON.stringify(filterVariants)
     )}`;
-    return productServiceAPI.get<IProduct>(`/product/${id}?${queryString}`, {
-      headers: {
-        'Organization-Id': organizationId,
-      },
-    });
+    return productServiceAPI.get<IProduct>(
+      `/seller/product/${id}?${queryString}`,
+      {
+        headers: {
+          'Organization-Id': organizationId,
+        },
+      }
+    );
   }
 
   static async updateProduct(
@@ -129,18 +132,22 @@ export class ProductService {
     productValues: IUpdateProductData,
     organizationId: string
   ): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.patch<IProduct>(`/product/${id}`, productValues, {
-      headers: {
-        'Organization-Id': organizationId,
-      },
-    });
+    return productServiceAPI.patch<IProduct>(
+      `/seller/product/${id}`,
+      productValues,
+      {
+        headers: {
+          'Organization-Id': organizationId,
+        },
+      }
+    );
   }
 
   static async removeProduct(
     id: string,
     organizationId: string
   ): Promise<AxiosResponse<IProduct>> {
-    return productServiceAPI.delete<IProduct>(`/product/${id}`, {
+    return productServiceAPI.delete<IProduct>(`/seller/product/${id}`, {
       headers: {
         'Organization-Id': organizationId,
       },
@@ -152,7 +159,7 @@ export class ProductService {
     organizationId: string
   ): Promise<AxiosResponse<IProduct>> {
     return productServiceAPI.post<IProduct>(
-      `/product/${id}/recover`,
+      `/seller/product/${id}/recover`,
       {},
       {
         headers: {
@@ -174,7 +181,7 @@ export class ProductService {
     organizationId: string
   ): Promise<AxiosResponse<IUpdateVariantsData>> {
     return productServiceAPI.post<IUpdateVariantsData>(
-      `/product/${productId}/variants`,
+      `/seller/product/${productId}/variants`,
       variants,
       {
         headers: {
@@ -189,7 +196,7 @@ export class ProductService {
     organizationId: string
   ): Promise<AxiosResponse<IVariant[]>> {
     return productServiceAPI.post<IVariant[]>(
-      `/variant/${id}/recover`,
+      `/seller/variant/${id}/recover`,
       {},
       {
         headers: {
@@ -206,7 +213,7 @@ export class ProductService {
     organizationId: string
   ): Promise<AxiosResponse<IColorsWithImagesData>> {
     return productServiceAPI.post<IColorsWithImagesData>(
-      `/product/${productId}/images`,
+      `/seller/product/${productId}/images`,
       filesFormData,
       {
         headers: {
@@ -221,7 +228,7 @@ export class ProductService {
     organizationId: string
   ): Promise<AxiosResponse<IColorsWithImagesData[]>> {
     return productServiceAPI.get<IColorsWithImagesData[]>(
-      `/product/${productId}/images`,
+      `/seller/product/${productId}/images`,
       {
         headers: {
           'Organization-Id': organizationId,
